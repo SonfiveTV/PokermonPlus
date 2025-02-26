@@ -33,6 +33,13 @@ SMODS.Atlas({
   py = 95
 }):register()
 
+SMODS.Atlas({
+  key = "sleeves",
+  px = 73,
+  py = 95,
+  path = "sleeves.png"
+}):register()
+
 
 mod_dir = ''..SMODS.current_mod.path
 if (SMODS.Mods["Pokermon"] or {}).can_load then
@@ -145,6 +152,28 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] then
             item.discovered = not pokermon_config.pokemon_discovery 
             SMODS.Joker(item)
           end
+        end
+      end
+    end
+  end
+end 
+
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
+  if (SMODS.Mods["CardSleeves"] or {}).can_load then
+    --Load Sleeves
+    local sleeves = NFS.getDirectoryItems(mod_dir.."sleeves")
+
+    for _, file in ipairs(sleeves) do
+      sendDebugMessage ("the file is: "..file)
+      local sleeve, load_error = SMODS.load_file("sleeves/"..file)
+      if load_error then
+        sendDebugMessage("The error is: "..load_error)
+      else
+        local curr_sleeve = sleeve()
+        if curr_sleeve.init then curr_sleeve.init() end
+        
+        for i,item in ipairs (curr_sleeve.list) do
+          CardSleeves.Sleeve(item)
         end
       end
     end

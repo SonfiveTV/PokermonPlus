@@ -14,8 +14,8 @@ return {
                 name = "Virtuous Deck",
                 text={
                     "Start run with the",
-                    "{C:tarot}Hieroglyph{} voucher",
-                    "and a {C:tarot}Timer Ball{} card"
+                    "{C:tarot,T:v_hieroglyph}Hieroglyph{} voucher",
+                    "and a {C:tarot,T:c_sonfive_timerball}Timer Ball{} card"
                 }
             },
 
@@ -55,6 +55,15 @@ return {
                 },
             },
 
+            c_sonfive_timerball_deck = {
+                name = "Timer Ball",
+                text = {
+                    "Create a random {V:1}#1#{C:attention} Joker Pokemon{}",
+                    "Rarity increases in 3 rounds!",
+                    "{C:inactive}(Must have room)"
+                },
+            },
+
             c_sonfive_berryjuice = {
                 name = "Berry Juice",
                 text = {
@@ -84,5 +93,36 @@ return {
                 },
             },
         },
+
+        Sleeve = {
+
+            sleeve_sonfive_reverencesleeve = {
+                name = "Reverence Sleeve",
+                text = {"All cards have ",
+                        "a {C:dark_edition}Silver Seal{}"
+                },
+            },
+
+            sleeve_sonfive_virtuoussleeve = {
+                name = "Virtuous Sleeve",
+                text = {
+                        "Start run with the",
+                        "{C:tarot,T:v_hieroglyph}Hieroglyph{} voucher",
+                        "and a {C:tarot,T:c_sonfive_timerball}Timer Ball{} card"
+                },
+            },
+
+            sleeve_sonfive_virtuoussleeve_alt = {
+                name = "Virtuous Sleeve",
+                text = {
+                        "Start run with the",
+                        "{C:tarot,T:v_petroglyph}Petroglyph{} voucher",
+                        "and a {C:tarot,T:c_sonfive_timerball}Timer Ball{} card"
+                },
+            },
+
+
+
+        }
     }
 }
