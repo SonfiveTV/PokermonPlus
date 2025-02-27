@@ -5,7 +5,7 @@ local reverencedeck = {
     pos = {x = 0, y = 0},
     config = {},
     loc_vars = function(self, info_queue, center)
-        return {vars = {hands, dollars}}
+        return {vars = {}}
     end,
     apply = function(self)
         G.GAME.modifiers.poke_force_seal = "poke_silver"

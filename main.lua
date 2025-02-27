@@ -27,8 +27,8 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
-  key = "shinypokedex_2",
-  path = "shinypokedex_2.png",
+  key = "shiny_pokedex_2",
+  path = "shiny_pokedex_2.png",
   px = 71,
   py = 95
 }):register()

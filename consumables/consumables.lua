@@ -2,7 +2,7 @@ local timerball = {
   name = "timerball",
   key = "timerball",
   set = "Item",
-  config = {extra = {round_on_add = 1, legendary = 15, rare = 7, uncommon = 3, common = 0}},
+  config = {extra = {round_on_add = 1, legendary = 21, rare = 12, uncommon = 6, common = 2}},
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
     -- don't know the localization code for rarities
@@ -31,6 +31,11 @@ local timerball = {
       round = center.ability.extra.uncommon - round
       rarity = rarities[1]
       color = colors[1]
+    elseif round < center.ability.extra.common and round > 0 then
+      round = center.ability.extra.common - round
+      rarity = rarities[1]
+      color = colors[1]
+      key = self.key.."_start"
     else 
       key = self.key.."_deck"
     end
@@ -43,7 +48,7 @@ local timerball = {
   unlocked = true,
   discovered = true,
   can_use = function(self, card)
-    if #G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers then
+    if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (G.GAME.round - card.ability.extra.round_on_add) >= 2 then
       return true
     else
       return false
@@ -52,28 +57,28 @@ local timerball = {
   
   use = function(self, card, area, copier)
     set_spoon_item(card)
-    if (G.GAME.round - card.ability.extra.round_on_add) < 3 then
+    if (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
       G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
         play_sound('timpani')
         local _card = create_random_poke_joker("timerball", nil, "common", nil, nil)
         _card:add_to_deck()
         G.jokers:emplace(_card)
         return true end }))
-    elseif 3 <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < 7 then
+    elseif self.config.extra.uncommon <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.rare then
       G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
         play_sound('timpani')
         local _card = create_random_poke_joker("timerball", nil, "uncommon", nil, nil)
         _card:add_to_deck()
         G.jokers:emplace(_card)
         return true end }))
-    elseif 7 <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < 15 then
+    elseif self.config.extra.rare <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.legendary then
       G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
         play_sound('timpani')
         local _card = create_random_poke_joker("timerball", nil, "rare", nil, nil)
         _card:add_to_deck()
         G.jokers:emplace(_card)
         return true end }))
-    elseif 15 <= (G.GAME.round - card.ability.extra.round_on_add)  then
+    elseif self.config.extra.legendary <= (G.GAME.round - card.ability.extra.round_on_add)  then
       G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
         play_sound('timpani')
         local _card = create_random_poke_joker("timerball", "Legendary")

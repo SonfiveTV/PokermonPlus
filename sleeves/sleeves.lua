@@ -20,16 +20,16 @@ local virtuoussleeve = {
     prefix_config = {},
     atlas = "sleeves",
     pos = { x = 1, y = 0 },
-    config = {voucher = {v_hieroglyph}, consumables = {'c_sonfive_timerball'}},
+    config = {consumables = {"c_sonfive_timerball"}, hands = -1, dollars = -4},
     loc_vars = function(self, info_queue, center)
         local key, vars
         if self.get_current_deck_key() == "b_sonfive_virtuousdeck" then
             key = self.key.."_alt"
-            self.config = {vouchers = {"v_petroglyph"}, consumables = {"c_sonfive_timerball"}}
+            self.config = {vouchers = {"v_hieroglyph"}, consumables = {"c_sonfive_timerball"}}
             vars = {self.config.vouchers, self.config.consumables}
         else
             key = self.key
-            self.config = {vouchers = {"v_hieroglyph"}, consumables = {"c_sonfive_timerball"}}
+            self.config = {consumables = {"c_sonfive_timerball"}, hands = -1, dollars = -4}
             vars = {self.config.vouchers, self.config.consumables}
         end
         return {key = key, vars = vars}

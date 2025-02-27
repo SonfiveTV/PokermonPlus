@@ -49,8 +49,8 @@ return {
             c_sonfive_timerball = {
                 name = "Timer Ball",
                 text = {
-                    "Create a random {V:1}#1#{C:attention} Joker Pokemon{}",
-                    "Rarity increases in #2# rounds!",
+                    "Create a random {V:1}#1#{C:attention} Pokemon{}",
+                    "Rarity increases in {C:attention}#2#{} rounds!",
                     "{C:inactive}(Must have room)"
                 },
             },
@@ -59,7 +59,16 @@ return {
             c_sonfive_timerball_max = {
                 name = "Timer Ball",
                 text = {
-                    "Create a random {V:1}#1#{C:attention} Joker Pokemon{}",
+                    "Create a random {V:1}#1#{C:attention} Pokemon{}",
+                    "{C:inactive}(Must have room)"
+                },
+            },
+
+            c_sonfive_timerball_start = {
+                name = "Timer Ball",
+                text = {
+                    "Can create a random ",
+                    "{V:1}#1#{C:attention} Pokemon{} in {C:attention}#2#{} rounds!",
                     "{C:inactive}(Must have room)"
                 },
             },
@@ -67,8 +76,8 @@ return {
             c_sonfive_timerball_deck = {
                 name = "Timer Ball",
                 text = {
-                    "Create a random {V:1}#1#{C:attention} Joker Pokemon{}",
-                    "Rarity increases in 3 rounds!",
+                    "Can create a random ",
+                    "{V:1}#1#{C:attention} Pokemon{} in {C:attention}2{} rounds!",
                     "{C:inactive}(Must have room)"
                 },
             },
@@ -89,9 +98,10 @@ return {
             timer = {
                 name = "Timer Ball",
                 text = {
-                    "{C:green}Uncommon {C:attention}Pokemon{} after {C:attention}4{} rounds",
-                    "{C:red}Rare {C:attention}Pokemon{} after {C:attention}7{} rounds",
-                    "{C:legendary,E:1}Legendary {C:attention}Pokemon{} after {C:attention}15{} rounds"
+                    "{C:blue}Common Pokemon{} after {C:attention}2{} rounds",
+                    "{C:green}Uncommon Pokemon{} after {C:attention}6{} rounds",
+                    "{C:red}Rare Pokemon{} after {C:attention}12{} rounds",
+                    "{C:legendary,E:1}Legendary Pokemon{} after {C:attention}21{} rounds"
                 },
             },
 
@@ -115,18 +125,17 @@ return {
             sleeve_sonfive_virtuoussleeve = {
                 name = "Virtuous Sleeve",
                 text = {
-                        "Start run with the",
-                        "{C:tarot,T:v_hieroglyph}Hieroglyph{} voucher",
-                        "and a {C:tarot,T:c_sonfive_timerball}Timer Ball{} card"
-                },
+                    "Start run with a {C:tarot,T:c_sonfive_timerball}Timer Ball{}",
+                    "Start with {C:money}$0{}",
+                    "{C:red}-1{} hands" 
+                }
             },
 
             sleeve_sonfive_virtuoussleeve_alt = {
                 name = "Virtuous Sleeve",
                 text = {
                         "Start run with the",
-                        "{C:tarot,T:v_petroglyph}Petroglyph{} voucher",
-                        "and a {C:tarot,T:c_sonfive_timerball}Timer Ball{} card"
+                        "{C:tarot,T:v_hieroglyph}Hieroglyph{} voucher"
                 },
             },
 
