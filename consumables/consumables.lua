@@ -120,7 +120,7 @@ end,
 use = function(self, card, area, copier)
   set_spoon_item(card)
   if G.jokers.highlighted[1].ability.perishable then 
-    G.jokers.highlighted[1].ability.perish_tally = (G.jokers.highlighted[1].ability.perish_tally + 2)
+    G.jokers.highlighted[1].ability.perish_tally = (G.jokers.highlighted[1].ability.perish_tally + 1)
     G.jokers.highlighted[1]:set_debuff(false)
   end
   G.jokers.highlighted[1]:set_debuff(false)

@@ -13,9 +13,9 @@ return {
             b_sonfive_virtuousdeck = {
                 name = "Virtuous Deck",
                 text={
-                    "Start run with a {C:tarot,T:c_sonfive_timerball}Timer Ball{}",
-                    "Start with {C:money}$0{}",
-                    "{C:blue}-1{} hand every round" 
+                    "Start with a {C:item,T:c_sonfive_timerball}Timer Ball{},",
+                    "{C:blue}-1{} hand",
+                    "every round" 
                 }
             },
 
@@ -125,9 +125,9 @@ return {
             sleeve_sonfive_virtuoussleeve = {
                 name = "Virtuous Sleeve",
                 text = {
-                    "Start run with a {C:tarot,T:c_sonfive_timerball}Timer Ball{}",
-                    "Start with {C:money}$0{}",
-                    "{C:blue}-1{} hand every round" 
+                    "Start with a {C:item,T:c_sonfive_timerball}Timer Ball{},",
+                    "{C:blue}-1{} hand",
+                    "every round" 
                 }
             },
 
