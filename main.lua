@@ -20,15 +20,15 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
-  key = "Pokedex_G2",
-  path = "Pokedex_G2.png",
+  key = "pokedex_2",
+  path = "pokedex_2.png",
   px = 71,
   py = 95
 }):register()
 
 SMODS.Atlas({
-  key = "Shinydex_G2",
-  path = "Shinydex_G2.png",
+  key = "shinypokedex_2",
+  path = "shinypokedex_2.png",
   px = 71,
   py = 95
 }):register()

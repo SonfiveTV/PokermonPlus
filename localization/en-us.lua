@@ -13,9 +13,9 @@ return {
             b_sonfive_virtuousdeck = {
                 name = "Virtuous Deck",
                 text={
-                    "Start run with the",
-                    "{C:tarot,T:v_hieroglyph}Hieroglyph{} voucher",
-                    "and a {C:tarot,T:c_sonfive_timerball}Timer Ball{} card"
+                    "Start run with a {C:tarot,T:c_sonfive_timerball}Timer Ball{}",
+                    "Start with {C:money}$0{}",
+                    "{C:red}-1{} hands" 
                 }
             },
 
@@ -30,8 +30,17 @@ return {
                     "When blind is selected",
                     "create a {C:attention}Berry Juice{} card",
                     "{C:inactive}(Must have room)"
-                }
-            }
+                },
+            },
+
+            j_sonfive_darkcave = {
+                name = "Dark Cave",
+                text = {
+                    "1 in 2 chance to gain Uncommon Joker",
+                    "when Blind is defeated",
+                    "{C:inactive}(Must have room)"
+                },
+            },
 
 
         },

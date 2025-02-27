@@ -5,7 +5,7 @@ local reverencedeck = {
     pos = {x = 0, y = 0},
     config = {},
     loc_vars = function(self, info_queue, center)
-        return {vars = {}}
+        return {vars = {hands, dollars}}
     end,
     apply = function(self)
         G.GAME.modifiers.poke_force_seal = "poke_silver"
@@ -16,7 +16,7 @@ local virtuousdeck = {
 	key = "virtuousdeck",  
     atlas = "backs",
     pos = { x = 1, y = 0 },
-	config = {vouchers = { "v_hieroglyph"}, consumables = {"c_sonfive_timerball"}},
+	config = {consumables = {"c_sonfive_timerball"}, hands = -1, dollars = -4},
   loc_vars = function(self, info_queue, center)
     return {vars = {}}
   end,
