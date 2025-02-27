@@ -15,7 +15,7 @@ return {
                 text={
                     "Start run with a {C:tarot,T:c_sonfive_timerball}Timer Ball{}",
                     "Start with {C:money}$0{}",
-                    "{C:blue}-1{} hands" 
+                    "{C:blue}-1{} hand every round" 
                 }
             },
 
@@ -127,7 +127,7 @@ return {
                 text = {
                     "Start run with a {C:tarot,T:c_sonfive_timerball}Timer Ball{}",
                     "Start with {C:money}$0{}",
-                    "{C:blue}-1{} hands" 
+                    "{C:blue}-1{} hand every round" 
                 }
             },
 
