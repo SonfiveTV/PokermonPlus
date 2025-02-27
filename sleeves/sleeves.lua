@@ -25,11 +25,11 @@ local virtuoussleeve = {
         local key, vars
         if self.get_current_deck_key() == "b_sonfive_virtuousdeck" then
             key = self.key.."_alt"
-            self.config = {vouchers = {"v_hieroglyph"}, consumables = {"c_sonfive_timerball"}}
+            self.config = {vouchers = {"v_hieroglyph"}}
             vars = {self.config.vouchers, self.config.consumables}
         else
             key = self.key
-            self.config = {consumables = {"c_sonfive_timerball"}, hands = -1, dollars = -4}
+            self.config = {consumables = {"c_sonfive_timerball"}, hands = -1}
             vars = {self.config.vouchers, self.config.consumables}
         end
         return {key = key, vars = vars}
