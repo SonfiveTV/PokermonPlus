@@ -9,8 +9,9 @@ local reverencedeck = {
     end,
     apply = function(self)
         G.GAME.modifiers.poke_force_seal = "poke_silver"
-    end,
+    end
 }
+
 local virtuousdeck = {
 	name = "virtuousdeck",
 	key = "virtuousdeck",  
@@ -19,15 +20,50 @@ local virtuousdeck = {
 	config = {consumables = {"c_sonfive_timerball"}, hands = -1, dollars = 0},
   loc_vars = function(self, info_queue, center)
     return {vars = {}}
-  end,
-
-
+  end
 } 
 
+local propheticdeck ={
+    name = "propheticdeck",
+    key = "propheticdeck",
+    atlas = "backs",
+    pos = { x = 2, y = 0 },
+    config = {hand_size = -1, extra = {scry = 3}},
+    loc_vars = function(self, info_queue, center)
+        return {vars = {self.config.hand_size, self.config.extra.scry}}
+    end,
 
-local dList = {reverencedeck, virtuousdeck}
+    
+    apply = function(self)
+        G.GAME.scry_amount = self.config.extra.scry
+    end    
+}
+
+local shinydeck ={
+    name = "shinydeck",
+    key = "shinydeck",
+    atlas = "backs",
+    pos = { x = 3, y = 0 },
+    config = {extra = {chance = 100}},
+    loc_vars = function(self, info_queue, center)
+        return {vars = {}}
+    end,    
+
+    apply = function(self)
+        local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
+        G.P_CENTERS.e_poke_shiny.get_weight = function(self)
+          return previous_shiny_get_weight(self) + ((G.GAME.shiny_edition_rate or 1) - 1) * G.P_CENTERS.e_poke_shiny.weight
+        end
+        G.GAME.shiny_edition_rate = (G.GAME.shiny_edition_rate or 1) * self.config.extra.chance
+    end   
+}
+
+
+local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck}
 
 return {name = "Back",
         list = dList
         
 }
+
+

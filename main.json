@@ -11,9 +11,9 @@
   "display_name": "Sonfive's Pokermon+",
 	"version": "0.0.3",
 	"dependencies": [
-			"Steamodded (>=1.0.0~ALPHA-1303a)",
-      "Lovely (>=0.6)",
-      "Pokermon (>=2.6.0)"
+			"Steamodded (>=1.0.0~ALPHA-1426c)",
+      "Lovely (>=0.7)",
+      "Pokermon (>=2.7.0)"
 	],
   "conflicts": [],
 	"provides": [],
