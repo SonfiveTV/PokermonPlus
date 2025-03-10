@@ -34,11 +34,41 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
+  key = "pokedex_3",
+  path = "pokedex_3.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "shiny_pokedex_3",
+  path = "shiny_pokedex_3.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "pokedex_4",
+  path = "pokedex_4.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "shiny_pokedex_4",
+  path = "shiny_pokedex_4.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
   key = "sleeves",
   px = 73,
   py = 95,
   path = "sleeves.png"
 }):register()
+
+table.insert(family, {"duskull", "dusclops", "dusknoir"})
 
 sonfive_config = SMODS.current_mod.config
 mod_dir = ''..SMODS.current_mod.path

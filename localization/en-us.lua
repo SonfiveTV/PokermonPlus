@@ -37,6 +37,15 @@ return {
                 }
             },
 
+            b_sonfive_megadeck = {
+                name = "Mega Deck",
+                text = {
+                        "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
+                        "{X:gray,C:attention}+4{} Ante win requirement"
+
+                }
+            },
+
 
         },
 
@@ -50,7 +59,7 @@ return {
                 },
             },
 
-            j_sonfive_dark_cave = {
+            j_sonfive_duskull = {
                 name = "Dark Cave",
                 text = {
                         "{C:green}#1# in #2#{} chance to create an",
@@ -61,6 +70,33 @@ return {
                         "a {X:lightning, C:black}Lightning{} Joker",
                 },
             },
+
+            j_sonfive_dusclops = {
+                name = "Dark Cave",
+                text = {
+                        "{C:green}#1# in #2#{} chance to create an",
+                        "{C:green}Uncommon{} Pokemon {C:attention}Joker{}",
+                        "at end of round",
+                        "{br:2}text needs to be here to work",
+                        "Guaranteed if you have",
+                        "a {X:lightning, C:black}Lightning{} Joker",
+                },
+            },
+
+
+            j_sonfive_dusknoir = {
+                name = "Garganacl",
+                text = {
+                        "At the end of shop, remove {C:dark_edition}Negative{}",
+                        "from all Jokers and multiply this",
+                        "Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X2{} for each",
+                        "edition removed",
+                        "{br:4}text needs to be here to work",
+                        "This Joker can't be debuffed",
+                        "{C:inactive}(Currently {}{X:red,C:white}X1{}{C:inactive} Mult){}",
+                },
+            },
+
 
             
 
@@ -201,6 +237,17 @@ return {
                         "{C:dark_edition}Shiny Pokemon{} are",
                         "even more likely to appear" 
                 },
+            },
+
+            
+
+            sleeve_sonfive_megasleeve = {
+                name = "Mega Sleeve",
+                text = {
+                        "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
+                        "{X:gray,C:attention}+4{} Ante win requirement"
+
+                }
             },
 
 

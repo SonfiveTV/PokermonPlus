@@ -28,60 +28,145 @@ local shuckle = {
     end,
 }
 
-local shinx = {
-    name = 'shinx',
-    poke_custom_prefix = "sonfive",
-    pos = {x = 0, y = 0},
-    vars = {{odds = 4}, {xmult = 2}, {card_list = {}}},
-    loc_vars = function(self, info_queue, card)
-        local vars
-        if G.GAME and G.GAME.probabilities.normal then
-            vars = {G.GAME.probabilities.normal, card.ability.extra.odds, card.ability.extra.xmult}
-        else
-            vars = {1, card.ability.extra.odds, card.ability.extra.xmult}
+local duskull = {
+  name = "duskull", 
+  poke_custom_prefix = "sonfive",
+  pos = {x = 6, y = 10}, 
+  config = {extra = {mult_mod = 5, mult = 0}, evo_rqmt = 25},
+  loc_vars = function(self, info_queue, card)
+    type_tooltip(self, info_queue, card)
+    local mult = card.ability.extra.mult
+    return {vars = {mult, card.ability.extra.mult_mod}}
+  end,
+  rarity = 2, 
+  cost = 5, 
+  stage = "Basic", 
+  ptype = "Psychic",
+  atlas = "pokedex_3",
+  blueprint_compat = true,
+  calculate = function(self, card, context)
+    if context.cardarea == G.jokers and context.scoring_hand then
+      if context.joker_main and card.ability.extra.mult > 0 then
+        local mult = card.ability.extra.mult
+        return {
+          message = localize{type = 'variable', key = 'a_mult', vars = {mult}}, 
+          colour = G.C.MULT,
+          mult_mod = mult
+        }
+      end
+    end
+    return scaling_evo(self, card, context, "j_sonfive_dusclops", card.ability.extra.mult, self.config.evo_rqmt)
+  end,
+  update = function(self, card, dt)
+    if G.STAGE == G.STAGES.RUN then
+        card.ability.extra.mult = (G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral or 0) * card.ability.extra.mult_mod
+    end
+  end,
+}
+
+local dusclops = {
+  name = "dusclops", 
+  poke_custom_prefix = "sonfive",
+  pos = {x = 7, y = 10}, 
+  config = {extra = {mult_mod = 10, mult = 0}, evo_rqmt = 150},
+  loc_vars = function(self, info_queue, card)
+    type_tooltip(self, info_queue, card)
+    local mult = card.ability.extra.mult
+    return {vars = {mult, card.ability.extra.mult_mod}}
+  end,
+  rarity = 3, 
+  cost = 7, 
+  stage = "One", 
+  ptype = "Psychic",
+  atlas = "pokedex_3",
+  blueprint_compat = true,
+  calculate = function(self, card, context)
+    if context.cardarea == G.jokers and context.scoring_hand then
+      if context.joker_main and card.ability.extra.mult > 0 then
+        local mult = card.ability.extra.mult
+        return {
+          message = localize{type = 'variable', key = 'a_mult', vars = {mult}}, 
+          colour = G.C.MULT,
+          mult_mod = mult
+        }
+      end
+    end
+    return scaling_evo(self, card, context, "j_sonfive_dusknoir", card.ability.extra.mult, self.config.evo_rqmt)
+  end,
+  update = function(self, card, dt)
+    if G.STAGE == G.STAGES.RUN then
+        card.ability.extra.mult = (G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral or 0) * card.ability.extra.mult_mod
+    end
+  end,
+    add_to_deck = function(self, card, from_debuff)
+      G.E_MANAGER:add_event(Event({func = function()
+        for k, v in pairs(G.I.CARD) do
+            if v.set_cost then v:set_cost() end
         end
-        return {vars = vars}
+        return true end }))
     end,
-    ptype = "Lightning",
-    stage = "Basic",
-    atlas = "pokedex_2",
-    rarity = 2, 
-    cost = 5,
-    blueprint_compat = true, 
-    calculate = function(self, card, context)
-        if context.stay_flipped and not context.blueprint then
-            big_juice(card)
+    remove_from_deck = function(self, card, from_debuff)
+        G.E_MANAGER:add_event(Event({func = function()
+        for k, v in pairs(G.I.CARD) do
+            if v.set_cost then v:set_cost() end
         end
-        if context.play_cards then
-            card.ability.extra.card_list = {}
-            for i = 1, #G.hand.highlighted do
-                if G.hand.highlighted[i].facing == 'back' then
-                    table.insert(card.ability.extra.card_list, G.hand.highlighted[i])
-                end
-            end
-        end
-        if context.individual and context.cardarea == G.play and context.other_card then
-            local condition = false
-            for i = 1, #card.ability.extra.card_list do
-                local flipped_card = card.ability.extra.card_list[i]
-                if context.other_card == flipped_card then
-                    condition = true
-                    break
-                end
-            end
-            if condition then return {
-                x_mult = card.ability.extra.xmult,
-                card = card
-            }
-            end
-        end
+        return true end }))
     end,
 }
 
+local dusknoir = {
+    name = "dusknoir", 
+    poke_custom_prefix = "sonfive",
+    pos = {x = 6, y = 6}, 
+    config = {extra = {Xmult_mod = 0.25, Xmult = 1}},
+    loc_vars = function(self, info_queue, card)
+      type_tooltip(self, info_queue, card)
+      local Xmult = 1 + (card.ability.extra.Xmult + card.ability.extra.Xmult_mod)
+      return {vars = {Xmult, card.ability.extra.Xmult_mod}}
+    end,
+    rarity = "poke_safari", 
+    cost = 7, 
+    stage = "Two", 
+    ptype = "Psychic",
+    atlas = "pokedex_4",
+    blueprint_compat = true,
+    calculate = function(self, card, context)
+      if context.cardarea == G.jokers and context.scoring_hand then
+        if context.joker_main then
+          local Xmult = 1 + card.ability.extra.Xmult * card.ability.extra.Xmult_mod
+          return {
+            message = localize{type = 'variable', key = 'a_xmult', vars = {Xmult}}, 
+            colour = G.C.MULT,
+            Xmult_mod = Xmult
+          }
+        end
+      end
+    end,
+    
+    update = function(self, card, dt)
+      if G.STAGE == G.STAGES.RUN then
+          card.ability.extra.Xmult =  (G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.spectral or 0)
+      end
+    end,
+
+      add_to_deck = function(self, card, from_debuff)
+        G.E_MANAGER:add_event(Event({func = function()
+          for k, v in pairs(G.I.CARD) do
+              if v.set_cost then v:set_cost() end
+          end
+          return true end }))
+      end,
+      remove_from_deck = function(self, card, from_debuff)
+          G.E_MANAGER:add_event(Event({func = function()
+          for k, v in pairs(G.I.CARD) do
+              if v.set_cost then v:set_cost() end
+          end
+          return true end }))
+      end,
+  }
 
 
-
-list = {shuckle,}
+list = {shuckle}
 
 return {name = "PokermonPlus1", 
 list = list

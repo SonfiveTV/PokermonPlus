@@ -58,8 +58,24 @@ local shinydeck ={
     end   
 }
 
+local megadeck = {
+	name = "megadeck",
+	key = "megadeck",  
+    atlas = "backs",
+    pos = { x = 4, y = 0 },
+	config = {consumables = {"c_poke_megastone"}},
+  loc_vars = function(self, info_queue, center)
+    return {vars = {self.config.consumables}}
+  end,
 
-local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck}
+  apply = function(self)
+    G.GAME.win_ante = (G.GAME.win_ante + 4)
+  end
+} 
+
+
+
+local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck, megadeck}
 
 return {name = "Back",
         list = dList

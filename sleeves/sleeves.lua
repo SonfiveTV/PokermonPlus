@@ -85,7 +85,6 @@ local shinysleeve = {
     config = {extra = {chance = 100}},
     loc_vars = function(self, info_queue, center)
         local key, vars
-        local key, vars
         if self.get_current_deck_key() == "b_sonfive_shinydeck" then
             key = self.key.."_alt"
             vars = {}
@@ -96,7 +95,6 @@ local shinysleeve = {
         return {key = key, vars = vars}
     end,
     apply = function(self)
-        apply = function(self)
             local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
             G.P_CENTERS.e_poke_shiny.get_weight = function(self)
               return previous_shiny_get_weight(self) + ((G.GAME.shiny_edition_rate or 1) - 1) * G.P_CENTERS.e_poke_shiny.weight
@@ -106,11 +104,37 @@ local shinysleeve = {
             else
                 G.GAME.shiny_edition_rate = (1) * self.config.extra.chance
             end
-        end   
-    end    
+        end       
 }
 
-local slist = {reverencesleeve, virtuoussleeve, propheticsleeve, shinysleeve}
+local megasleeve = {
+    key = 'megasleeve',
+    name = 'Mega Sleeve',
+    prefix_config = {},
+    atlas = "sleeves",
+    pos = { x = 4, y = 0 },
+	config = {consumables = {"c_poke_megastone"}},
+  loc_vars = function(self, info_queue, center)
+    return {vars = {self.config.consumables}}
+  end,
+
+  apply = function(self)
+    G.GAME.win_ante = (G.GAME.win_ante + 4)
+    delay(0.4)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                for _, v in ipairs(self.config.consumables) do
+                    local card = SMODS.create_card{key=v}
+                    card:add_to_deck()
+                    G.consumeables:emplace(card)
+                end
+                return true
+            end
+        }))
+  end
+} 
+
+local slist = {reverencesleeve, virtuoussleeve, propheticsleeve, shinysleeve, megasleeve}
 
 return {Name = "Sleeve",
             init = init,
