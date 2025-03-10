@@ -3,5 +3,5 @@ This is an add-on mod for Pokermon - an add-on mod for Balatro.
 Current adds the following:<br/><br/>
   **Jokers**: Shuckle<br/><br/>
   **Consumables**: Timer Ball, Berry Juice<br/><br/>
-  **Decks**: Reverence Deck, Virtuous Deck<br/><br/>
-  **Sleeves**: Reverence Sleeve, Virtuous Sleeve
+  **Decks**: Reverence Deck, Virtuous Deck, Shiny Deck, Mega Deck<br/><br/>
+  **Sleeves**: Reverence Sleeve, Virtuous Sleeve, Shiny Sleeve, Mega Sleeve
