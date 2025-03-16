@@ -157,9 +157,9 @@ return {
                 name = "Timer Ball",
                 text = {
                         "{C:blue}Common Pokemon{} after {C:attention}2{} rounds",
-                        "{C:green}Uncommon Pokemon{} after {C:attention}6{} rounds",
-                        "{C:red}Rare Pokemon{} after {C:attention}12{} rounds",
-                        "{C:legendary,E:1}Legendary Pokemon{} after {C:attention}21{} rounds"
+                        "{C:green}Uncommon Pokemon{} after {C:attention}5{} rounds",
+                        "{C:red}Rare Pokemon{} after {C:attention}10{} rounds",
+                        "{C:legendary,E:1}Legendary Pokemon{} after {C:attention}20{} rounds"
                 },
             },
 
