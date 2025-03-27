@@ -2,7 +2,7 @@ local timerball = {
   name = "timerball",
   key = "timerball",
   set = "Item",
-  config = {extra = {round_on_add = 1, legendary = 20, rare = 10, uncommon = 5, common = 2}},
+  config = {extra = {round_on_add = 1, legendary = 21, rare = 12, uncommon = 6, common = 2}},
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
     -- don't know the localization code for rarities
@@ -92,6 +92,15 @@ local timerball = {
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
       card.ability.extra.round_on_add = G.GAME.round
+    end
+  end,
+  update = function(self, card, dt)
+    if G.STAGE == G.STAGES.RUN then
+      if G.GAME.round >= (card.ability.extra.round_on_add + card.ability.extra.legendary) and not card.ability.extra.juiced then
+        card.ability.extra.juiced = true
+        local eval = function(card) return not card.REMOVED and not G.RESET_JIGGLES end
+        juice_card_until(card, eval, true)
+      end
     end
   end,
 
