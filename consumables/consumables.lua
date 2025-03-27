@@ -2,7 +2,7 @@ local timerball = {
   name = "timerball",
   key = "timerball",
   set = "Item",
-  config = {extra = {round_on_add = 1, legendary = 21, rare = 12, uncommon = 6, common = 2}},
+  config = {extra = {round_on_add = 1, legendary = 20, rare = 10, uncommon = 5, common = 2}},
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
     -- don't know the localization code for rarities
