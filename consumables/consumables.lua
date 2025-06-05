@@ -101,9 +101,19 @@ local timerball = {
         local eval = function(card) return not card.REMOVED and not G.RESET_JIGGLES end
         juice_card_until(card, eval, true)
       end
+      if self.config.extra.common <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
+        card.children.center:set_sprite_pos({x = 0, y = 1})
+      elseif self.config.extra.uncommon <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.rare then
+        card.children.center:set_sprite_pos({x = 0, y = 2})
+      elseif self.config.extra.rare <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.legendary then
+        card.children.center:set_sprite_pos({x = 0, y = 3})
+      elseif self.config.extra.legendary <= (G.GAME.round - card.ability.extra.round_on_add)  then
+        card.children.center:set_sprite_pos({x = 0, y = 4})
+      else
+        card.children.center:set_sprite_pos({x = 0, y = 0})
+      end
     end
   end,
-
 }
 
 local berryjuice = {
