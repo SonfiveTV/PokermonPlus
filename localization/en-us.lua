@@ -46,6 +46,29 @@ return {
                 }
             },
 
+            b_sonfive_hazardousdeck = {
+                name = "Hazardous Deck",
+                text = {
+                        "{C:purple,T:m_poke_hazard}+#3# Hazards{}",
+                        "{C:inactive}(1 per #2# cards)"
+
+                }
+            },
+
+            b_sonfive_opportunisticdeck = {
+                name = "Opportunistic Deck",
+                text = {
+                        "If you had {C:blue}1{} hand,",
+                        "or 1 opportunity,",
+                        "to seize everything", 
+                        "you ever wanted,",
+                        "with {C:red}8{} discards,",
+                        "Would you capture it?",
+                        "Or just let it slip"
+
+                }
+            },
+
 
         },
 
@@ -97,6 +120,25 @@ return {
                 },
             },
 
+            j_sonfive_slugma = {
+                name = 'Slugma',
+                text = {
+                    "At start of round",
+                    "add a {C:attention}Stone{} card to hand",
+                    "for each adjacent {X:water,C:white}Water{C:attention} Joker",
+                    "{C:inactive,s:0.8}(Evolves after creating #2#/{C:attention,s:0.8}#1# Stone{C:inactive,s:0.8} cards)"
+                } 
+            },
+
+            j_sonfive_magcargo = {
+                name = 'Magcargo',
+                text = {
+                    "{C:attention}Stone{} cards gain {C:mult}+#1#{} Mult",
+                    "permanently when scored",
+                    "for each {X:fire,C:white}Fire{C:attention} Joker{} you have",
+                } 
+            },
+
 
             
 
@@ -107,7 +149,7 @@ return {
             c_sonfive_timerball = {
                 name = "Timer Ball",
                 text = {
-                        "Create a random {V:1}#1#{C:attention} Pokemon{}",
+                        "Create a {V:1}#1#{C:attention} Pokemon{}",
                         "Rarity increases in {C:attention}#2#{} rounds!",
                         "{C:inactive}(Must have room)"
                 },
@@ -117,7 +159,7 @@ return {
             c_sonfive_timerball_max = {
                 name = "Timer Ball",
                 text = {
-                        "Create a random {V:1}#1#{C:attention} Pokemon{}",
+                        "Creates a {V:1}#1#{C:attention} Pokemon{}",
                         "{C:inactive}(Must have room)"
                 },
             },
@@ -125,8 +167,8 @@ return {
             c_sonfive_timerball_start = {
                 name = "Timer Ball",
                 text = {
-                        "Can create a random ",
-                        "{V:1}#1#{C:attention} Pokemon{} in {C:attention}#2#{} rounds!",
+                        "Can create a ",
+                        "{V:1}#1#{C:attention} Pokemon{} in {C:attention}1{} rounds!",
                         "{C:inactive}(Must have room)"
                 },
             },
@@ -134,8 +176,8 @@ return {
             c_sonfive_timerball_deck = {
                 name = "Timer Ball",
                 text = {
-                        "Can create a random ",
-                        "{V:1}#1#{C:attention} Pokemon{} in {C:attention}2{} rounds!",
+                        "Can create a ",
+                        "{V:1}#1#{C:attention} Pokemon{} in {C:attention}1{} rounds!",
                         "{C:inactive}(Must have room)"
                 },
             },
@@ -156,10 +198,10 @@ return {
             timer = {
                 name = "Timer Ball",
                 text = {
-                        "{C:blue}Common Pokemon{} after {C:attention}2{} rounds",
-                        "{C:green}Uncommon Pokemon{} after {C:attention}5{} rounds",
-                        "{C:red}Rare Pokemon{} after {C:attention}10{} rounds",
-                        "{C:legendary,E:1}Legendary Pokemon{} after {C:attention}20{} rounds"
+                        "{C:blue}Common Pokemon{} after {C:attention}1{} rounds",
+                        "{C:green}Uncommon Pokemon{} after {C:attention}3{} rounds",
+                        "{C:red}Rare Pokemon{} after {C:attention}7{} rounds",
+                        "{C:legendary,E:1}Legendary Pokemon{} after {C:attention}15{} rounds"
                 },
             },
 
