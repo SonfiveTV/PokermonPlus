@@ -2,7 +2,7 @@ local timerball = {
   name = "timerball",
   key = "timerball",
   set = "Item",
-  config = {extra = {round_on_add = 1, legendary = 20, rare = 10, uncommon = 5, common = 2}},
+  config = {extra = {round_on_add = 1, legendary = 15, rare = 7, uncommon = 3, common = 1}},
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
     -- don't know the localization code for rarities
@@ -39,10 +39,11 @@ local timerball = {
     else 
       key = self.key.."_deck"
     end
-    return {vars = {rarity, round, colours = {color}}, key = key}
+    return {vars = {rarity, round, colours = {color}},  key = key}
     
   end,
   pos = { x = 0, y = 0 },
+  soul_pos = {x = 1, y = 3},
   atlas = "consumables",
   cost = 3,
   unlocked = true,
@@ -96,11 +97,6 @@ local timerball = {
   end,
   update = function(self, card, dt)
     if G.STAGE == G.STAGES.RUN then
-      if G.GAME.round >= (card.ability.extra.round_on_add + card.ability.extra.legendary) and not card.ability.extra.juiced then
-        card.ability.extra.juiced = true
-        local eval = function(card) return not card.REMOVED and not G.RESET_JIGGLES end
-        juice_card_until(card, eval, true)
-      end
       if self.config.extra.common <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
         card.children.center:set_sprite_pos({x = 0, y = 1})
       elseif self.config.extra.uncommon <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.rare then
@@ -109,6 +105,7 @@ local timerball = {
         card.children.center:set_sprite_pos({x = 0, y = 3})
       elseif self.config.extra.legendary <= (G.GAME.round - card.ability.extra.round_on_add)  then
         card.children.center:set_sprite_pos({x = 0, y = 4})
+        card.children.floating_sprite:set_sprite_pos({ x = 1, y = 4 })
       else
         card.children.center:set_sprite_pos({x = 0, y = 0})
       end
