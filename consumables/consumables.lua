@@ -7,6 +7,7 @@ local timerball = {
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
     -- don't know the localization code for rarities
     -- it should be localize('k_common') or something like that
+
     local rarities = {'Common', 'Uncommon', 'Rare', 'Legendary'}
     local rarity = rarities[1]
     local round = G.GAME.round - center.ability.extra.round_on_add
@@ -49,7 +50,7 @@ local timerball = {
   unlocked = true,
   discovered = true,
   can_use = function(self, card)
-    if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (G.GAME.round - card.ability.extra.round_on_add) >= 2 then
+    if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (G.GAME.round - card.ability.extra.round_on_add) >= 1 then
       return true
     else
       return false
