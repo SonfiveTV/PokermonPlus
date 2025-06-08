@@ -1,6 +1,6 @@
 # **Sonfive's Pokermon+**
 This is an add-on mod for Pokermon - an add-on mod for Balatro. 
-The priority for this mod is to add more Decks to the Pokermon mod, allowing you to experience existing content in new ways. This mod does add a few extra consumbles/Jokers, but it is unlikely I add any more in the future
+Thanks to marcavis, Kek, and MyDude for contributing
 
 
 
