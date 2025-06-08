@@ -120,22 +120,43 @@ return {
                 },
             },
 
-            j_sonfive_slugma = {
-                name = 'Slugma',
+            j_sonfive_nacli = {
+                name = 'Nacli',
                 text = {
-                    "At start of round",
-                    "add a {C:attention}Stone{} card to hand",
-                    "for each adjacent {X:water,C:white}Water{C:attention} Joker",
-                    "{C:inactive,s:0.8}(Evolves after creating #2#/{C:attention,s:0.8}#1# Stone{C:inactive,s:0.8} cards)"
+                    "When {C:attention}Blind{} is selected, earn {C:money}$#1#{} ",
+                    "for each Joker, earn double from",
+                    "{X:water,C:white}Water{} and {X:metal,C:white}Metal{} Jokers",
+                    "{br:4}text needs to be here to work",
+                    "This Joker can't be debuffed",
+                    "{C:inactive}(Evolves after earning {}{C:money}$24{}{C:inactive}){}"
+                    
                 } 
             },
 
-            j_sonfive_magcargo = {
-                name = 'Magcargo',
+            j_sonfive_naclstack = {
+                name = 'Naclstack',
                 text = {
-                    "{C:attention}Stone{} cards gain {C:mult}+#1#{} Mult",
-                    "permanently when scored",
-                    "for each {X:fire,C:white}Fire{C:attention} Joker{} you have",
+                    "When {C:attention}Blind{} is selected, {C:green}1 in #3#{} chance to",
+                    "destroy leftmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
+                    "{C:inactive}({C:green}1 in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{br:4}text needs to be here to work",
+                    "This Joker can't be debuffed",
+                    "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive}){}"
+                    
+                } 
+            },
+
+            j_sonfive_garganacl = {
+                name = 'Garganacl',
+                text = {
+                    "When {C:attention}Blind{} is selected, {C:green}#3#%{} chance",
+                    "to destroy leftmost {C:attention}Joker{} and",
+                    " mulitply this Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X#1#{}",
+                    "{C:inactive}({C:green}#4#%{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{br:4}text needs to be here to work",
+                    "This Joker can't be debuffed",
+                    "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}"
+                    
                 } 
             },
 
@@ -295,5 +316,20 @@ return {
 
 
         }
+    },
+
+        misc = {
+            dictionary = {
+
+                sonfive_saltcure_ex = "Salt Cure!",
+
+
+
+
+
+
+
+            }
+        }       
     }
-}
+

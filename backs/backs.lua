@@ -48,7 +48,11 @@ local shinydeck ={
     loc_vars = function(self, info_queue, center)
         return {vars = {}}
     end,    
-
+calculate = function(self, card, context)
+    if context.setting_blind then
+      print(G.GAME.shiny_edition_rate)
+    end
+  end,
     apply = function(self)
         local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
         G.P_CENTERS.e_poke_shiny.get_weight = function(self)
@@ -73,7 +77,27 @@ local megadeck = {
   end
 } 
 
+-- local hazardousdeck = {
+-- 	name = "hazardousdeck",
+-- 	key = "hazardousdeck",  
+--     atlas = "backs",
+--     pos = { x = 5, y = 0 },
+-- 	config = { extra = {hazard_ratio = 10}},
+--   loc_vars = function(self, info_queue, center)
+--     local hazardcount = math.floor(52/self.config.extra.hazard_ratio)
+--     if G.playing_cards then 
+--       hazardcount = math.floor(#G.playing_cards/self.config.extra.hazard_ratio)
+--     else 
+--     end
+--     return {vars = {self.config.jokers, self.config.extra.hazard_ratio, hazardcount}}
+--   end,
 
+--   calculate = function(self, card, context)
+--     if context.setting_blind then
+--       poke_add_hazards(self.config.extra.hazard_ratio)
+--     end
+--   end
+-- } 
 
 local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck, megadeck}
 

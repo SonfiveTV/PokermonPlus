@@ -56,7 +56,13 @@ local timerball = {
       return false
     end
   end,
-  
+  -- in_pool = function(self)
+  --   if G.GAME.selected_back.effect.center.key == 'b_sonfive_virtuousdeck' then
+  --     return true
+  --   else
+  --     return false
+  --   end
+  -- end,
   use = function(self, card, area, copier)
     set_spoon_item(card)
     if (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
@@ -114,41 +120,41 @@ local timerball = {
   end,
 }
 
-local berryjuice = {
-name = "berryjuice",
-key = "berryjuice",
-set = "Item",
-config = {},
-loc_vars = function(self, info_queue, center)
-  return {vars = {}}
-end,
-pos = { x = 1, y = 0 },
-atlas = "consumables",
-cost = 6,
-unlocked = true,
-discovered = true,
-can_use = function(self, card)
-  if #G.jokers.highlighted == 1 then
-    return true
-  else
-    return false
-  end
-end,
-use = function(self, card, area, copier)
-  set_spoon_item(card)
-  if G.jokers.highlighted[1].ability.perishable then 
-    G.jokers.highlighted[1].ability.perish_tally = (G.jokers.highlighted[1].ability.perish_tally + 1)
-    G.jokers.highlighted[1]:set_debuff(false)
-  end
-  G.jokers.highlighted[1]:set_debuff(false)
-delay(0.6)
-end,
-in_pool = function(self)
-  return false
-end
+-- local berryjuice = {
+-- name = "berryjuice",
+-- key = "berryjuice",
+-- set = "Item",
+-- config = {},
+-- loc_vars = function(self, info_queue, center)
+--   return {vars = {}}
+-- end,
+-- pos = { x = 1, y = 0 },
+-- atlas = "consumables",
+-- cost = 6,
+-- unlocked = true,
+-- discovered = true,
+-- can_use = function(self, card)
+--   if #G.jokers.highlighted == 1 then
+--     return true
+--   else
+--     return false
+--   end
+-- end,
+-- use = function(self, card, area, copier)
+--   set_spoon_item(card)
+--   if G.jokers.highlighted[1].ability.perishable then 
+--     G.jokers.highlighted[1].ability.perish_tally = (G.jokers.highlighted[1].ability.perish_tally + 1)
+--     G.jokers.highlighted[1]:set_debuff(false)
+--   end
+--   G.jokers.highlighted[1]:set_debuff(false)
+-- delay(0.6)
+-- end,
+-- in_pool = function(self)
+--   return false
+-- end
 
-}
+-- }
 
 return {name = "Items",
-      list = {timerball, berryjuice}
+      list = {timerball}
 }

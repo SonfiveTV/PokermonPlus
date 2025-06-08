@@ -2,7 +2,7 @@
 	"id": "SonfivesPokermonPlus",
 	"name": "Sonfive's Pokermon+",
 	"author": ["Sonfive"],
-	"description": "An add-on mod for Pokermon",
+	"description": "An add-on mod for Pokermon. Thanks to marcavis, Kek, and MyDude for contributing",
 	"prefix": "sonfive",
 	"main_file": "main.lua",
 	"priority": 20,

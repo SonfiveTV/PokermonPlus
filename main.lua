@@ -62,6 +62,34 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
+  key = "pokedex_8",
+  path = "pokedex_8.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "shiny_pokedex_8",
+  path = "shiny_pokedex_8.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "pokedex_9",
+  path = "pokedex_9.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "shiny_pokedex_9",
+  path = "shiny_pokedex_9.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
   key = "sleeves",
   px = 73,
   py = 95,
@@ -69,6 +97,7 @@ SMODS.Atlas({
 }):register()
 
 table.insert(family, {"duskull", "dusclops", "dusknoir"})
+table.insert(family, {"nacli", "naclstack", "garganacl"})
 
 sonfive_config = SMODS.current_mod.config
 mod_dir = ''..SMODS.current_mod.path
@@ -76,6 +105,20 @@ if (SMODS.Mods["Pokermon"] or {}).can_load then
     pokermon_config = SMODS.Mods["Pokermon"].config
 end
 
+--Load Joker Display if the mod is enabled
+if (SMODS.Mods["JokerDisplay"] or {}).can_load then
+  local jokerdisplays = NFS.getDirectoryItems(mod_dir.."jokerdisplay")
+
+  for _, file in ipairs(jokerdisplays) do
+    sendDebugMessage ("The file is: "..file)
+    local helper, load_error = SMODS.load_file("jokerdisplay/"..file)
+    if load_error then
+      sendDebugMessage ("The error is: "..load_error)
+    else
+      helper()
+    end
+  end
+end
 
 if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
     --Load backs
@@ -187,6 +230,14 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] then
     end
   end
 end 
+
+--Load Debuff logic
+local sprite, load_error = SMODS.load_file("functions/functions.lua")
+if load_error then
+  sendDebugMessage ("The error is: "..load_error)
+else
+  sprite()
+end
 
 if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
   if (SMODS.Mods["CardSleeves"] or {}).can_load then
