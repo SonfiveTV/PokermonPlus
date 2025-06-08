@@ -20,13 +20,12 @@ The priority for this mod is to add more Decks to the Pokermon mod, allowing you
 | Consumable | Effect |
 | ---------- | ------ |
 | Timer Ball | Create a Pokemon of increasing rarity the longer you wait to use  <br/>this item |
-| Berry Juice | Removes debuff from selected Joker and reverses Perishable  <br/>count by 1  |
+
 
 
 
 ## Jokers
 
-| Joker | Effect |
-| ------ | ------ |
-| Shuckle | Create a Berry Juice when blind is selected |
+| Nacli | Naclstack | Garganacl |
+|-----|------|-----|
 
