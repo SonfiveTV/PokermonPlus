@@ -278,7 +278,7 @@ local naclstack = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, card.ability.extra.odds, (card.ability.extra.odds / 2), card.ability.extra.rounds}}
+		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, card.ability.extra.odds, (card.ability.extra.odds / 2), G.GAME.probabilities.normal}}
   end,
   rarity = "poke_safari",
   cost = 6,
@@ -305,7 +305,7 @@ local naclstack = {
           remove(self, leftmost, context)
           }))
           return{
-            message = localize('sonfive_saltcure_ex'), 
+            message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
           }
         end
       end
@@ -360,7 +360,7 @@ local garganacl = {
           remove(self, leftmost, context)
           }))
           return{
-            message = localize('sonfive_saltcure_ex'), 
+            message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
           }
         end
       end
