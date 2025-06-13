@@ -232,6 +232,25 @@ return {
                         "{C:dark_edition}#1#{}"
                 },
             },
+
+            sonfive_rocket = {
+                name = "sonfive Rocket",
+                text = {
+                        "{X:mult,C:white}X2{} Mult, {C:red}-1{} Joker slot"
+                    },
+            },
+
+                sonfive_ex = {
+                name = "EX",
+                text = {
+                        "Starts fully {C:pink}Energized{}",
+                        "{br:4}exexexexexe",
+                        "When {C:attention}Blind{} is selected,",
+                        "{C:pink}-1{} Energy",
+                        "{br:4}exexexexexe",
+                        "Debuffs if {C:pink}0{} Energy"
+                    },
+            },
         },
 
         Sleeve = {
@@ -315,13 +334,39 @@ return {
 
 
 
-        }
+        },
+            Stake={
+            stake_sonfive_rocket_stake = {
+            name = "Rocket Stake",
+            text = {"Shop can have sonfive Rocket Jokers",
+                    "{C:inactive,s:0.8}({}{X:mult,C:white,s:0.8}X2{} {C:inactive,s:0.8}Mult, {}{C:red,s:0.8}-1{}{C:inactive,s:0.8} Joker slot){}",
+                    "{s:0.8}Applies all previous Stakes"
+                },
+            },
+
+            stake_sonfive_ex_stake = {
+            name = "EX Stake",
+            text = {"Shop can have {C:attention}EX{} Jokers",
+                    "{C:inactive,s:0.8}(Starts fully {C:pink,s:0.8}Energized{}{C:inactive,s:0.8}...){}",
+
+                    "{s:0.8}Applies all previous Stakes"
+                },
+            },
     },
+            Tag={},
+        Tarot={},
+        Voucher={},
+},
 
         misc = {
             dictionary = {
-
                 sonfive_saltcure_ex = "Salt Cure!",
+            },
+
+            labels={
+                sonfive_rocket = "Team Rocket",
+                sonfive_ex = "EX"
+            },
 
 
 
@@ -329,7 +374,14 @@ return {
 
 
 
-            }
+
+
+
+
+
+
+
+
         }       
     }
 

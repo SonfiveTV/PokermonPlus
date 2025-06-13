@@ -49,6 +49,7 @@ local timerball = {
   cost = 3,
   unlocked = true,
   discovered = true,
+  allow_duplicates = true,
   can_use = function(self, card)
     if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (G.GAME.round - card.ability.extra.round_on_add) >= 1 then
       return true
