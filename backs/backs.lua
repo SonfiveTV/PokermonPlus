@@ -84,9 +84,9 @@ local voiddeck = {
 	key = "voiddeck",  
     atlas = "backs",
     pos = { x = 5, y = 0 },
-	config = {consumables = {"c_poke_nightmare"}},
+	config = {},
   loc_vars = function(self, info_queue, center)
-    return {vars = {self.config.consumables}}
+    return {vars = {"c_poke_nightmare"}}
   end,
   calculate = function(self, back, context)
     void = true
