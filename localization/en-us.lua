@@ -61,7 +61,8 @@ return {
                         
                         "{C:dark_edition}Negative{} {C:pink}Energy{} doesn't",
                         "count towards {C:pink}Energy{} Limit,",
-                        "Start with a {C:spectral,T:c_poke_nightmare}Nightmare{} card",
+                        "gain a {C:spectral,T:c_poke_nightmare}Nightmare{} card after",
+                        "defeating each {C:attention}Boss Blind{}",
 
                 }
             },

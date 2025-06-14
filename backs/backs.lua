@@ -88,7 +88,19 @@ local voiddeck = {
   loc_vars = function(self, info_queue, center)
     return {vars = {self.config.consumables}}
   end,
-
+  calculate = function(self, back, context)
+    void = true
+    if not context.repetition and not context.individual and context.end_of_round and G.GAME.last_blind and G.GAME.last_blind.boss then
+      if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+      local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, 'c_poke_nightmare')
+      -- local edition = {negative = true}
+      -- _card:set_edition(edition, true)
+      _card:add_to_deck()
+      G.consumeables:emplace(_card)
+      card_eval_status_text(_card, 'extra', nil, nil, nil, {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
+    end
+  end
+  end,
   apply = function(self)
     void = true
   end
