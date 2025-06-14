@@ -96,6 +96,27 @@ SMODS.Atlas({
   path = "sleeves.png"
 }):register()
 
+SMODS.Atlas({
+    key = "stakes",
+    px = 29,
+    py = 29,
+    path = "stakes.png"
+}):register()
+
+SMODS.Atlas({
+    key = "stake_stickers",
+    px = 71,
+    py = 95,
+    path = "stakes_stickers.png"
+}):register()
+
+SMODS.Atlas({
+    key = "stickers",
+    px = 71,
+    py = 95,
+    path = "stickers.png"
+}):register()
+
 table.insert(family, {"duskull", "dusclops", "dusknoir"})
 table.insert(family, {"nacli", "naclstack", "garganacl"})
 
@@ -135,6 +156,46 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not po
         
         for i, item in ipairs(curr_back.list) do
           SMODS.Back(item)
+        end
+      end
+    end
+  end
+
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
+    --Load stakes
+    local stakes = NFS.getDirectoryItems(mod_dir.."stakes")
+  
+    for _, file in ipairs(stakes) do
+      sendDebugMessage ("The file is: "..file)
+      local stakes, load_error = SMODS.load_file("stakes/"..file)
+      if load_error then
+        sendDebugMessage ("The error is: "..load_error)
+      else
+        local curr_stake = stakes()
+        if curr_stake.init then curr_stake:init() end
+        
+        for i, item in ipairs(curr_stake.list) do
+          SMODS.Stake(item)
+        end
+      end
+    end
+  end
+
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
+    --Load stickers
+    local stickers = NFS.getDirectoryItems(mod_dir.."stickers")
+  
+    for _, file in ipairs(stickers) do
+      sendDebugMessage ("The file is: "..file)
+      local sticker, load_error = SMODS.load_file("stickers/"..file)
+      if load_error then
+        sendDebugMessage ("The error is: "..load_error)
+      else
+        local curr_sticker = sticker()
+        if curr_sticker.init then curr_sticker:init() end
+        
+        for i, item in ipairs(curr_sticker.list) do
+          SMODS.Sticker(item)
         end
       end
     end
@@ -230,6 +291,8 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] then
     end
   end
 end 
+
+
 
 --Load Debuff logic
 local sprite, load_error = SMODS.load_file("functions/functions.lua")

@@ -77,11 +77,28 @@ local megadeck = {
   end
 } 
 
+
+
+local voiddeck = {
+	name = "voiddeck",
+	key = "voiddeck",  
+    atlas = "backs",
+    pos = { x = 5, y = 0 },
+	config = {consumables = {"c_poke_nightmare"}},
+  loc_vars = function(self, info_queue, center)
+    return {vars = {self.config.consumables}}
+  end,
+
+  apply = function(self)
+    void = true
+  end
+} 
+
 -- local hazardousdeck = {
 -- 	name = "hazardousdeck",
 -- 	key = "hazardousdeck",  
 --     atlas = "backs",
---     pos = { x = 5, y = 0 },
+--     pos = { x = 6, y = 0 },
 -- 	config = { extra = {hazard_ratio = 10}},
 --   loc_vars = function(self, info_queue, center)
 --     local hazardcount = math.floor(52/self.config.extra.hazard_ratio)
@@ -99,7 +116,7 @@ local megadeck = {
 --   end
 -- } 
 
-local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck, megadeck}
+local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck, megadeck, voiddeck}
 
 return {name = "Back",
         list = dList

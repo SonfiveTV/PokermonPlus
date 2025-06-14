@@ -49,6 +49,7 @@ local timerball = {
   cost = 3,
   unlocked = true,
   discovered = true,
+  allow_duplicates = true,
   can_use = function(self, card)
     if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (G.GAME.round - card.ability.extra.round_on_add) >= 1 then
       return true
@@ -155,6 +156,43 @@ local timerball = {
 
 -- }
 
+local bottlecap = {
+    name = "bottlecap",
+    key = "bottlecap",
+    set = "Spectral",
+    loc_vars = function(self, info_queue, center)
+        --  info_queue[#info_queue+1] = {set = 'Other', key = 'basic'}
+        return {vars = {}}
+    end,
+    pos = { x = 2, y = 0 },
+    atlas = "consumables", --Thank you Sonfive!
+    cost = 4,
+    pokeball = false,
+    hidden=true,
+    unlocked = true,
+    discovered = true,
+    can_use = function(self, card)
+      if G.jokers and G.jokers.cards and #G.jokers.cards > 0 then
+        return true
+      else
+        return false
+      end
+    end,
+    use = function(self, card, area, copier)
+      if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then
+        card = G.jokers.cards[1]
+      else
+        card = G.jokers.highlighted[1]
+      end
+        if card.ability.extra then
+          if type(card.ability.extra) == "table" then
+            energy_shift(card, 1, card.ability.extra.ptype, false, true)
+            card.ability.extra.bottle_cap = (card.ability.extra.bottle_cap or 0) + 1
+          end
+        end
+    end, 
+}
+
 return {name = "Items",
-      list = {timerball}
+      list = {timerball, bottlecap}
 }

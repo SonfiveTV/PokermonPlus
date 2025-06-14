@@ -1,0 +1,95 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = 'if (area == G.shop_jokers) or (area == G.pack_cards) then'
+position = 'after'
+match_indent = true
+payload = '''
+
+if G.GAME.modifiers.enable_rocket_in_shop and pseudorandom(('rocket')..G.GAME.round_resets.ante) > 0.7 then
+    SMODS.Stickers['sonfive_rocket']:apply(card, true)
+end
+if G.GAME.modifiers.enable_ex_in_shop and pseudorandom(('ex')..G.GAME.round_resets.ante) > 0.7 then
+    SMODS.Stickers['sonfive_ex']:apply(card, true)
+end
+
+'''
+
+
+
+
+#Force the energy used infobox to appear if we have borrowed energy, even if we don't have added energy to the pokemon directly
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
+pattern = '''
+highlighted_energy_can_use = function(self, card)
+  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
+'''
+position = "at"
+payload = '''
+highlighted_energy_can_use = function(self, card)
+if void == true and card.edition and card.edition.negative then return highlighted_negative_energy_can_use(self, card) end
+  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
+'''
+match_indent = true
+
+
+#Force the energy used infobox to appear if we have borrowed energy, even if we don't have added energy to the pokemon directly
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
+pattern = '''
+highlighted_energy_use = function(self, card, area, copier)
+  local viable = false
+  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
+'''
+position = "at"
+payload = '''
+highlighted_energy_use = function(self, card, area, copier)
+if void == true and card.edition and card.edition.negative then return highlighted_negative_energy_use(self, card, area, copier) end
+  local viable = false
+  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
+'''
+match_indent = true
+
+
+#Force the energy used infobox to appear if we have borrowed energy, even if we don't have added energy to the pokemon directly
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
+pattern = '''
+energy_can_use = function(self, card)
+  for k, v in pairs(G.jokers.cards) do
+'''
+position = "at"
+payload = '''
+energy_can_use = function(self, card)
+if void == true and card.edition and card.edition.negative then return negative_energy_can_use(self, card) end
+  for k, v in pairs(G.jokers.cards) do
+'''
+match_indent = true
+
+
+#Force the energy used infobox to appear if we have borrowed energy, even if we don't have added energy to the pokemon directly
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
+pattern = '''
+energy_use = function(self, card, area, copier)
+  local applied = false
+'''
+position = "at"
+payload = '''
+energy_use = function(self, card, area, copier)
+if void == true and card.edition and card.edition.negative then return negative_energy_use(self, card) end
+  local applied = false
+'''
+match_indent = true
+
