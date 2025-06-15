@@ -127,12 +127,19 @@ local voiddeck = {
 --     end
 --   end
 -- } 
-
+if sonfive_config.customItems then
 local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck, megadeck, voiddeck}
+return {name = "Back",
+        list = dList
+        
+}
+else 
+  local dList = {reverencedeck, propheticdeck, shinydeck, megadeck, voiddeck}
+
 
 return {name = "Back",
         list = dList
         
 }
-
+end
 

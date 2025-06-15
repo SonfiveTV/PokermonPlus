@@ -126,6 +126,39 @@ if (SMODS.Mods["Pokermon"] or {}).can_load then
     pokermon_config = SMODS.Mods["Pokermon"].config
 end
 
+SMODS.current_mod.config_tab = function() 
+    return {
+        n = G.UIT.ROOT,
+        config = {
+            align = "cm",
+            padding = 0.05,
+            colour = G.C.CLEAR,
+        },
+        nodes = {
+            create_toggle({
+                label = "Allow Custom Decks?",
+                ref_table = sonfive_config,
+                ref_value = "customDecks",
+            }),
+            create_toggle({
+                label = "Allow Custom Consumables?",
+                ref_table = sonfive_config,
+                ref_value = "customItems",
+            }),
+            create_toggle({
+                label = "Allow Custom Jokers?",
+                ref_table = sonfive_config,
+                ref_value = "customJokers",
+            }),
+            create_toggle({
+                label = "Allow Custom Stakes?",
+                ref_table = sonfive_config,
+                ref_value = "customStakes",
+            }),
+        },
+    }
+end
+
 --Load Joker Display if the mod is enabled
 if (SMODS.Mods["JokerDisplay"] or {}).can_load then
   local jokerdisplays = NFS.getDirectoryItems(mod_dir.."jokerdisplay")
@@ -141,7 +174,7 @@ if (SMODS.Mods["JokerDisplay"] or {}).can_load then
   end
 end
 
-if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only and sonfive_config.customDecks then
     --Load backs
     local backs = NFS.getDirectoryItems(mod_dir.."backs")
   
@@ -161,7 +194,7 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not po
     end
   end
 
-if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only and sonfive_config.customStakes then
     --Load stakes
     local stakes = NFS.getDirectoryItems(mod_dir.."stakes")
   
@@ -181,7 +214,7 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not po
     end
   end
 
-if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only and sonfive_config.customStakes then
     --Load stickers
     local stickers = NFS.getDirectoryItems(mod_dir.."stickers")
   
@@ -203,7 +236,7 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not po
 
 local pconsumables = NFS.getDirectoryItems(mod_dir.."consumables")
 
-if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] then
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfive_config.customItems then
   for _, file in ipairs(pconsumables) do
     sendDebugMessage ("The file is: "..file)
     local consumable, load_error = SMODS.load_file("consumables/"..file)
@@ -234,7 +267,7 @@ print("DEBUG")
 
 --Load pokemon file
 local pfiles = NFS.getDirectoryItems(mod_dir.."pokemon")
-if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] then
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfive_config.customJokers then
   for _, file in ipairs(pfiles) do
     sendDebugMessage ("The file is: "..file)
     local pokemon, load_error = SMODS.load_file("pokemon/"..file)
