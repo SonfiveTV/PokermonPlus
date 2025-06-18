@@ -84,7 +84,7 @@ local voiddeck = {
 	key = "voiddeck",  
     atlas = "backs",
     pos = { x = 5, y = 0 },
-	config = {spectral_rate = 2},
+	config = {spectral_rate = 2, consumables = {"c_poke_nightmare"}},
   loc_vars = function(self, info_queue, center)
     return {vars = {"c_poke_nightmare"}}
   end,
