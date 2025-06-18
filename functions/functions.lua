@@ -382,5 +382,3 @@ increment_negative_energy = function(card, etype)
     end
   end
 end
-
-

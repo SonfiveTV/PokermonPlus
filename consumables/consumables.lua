@@ -194,5 +194,5 @@ local bottlecap = {
 }
 
 return {name = "Items",
-      list = {timerball}
+      list = {timerball, bottlecap}
 }

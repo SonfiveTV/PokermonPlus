@@ -58,12 +58,11 @@ return {
             b_sonfive_voiddeck = {
                 name = "Void Deck",
                 text = {
-                        
+                        "{C:spectral}Spectral{} cards may",
+                        "appear in the shop,",
                         "{C:dark_edition}Negative{} {C:pink}Energy{} doesn't",
                         "count towards {C:pink}Energy{} Limit,",
-                        "gain a {C:spectral,T:c_poke_nightmare}Nightmare{} card after",
-                        "defeating each {C:attention}Boss Blind{}",
-
+                        "start with a {C:spectral,T:c_poke_nightmare}Nightmare{} card"
                 }
             },
 
@@ -230,6 +229,7 @@ return {
                         "{C:dark_edition}#1#{}"
                 },
             },
+
 
             sonfive_rocket = {
                 name = "sonfive Rocket",
