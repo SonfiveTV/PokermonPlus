@@ -156,6 +156,27 @@ return {
                     
                 } 
             },
+            j_sonfive_meltan = {
+                name = 'Meltan',
+                text = {
+                    "When {C:attention}Blind{} is selected,",
+                    "create a {C:dark_edition}Negative{} {C:attention}Metal Energy{} card",
+                    "{C:inactive,s:0.8}(Evolves after Energizing this Joker){}"
+                    
+                } 
+            },
+            j_sonfive_melmetal = {
+                name = 'Melmetal',
+                text = {
+                    "{C:attention}Steel{} cards held in hand",
+                    "gain {X:red,C:white}X#3#{} Mult when held",
+                    "{C:inactive,s:0.8}(Increases for each {X:metal,C:white,s:0.8}Metal{}{C:inactive,s:0.8} Energy held)",
+                    "{br:4}wooooooo",
+                    "When sold, create {C:attention}2 Meltans",
+                    "{C:inactive,s:0.8}(Requires #1# {X:metal,C:white,s:0.8}Metal{}{C:inactive,s:0.8} Energy)",
+                    "{C:inactive,s:0.6}(Increases per Meltan/Melmetal you have){}",
+                } 
+            },
 
 
             
@@ -318,11 +339,24 @@ return {
                         "even more likely to appear" 
                 },
             },
-
-            
-
             sleeve_sonfive_megasleeve = {
                 name = "Mega Sleeve",
+                text = {
+                        "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
+                        "{X:gray,C:attention}+4{} Ante win requirement"
+
+                }
+            },
+            sleeve_sonfive_voidsleeve = {
+                name = "Void Sleeve",
+                text = {
+                        "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
+                        "{X:gray,C:attention}+4{} Ante win requirement"
+
+                }
+            },
+            sleeve_sonfive_voidsleeve_alt = {
+                name = "Void Sleeve Alt",
                 text = {
                         "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
                         "{X:gray,C:attention}+4{} Ante win requirement"
