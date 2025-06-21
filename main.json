@@ -6,7 +6,7 @@
 	"prefix": "sonfive",
 	"main_file": "main.lua",
 	"priority": 20,
-	"badge_colour": "87deff",
+	"badge_colour": "#006b1d",
 	"badge_text_colour": "ffffff",
   "display_name": "Pokermon+",
 	"version": "1.0.0",
