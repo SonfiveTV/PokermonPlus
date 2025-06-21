@@ -237,6 +237,92 @@
 --   end
 -- }
 
+local meltan = {
+  name = "meltan",
+  poke_custom_prefix = "sonfive",
+  pos = {x = 4, y = 9},
+    soul_pos = {x = 5, y = 9},
+  config = {extra = {chips = 0, count = 0, evo_rqmt = 1}},
+  loc_vars = function(self, info_queue, card)
+    type_tooltip(self, info_queue, card)
+    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
+		return {vars = {card.ability.extra.count, card.ability.extra.evo_rqmt}}
+  end,
+  rarity = 4,
+  cost = 8,
+  stage = "Legendary",
+  ptype = "Metal",
+  atlas = "pokedex_7",
+  blueprint_compat = true,
+  
+  calculate = function(self, card, context)
+    local abbr = card.ability.extra
+    abbr.count = (abbr.energy_count or 0) + (abbr.c_energy_count or 0) + (abbr.negative_energy_count or 0) + (abbr.negative_c_energy_count or 0)
+    if context.setting_blind then
+        if not from_debuff and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            local _card = create_card('Energy', G.consumeables, nil, nil, nil, nil, 'c_poke_metal_energy')
+            local edition = {negative = true}
+            _card:set_edition(edition, true)
+            _card:add_to_deck()
+            G.consumeables:emplace(_card)
+            card_eval_status_text(_card, 'extra', nil, nil, nil, {message = localize('poke_plus_pokeitem'), colour = G.C.FILTER})
+            return true
+        end
+    end
+    return scaling_evo(self, card, context, "j_sonfive_melmetal", card.ability.extra.count, card.ability.extra.evo_rqmt)
+  end,
+}
+
+local melmetal = {
+  name = "melmetal",
+  poke_custom_prefix = "sonfive",
+  pos = {x = 6, y = 9},
+  soul_pos = {x = 7, y = 9},
+  config = {extra = {Xmult_multi = 0.01}},
+  loc_vars = function(self, info_queue, card)
+    type_tooltip(self, info_queue, card)
+    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
+		return {vars = {math.max((10*(2^((#find_joker('melmetal') + #find_joker('meltan')) - 1))), 10), card.ability.extra.Xmult_multi, (#find_joker('metal_energy')*card.ability.extra.Xmult_multi), #find_joker('metal_energy')}}
+  end,
+  rarity = 4,
+  cost = 8,
+  stage = "Legendary",
+  ptype = "Metal",
+  atlas = "pokedex_7",
+  blueprint_compat = true,
+  
+  calculate = function(self, card, context)
+    if context.individual and context.cardarea == G.hand and not context.other_card.debuff and not context.end_of_round and SMODS.has_enhancement(context.other_card, 'm_steel') then
+      context.other_card.ability.perma_h_x_mult = context.other_card.ability.perma_h_x_mult or 0
+      context.other_card.ability.perma_h_x_mult = context.other_card.ability.perma_h_x_mult + (card.ability.extra.Xmult_multi * #find_joker('metal_energy'))
+      return {
+          extra = {message = localize('k_upgrade_ex'), colour = G.C.MULT},
+          colour = G.C.MULT,
+          card = card
+      }
+    end
+    if context.selling_self and not context.blueprint and #find_joker('metal_energy') >= 10*(2^((#find_joker('melmetal') + #find_joker('meltan')) - 1)) then
+              G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+              local temp_card = {set = "Joker", area = G.jokers, key = "j_sonfive_meltan", no_edition = true}
+              local new_card = SMODS.create_card(temp_card)
+              new_card:add_to_deck()
+              G.jokers:emplace(new_card)
+              return true end }))
+            if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+              local temp_card = {set = "Joker", area = G.jokers, key = "j_sonfive_meltan", no_edition = true}
+              local new_card = SMODS.create_card(temp_card)
+              new_card:add_to_deck()
+              G.jokers:emplace(new_card)
+              return true end }))
+          end
+          delay(0.6)
+
+          card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('poke_darts_ex'), colour = G.C.MULT})
+        end
+  end,
+}
+
 local nacli = {
   name = "nacli",
   poke_custom_prefix = "sonfive",
@@ -379,7 +465,7 @@ local garganacl = {
   end
 }
 
-list = {nacli, naclstack, garganacl}
+list = {meltan, melmetal, nacli, naclstack, garganacl}
 
 return {name = "PokermonPlus1", 
 list = list
