@@ -62,6 +62,20 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
+  key = "pokedex_7",
+  path = "pokedex_7.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "shiny_pokedex_7",
+  path = "shiny_pokedex_7.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
   key = "pokedex_8",
   path = "pokedex_8.png",
   px = 71,
@@ -118,6 +132,7 @@ SMODS.Atlas({
 }):register()
 
 table.insert(family, {"duskull", "dusclops", "dusknoir"})
+table.insert(family, {"meltan", "melmetal"})
 table.insert(family, {"nacli", "naclstack", "garganacl"})
 
 sonfive_config = SMODS.current_mod.config
