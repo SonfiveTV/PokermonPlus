@@ -290,6 +290,10 @@ local melmetal = {
   ptype = "Metal",
   atlas = "pokedex_7",
   blueprint_compat = true,
+  custom_pool_func = true,
+  in_pool = function(self)
+    return false
+  end,
   
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.hand and not context.other_card.debuff and not context.end_of_round and SMODS.has_enhancement(context.other_card, 'm_steel') then
