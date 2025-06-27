@@ -58,11 +58,10 @@ return {
             b_sonfive_voiddeck = {
                 name = "Void Deck",
                 text = {
-                        "{C:spectral}Spectral{} cards may",
-                        "appear in the shop,",
                         "{C:dark_edition}Negative{} {C:pink}Energy{} doesn't",
                         "count towards {C:pink}Energy{} Limit,",
-                        "start with a {C:spectral,T:c_poke_nightmare}Nightmare{} card"
+                        "gain a {C:spectral,T:c_poke_nightmare}Nightmare{} card after",
+                        "defeating each {C:attention}Boss Blind"
                 }
             },
 
@@ -80,40 +79,58 @@ return {
             },
 
             j_sonfive_duskull = {
-                name = "Dark Cave",
+                name = "Duskull",
                 text = {
-                        "{C:green}#1# in #2#{} chance to create an",
-                        "{C:green}Uncommon{} Pokemon {C:attention}Joker{}",
-                        "at end of round",
-                        "{br:2}text needs to be here to work",
-                        "Guaranteed if you have",
-                        "a {X:lightning, C:black}Lightning{} Joker",
+                        "{C:spectral}Spectral{} cards may appear in the shop",
+                        "{br:4}text needs to be here to work",
+                        "Gains {C:mult}+#2#{} Mult per {C:spectral}Spectral{} card",
+                        "used this run",
+                        "{C:inactive}(Evolves at {C:mult}+#1#{}{C:inactive} / +15){}"
+
+                },
+            },
+
+            j_sonfive_vullaby = {
+                name = "Vullaby",
+                text = {
+                        "{C:mult}+#1#{}"
+
+                },
+            },
+
+            j_sonfive_mandibuzz = {
+                name = "Mandibuzz",
+                text = {
+                        "{C:spectral}Spectral{} cards may appear in the shop",
+                        "{br:4}text needs to be here to work",
+                        "Gains {C:mult}+#2#{} Mult per {C:spectral}Spectral{} card",
+                        "used this run",
+                        "{C:inactive}(Evolves at {C:mult}+#1#{}{C:inactive} / +15){}"
+
                 },
             },
 
             j_sonfive_dusclops = {
-                name = "Dark Cave",
+                name = "Dusclops",
                 text = {
-                        "{C:green}#1# in #2#{} chance to create an",
-                        "{C:green}Uncommon{} Pokemon {C:attention}Joker{}",
-                        "at end of round",
-                        "{br:2}text needs to be here to work",
-                        "Guaranteed if you have",
-                        "a {X:lightning, C:black}Lightning{} Joker",
+                        "{C:spectral}Spectral{} cards may appear in the shop",
+                        "{br:4}text needs to be here to work",
+                        "Gains {C:mult}+#2#{} Mult per {C:spectral}Spectral{} card",
+                        "used this run",
+                        "{C:inactive}(Currently {C:mult}+#1#{}{C:inactive} Mult){}",
+                        "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Linking Cord{C:inactive,s:0.8})"
                 },
             },
 
 
             j_sonfive_dusknoir = {
-                name = "Garganacl",
+                name = "Dusknoir",
                 text = {
-                        "At the end of shop, remove {C:dark_edition}Negative{}",
-                        "from all Jokers and multiply this",
-                        "Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X2{} for each",
-                        "edition removed",
+                        "{C:spectral}Spectral{} cards may appear in the shop",
                         "{br:4}text needs to be here to work",
-                        "This Joker can't be debuffed",
-                        "{C:inactive}(Currently {}{X:red,C:white}X1{}{C:inactive} Mult){}",
+                        "Gains {X:red,C:white}X#2#{} Mult per {C:spectral}Spectral{} card",
+                        "used this run",
+                        "{C:inactive}(Currently {}{X:red,C:white}X#1#{}{C:inactive} Mult){}",
                 },
             },
 

@@ -13,7 +13,7 @@
 	"dependencies": [
 			"Steamodded (>=1.0.0~ALPHA-1426c)",
       "Lovely (>=0.7)",
-      "Pokermon (>=2.7.0)"
+      "Pokermon (>=2.9.9-617a)"
 	],
   "conflicts": [],
 	"provides": [],

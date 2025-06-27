@@ -62,6 +62,20 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
+  key = "pokedex_5",
+  path = "pokedex_5.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
+  key = "shiny_pokedex_5",
+  path = "shiny_pokedex_5.png",
+  px = 71,
+  py = 95
+}):register()
+
+SMODS.Atlas({
   key = "pokedex_7",
   path = "pokedex_7.png",
   px = 71,
@@ -131,9 +145,10 @@ SMODS.Atlas({
     path = "stickers.png"
 }):register()
 
-table.insert(family, {"duskull", "dusclops", "dusknoir"})
-table.insert(family, {"meltan", "melmetal"})
-table.insert(family, {"nacli", "naclstack", "garganacl"})
+table.insert(pokermon.family, {"duskull", "dusclops", "dusknoir"})
+table.insert(pokermon.family, {"vullaby", "mandibuzz"})
+table.insert(pokermon.family, {"meltan", "melmetal"})
+table.insert(pokermon.family, {"nacli", "naclstack", "garganacl"})
 
 sonfive_config = SMODS.current_mod.config
 mod_dir = ''..SMODS.current_mod.path
@@ -371,3 +386,17 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not po
     end
   end
 end
+
+
+-- SMODS.Spectral:take_ownership('poke_nightmare', -- object key (class prefix not required)
+--     { -- table of properties to change from the existing object
+-- 	soul_rate = 1,
+--   allow_duplicates = true,
+--     in_pool = function(self)
+--         return true
+--     end, 
+-- 		-- more on this later
+
+--     },
+--     true -- silent | suppresses mod badge
+-- )
