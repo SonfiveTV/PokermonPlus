@@ -291,6 +291,7 @@ local melmetal = {
   atlas = "pokedex_7",
   blueprint_compat = true,
   custom_pool_func = true,
+  aux_poke = true,
   in_pool = function(self)
     return false
   end,
