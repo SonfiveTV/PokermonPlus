@@ -349,6 +349,9 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfiv
                 item.config.extra = {ptype = item.ptype}
               end
             end
+            if not item.set_badges then
+              item.set_badges = poke_set_type_badge
+            end
             if item.item_req then
               if item.config and item.config.extra then
                 item.config.extra.item_req = item.item_req
