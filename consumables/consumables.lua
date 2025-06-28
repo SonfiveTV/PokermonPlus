@@ -49,7 +49,6 @@ local timerball = {
   cost = 3,
   unlocked = true,
   discovered = true,
-  allow_duplicates = true,
   can_use = function(self, card)
     if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (G.GAME.round - card.ability.extra.round_on_add) >= 1 then
       return true
@@ -57,13 +56,9 @@ local timerball = {
       return false
     end
   end,
-  -- in_pool = function(self)
-  --   if G.GAME.selected_back.effect.center.key == 'b_sonfive_virtuousdeck' then
-  --     return true
-  --   else
-  --     return false
-  --   end
-  -- end,
+  in_pool = function(self)
+    return true, { allow_duplicates = true }
+  end,
   use = function(self, card, area, copier)
     set_spoon_item(card)
     if (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then

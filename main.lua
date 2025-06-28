@@ -264,6 +264,26 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not po
     end
   end
 
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
+    --Load enhancements
+    local enhancements = NFS.getDirectoryItems(mod_dir.."enhancements")
+  
+    for _, file in ipairs(enhancements) do
+      sendDebugMessage ("The file is: "..file)
+      local enhancements, load_error = SMODS.load_file("enhancements/"..file)
+      if load_error then
+        sendDebugMessage ("The error is: "..load_error)
+      else
+        local curr_enhancements = enhancements()
+        if curr_enhancements.init then curr_enhancements:init() end
+        
+        for i, item in ipairs(curr_enhancements.list) do
+          SMODS.Enhancement(item)
+        end
+      end
+    end
+  end
+
 local pconsumables = NFS.getDirectoryItems(mod_dir.."consumables")
 
 if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfive_config.customItems then
@@ -351,6 +371,23 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfiv
           end
         end
       end
+    end
+  end
+end 
+
+--Load challenges file
+local pchallenges = NFS.getDirectoryItems(mod_dir.."challenges")
+
+for _, file in ipairs(pchallenges) do
+  local challenge, load_error = SMODS.load_file("challenges/"..file)
+  if load_error then
+    sendDebugMessage ("The error is: "..load_error)
+  else
+    local curr_challenge = challenge()
+    if curr_challenge.init then curr_challenge:init() end
+    
+    for i, item in ipairs(curr_challenge.list) do
+      SMODS.Challenge(item)
     end
   end
 end 

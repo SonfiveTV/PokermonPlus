@@ -420,6 +420,10 @@ return {
 },
 
         misc = {
+            challenge_names = {
+            c_sonfive_salt_cured = "Salt Cured",
+            c_sonfive_balls_of_steel = "Balls of Steel"
+        },
             dictionary = {
                 sonfive_saltcure_ex = "Salt Cure!",
             },
