@@ -134,6 +134,41 @@ return {
                 },
             },
 
+            j_sonfive_nincada = {
+                name = 'Nincada',
+                text = {
+                    "{C:chips}+#1#{} Chips or {C:mult}+#2#{} Mult",
+                    "{C:inactive,s:0.8}(Evolves after {C:attention,s:0.8}#3#{C:inactive,s:0.8} rounds)"                    
+                } 
+            },
+
+            j_sonfive_ninjask = {
+                name = 'Ninjask',
+                text = {
+                    "{C:chips}+#1#{} Chips",
+                    "{C:mult}+#2#{} Mult",   
+                    "{br:4}text needs to be here to work",
+                    "Increases this Joker's {C:chips}Chips{}", 
+                    "and {C:mult}Mult{} at end of round",
+                    "{C:inactive}(#3# Speed Boosts remaining){}"
+
+                } 
+            },
+
+            j_sonfive_shedinja = {
+                name = 'Shedinja',
+                text = {
+                    "Earn {C:money}$#1#{} at",
+                    "end of round",
+                    "{br:4}seppuku",
+                    "{C:attention}Weakness: {C:inactive}({C:attention}#2#, #3#, #4#{C:inactive}){}",
+                    "If a {C:attention}Weakness{} card is",
+                    "held in hand then",
+                    "{S:1.1,C:red,E:2}self destructs{}",
+                    "{C:inactive,s:0.8}(Weakness changes every round){}"                 
+                } 
+            },
+
             j_sonfive_nacli = {
                 name = 'Nacli',
                 text = {
@@ -189,12 +224,8 @@ return {
                 text = {
                     "{C:attention}Steel{} cards held in hand",
                     "gain {X:red,C:white}X#1#{} Mult when held",
-                    "for each {X:metal,C:white,}Metal{} Joker you have",
+                    "for each {C:attention}Metal Coat{} you have",
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
-                    "{br:4}wooooooo",
-                    "Steel Cards in hand retrigger",
-                    "for each held {C:attention}Metal Coat{}",
-                    "{C:inactive}(Currently #3# retriggers)"
                 } 
             },
 

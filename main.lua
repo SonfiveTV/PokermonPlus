@@ -49,6 +49,7 @@ SMODS.Atlas({
 
 pokermon.add_family({"duskull", "dusclops", "dusknoir"})
 pokermon.add_family({"vullaby", "mandibuzz"})
+pokermon.add_family({"nincada", "ninjask", "shedinja"})
 pokermon.add_family({"meltan", "melmetal"})
 pokermon.add_family({"nacli", "naclstack", "garganacl"})
 
@@ -71,6 +72,11 @@ SMODS.current_mod.config_tab = function()
                 label = "Allow Custom Jokers?",
                 ref_table = sonfive_config,
                 ref_value = "customJokers",
+            }),
+            create_toggle({
+                label = "Nincada line?",
+                ref_table = sonfive_config,
+                ref_value = "Nincada",
             }),
             create_toggle({
                 label = "Nacli line?",
