@@ -177,8 +177,10 @@ return {
                 name = 'Meltan',
                 text = {
                     "When {C:attention}Blind{} is selected,",
-                    "create a {C:dark_edition}Negative{} {C:attention}Metal Energy{} card",
-                    "{C:inactive,s:0.8}(Evolves after Energizing this Joker){}"
+                    "{C:green}#3#%{} chance to create a",
+                    "{C:dark_edition}Negative{} {C:attention}Metal Coat{}",
+                    "{C:inactive,s:0.8}(Odds decrease with each held Metal Coat){}",
+                    "{C:inactive,s:0.8}(Evolves when Energized){}"
                     
                 } 
             },
@@ -186,12 +188,13 @@ return {
                 name = 'Melmetal',
                 text = {
                     "{C:attention}Steel{} cards held in hand",
-                    "gain {X:red,C:white}X#3#{} Mult when held",
-                    "{C:inactive,s:0.8}(Increases for each {X:metal,C:white,s:0.8}Metal{}{C:inactive,s:0.8} Energy held)",
+                    "gain {X:red,C:white}X#1#{} Mult when held",
+                    "for each {X:metal,C:white,}Metal{} Joker you have",
+                    "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
                     "{br:4}wooooooo",
-                    "When sold, create {C:attention}2 Meltans",
-                    "{C:inactive,s:0.8}(Requires #1# {X:metal,C:white,s:0.8}Metal{}{C:inactive,s:0.8} Energy)",
-                    "{C:inactive,s:0.6}(Increases per Meltan/Melmetal you have){}",
+                    "Steel Cards in hand retrigger",
+                    "for each held {C:attention}Metal Coat{}",
+                    "{C:inactive}(Currently #3# retriggers)"
                 } 
             },
 
