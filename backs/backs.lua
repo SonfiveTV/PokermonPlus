@@ -1,17 +1,3 @@
-local reverencedeck = {
-    name = "reverencedeck",
-    key = "reverencedeck",
-    atlas = "backs",
-    pos = {x = 0, y = 0},
-    config = {},
-    loc_vars = function(self, info_queue, center)
-        return {vars = {}}
-    end,
-    apply = function(self)
-        G.GAME.modifiers.poke_force_seal = "poke_silver"
-    end
-}
-
 local virtuousdeck = {
 	name = "virtuousdeck",
 	key = "virtuousdeck",  
@@ -128,13 +114,13 @@ local voiddeck = {
 --   end
 -- } 
 if sonfive_config.customItems then
-local dList = {reverencedeck, virtuousdeck, propheticdeck, shinydeck, megadeck, voiddeck}
+local dList = {virtuousdeck, propheticdeck, shinydeck, megadeck, voiddeck}
 return {name = "Back",
         list = dList
         
 }
 else 
-  local dList = {reverencedeck, propheticdeck, shinydeck, megadeck, voiddeck}
+  local dList = {propheticdeck, shinydeck, megadeck, voiddeck}
 
 
 return {name = "Back",

@@ -164,9 +164,18 @@ end,
     end
 } 
 
-local slist = {reverencesleeve, virtuoussleeve, propheticsleeve, shinysleeve, megasleeve}
-
-return {Name = "Sleeve",
-            init = init,
-            list = slist
+if sonfive_config.customItems then
+local slist = {virtuoussleeve, propheticsleeve, shinysleeve, megasleeve}
+return {name = "Back",
+        list = slist
+        
 }
+else 
+  local slist = {propheticsleeve, shinysleeve, megasleeve}
+
+
+return {name = "Sleeves",
+        list = slist
+        
+}
+end
