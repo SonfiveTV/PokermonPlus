@@ -390,6 +390,7 @@ for _, file in ipairs(pchallenges) do
     if curr_challenge.init then curr_challenge:init() end
     
     for i, item in ipairs(curr_challenge.list) do
+      item.button_colour = HEX('87DEFF')
       SMODS.Challenge(item)
     end
   end
