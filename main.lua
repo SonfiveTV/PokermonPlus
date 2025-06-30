@@ -20,104 +20,6 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
-  key = "pokedex_2",
-  path = "pokedex_2.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "shiny_pokedex_2",
-  path = "shiny_pokedex_2.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "pokedex_3",
-  path = "pokedex_3.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "shiny_pokedex_3",
-  path = "shiny_pokedex_3.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "pokedex_4",
-  path = "pokedex_4.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "shiny_pokedex_4",
-  path = "shiny_pokedex_4.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "pokedex_5",
-  path = "pokedex_5.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "shiny_pokedex_5",
-  path = "shiny_pokedex_5.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "pokedex_7",
-  path = "pokedex_7.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "shiny_pokedex_7",
-  path = "shiny_pokedex_7.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "pokedex_8",
-  path = "pokedex_8.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "shiny_pokedex_8",
-  path = "shiny_pokedex_8.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "pokedex_9",
-  path = "pokedex_9.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
-  key = "shiny_pokedex_9",
-  path = "shiny_pokedex_9.png",
-  px = 71,
-  py = 95
-}):register()
-
-SMODS.Atlas({
   key = "sleeves",
   px = 73,
   py = 95,
@@ -145,10 +47,10 @@ SMODS.Atlas({
     path = "stickers.png"
 }):register()
 
-table.insert(pokermon.family, {"duskull", "dusclops", "dusknoir"})
-table.insert(pokermon.family, {"vullaby", "mandibuzz"})
-table.insert(pokermon.family, {"meltan", "melmetal"})
-table.insert(pokermon.family, {"nacli", "naclstack", "garganacl"})
+pokermon.add_family({"duskull", "dusclops", "dusknoir"})
+pokermon.add_family({"vullaby", "mandibuzz"})
+pokermon.add_family({"meltan", "melmetal"})
+pokermon.add_family({"nacli", "naclstack", "garganacl"})
 
 sonfive_config = SMODS.current_mod.config
 mod_dir = ''..SMODS.current_mod.path
@@ -165,20 +67,25 @@ SMODS.current_mod.config_tab = function()
             colour = G.C.CLEAR,
         },
         nodes = {
-            create_toggle({
-                label = "Allow Custom Decks?",
+          create_toggle({
+                label = "Allow Custom Jokers?",
                 ref_table = sonfive_config,
-                ref_value = "customDecks",
+                ref_value = "customJokers",
+            }),
+            create_toggle({
+                label = "Nacli line?",
+                ref_table = sonfive_config,
+                ref_value = "Nacli",
+            }),
+            create_toggle({
+                label = "Meltan line?",
+                ref_table = sonfive_config,
+                ref_value = "Meltan",
             }),
             create_toggle({
                 label = "Allow Custom Consumables?",
                 ref_table = sonfive_config,
                 ref_value = "customItems",
-            }),
-            create_toggle({
-                label = "Allow Custom Jokers?",
-                ref_table = sonfive_config,
-                ref_value = "customJokers",
             }),
             create_toggle({
                 label = "Allow Custom Stakes?",
@@ -204,7 +111,7 @@ if (SMODS.Mods["JokerDisplay"] or {}).can_load then
   end
 end
 
-if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only and sonfive_config.customDecks then
+if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and not pokermon_config.jokers_only then
     --Load backs
     local backs = NFS.getDirectoryItems(mod_dir.."backs")
   
@@ -370,7 +277,7 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfiv
               item.rarity = 3
             end
             item.discovered = not pokermon_config.pokemon_discovery 
-            SMODS.Joker(item)
+            pokermon.Pokemon(item, "sonfive", nil)
           end
         end
       end
