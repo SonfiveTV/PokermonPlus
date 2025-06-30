@@ -4,18 +4,21 @@ Thanks to marcavis, Kek, and MyDude for contributing
 
 
 
-## Decks & Sleeves
+## Decks
 
-| Name         | Base Effect   |  Unique Sleeve   |
-| ------------- | ------------- | ------------- |
-| Reverence Deck<br/>Reverence Sleeve | All cards have Silver Seals  | +1 consumable slot    |
-| Virtuous Deck<br/>Virtuous Sleeve  | Start with Timer Ball  | Hieroglyph Voucher    |
-| Prophetic Deck<br/>Prophetic Sleeve | +3 Foresight, -1 hands | +3 Foresight |
-| Shiny Deck<br/>Shiny Sleeve | Increased Shiny odds | Greatly increased Shiny odds |
-| Mega Deck<br/>Mega Sleeve | Start with a Mega Stone, <br/>+4 Ante win requirement | N/A |
+| Name         | Base Effect   |
+| ------------- | ------------- |
+| Virtuous Deck  | Start with Timer Ball  |
+| Prophetic Deck | +3 Foresight, -1 hands |
+| Shiny Deck | Increased Shiny odds |
+| Mega Deck | Start with a Mega Stone, <br/>+4 Ante win requirement |
+| Void Deck | Negative Energy doesn't count towards Energy Limit, <br/> Creates a Nightmare Spectral after each Boss Blind |
+
 
 
 ## Consumables
+
+Consumables can be toggled on/off in the mod config options
 
 | Consumable | Effect |
 | ---------- | ------ |
@@ -26,6 +29,11 @@ Thanks to marcavis, Kek, and MyDude for contributing
 
 ## Jokers
 
-| Nacli | Naclstack | Garganacl |
+Each Pokemon line can be toggled on/off in the mod config options
+
+| | | |
 |-----|------|-----|
+| Nacli | Naclstack | Garganacl |
+| Meltan  | Melmetal |  |
+
 
