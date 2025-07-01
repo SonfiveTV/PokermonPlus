@@ -108,7 +108,7 @@ local shedinja = {
     return false
   end,
   calc_dollar_bonus = function(self, card)
-    return ease_poke_dollars(card, "pikachu", math.min(10, #G.jokers.cards * card.ability.extra.money), true) 
+    return ease_poke_dollars(card, "shedinja", card.ability.extra.money, true) 
   end,
   calculate = function(self, card, context)
     if context.end_of_round and not context.blueprint then 
