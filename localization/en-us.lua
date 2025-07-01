@@ -456,10 +456,14 @@ return {
         misc = {
             challenge_names = {
             c_sonfive_salt_cured = "Salt Cured",
-            c_sonfive_balls_of_steel = "Balls of Steel"
-        },
+            c_sonfive_balls_of_steel = "Balls of Steel",
+            c_sonfive_wonder_guard = "Guard the Wonder",
+            },
             dictionary = {
                 sonfive_saltcure_ex = "Salt Cure!",
+            },
+            v_text = {
+           ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
             },
 
             labels={
