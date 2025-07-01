@@ -6,7 +6,7 @@ local wonder_guard = {
             {id = 'sonfive_wonderguard'},
         },
         modifiers = {
-            {id = 'joker_slots', value = 6}
+            {id = 'hand_size', value = 10}
         }
     },
     restrictions = {
