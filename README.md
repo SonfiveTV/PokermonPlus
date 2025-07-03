@@ -33,6 +33,7 @@ Each Pokemon line can be toggled on/off in the mod config options
 
 | | | |
 |-----|------|-----|
+| Nincada | Ninjask | Shedinja |
 | Nacli | Naclstack | Garganacl |
 | Meltan  | Melmetal |  |
 
