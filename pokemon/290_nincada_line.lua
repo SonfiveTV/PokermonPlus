@@ -86,7 +86,7 @@ local ninjask = {
 local shedinja = {
   name = "shedinja",
   pos = {x = 0, y = 4},
-  config = {extra = {money = 1, earned = 0, threshold = 292, targets = {{value = "Ace", id = "14"}, {value = "King", id = "13"}, {value = "Queen", id = "12"}}}},
+  config = {extra = {money = 0.5, earned = 0, threshold = 292, targets = {{value = "Ace", id = "14"}, {value = "King", id = "13"}, {value = "Queen", id = "12"}}}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     
