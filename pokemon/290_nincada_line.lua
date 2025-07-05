@@ -86,13 +86,13 @@ local ninjask = {
 local shedinja = {
   name = "shedinja",
   pos = {x = 0, y = 4},
-  config = {extra = {money = 0.5, earned = 0, threshold = 292, targets = {{value = "Ace", id = "14"}, {value = "King", id = "13"}, {value = "Queen", id = "12"}}}},
+  config = {extra = {money = 0, money_mod = 2, earned = 0, threshold = 292, targets = {{value = "Ace", id = "14"}, {value = "King", id = "13"}, {value = "Queen", id = "12"}}}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     
         local abbr = card.ability.extra
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-    local card_vars = {abbr.money, abbr.earned, abbr.threshold}
+    local card_vars = {abbr.money_mod, abbr.earned, abbr.threshold}
     add_target_cards_to_vars(card_vars, abbr.targets)
     return {vars = card_vars}
   end,
@@ -101,7 +101,12 @@ local shedinja = {
   stage = "Basic",
   ptype = "Psychic",
   atlas = "Pokedex3",
-  blueprint_compat = true,
+  blueprint_compat = false,
+  calc_dollar_bonus = function(self, card)
+    card.ability.extra.earned = card.ability.extra.earned + card.ability.extra.money
+    return ease_poke_dollars(card, "shedinja", (card.ability.extra.money), true)
+    
+	end,
   custom_pool_func = true,
   aux_poke = true,
   in_pool = function(self)
@@ -110,15 +115,15 @@ local shedinja = {
   calculate = function(self, card, context)
     if context.end_of_round and not context.blueprint then 
         card.ability.extra.targets = get_poke_target_card_ranks("shedinja", 3, card.ability.extra.targets, true)
-        local turn_neg = nil
-        turn_neg = card.ability.extra.earned >= card.ability.extra.threshold
-        if turn_neg then
-      local edition = {negative = true}
-      card:set_edition(edition, true)
-    end
+    --     local turn_neg = nil
+    --     turn_neg = card.ability.extra.earned >= card.ability.extra.threshold
+    --     if turn_neg then
+    --   local edition = {negative = true}
+    --   card:set_edition(edition, true)
+    -- end
     end 
     local unique_ranks = {}
-    if context.cardarea == G.jokers and context.scoring_hand and context.joker_main then
+    if context.cardarea == G.jokers and context.scoring_hand and not context.blueprint then
         if G.hand and G.hand.cards and #G.hand.cards > 0 then
           for i=1, #G.hand.cards do
               local contains = false
@@ -132,16 +137,10 @@ local shedinja = {
               end
             end
           end
-        local earned = ease_poke_dollars(card, "shedinja", (card.ability.extra.money * #unique_ranks), true)
-        if not context.blueprint then 
-          card.ability.extra.earned = card.ability.extra.earned + (card.ability.extra.money * #unique_ranks)
-        end
-      return {
-        dollars = earned,
-        card = card
-      }
+          card.ability.extra.money = (card.ability.extra.money_mod * #unique_ranks)
+    
     end
-    if context.individual and not context.end_of_round and context.cardarea == G.hand and not context.other_card.debuff then
+    if context.individual and not context.end_of_round and context.cardarea == G.hand and not context.other_card.debuff and not context.blueprint then
       for i=1, #card.ability.extra.targets do
         if context.other_card:get_id() == card.ability.extra.targets[i].id then
             remove(self, card, {})

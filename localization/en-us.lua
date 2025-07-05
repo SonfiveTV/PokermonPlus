@@ -158,15 +158,14 @@ return {
             j_sonfive_shedinja = {
                 name = 'Shedinja',
                 text = {
-                    "Earn {C:money}$#1#{} for each",
-                    "unique {C:attention}rank{} held in hand",
-                    "{C:inactive,s:0.8}(Gains Negative after earning {C:money,s:0.8}$#2#{}{C:inactive,s:0.8}/$#3#){}"  ,
+                    "Every {C:attention}unique{} rank {C:attention}held in hand{}",
+                    "earns {C:money}$#1#{} at end of round",
+                    -- "{C:inactive,s:0.8}(Gains Negative after earning {C:money,s:0.8}$#2#{}{C:inactive,s:0.8}/$#3#){}"  ,
                     "{br:4}seppuku",
-                    "{C:attention}Weakness: {C:inactive}({C:attention}#4#, #5#, #6#{C:inactive}){}",
-                    "If a {C:attention}Weakness{} card is",
+                    "If a {C:attention}#4#, #5#,{} or {C:attention}#6#{} is",
                     "held in hand then",
                     "{S:1.1,C:red,E:2}self destructs{}",
-                    "{C:inactive,s:0.8}(Weakness changes every round){}",
+                    "{C:inactive,s:0.8}(Rank changes every round){}",
                                   
                 } 
             },
