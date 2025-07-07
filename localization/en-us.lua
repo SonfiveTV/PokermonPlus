@@ -462,6 +462,7 @@ return {
             },
             dictionary = {
                 sonfive_saltcure_ex = "Salt Cure!",
+                sonfive_speedboost = "Speed Boost!",
             },
             v_text = {
            ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
