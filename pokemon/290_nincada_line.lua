@@ -72,7 +72,7 @@ local ninjask = {
         }
       end
     end
-    if not context.individual and context.end_of_round and card.ability.extra.speedboost < 7 and not context.repetition then
+    if not context.individual and context.end_of_round and card.ability.extra.speedboost < 7 and not context.repetition and G.GAME.last_blind and G.GAME.last_blind.boss then
         energy_shift(card, 1, card.ability.extra.ptype, false, true)
         card.ability.extra.speedboost = card.ability.extra.speedboost + 1
         return{
