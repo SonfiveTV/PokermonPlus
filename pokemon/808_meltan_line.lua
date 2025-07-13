@@ -3,11 +3,11 @@ local meltan = {
   poke_custom_prefix = "sonfive", -- This is your mod prefix
   pos = {x = 4, y = 9}, -- This is the sprite position on the atlas, where (0, 0) is the top left sprite 
   soul_pos = {x = 5, y = 9}, -- This is the sprite position for the floating sprite, for Legendary Jokers
-  config = {extra = {chips = 0, count = 0, odds = 1, evo_rqmt = 1}},
+  config = {extra = {chips = 0, retriggers = 1, count = 0, evo_rqmt = 100}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card) 
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.count, card.ability.extra.evo_rqmt, card.ability.extra.odds*100}} -- Here you can reference values in the Joker description
+		return {vars = {card.ability.extra.count, card.ability.extra.evo_rqmt, card.ability.extra.retriggers}} -- Here you can reference values in the Joker description
   end,
   rarity = 4, -- 1 is Common, 2 is Uncommon, 3 is Rare, 4 is Legendary. Use "poke_safari" for Safari 
   cost = 20, -- This is the purchase cost, half is the sell cost
@@ -19,32 +19,41 @@ local meltan = {
   calculate = function(self, card, context)
     local abbr = card.ability.extra
     abbr.odds = (1 / (#find_joker('metalcoat') + 1))
-    abbr.count = (abbr.energy_count or 0) + (abbr.c_energy_count or 0) + (abbr.negative_energy_count or 0) + (abbr.negative_c_energy_count or 0)
-    if context.setting_blind then
-      if pseudorandom('meltan') <= abbr.odds then
-        if not from_debuff then
-            local _card = create_card('Item', G.consumeables, nil, nil, nil, nil, 'c_poke_metalcoat')
-            local edition = {negative = true}
-            _card:set_edition(edition, true)
-            _card:add_to_deck()
-            G.consumeables:emplace(_card)
-            card_eval_status_text(_card, 'extra', nil, nil, nil, {message = localize('poke_plus_pokeitem'), colour = G.C.FILTER})
-        end
+    if context.individual and not context.end_of_round and context.cardarea == G.hand then
+      if SMODS.has_enhancement(context.other_card, 'm_steel') then 
+        abbr.count = abbr.count + 1
+      end
     end
-  end
+    if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and SMODS.has_enhancement(context.other_card, 'm_steel') then
+        return {
+          message = localize('k_again_ex'),
+          repetitions = abbr.retriggers,
+          card = card
+        }
+    end
     return scaling_evo(self, card, context, "j_sonfive_melmetal", card.ability.extra.count, card.ability.extra.evo_rqmt)
   end,
+  add_to_deck = function(self, card, from_debuff)
+    if not from_debuff then
+      local _card = create_card('Item', G.consumeables, nil, nil, nil, nil, 'c_poke_metalcoat')
+      local edition = {negative = true}
+      _card:set_edition(edition, true)
+      _card:add_to_deck()
+      G.consumeables:emplace(_card)
+      card_eval_status_text(_card, 'extra', nil, nil, nil, {message = localize('poke_plus_pokeitem'), colour = G.C.FILTER})
+    end
+  end
 }
 
 local melmetal = {
   name = "melmetal",
   pos = {x = 6, y = 9},
   soul_pos = {x = 7, y = 9},
-  config = {extra = {Xmult_multi = 0.05}},
+  config = {extra = {}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.Xmult_multi, (#find_joker('metalcoat')*card.ability.extra.Xmult_multi), #find_joker('metalcoat')}}
+		return {vars = {#find_joker('metal_energy') + #find_pokemon_type("Metal")}}
   end,
   rarity = 4,
   cost = 20,
@@ -59,39 +68,18 @@ local melmetal = {
   end,
   
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.hand and not context.other_card.debuff and not context.end_of_round and SMODS.has_enhancement(context.other_card, 'm_steel') then
-      context.other_card.ability.perma_h_x_mult = context.other_card.ability.perma_h_x_mult or 0
-      context.other_card.ability.perma_h_x_mult = context.other_card.ability.perma_h_x_mult + (card.ability.extra.Xmult_multi * #find_joker('metalcoat'))
-      return {
-          extra = {message = localize('k_upgrade_ex'), colour = G.C.MULT},
-          colour = G.C.MULT,
+    if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and SMODS.has_enhancement(context.other_card, 'm_steel') then
+      local retriggers = #find_joker('metal_energy') + #find_pokemon_type("Metal")
+      if retriggers > 0 then
+        return {
+          message = localize('k_again_ex'),
+          repetitions = retriggers,
           card = card
-      }
+        }
+      end
     end
-    -- if context.selling_self and not context.blueprint and #find_joker('metal_energy') >= 10*(2^((#find_joker('melmetal') + #find_joker('meltan')) - 1)) then
-    --           G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-    --           local temp_card = {set = "Joker", area = G.jokers, key = "j_sonfive_meltan", no_edition = true}
-    --           local new_card = SMODS.create_card(temp_card)
-    --           new_card:add_to_deck()
-    --           G.jokers:emplace(new_card)
-    --           return true end }))
-    --         if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
-    --         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-    --           local temp_card = {set = "Joker", area = G.jokers, key = "j_sonfive_meltan", no_edition = true}
-    --           local new_card = SMODS.create_card(temp_card)
-    --           new_card:add_to_deck()
-    --           G.jokers:emplace(new_card)
-    --           return true end }))
-    --       end
-    --       delay(0.6)
-
-    --       card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('poke_darts_ex'), colour = G.C.MULT})
-    --     end
   end,
 }
-
-
-
 
 if sonfive_config.Meltan then
   list = {meltan, melmetal}

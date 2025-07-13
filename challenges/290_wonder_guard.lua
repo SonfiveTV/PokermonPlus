@@ -17,7 +17,7 @@ local wonder_guard = {
     }
 }
 
-if sonfive_config.Nincada then
+if sonfive_config.customJokers and sonfive_config.Nincada then
   list = {wonder_guard}
 else list = {}
 end

@@ -11,7 +11,7 @@ local salt_cured = {
     },
 }
 
-if sonfive_config.Nacli then
+if sonfive_config.customJokers and sonfive_config.Nacli then
   list = {salt_cured}
 else list = {}
 end
