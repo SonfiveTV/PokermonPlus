@@ -186,9 +186,9 @@ return {
             j_sonfive_naclstack = {
                 name = 'Naclstack',
                 text = {
-                    "When {C:attention}Blind{} is selected, {C:green}1 in #3#{} chance to",
+                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
                     "destroy leftmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}1 in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
                     "This Joker can't be debuffed",
                     "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive}){}"

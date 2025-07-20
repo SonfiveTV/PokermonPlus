@@ -97,17 +97,17 @@ return {
                 },
             },
             j_sonfive_nincada = {
-                name = 'Nincada',
+                name = 'ツチニン',
                 text = {
-                    "{C:chips}+#1#{} Chips or {C:mult}+#2#{} Mult",
-                    "{C:inactive,s:0.8}(Evolves after {C:attention,s:0.8}#3#{C:inactive,s:0.8} rounds)"                    
+                    "チップ {C:chips}+#1#{} か 倍率 {C:mult}+#2#{}",
+                    "{C:inactive,s:0.8}({C:attention,s:0.8}#3#{}{C:inactive,s:0.8} ラウンド後に進化)"                    
                 } 
             },
             j_sonfive_ninjask = {
-                name = 'Ninjask',
+                name = 'テッカニン',
                 text = {
-                    "{C:chips}+#1#{} Chips",
-                    "{C:mult}+#2#{} Mult",   
+                    "チップ {C:chips}+#1#{}",
+                    "倍率 {C:mult}+#2#{}",   
                     "{br:4}text needs to be here to work",
                     "Increases this Joker's {C:chips}Chips{}", 
                     "and {C:mult}Mult{} at end of round",
@@ -115,7 +115,7 @@ return {
                 } 
             },
             j_sonfive_shedinja = {
-                name = 'Shedinja',
+                name = 'ヌケニン',
                 text = {
                     "Every {C:attention}unique{} rank {C:attention}held in hand{}",
                     "earns {C:money}$#1#{} at end of round",
@@ -130,35 +130,35 @@ return {
             j_sonfive_nacli = {
                 name = 'コジオ',
                 text = {
-                    "When {C:attention}Blind{} is selected, earn {C:money}$#1#{} ",
-                    "for each Joker, earn double from",
-                    "{X:water,C:white}Water{} and {X:metal,C:white}Metal{} Jokers",
+                    "{C:attention}ブラインド{}が選択された時",
+                    "{C:attention}ジョーカー{} カード1枚につき, {C:money}$#1#{} を与える",
+                    "{C:inactive}({}{X:water,C:white}水{}{C:inactive} と {}{X:metal,C:white}鉄{}{C:inactive} が 2倍 を与える){}",
                     "{br:4}text needs to be here to work",
-                    "This Joker can't be debuffed",
-                    "{C:inactive}(Evolves after earning {}{C:money}$24{}{C:inactive}){}"   
+                    "このジョーカーはデバフできない",
+                    "{C:inactive,s:0.8}({C:money,s:0.8}$24{C:inactive,s:0.8} 与えた後に進化)",
                 } 
             },
             j_sonfive_naclstack = {
                 name = 'ジオヅム',
                 text = {
-                    "When {C:attention}Blind{} is selected, {C:green}1 in #3#{} chance to",
-                    "destroy leftmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}1 in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:attention}ブラインド{}が選択された時 {C:green}#3#分の#5#{} 確率で",
+                    "一番左の{C:attention}ジョーカー{}を破壊して 倍率 {X:red,C:white}X#1#{} を得る",
+                    "{C:inactive}({C:inactive} 一番左は{} {X:water,C:white}水{} {C:inactive}か{} {X:metal,C:white}鉄{} {C:inactive}なら、確率は {C:green}#4#分の#5#{}){}",
                     "{br:4}text needs to be here to work",
-                    "This Joker can't be debuffed",
-                    "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive}){}"                  
+                    "このジョーカーはデバフできない",
+                    "{C:inactive}(倍率 {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive} で進化){}"                  
                 } 
             },
             j_sonfive_garganacl = {
                 name = 'キョジオーン',
                 text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#3#%{} chance",
-                    "to destroy leftmost {C:attention}Joker{} and",
-                    " mulitply this Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}#4#%{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:attention}ブラインド{}が選択された時 {C:green}#3#%{} 確率で",
+                    "一番左の{C:attention}ジョーカー{}を破壊して",
+                    "このジョーカーの {X:red,C:white}X{}倍率を {X:red,C:white}X#1#{} に倍する",
+                    "{C:inactive}({C:inactive} 一番左は{} {X:water,C:white}水{} {C:inactive}か{} {X:metal,C:white}鉄{} {C:inactive}なら、確率は {C:green}#4#%{}){}",
                     "{br:4}text needs to be here to work",
-                    "This Joker can't be debuffed",
-                    "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}"            
+                    "このジョーカーはデバフできない",
+                    "{C:inactive}(現在 倍率 {X:red,C:white}X#2#{C:inactive})",           
                 } 
             },
             j_sonfive_meltan = {
@@ -347,10 +347,10 @@ return {
 },
         misc = {
             challenge_names = {
-            c_sonfive_balls_of_patience = "Balls of Patience",
-            c_sonfive_salt_cured = "Salt Cured",
-            c_sonfive_metallurgy = "Metallurgy",
-            c_sonfive_wonder_guard = "Guard the Wonder",
+            c_sonfive_balls_of_patience = "忍耐の玉",
+            c_sonfive_salt_cured = "塩硬化",
+            c_sonfive_metallurgy = "冶金",
+            c_sonfive_wonder_guard = "不思議を守る",
             },
             dictionary = {
                 -- Joker Messages
@@ -366,7 +366,7 @@ return {
             },
             v_text = {
                 -- Custom Challenge Descriptions
-           ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
+           ch_c_sonfive_wonderguard = {"{C:attention}ヌケニン{}が{S:1.1,C:red,E:2}自らを破壊{}しれば、ランを{C:attention}負ける{}"},
             },
 
             labels={
