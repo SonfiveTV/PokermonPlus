@@ -18,8 +18,6 @@ local propheticdeck ={
     loc_vars = function(self, info_queue, center)
         return {vars = {self.config.hand_size, self.config.extra.scry}}
     end,
-
-    
     apply = function(self)
         G.GAME.scry_amount = self.config.extra.scry
     end    
@@ -57,7 +55,6 @@ local megadeck = {
   loc_vars = function(self, info_queue, center)
     return {vars = {self.config.consumables}}
   end,
-
   apply = function(self)
     G.GAME.win_ante = (G.GAME.win_ante + 4)
   end
@@ -92,40 +89,17 @@ local voiddeck = {
   end
 } 
 
--- local hazardousdeck = {
--- 	name = "hazardousdeck",
--- 	key = "hazardousdeck",  
---     atlas = "backs",
---     pos = { x = 6, y = 0 },
--- 	config = { extra = {hazard_ratio = 10}},
---   loc_vars = function(self, info_queue, center)
---     local hazardcount = math.floor(52/self.config.extra.hazard_ratio)
---     if G.playing_cards then 
---       hazardcount = math.floor(#G.playing_cards/self.config.extra.hazard_ratio)
---     else 
---     end
---     return {vars = {self.config.jokers, self.config.extra.hazard_ratio, hazardcount}}
---   end,
-
---   calculate = function(self, card, context)
---     if context.setting_blind then
---       poke_add_hazards(self.config.extra.hazard_ratio)
---     end
---   end
--- } 
 if sonfive_config.customItems then
 local dList = {virtuousdeck, propheticdeck, shinydeck, megadeck, voiddeck}
 return {name = "Back",
-        list = dList
-        
-}
+        list = dList}
 else 
   local dList = {propheticdeck, shinydeck, megadeck, voiddeck}
-
-
+	
 return {name = "Back",
         list = dList
         
 }
 end
+
 
