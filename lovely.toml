@@ -3,6 +3,23 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = 'if (area == G.shop_jokers) or (area == G.pack_cards) then'
+position = 'after'
+match_indent = true
+payload = '''
+
+if G.GAME.modifiers.enable_rocket_in_shop and pseudorandom(('rocket')..G.GAME.round_resets.ante) > 0.7 then
+    SMODS.Stickers['sonfive_rocket']:apply(card, true)
+end
+if G.GAME.modifiers.enable_inert_in_shop and pseudorandom(('ex')..G.GAME.round_resets.ante) > 0.7 then
+    SMODS.Stickers['sonfive_inert']:apply(card, true)
+end
+
+'''
+
 #Negative Energy Logic 1/4
 [[patches]]
 [patches.pattern]
@@ -76,7 +93,7 @@ match_indent = true
 
 
 
-#Negative Energy Tooltip
+#Negative Energy Tooltip 1/2
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
@@ -177,7 +194,7 @@ end
 '''
 match_indent = true
 
-#Negative Energy Tooltip en-us
+#Negative Energy Tooltip 2/2
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Pokermon "localization/en-us.lua"]'
@@ -417,5 +434,4 @@ end
 '''
 match_indent = true
 overwrite = true
-
 

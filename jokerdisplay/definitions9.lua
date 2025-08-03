@@ -18,6 +18,19 @@ jd_def["j_sonfive_shedinja"] = {
     end
 }
 
+jd_def["j_sonfive_meltan"] = {
+    retrigger_function = function(playing_card, scoring_hand, held_in_hand, joker_card)
+        return held_in_hand and playing_card.ability.effect == "Steel Card" and (joker_card.ability.extra.retriggers * JokerDisplay.calculate_joker_triggers(joker_card)) or 0
+    end
+}
+
+jd_def["j_sonfive_melmetal"] = {
+    retrigger_function = function(playing_card, scoring_hand, held_in_hand, joker_card)
+        local retriggers = #find_joker('metal_energy') + #find_pokemon_type("Metal")
+        return held_in_hand and playing_card.ability.effect == "Steel Card" and (retriggers * JokerDisplay.calculate_joker_triggers(joker_card)) or 0
+    end
+}
+
 
 jd_def["j_sonfive_nacli"] = {
     text = {

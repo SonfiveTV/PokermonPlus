@@ -370,8 +370,6 @@ return {
             },
 
             labels={
-                sonfive_rocket = "Team Rocket",
-                sonfive_ex = "EX"
             },
 
 

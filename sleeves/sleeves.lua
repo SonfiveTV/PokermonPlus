@@ -1,33 +1,3 @@
-local reverencesleeve = {
-    key = 'reverencesleeve',
-    name = 'Reverence Sleeve',
-    prefix_config = {},
-    atlas = "sleeves",
-    pos = { x = 0, y = 0 },
-    config = {},
-    loc_vars = function(self, info_queue, center)
-        local key, vars
-        if self.get_current_deck_key() == "b_sonfive_reverencedeck" then
-            key = self.key.."_alt"
-            vars = {}
-        else
-            key = self.key
-            vars = {}
-        end
-        return {key = key, vars = vars}
-    end,
-    apply = function(self)
-        if self.get_current_deck_key() == "b_sonfive_reverencedeck" then
-            G.E_MANAGER:add_event(Event({func = function()
-                G.consumeables.config.card_limit = G.consumeables.config.card_limit + 1
-                return true 
-            end }))
-        else
-            G.GAME.modifiers.poke_force_seal = "poke_silver"
-        end
-    end
-}
-
 local virtuoussleeve = {
     key = 'virtuoussleeve',
     name = 'Virtuous Sleeve',

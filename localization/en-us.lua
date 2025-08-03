@@ -471,15 +471,13 @@ return {
                 nincada_line = "Nincada line?",
                 meltan_line = "Meltan line?",
                 nacli_line = "Nacli line?",
-                custom_consumeables = "Allow Custom Jokers?",
+                custom_consumeables = "Allow Custom Consumables?",
             },
             v_text = {
            ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
             },
 
             labels={
-                sonfive_rocket = "Team Rocket",
-                sonfive_ex = "EX"
             },
 
 

@@ -5,10 +5,7 @@ local timerball = {
   config = {extra = {round_on_add = 1, legendary = 15, rare = 7, uncommon = 3, common = 1}},
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
-    -- don't know the localization code for rarities
-    -- it should be localize('k_common') or something like that
-
-    local rarities = {'Common', 'Uncommon', 'Rare', 'Legendary'}
+    local rarities = {localize('k_common'), localize('k_uncommon'), localize('k_rare'), localize('k_legendary')}
     local rarity = rarities[1]
     local round = G.GAME.round - center.ability.extra.round_on_add
     local colors = {G.C.BLUE, G.C.GREEN, G.C.RED, G.C.PURPLE}
@@ -61,37 +58,22 @@ local timerball = {
   end,
   use = function(self, card, area, copier)
     set_spoon_item(card)
-    if (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
-      G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-        play_sound('timpani')
-        local _card = create_random_poke_joker("timerball", nil, "common", nil, nil)
-        _card:add_to_deck()
-        G.jokers:emplace(_card)
-        return true end }))
-    elseif self.config.extra.uncommon <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.rare then
-      G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-        play_sound('timpani')
-        local _card = create_random_poke_joker("timerball", nil, "uncommon", nil, nil)
-        _card:add_to_deck()
-        G.jokers:emplace(_card)
-        return true end }))
-    elseif self.config.extra.rare <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.legendary then
-      G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-        play_sound('timpani')
-        local _card = create_random_poke_joker("timerball", nil, "rare", nil, nil)
-        _card:add_to_deck()
-        G.jokers:emplace(_card)
-        return true end }))
-    elseif self.config.extra.legendary <= (G.GAME.round - card.ability.extra.round_on_add)  then
-      G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-        play_sound('timpani')
-        local _card = create_random_poke_joker("timerball", "Legendary")
-        _card:add_to_deck()
-        G.jokers:emplace(_card)
-        return true end }))
-
-    end
-  delay(0.6)
+    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+      play_sound('timpani')
+      local _card = nil
+      if (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
+        _card = create_random_poke_joker("timerball", nil, "common", nil, nil)
+      elseif self.config.extra.uncommon <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.rare then
+        _card = create_random_poke_joker("timerball", nil, "uncommon", nil, nil)
+      elseif self.config.extra.rare <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.legendary then
+        _card = create_random_poke_joker("timerball", nil, "rare", nil, nil)
+      elseif self.config.extra.legendary <= (G.GAME.round - card.ability.extra.round_on_add)  then
+        _card = create_random_poke_joker("timerball", "Legendary")
+      end
+      _card:add_to_deck()
+      G.jokers:emplace(_card)
+      return true end }))
+    delay(0.6)
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
@@ -114,78 +96,6 @@ local timerball = {
       end
     end
   end,
-}
-
--- local berryjuice = {
--- name = "berryjuice",
--- key = "berryjuice",
--- set = "Item",
--- config = {},
--- loc_vars = function(self, info_queue, center)
---   return {vars = {}}
--- end,
--- pos = { x = 1, y = 0 },
--- atlas = "consumables",
--- cost = 6,
--- unlocked = true,
--- discovered = true,
--- can_use = function(self, card)
---   if #G.jokers.highlighted == 1 then
---     return true
---   else
---     return false
---   end
--- end,
--- use = function(self, card, area, copier)
---   set_spoon_item(card)
---   if G.jokers.highlighted[1].ability.perishable then 
---     G.jokers.highlighted[1].ability.perish_tally = (G.jokers.highlighted[1].ability.perish_tally + 1)
---     G.jokers.highlighted[1]:set_debuff(false)
---   end
---   G.jokers.highlighted[1]:set_debuff(false)
--- delay(0.6)
--- end,
--- in_pool = function(self)
---   return false
--- end
-
--- }
-
-local bottlecap = {
-    name = "bottlecap",
-    key = "bottlecap",
-    set = "Spectral",
-    loc_vars = function(self, info_queue, center)
-        --  info_queue[#info_queue+1] = {set = 'Other', key = 'basic'}
-        return {vars = {}}
-    end,
-    pos = { x = 2, y = 0 },
-    atlas = "consumables", --Thank you Sonfive!
-    cost = 4,
-    pokeball = false,
-    hidden=true,
-    unlocked = true,
-    discovered = true,
-    can_use = function(self, card)
-      if G.jokers and G.jokers.cards and #G.jokers.cards > 0 then
-        return true
-      else
-        return false
-      end
-    end,
-    use = function(self, card, area, copier)
-      if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then
-        card = G.jokers.cards[1]
-      else
-        card = G.jokers.highlighted[1]
-      end
-        if card.ability.extra then
-          if type(card.ability.extra) == "table" then
-            energy_shift(card, 1, card.ability.extra.ptype, false, true)
-            card.ability.extra.bottle_cap = (card.ability.extra.bottle_cap or 0) + 1
-          end
-        end
-    end, 
 }
 
 return {name = "Items",
