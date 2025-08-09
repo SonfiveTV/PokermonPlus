@@ -53,7 +53,7 @@ local nacli = {
 local naclstack = {
   name = "naclstack",
   pos = {x = 4, y = 2},
-  config = {extra = {Xmult_mod = 0.5, Xmult = 1, odds = 8}, evo_rqmt = 4},
+  config = {extra = {Xmult_mod = 0.5, Xmult = 2, odds = 8}, evo_rqmt = 4},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
@@ -164,4 +164,5 @@ end
 
 return {name = "Nacli", 
 list = list
+
 }
