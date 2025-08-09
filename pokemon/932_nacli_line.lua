@@ -7,7 +7,7 @@ local nacli = {
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, card.ability.extra.odds, (card.ability.extra.odds / 2), G.GAME.probabilities.normal}}
   end,
-  rarity = "poke_safari",
+  rarity = 3,
   cost = 6,
   stage = "One",
   ptype = "Earth",
@@ -166,4 +166,5 @@ end
 
 return {name = "Nacli", 
 list = list
+
 }
