@@ -21,21 +21,28 @@ local nacli = {
       if rightmost ~= card and not rightmost.ability.eternal then 
         if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
           abbr.Zmult = abbr.Xmult
-        end
-        G.E_MANAGER:add_event(Event({
+          G.E_MANAGER:add_event(Event({
         remove(self, rightmost, context)
         }))
         return{
           message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
         }
+        else
+          abbr.Zmult = 1
+          G.E_MANAGER:add_event(Event({
+        remove(self, rightmost, context)
+        }))
+        return{
+          message = localize('k_reset'), colour = G.C.RED
+        }
+        end
+      else
+        abbr.Zmult = 1
+        return {
+          message = localize('k_reset'),
+          colour = G.C.RED
+        }
       end
-    end
-    if context.end_of_round and not context.repetition and not context.individual and not context.blueprint then
-      abbr.Zmult = 1
-      return {
-        message = localize('k_reset'),
-        colour = G.C.RED
-      }
     end
     if context.cardarea == G.jokers and context.scoring_hand then
       if context.joker_main then
@@ -47,7 +54,7 @@ local nacli = {
       end
     end
     return level_evo(self, card, context, "j_sonfive_naclstack")
-  end
+  end,
 }
 
 local naclstack = {
@@ -164,5 +171,4 @@ end
 
 return {name = "Nacli", 
 list = list
-
 }
