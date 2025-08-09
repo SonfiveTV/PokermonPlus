@@ -1,11 +1,11 @@
 local nacli = {
   name = "nacli",
   pos = {x = 3, y = 2},
-  config = {extra = {money = 1, earned = 0}, evo_rqmt = 24},
+  config = {extra = {Zmult = 1, Xmult = 2, rounds = 5}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.money, card.ability.extra.earned}}
+		return {vars = {card.ability.extra.Zmult, card.ability.extra.Xmult, card.ability.extra.rounds}}
   end,
   rarity = 3,
   cost = 5,
@@ -15,25 +15,45 @@ local nacli = {
   blueprint_compat = true,
   
   calculate = function(self, card, context)
+    local abbr = card.ability.extra
     if context.setting_blind and not context.blueprint then
-          local abbr = card.ability.extra
-          local money_earned = (#G.jokers.cards + #find_pokemon_type("Water") + #find_pokemon_type("Metal")) * abbr.money
-          local earned = ease_poke_dollars(card, "nacli", money_earned, true)
-          abbr.earned = abbr.earned + money_earned
-      return {
-        dollars = earned,
-        card = card
-      }
-        
+      local rightmost = G.jokers.cards[#G.jokers.cards]
+      if rightmost ~= card and not rightmost.ability.eternal then 
+        if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
+          abbr.Zmult = abbr.Xmult
+        end
+        G.E_MANAGER:add_event(Event({
+        remove(self, rightmost, context)
+        }))
+        return{
+          message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
+        }
+      end
     end
-    return scaling_evo(self, card, context, "j_sonfive_naclstack", card.ability.extra.earned, self.config.evo_rqmt)
+    if context.end_of_round and not context.repetition and not context.individual and not context.blueprint then
+      abbr.Zmult = 1
+      return {
+        message = localize('k_reset'),
+        colour = G.C.RED
+      }
+    end
+    if context.cardarea == G.jokers and context.scoring_hand then
+      if context.joker_main then
+        return {
+          message = localize{type = 'variable', key = 'a_xmult', vars = {card.ability.extra.Zmult}}, 
+          colour = G.C.XMULT,
+          Xmult_mod = card.ability.extra.Xmult
+        }
+      end
+    end
+    return level_evo(self, card, context, "j_sonfive_naclstack")
   end
 }
 
 local naclstack = {
   name = "naclstack",
   pos = {x = 4, y = 2},
-  config = {extra = {Xmult_mod = 0.25, Xmult = 1, odds = 8}, evo_rqmt = 2},
+  config = {extra = {Xmult_mod = 0.5, Xmult = 1, odds = 8}, evo_rqmt = 4},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
@@ -50,9 +70,9 @@ local naclstack = {
     if context.setting_blind and not context.blueprint then
       local abbr = card.ability.extra
       local odds
-      local leftmost = G.jokers.cards[1]
+      local rightmost = G.jokers.cards[1]
 
-      if leftmost ~= card and not leftmost.ability.eternal then 
+      if rightmost ~= card and not rightmost.ability.eternal then 
         if is_type(G.jokers.cards[1], "Metal") or is_type(G.jokers.cards[1], "Water") then
           odds = ((G.GAME.probabilities.normal/abbr.odds) * 2)
         else
@@ -61,7 +81,7 @@ local naclstack = {
         if pseudorandom('naclstack') < odds then
           abbr.Xmult = abbr.Xmult + abbr.Xmult_mod
           G.E_MANAGER:add_event(Event({
-          remove(self, leftmost, context)
+          remove(self, rightmost, context)
           }))
           return{
             message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
@@ -87,11 +107,11 @@ local naclstack = {
 local garganacl = {
   name = "garganacl",
   pos = {x = 5, y = 2},
-  config = {extra = {Xmult_multi = 1.5, Xmult = 2, odds = 12.5}},
+  config = {extra = {Xmult_multi = 1.1, Xmult = 4, odds = 8}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.Xmult_multi, card.ability.extra.Xmult, card.ability.extra.odds, (2*card.ability.extra.odds)}}
+		return {vars = {card.ability.extra.Xmult_multi, card.ability.extra.Xmult, card.ability.extra.odds, (card.ability.extra.odds / 2), G.GAME.probabilities.normal}}
   end,
   rarity = "poke_safari",
   cost = 8,
@@ -101,21 +121,22 @@ local garganacl = {
   blueprint_compat = true,
   
   calculate = function(self, card, context)
+    local abbr = card.ability.extra
     if context.setting_blind and not context.blueprint then
       local abbr = card.ability.extra
       local odds
-      local leftmost = G.jokers.cards[1]
+      local rightmost = G.jokers.cards[1]
 
-      if leftmost ~= card and not leftmost.ability.eternal then 
+      if rightmost ~= card and not rightmost.ability.eternal then 
         if is_type(G.jokers.cards[1], "Metal") or is_type(G.jokers.cards[1], "Water") then
-          odds = ((abbr.odds/100) * 2)
+          odds = ((G.GAME.probabilities.normal/abbr.odds) * 2)
         else
-          odds = abbr.odds/100
+          odds = (G.GAME.probabilities.normal/abbr.odds)
         end
         if pseudorandom('garganacl') < odds then
           abbr.Xmult = abbr.Xmult * abbr.Xmult_multi
           G.E_MANAGER:add_event(Event({
-          remove(self, leftmost, context)
+          remove(self, rightmost, context)
           }))
           return{
             message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
@@ -123,8 +144,7 @@ local garganacl = {
         end
       end
     end
-
-
+    
     if context.cardarea == G.jokers and context.scoring_hand then
       if context.joker_main then
         return {
