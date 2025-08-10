@@ -164,7 +164,7 @@ return {
                     "Gains {X:red,C:white}X#1#{} Mult for every",
                     "{C:attention}Glass Card{} that is destroyed",
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
-                    "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Ice Stone{C:inactive,s:0.8})"
+                    "{C:inactive,s:0.8}(Evolves with an {C:attention,s:0.8}Ice Stone{C:inactive,s:0.8})"
                 } 
             },
             j_sonfive_cetitan = {
@@ -447,4 +447,5 @@ return {
 
         }       
     }
+
 
