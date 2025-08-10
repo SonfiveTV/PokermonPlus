@@ -26,11 +26,10 @@ SMODS.Atlas({
   path = "sleeves.png"
 }):register()
 
-pokermon.add_family({"duskull", "dusclops", "dusknoir"})
-pokermon.add_family({"vullaby", "mandibuzz"})
 pokermon.add_family({"nincada", "ninjask", "shedinja"})
 pokermon.add_family({"meltan", "melmetal"})
 pokermon.add_family({"nacli", "naclstack", "garganacl"})
+pokermon.add_family({"cetoddle", "cetitan"})
 
 sonfive_config = SMODS.current_mod.config
 mod_dir = ''..SMODS.current_mod.path
@@ -66,6 +65,11 @@ SMODS.current_mod.config_tab = function()
                 label = localize("nacli_line"),
                 ref_table = sonfive_config,
                 ref_value = "Nacli",
+            }),
+            create_toggle({
+                label = localize("cetoddle_line"),
+                ref_table = sonfive_config,
+                ref_value = "Cetoddle",
             }),
             create_toggle({
                 label = localize("custom_consumeables"),

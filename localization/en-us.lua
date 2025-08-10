@@ -69,71 +69,6 @@ return {
         },
 
         Joker = {
-            j_sonfive_shuckle = {
-                name = "Shuckle",
-                text = {
-                        "When blind is selected",
-                        "create a {C:attention}Berry Juice{} card",
-                        "{C:inactive}(Must have room)"
-                },
-            },
-
-            j_sonfive_duskull = {
-                name = "Duskull",
-                text = {
-                        "{C:spectral}Spectral{} cards may appear in the shop",
-                        "{br:4}text needs to be here to work",
-                        "Gains {C:mult}+#2#{} Mult per {C:spectral}Spectral{} card",
-                        "used this run",
-                        "{C:inactive}(Evolves at {C:mult}+#1#{}{C:inactive} / +15){}"
-
-                },
-            },
-
-            j_sonfive_vullaby = {
-                name = "Vullaby",
-                text = {
-                        "{C:mult}+#1#{}"
-
-                },
-            },
-
-            j_sonfive_mandibuzz = {
-                name = "Mandibuzz",
-                text = {
-                        "{C:spectral}Spectral{} cards may appear in the shop",
-                        "{br:4}text needs to be here to work",
-                        "Gains {C:mult}+#2#{} Mult per {C:spectral}Spectral{} card",
-                        "used this run",
-                        "{C:inactive}(Evolves at {C:mult}+#1#{}{C:inactive} / +15){}"
-
-                },
-            },
-
-            j_sonfive_dusclops = {
-                name = "Dusclops",
-                text = {
-                        "{C:spectral}Spectral{} cards may appear in the shop",
-                        "{br:4}text needs to be here to work",
-                        "Gains {C:mult}+#2#{} Mult per {C:spectral}Spectral{} card",
-                        "used this run",
-                        "{C:inactive}(Currently {C:mult}+#1#{}{C:inactive} Mult){}",
-                        "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Linking Cord{C:inactive,s:0.8})"
-                },
-            },
-
-
-            j_sonfive_dusknoir = {
-                name = "Dusknoir",
-                text = {
-                        "{C:spectral}Spectral{} cards may appear in the shop",
-                        "{br:4}text needs to be here to work",
-                        "Gains {X:red,C:white}X#2#{} Mult per {C:spectral}Spectral{} card",
-                        "used this run",
-                        "{C:inactive}(Currently {}{X:red,C:white}X#1#{}{C:inactive} Mult){}",
-                },
-            },
-
             j_sonfive_nincada = {
                 name = 'Nincada',
                 text = {
@@ -141,7 +76,6 @@ return {
                     "{C:inactive,s:0.8}(Evolves after {C:attention,s:0.8}#3#{C:inactive,s:0.8} rounds)"                    
                 } 
             },
-
             j_sonfive_ninjask = {
                 name = 'Ninjask',
                 text = {
@@ -154,7 +88,6 @@ return {
 
                 } 
             },
-
             j_sonfive_shedinja = {
                 name = 'Shedinja',
                 text = {
@@ -170,44 +103,6 @@ return {
                 } 
             },
 
-            j_sonfive_nacli = {
-                name = 'Nacli',
-                text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
-                    "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
-                    "{C:inactive}(Guaranteed if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
-                    "{br:4}text needs to be here to work",
-                    "This Joker can't be debuffed",
-                    "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive}){}"                 
-                } 
-            },
-
-            j_sonfive_naclstack = {
-                name = 'Naclstack',
-                text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
-                    "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
-                    "{br:4}text needs to be here to work",
-                    "This Joker can't be debuffed",
-                    "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X4{}{C:inactive}){}"
-                    
-                } 
-            },
-
-            j_sonfive_garganacl = {
-                name = 'Garganacl',
-                text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance",
-                    "to destroy rightmost {C:attention}Joker{} and",
-                    "mulitply this Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
-                    "{br:4}text needs to be here to work",
-                    "This Joker can't be debuffed",
-                    "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}"
-                    
-                } 
-            },
             j_sonfive_meltan = {
                 name = 'Meltan',
                 text = {
@@ -215,7 +110,6 @@ return {
                     "Retrigger each {C:attention}Steel{} card",
                     "held in hand {C:attention}#3#{} time",
                     "{C:inactive,s:0.8}(Evolves after scoring #1#/#2# Steel cards){}"
-                    
                 } 
             },
             j_sonfive_melmetal = {
@@ -228,6 +122,63 @@ return {
                     "{C:inactive}(Currently #1# retriggers)"
                 } 
             },
+
+            j_sonfive_nacli = {
+                name = 'Nacli',
+                text = {
+                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
+                    "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
+                    "{C:inactive}(Guaranteed if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{br:4}text needs to be here to work",
+                    "This Joker can't be debuffed",
+                    "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive}){}"                 
+                } 
+            },
+            j_sonfive_naclstack = {
+                name = 'Naclstack',
+                text = {
+                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
+                    "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
+                    "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{br:4}text needs to be here to work",
+                    "This Joker can't be debuffed",
+                    "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X4{}{C:inactive}){}"
+                } 
+            },
+            j_sonfive_garganacl = {
+                name = 'Garganacl',
+                text = {
+                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance",
+                    "to destroy rightmost {C:attention}Joker{} and",
+                    "mulitply this Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X#1#{}",
+                    "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{br:4}text needs to be here to work",
+                    "This Joker can't be debuffed",
+                    "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}"
+                } 
+            },
+
+            j_sonfive_cetoddle = {
+                name = 'Cetoddle',
+                text = {
+                    "Gains {X:red,C:white}X#1#{} Mult for every",
+                    "{C:attention}Glass Card{} that is destroyed",
+                    "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
+                    "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Ice Stone{C:inactive,s:0.8})"
+                } 
+            },
+            j_sonfive_cetitan = {
+                name = 'Cetitan',
+                text = {
+                    "Gains {X:red,C:white}X#1#{} Mult for every",
+                    "{C:attention}Glass Card{} that is destroyed",
+                    "{br:4}text needs to be here to work",
+                    "Scores double if every card",
+                    "held in hand is {C:attention}Glass{}",
+                    "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
+                } 
+            },
+            
 
 
             
@@ -470,6 +421,7 @@ return {
                 nincada_line = "Nincada line?",
                 meltan_line = "Meltan line?",
                 nacli_line = "Nacli line?",
+                cetoddle_line = "Cetoddle line?",
                 custom_consumeables = "Allow Custom Consumables?",
             },
             v_text = {
