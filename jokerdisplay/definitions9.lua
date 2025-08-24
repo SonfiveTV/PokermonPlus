@@ -32,7 +32,7 @@ jd_def["j_sonfive_melmetal"] = {
 }
 
 
-jd_def["j_sonfive_naclstack"] = {
+jd_def["j_sonfive_nacli"] = {
     text = {
         {
             border_nodes = {
@@ -43,12 +43,12 @@ jd_def["j_sonfive_naclstack"] = {
     },
 }
 
-jd_def["j_sonfive_nacli"] = {
+jd_def["j_sonfive_naclstack"] = {
     text = {
         {
             border_nodes = {
                 { text = "X" },
-                { ref_table = "card.ability.extra", ref_value = "Zmult", retrigger_type = "exp" },
+                { ref_table = "card.ability.extra", ref_value = "Xmult", retrigger_type = "exp" },
             },
         },
     },
@@ -63,4 +63,5 @@ jd_def["j_sonfive_garganacl"] = {
             },
         },
     },
+
 }
