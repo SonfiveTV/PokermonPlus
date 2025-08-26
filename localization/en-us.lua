@@ -102,6 +102,14 @@ return {
                                   
                 } 
             },
+            j_sonfive_croagunk = {
+                name = 'Croagunk',
+                text = {
+                    "{C:attention}Scoring cards{} have a",
+                    "{C:green}#1# in #2#{} chance to create",
+                    "a {C:purple}Hazard{} copy",                                 
+                } 
+            },
 
             j_sonfive_meltan = {
                 name = 'Meltan',
@@ -120,6 +128,20 @@ return {
                     "{X:metal,C:white}Metal{} card you have",
                     "{C:inactive,s:0.8}(includes Jokers and Energy cards){}",
                     "{C:inactive}(Currently #1# retriggers)"
+                } 
+            },
+
+            j_sonfive_stonjourner = {
+                name = 'Stonjourner',
+                text = {
+                    "Adjacent Jokers give {X:red,C:white}X#1#{} Mult",
+                    "{br:4}text needs to be here to work", 
+                    "Gains {X:red,C:white}X#2#{} Mult after playing",
+                    "{C:inactive}[{}{C:attention}#4#{}{C:inactive}]{} consecutive {C:attention}target hands{}",
+                    "{C:inactive,s:0.8}(Count resets if a non-target hand is played){}",
+                    "{br:4}text needs to be here to work",   
+                    "Current Target: {C:attention}#3#{}",
+                    "{C:inactive,s:0.8}(Changes to next poker hand after being played){}",     
                 } 
             },
 
@@ -420,6 +442,7 @@ return {
                 custom_jokers = "Allow Custom Jokers?",
                 nincada_line = "Nincada line?",
                 meltan_line = "Meltan line?",
+                stonjourner_line = "Stonjourner line?",
                 nacli_line = "Nacli line?",
                 cetoddle_line = "Cetoddle line?",
                 custom_consumeables = "Allow Custom Consumables?",
@@ -447,5 +470,4 @@ return {
 
         }       
     }
-
 

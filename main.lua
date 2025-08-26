@@ -62,6 +62,11 @@ SMODS.current_mod.config_tab = function()
                 ref_value = "Meltan",
             }),
             create_toggle({
+                label = localize("stonjourner_line"),
+                ref_table = sonfive_config,
+                ref_value = "Stonjourner",
+            }),
+            create_toggle({
                 label = localize("nacli_line"),
                 ref_table = sonfive_config,
                 ref_value = "Nacli",

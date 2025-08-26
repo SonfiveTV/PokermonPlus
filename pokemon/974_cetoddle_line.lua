@@ -123,25 +123,8 @@ local cetitan = {
             end
         end
 
-        local glass_hand = 0
-        local all_glass = false
-        if context.cardarea == G.jokers and context.scoring_hand and not context.blueprint then
-            glass_hand = 0
-            all_glass = false
-            if G.hand and G.hand.cards and #G.hand.cards > 0 then
-                for i=1, #G.hand.cards do
-                    if SMODS.has_enhancement(G.hand.cards[i], 'm_glass') then 
-                        glass_hand = glass_hand + 1
-                    end
-                end
-            end
-            if glass_hand == #G.hand.cards then
-                all_glass = true
-            end
-        end
-
         if context.joker_main then
-            if all_glass then
+            if hail() then
                 return {
                     xmult = (card.ability.extra.Xmult * 2)
                 }
