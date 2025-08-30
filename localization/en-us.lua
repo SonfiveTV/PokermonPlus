@@ -132,17 +132,17 @@ return {
             },
 
             j_sonfive_stonjourner = {
-                name = 'Stonjourner',
+                name = "Stonjourner",
                 text = {
                     "Adjacent Jokers give {X:red,C:white}X#1#{} Mult",
-                    "{br:4}text needs to be here to work", 
+                    "{br:4}text",
                     "Gains {X:red,C:white}X#2#{} Mult after playing",
-                    "{C:inactive}[{}{C:attention}#4#{}{C:inactive}]{} consecutive {C:attention}target hands{}",
-                    "{C:inactive,s:0.8}(Count resets if a non-target hand is played){}",
-                    "{br:4}text needs to be here to work",   
-                    "Current Target: {C:attention}#3#{}",
-                    "{C:inactive,s:0.8}(Changes to next poker hand after being played){}",     
-                } 
+                    "{C:inactive}[{}{C:attention}#3#{}{C:inactive}]{} consecutive {C:attention}unique{} hands",
+                    "{br:4,s:0.7}text",
+                    "{V:1,s:0.7}#4#{}{C:inactive} | {}{V:2,s:0.7}#5#{}{C:inactive} | {}{V:3,s:0.7}#6#{}{C:inactive} | {}{V:4,s:0.7}#7#{}",
+                    "{V:5,s:0.7}#8#{}{C:inactive} | {}{V:6,s:0.7}#9#{}{C:inactive} | {}{V:7,s:0.7}#10#{}{C:inactive} | {}{V:8,s:0.7}#11#{}",
+                    "{V:9,s:0.7}#12#{}{C:inactive} | {}{V:10,s:0.7}#13#{}{C:inactive} | {}{V:11,s:0.7}#14#{}{C:inactive} | {}{V:12,s:0.7}#15#{}"
+                }
             },
 
             j_sonfive_nacli = {
