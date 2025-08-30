@@ -138,10 +138,6 @@ return {
                     "{br:4}text",
                     "Gains {X:red,C:white}X#2#{} Mult after playing",
                     "{C:inactive}[{}{C:attention}#3#{}{C:inactive}]{} consecutive {C:attention}unique{} hands",
-                    "{br:4,s:0.7}text",
-                    "{V:1,s:0.7}#4#{}{C:inactive} | {}{V:2,s:0.7}#5#{}{C:inactive} | {}{V:3,s:0.7}#6#{}{C:inactive} | {}{V:4,s:0.7}#7#{}",
-                    "{V:5,s:0.7}#8#{}{C:inactive} | {}{V:6,s:0.7}#9#{}{C:inactive} | {}{V:7,s:0.7}#10#{}{C:inactive} | {}{V:8,s:0.7}#11#{}",
-                    "{V:9,s:0.7}#12#{}{C:inactive} | {}{V:10,s:0.7}#13#{}{C:inactive} | {}{V:11,s:0.7}#14#{}{C:inactive} | {}{V:12,s:0.7}#15#{}"
                 }
             },
 
@@ -200,12 +196,6 @@ return {
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
                 } 
             },
-            
-
-
-            
-
-
         },
 
         Item = {
@@ -257,6 +247,25 @@ return {
         },
 
         Other = {
+
+            ston_hands = {
+                name = "Played Hands",
+                text = {
+                        
+                        "{V:12,s:1}#15#{}",
+                        "{V:11,s:1}#14#{}",
+                        "{V:10,s:1}#13#{}",
+                        "{V:9,s:1}#12#{}",
+                        "{V:8,s:1}#11#{}",
+                        "{V:7,s:1}#10#{}",
+                        "{V:6,s:1}#9#{}",
+                        "{V:5,s:1}#8#{}",
+                        "{V:4,s:1}#7#{}",
+                        "{V:3,s:1}#6#{}",
+                        "{V:2,s:1}#5#{}",
+                        "{V:1,s:1}#4#{}",
+                },
+            },
 
             timer = {
                 name = "Timer Ball",

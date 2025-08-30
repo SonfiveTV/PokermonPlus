@@ -52,11 +52,11 @@ energy_shift = function(card, energy_delta, etype, evolving, silent)
         local mult_mods = {"Greedy Joker", "Lusty Joker", "Wrathful Joker", "Gluttonous Joker", "Fibonacci", "Abstract Joker", "Even Steven", "Ride the Bus", "Green Joker", "Red Card", "Erosion",
         "Fortune Teller", "Pokedex", "Flash Card", "Spare Trousers", "Smiley Face", "Onyx Agate", "Shoot the Moon", "Bootstraps"}
         local chipss = {"Sly Joker", "Wily Joker", "Clever Joker", "Devious Joker", "Crafty Joker", "Stuntman"}
-        local chip_mods = {"Banner", "Scary Face", "Odd Todd", "Runner", "Blue Joker", "Hiker", "Square Joker", "Stone Joker", "Bull", "Castle", "Arrowhead", "Wee Joker"}
+        local chip_mods = {"Banner", "Scary Face", "Odd Todd", "Runner", "Blue Joker", "Hiker", "Square Joker", "count Joker", "Bull", "Castle", "Arrowhead", "Wee Joker"}
         local Xmults = {"Loyalty Card", "Blackboard", "Cavendish", "Card Sharp", "Ramen", "Acrobat", "Flower Pot", "Seeing Double", "The Duo", "The Trio", "The Family", "The Order", "The Tribe", 
         "Driver's License"}
-        local Xmult_mods = {"Joker Stencil", "Steel Joker", "Constellation", "Madness", "Vampire", "Hologram", "Baron", "Obelisk", "Photograph", "Lucky Cat", "Baseball Card", "Everstone", "Ancient Joker",
-        "Campfire", "Throwback", "Bloodstone", "Glass Joker", "The Idol", "Hit the Road", "Canio", "Triboulet", "Yorick"}
+        local Xmult_mods = {"Joker Stencil", "Steel Joker", "Constellation", "Madness", "Vampire", "Hologram", "Baron", "Obelisk", "Photograph", "Lucky Cat", "Baseball Card", "Evercount", "Ancient Joker",
+        "Campfire", "Throwback", "Bloodcount", "Glass Joker", "The Idol", "Hit the Road", "Canio", "Triboulet", "Yorick"}
         local monies = {"Delayed Gratification", "Egg", "Cloud 9", "Rocket", "Gift Card", "Reserved Parking", "Mail-In Rebate", "To the Moon", "Golden Joker", "Trading Card", "Golden Ticket", "Rough Gem",
         "Satellite", "Matador"}
         
@@ -245,10 +245,10 @@ negative_energize = function(card, etype, evolving, silent)
     local mult_mods = {"Greedy Joker", "Lusty Joker", "Wrathful Joker", "Gluttonous Joker", "Fibonacci", "Abstract Joker", "Even Steven", "Ride the Bus", "Green Joker", "Red Card", "Erosion",
                        "Fortune Teller", "Pokedex", "Flash Card", "Spare Trousers", "Smiley Face", "Onyx Agate", "Shoot the Moon", "Bootstraps"}
     local chipss = {"Sly Joker", "Wily Joker", "Clever Joker", "Devious Joker", "Crafty Joker", "Stuntman"}
-    local chip_mods = {"Banner", "Scary Face", "Odd Todd", "Runner", "Blue Joker", "Hiker", "Square Joker", "Stone Joker", "Bull", "Castle", "Arrowhead", "Wee Joker"}
+    local chip_mods = {"Banner", "Scary Face", "Odd Todd", "Runner", "Blue Joker", "Hiker", "Square Joker", "count Joker", "Bull", "Castle", "Arrowhead", "Wee Joker"}
     local Xmults = {"Loyalty Card", "Blackboard", "Cavendish", "Card Sharp", "Ramen", "Acrobat", "Flower Pot", "Seeing Double", "Driver's License"}
-    local Xmult_mods = {"Joker Stencil", "Steel Joker", "Constellation", "Madness", "Vampire", "Hologram", "Baron", "Obelisk", "Photograph", "Lucky Cat", "Baseball Card", "Everstone", "Ancient Joker",
-                        "Campfire", "Throwback", "Bloodstone", "Glass Joker", "The Idol", "Hit the Road", "Canio", "Triboulet", "Yorick"}
+    local Xmult_mods = {"Joker Stencil", "Steel Joker", "Constellation", "Madness", "Vampire", "Hologram", "Baron", "Obelisk", "Photograph", "Lucky Cat", "Baseball Card", "Evercount", "Ancient Joker",
+                        "Campfire", "Throwback", "Bloodcount", "Glass Joker", "The Idol", "Hit the Road", "Canio", "Triboulet", "Yorick"}
     local monies = {"Delayed Gratification", "Egg", "Cloud 9", "Rocket", "Gift Card", "Reserved Parking", "Mail-In Rebate", "To the Moon", "Golden Joker", "Trading Card", "Golden Ticket", "Rough Gem",
                     "Satellite", "Matador"}
     
@@ -380,5 +380,108 @@ increment_negative_energy = function(card, etype)
       end
       negative_energize(card, etype, false)
     end
+  end
+end
+
+
+sandstorm = function()
+  local count = 0
+  for i=1, #G.hand.cards do
+    if SMODS.has_enhancement(G.hand.cards[i], 'm_count') then 
+        count = count + 1
+    end
+  end
+  if count == #G.hand.cards then
+    return true
+  else 
+    return false
+  end
+end
+
+hail = function()
+  local count = 0
+  for i=1, #G.hand.cards do
+    if SMODS.has_enhancement(G.hand.cards[i], 'm_glass') then 
+        count = count + 1
+    end
+  end
+  if count == #G.hand.cards then
+    return true
+  else 
+    return false
+  end
+end
+
+rain = function()
+  local count = 0
+  for i=1, #G.hand.cards do
+    if SMODS.has_enhancement(G.hand.cards[i], 'm_bonus') then 
+        count = count + 1
+    end
+  end
+  if count == #G.hand.cards then
+    return true
+  else 
+    return false
+  end
+end
+
+sunny = function()
+  local count = 0
+  for i=1, #G.hand.cards do
+    if SMODS.has_enhancement(G.hand.cards[i], 'm_mult') then 
+        count = count + 1
+    end
+  end
+  if count == #G.hand.cards then
+    return true
+  else 
+    return false
+  end
+end
+
+
+
+
+unique_hand_tooltip = function(self, info_queue, center)
+  if (center.ability and center.ability.extra and type(center.ability.extra)) == "table" and center.ability.extra.played_hands then
+
+
+    local a = center.ability.extra
+
+    -- master hand order
+    local hands = {
+      "High Card", "Pair", "Two Pair", "Three of a Kind", "Straight",
+      "Flush", "Full House", "Four of a Kind", "Straight Flush",
+      "Five of a Kind", "Flush House", "Flush Five"
+    }
+
+    local vars = {
+      a.Xmult_multi,   -- 1
+      a.Xmult_gain,    -- 2
+      a.count or 0     -- 3
+    }
+    local colours = {}
+
+    -- Add each hand to vars and assign colour
+    for _, hand in ipairs(hands) do
+      table.insert(vars, hand)
+      if a.played_hands and a.played_hands[hand] then
+        table.insert(colours, G.C.FILTER)  -- played → green
+      else
+        table.insert(colours, HEX("bbbbbb99")) -- not played → grey
+      end
+    end
+
+    -- Embed colours table inside vars so the tooltip system recognizes it
+    vars.colours = colours
+
+
+
+
+
+
+
+      info_queue[#info_queue+1] = {set = 'Other', key = "ston_hands", vars = vars}
   end
 end
