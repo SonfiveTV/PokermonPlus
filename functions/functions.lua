@@ -454,26 +454,22 @@ unique_hand_tooltip = function(self, info_queue, center)
       "Five of a Kind", "Flush House", "Flush Five"
     }
 
-    -- Collect only played hands, up to 8
+    -- Collect only played hands
     local played_list = {}
     for _, hand in ipairs(hands) do
       if a.played_hands[hand] then
         table.insert(played_list, hand)
-        if #played_list >= 8 then
-          break
-        end
       end
     end
 
-    -- Ensure we always have exactly 8 entries (fill with nil or empty string if needed)
-    for i = #played_list + 1, 8 do
-      played_list[i] = ""
+    -- Only show tooltip if there is at least one played hand
+    if #played_list > 0 then
+      local key = "ston_hands" .. #played_list  -- dynamic key
+      info_queue[#info_queue + 1] = {set = 'Other', key = key, vars = played_list}
     end
-
-    local vars = played_list  -- now vars[1]..vars[8] correspond to each hand
-
-    info_queue[#info_queue+1] = {set = 'Other', key = "ston_hands", vars = vars}
   end
 end
+
+
 
 
