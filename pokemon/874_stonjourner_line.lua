@@ -10,36 +10,15 @@ local stonjourner = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     unique_hand_tooltip(self, info_queue, card)
-    --info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
+    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 
     local a = card.ability.extra
-
-    -- master hand order
-    local hands = {
-      "High Card", "Pair", "Two Pair", "Three of a Kind", "Straight",
-      "Flush", "Full House", "Four of a Kind", "Straight Flush",
-      "Five of a Kind", "Flush House", "Flush Five"
-    }
 
     local vars = {
       a.Xmult_multi,   -- 1
       a.Xmult_gain,    -- 2
       a.count or 0     -- 3
     }
-    local colours = {}
-
-    -- Add each hand to vars and assign colour
-    for _, hand in ipairs(hands) do
-      table.insert(vars, hand)
-      if a.played_hands and a.played_hands[hand] then
-        table.insert(colours, G.C.FILTER)  -- played → green
-      else
-        table.insert(colours, G.C.UI.TEXT_INACTIVE) -- not played → grey
-      end
-    end
-
-    -- Embed colours table inside vars so the tooltip system recognizes it
-    vars.colours = colours
 
     return {vars = vars}
   end,
@@ -81,7 +60,7 @@ local stonjourner = {
           if a.played_hands[played_hand] then
             -- repeated hand → reset memory & counter first
             a.played_hands = {}
-            a.count = #visible_hands
+            a.count = 9 -- fixed reset value
           end
 
           -- now treat the current hand as a new play
@@ -91,7 +70,7 @@ local stonjourner = {
           -- all unique hands played → boost & reset
           if a.count <= 0 then
             a.played_hands = {}
-            a.count = #visible_hands
+            a.count = 9 -- fixed reset value
             a.Xmult_multi = a.Xmult_multi + a.Xmult_gain
           end
         end
@@ -124,19 +103,7 @@ local stonjourner = {
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
-      local hands = {
-        "High Card", "Pair", "Two Pair", "Three of a Kind", "Straight",
-        "Flush", "Full House", "Four of a Kind", "Straight Flush",
-        "Five of a Kind", "Flush House", "Flush Five"
-      }
-      local visible_hands = {}
-      for i = 1, #hands do
-        if G.GAME.hands[hands[i]].visible then
-          table.insert(visible_hands, hands[i])
-        end
-      end
-
-      card.ability.extra.count = #visible_hands
+      card.ability.extra.count = 9
       card.ability.extra.played_hands = {} -- start empty memory
     end
   end

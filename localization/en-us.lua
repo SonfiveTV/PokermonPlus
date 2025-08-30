@@ -155,7 +155,8 @@ return {
             j_sonfive_naclstack = {
                 name = 'Naclstack',
                 text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
+                    "When {u:mult, V:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
+                    "",
                     "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
                     "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
@@ -251,19 +252,14 @@ return {
             ston_hands = {
                 name = "Played Hands",
                 text = {
-                        
-                        "{V:12,s:1}#15#{}",
-                        "{V:11,s:1}#14#{}",
-                        "{V:10,s:1}#13#{}",
-                        "{V:9,s:1}#12#{}",
-                        "{V:8,s:1}#11#{}",
-                        "{V:7,s:1}#10#{}",
-                        "{V:6,s:1}#9#{}",
-                        "{V:5,s:1}#8#{}",
-                        "{V:4,s:1}#7#{}",
-                        "{V:3,s:1}#6#{}",
-                        "{V:2,s:1}#5#{}",
-                        "{V:1,s:1}#4#{}",
+                        "#1#",
+                        "#2#",
+                        "#3#",
+                        "#4#",
+                        "#5#",
+                        "#6#",
+                        "#7#",
+                        "#8#",
                 },
             },
 

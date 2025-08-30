@@ -444,9 +444,7 @@ end
 
 
 unique_hand_tooltip = function(self, info_queue, center)
-  if (center.ability and center.ability.extra and type(center.ability.extra)) == "table" and center.ability.extra.played_hands then
-
-
+  if center.ability and center.ability.extra and type(center.ability.extra) == "table" and center.ability.extra.played_hands then
     local a = center.ability.extra
 
     -- master hand order
@@ -456,32 +454,26 @@ unique_hand_tooltip = function(self, info_queue, center)
       "Five of a Kind", "Flush House", "Flush Five"
     }
 
-    local vars = {
-      a.Xmult_multi,   -- 1
-      a.Xmult_gain,    -- 2
-      a.count or 0     -- 3
-    }
-    local colours = {}
-
-    -- Add each hand to vars and assign colour
+    -- Collect only played hands, up to 8
+    local played_list = {}
     for _, hand in ipairs(hands) do
-      table.insert(vars, hand)
-      if a.played_hands and a.played_hands[hand] then
-        table.insert(colours, G.C.FILTER)  -- played → green
-      else
-        table.insert(colours, HEX("bbbbbb99")) -- not played → grey
+      if a.played_hands[hand] then
+        table.insert(played_list, hand)
+        if #played_list >= 8 then
+          break
+        end
       end
     end
 
-    -- Embed colours table inside vars so the tooltip system recognizes it
-    vars.colours = colours
+    -- Ensure we always have exactly 8 entries (fill with nil or empty string if needed)
+    for i = #played_list + 1, 8 do
+      played_list[i] = ""
+    end
 
+    local vars = played_list  -- now vars[1]..vars[8] correspond to each hand
 
-
-
-
-
-
-      info_queue[#info_queue+1] = {set = 'Other', key = "ston_hands", vars = vars}
+    info_queue[#info_queue+1] = {set = 'Other', key = "ston_hands", vars = vars}
   end
 end
+
+
