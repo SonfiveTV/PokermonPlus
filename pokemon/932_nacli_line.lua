@@ -1,11 +1,12 @@
 local nacli = {
   name = "nacli",
   pos = {x = 3, y = 2},
-  config = {extra = {Xmult_mod = 0.2, Xmult = 1, odds = 2}, evo_rqmt = 2},
+  config = {extra = {Xmult_mod = 0.2, Xmult = 1, numerator = 1, denominator = 2}, evo_rqmt = 2},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, card.ability.extra.odds, (card.ability.extra.odds / 2), G.GAME.probabilities.normal}}
+    local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
+		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator}}
   end,
   rarity = 3,
   cost = 6,
@@ -22,11 +23,11 @@ local nacli = {
 
       if rightmost ~= card and not rightmost.ability.eternal then 
         if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
-          odds = ((G.GAME.probabilities.normal/abbr.odds) * 2)
+          odds = SMODS.pseudorandom_probability(card, 'nacli', abbr.numerator, (abbr.denominator / 2), 'nacli')
         else
-          odds = (G.GAME.probabilities.normal/abbr.odds)
+          odds = SMODS.pseudorandom_probability(card, 'nacli', abbr.numerator, abbr.denominator, 'nacli')
         end
-        if pseudorandom('naclstack') < odds then
+        if odds then
           abbr.Xmult = abbr.Xmult + abbr.Xmult_mod
           G.E_MANAGER:add_event(Event({
           remove(self, rightmost, context)
@@ -55,11 +56,12 @@ local nacli = {
 local naclstack = {
   name = "naclstack",
   pos = {x = 4, y = 2},
-  config = {extra = {Xmult_mod = 0.5, Xmult = 2, odds = 4}, evo_rqmt = 4},
+  config = {extra = {Xmult_mod = 0.5, numerator = 1, denominator = 4}, evo_rqmt = 4},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, card.ability.extra.odds, (card.ability.extra.odds / 2), G.GAME.probabilities.normal}}
+    local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
+		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
   end,
   rarity = "poke_safari",
   cost = 6,
@@ -76,11 +78,11 @@ local naclstack = {
 
       if rightmost ~= card and not rightmost.ability.eternal then 
         if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
-          odds = ((G.GAME.probabilities.normal/abbr.odds) * 2)
+          odds = SMODS.pseudorandom_probability(card, 'naclstack', abbr.numerator, (abbr.denominator / 2), 'naclstack')
         else
-          odds = (G.GAME.probabilities.normal/abbr.odds)
+          odds = SMODS.pseudorandom_probability(card, 'naclstack', abbr.numerator, abbr.denominator, 'naclstack')
         end
-        if pseudorandom('naclstack') < odds then
+        if odds then
           abbr.Xmult = abbr.Xmult + abbr.Xmult_mod
           G.E_MANAGER:add_event(Event({
           remove(self, rightmost, context)
@@ -109,11 +111,12 @@ local naclstack = {
 local garganacl = {
   name = "garganacl",
   pos = {x = 5, y = 2},
-  config = {extra = {Xmult_multi = 1.1, Xmult = 4, odds = 8}},
+  config = {extra = {Xmult_multi = 1.1, Xmult = 4, numerator = 1, denominator = 8}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
-		return {vars = {card.ability.extra.Xmult_multi, card.ability.extra.Xmult, card.ability.extra.odds, (card.ability.extra.odds / 2), G.GAME.probabilities.normal}}
+		local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
+		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
   end,
   rarity = "poke_safari",
   cost = 8,
@@ -131,11 +134,11 @@ local garganacl = {
 
       if rightmost ~= card and not rightmost.ability.eternal then 
         if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
-          odds = ((G.GAME.probabilities.normal/abbr.odds) * 2)
+          odds = SMODS.pseudorandom_probability(card, 'garganacl', abbr.numerator, (abbr.denominator / 2), 'garganacl')
         else
-          odds = (G.GAME.probabilities.normal/abbr.odds)
+          odds = SMODS.pseudorandom_probability(card, 'garganacl', abbr.numerator, abbr.denominator, 'garganacl')
         end
-        if pseudorandom('garganacl') < odds then
+        if odds then
           abbr.Xmult = abbr.Xmult * abbr.Xmult_multi
           G.E_MANAGER:add_event(Event({
           remove(self, rightmost, context)

@@ -134,17 +134,15 @@ return {
             j_sonfive_stonjourner = {
                 name = "Stonjourner",
                 text = {
-                    "Adjacent Jokers give {X:red,C:white}X#1#{} Mult",
-                    "{br:4}text",
-                    "Gains {X:red,C:white}X#2#{} Mult after playing",
-                    "{C:inactive}[{}{C:attention}#3#{}{C:inactive}]{} consecutive {C:attention}unique{} hands",
+                    "Adjacent Jokers each give {X:red,C:white}X#1#{} Mult,",
+                    "gains {X:red,C:white}X#2#{} Mult after {C:inactive}[{}{C:attention}#3#{}{C:inactive}]{} {C:attention}unique{} hands",
                 }
             },
 
             j_sonfive_nacli = {
                 name = 'Nacli',
                 text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
+                    "When {C:attention}Blind{} is selected, {C:green}#3# in #4#{} chance to",
                     "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
                     "{C:inactive}(Guaranteed if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
@@ -155,9 +153,9 @@ return {
             j_sonfive_naclstack = {
                 name = 'Naclstack',
                 text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance to",
+                    "When {C:attention}Blind{} is selected, {C:green}#3# in #4#{} chance to",
                     "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:inactive}({C:green}#3# in #5#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
                     "This Joker can't be debuffed",
                     "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X4{}{C:inactive}){}"
@@ -166,10 +164,10 @@ return {
             j_sonfive_garganacl = {
                 name = 'Garganacl',
                 text = {
-                    "When {C:attention}Blind{} is selected, {C:green}#5# in #3#{} chance",
+                    "When {C:attention}Blind{} is selected, {C:green}#3# in #4#{} chance",
                     "to destroy rightmost {C:attention}Joker{} and",
                     "mulitply this Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}#5# in #4#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:inactive}({C:green}#3# in #5#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
                     "This Joker can't be debuffed",
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}"
