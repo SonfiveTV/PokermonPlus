@@ -53,9 +53,9 @@ local timerball = {
       return false
     end
   end,
-  in_pool = function(self)
-    return true, { allow_duplicates = true }
-  end,
+  --in_pool = function(self)
+   -- return true, { allow_duplicates = true }
+--  end,
   use = function(self, card, area, copier)
     set_spoon_item(card)
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
@@ -100,4 +100,5 @@ local timerball = {
 
 return {name = "Items",
       list = {timerball}
+
 }
