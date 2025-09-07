@@ -12,7 +12,7 @@ Thanks to marcavis, Kek, and MyDude for contributing
 | Prophetic Deck | +3 Foresight, -1 hands |
 | Shiny Deck | Increased Shiny odds |
 | Mega Deck | Start with a Mega Stone, <br/>+4 Ante win requirement |
-| Void Deck | Negative Energy doesn't count towards Energy Limit, <br/> Creates a Nightmare Spectral after each Boss Blind |
+| Void Deck | Negative Energy cards give +1 Energy Limit, <br/> Creates a Nightmare Spectral after each Boss Blind |
 
 
 
@@ -34,7 +34,11 @@ Each Pokemon line can be toggled on/off in the mod config options
 | | | |
 |-----|------|-----|
 | Nincada | Ninjask | Shedinja |
-| Nacli | Naclstack | Garganacl |
+| Vullaby | Mandibuzz |  |
 | Meltan  | Melmetal |  |
+| Stonjourner |  |  |
+| Nacli | Naclstack | Garganacl |
+| Cetoddle | Cetitan |  |
+
 
 
