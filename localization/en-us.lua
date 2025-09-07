@@ -58,14 +58,24 @@ return {
             b_sonfive_voiddeck = {
                 name = "Void Deck",
                 text = {
-                        "{C:dark_edition}Negative{} {C:pink}Energy{} doesn't",
-                        "count towards {C:pink}Energy{} Limit,",
-                        "gain a {C:spectral,T:c_poke_nightmare}Nightmare{} card after",
+                        "{C:dark_edition}Negative{} {C:pink}Energy{} cards",
+                        "give {C:pink}+1 Energy Limit{}",
+                        "{br:4}text",
+                        "Gain a {C:spectral,T:c_poke_nightmare}Nightmare{} Card after",
                         "defeating each {C:attention}Boss Blind"
                 }
             },
 
 
+        },
+        Blind = {
+            bl_sonfive_memento = {
+                name = "Magenta Memento",
+                text = {
+                    "All Jokers lose 1",
+                    "Energy per hand played",
+                }, 
+            },
         },
 
         Joker = {
@@ -108,6 +118,29 @@ return {
                     "{C:attention}Scoring cards{} have a",
                     "{C:green}#1# in #2#{} chance to create",
                     "a {C:purple}Hazard{} copy",                                 
+                } 
+            },
+            j_sonfive_vullaby = {
+                name = 'Vullaby',
+                text = {
+                    "Scoring cards in first played",
+                    "hand are permanently {C:attention}debuffed{}",
+                    "Gains {C:chips}+#2#{} Chips for each card debuffed",
+                    "{C:inactive}(Currently {C:chips}+#1#{}{C:inactive} Chips){}",
+                    "{C:inactive,s:0.8}(Evolves after playing 5 debuffed cards in scoring hand){}"
+
+                } 
+            },
+            j_sonfive_mandibuzz = {
+                name = 'Mandibuzz',
+                text = {
+                    "Gains {C:chips}+#2#{} Chips for each",
+                    "{C:attention}debuffed{} card in scoring hand",
+                    "{C:inactive}(Currently {C:chips}+#1#{}{C:inactive} Chips){}",
+                    "{br:4}text",
+                    "Earn {C:money}$#3#{} for every {C:attention}4{}",
+                    "{C:attention}debuffed{} cards in the deck",
+                    "{C:inactive}(Currently {C:money}$#4#{}{C:inactive}){}",                                
                 } 
             },
 
@@ -509,10 +542,12 @@ return {
                 -- Joker Messages
                 sonfive_saltcure_ex = "Salt Cure!",
                 sonfive_speedboost = "Speed Boost!",
+                poke_deenergized_ex = "De-Energized!",
 
                 -- Config Descriptions
                 custom_jokers = "Allow Custom Jokers?",
                 nincada_line = "Nincada line?",
+                vullaby_line = "Vullaby line?",
                 meltan_line = "Meltan line?",
                 stonjourner_line = "Stonjourner line?",
                 nacli_line = "Nacli line?",

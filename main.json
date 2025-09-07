@@ -11,9 +11,7 @@
   "display_name": "Pokermon+",
 	"version": "1.0.0",
 	"dependencies": [
-			"Steamodded (>=1.0.0~ALPHA-1426c)",
-      		"Lovely (>=0.7)",
-      		"Pokermon (>=2.9.9-617a)"
+      		"Pokermon (>=3.2.0-822a)"
 	],
   "conflicts": [],
 	"provides": [],

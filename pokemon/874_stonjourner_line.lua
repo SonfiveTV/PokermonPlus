@@ -1,6 +1,5 @@
 local stonjourner = {
   name = "stonjourner",
-  pos = {x = 11, y = 4},
   config = {extra = {
     Xmult_multi = 1.2,
     Xmult_mod = 0.1,
@@ -27,7 +26,7 @@ local stonjourner = {
   cost = 8,
   stage = "Basic",
   ptype = "Earth",
-  atlas = "Pokedex8",
+  gen = 8,
   blueprint_compat = false,  
   calculate = function(self, card, context)
     local a = card.ability.extra

@@ -1,8 +1,5 @@
 local meltan = { 
   name = "meltan", 
-  poke_custom_prefix = "sonfive", -- This is your mod prefix
-  pos = {x = 4, y = 9}, -- This is the sprite position on the atlas, where (0, 0) is the top left sprite 
-  soul_pos = {x = 5, y = 9}, -- This is the sprite position for the floating sprite, for Legendary Jokers
   config = {extra = {chips = 0, retriggers = 1, count = 0, evo_rqmt = 100}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card) 
@@ -13,7 +10,7 @@ local meltan = {
   cost = 20, -- This is the purchase cost, half is the sell cost
   stage = "Legendary", -- "Baby", "Basic", "One", "Two", "Legendary", "Mega"
   ptype = "Metal", -- Pokemon's type
-  atlas = "Pokedex7", -- This is the spritesheet that the pokemons sprite is located on
+  gen = 7,
   blueprint_compat = true, -- This decides whether Blueprint shows as compatible or not
   
   calculate = function(self, card, context)
@@ -47,8 +44,6 @@ local meltan = {
 
 local melmetal = {
   name = "melmetal",
-  pos = {x = 6, y = 9},
-  soul_pos = {x = 7, y = 9},
   config = {extra = {}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -59,7 +54,7 @@ local melmetal = {
   cost = 20,
   stage = "Legendary",
   ptype = "Metal",
-  atlas = "Pokedex7",
+  gen = 7,
   blueprint_compat = true,
   custom_pool_func = true,
   aux_poke = true,

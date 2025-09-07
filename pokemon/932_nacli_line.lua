@@ -1,6 +1,5 @@
 local nacli = {
   name = "nacli",
-  pos = {x = 3, y = 2},
   config = {extra = {Xmult_mod = 0.2, Xmult = 1, numerator = 1, denominator = 2}, evo_rqmt = 2},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -12,7 +11,7 @@ local nacli = {
   cost = 6,
   stage = "One",
   ptype = "Earth",
-  atlas = "Pokedex9",
+  gen = 9,
   blueprint_compat = true,
   
   calculate = function(self, card, context)
@@ -55,7 +54,6 @@ local nacli = {
 
 local naclstack = {
   name = "naclstack",
-  pos = {x = 4, y = 2},
   config = {extra = {Xmult_mod = 0.5, numerator = 1, denominator = 4}, evo_rqmt = 4},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -67,7 +65,7 @@ local naclstack = {
   cost = 6,
   stage = "One",
   ptype = "Earth",
-  atlas = "Pokedex9",
+  gen = 9,
   blueprint_compat = true,
   
   calculate = function(self, card, context)
@@ -110,7 +108,6 @@ local naclstack = {
 
 local garganacl = {
   name = "garganacl",
-  pos = {x = 5, y = 2},
   config = {extra = {Xmult_multi = 1.1, Xmult = 4, numerator = 1, denominator = 8}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -122,7 +119,7 @@ local garganacl = {
   cost = 8,
   stage = "Two",
   ptype = "Earth",
-  atlas = "Pokedex9",
+  gen = 9,
   blueprint_compat = true,
   
   calculate = function(self, card, context)

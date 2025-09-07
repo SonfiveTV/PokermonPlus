@@ -1,6 +1,5 @@
 local cetoddle = {
     name = "cetoddle",
-    pos = {x = 9, y = 5},
     config = {extra = {Xmult_mod = 0.25, Xmult = 1}},
     loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -13,7 +12,7 @@ local cetoddle = {
     item_req = "icestone",
     stage = "Basic",
     ptype = "Water",
-    atlas = "Pokedex9",
+    gen = 9,
     blueprint_compat = true,
     calculate = function(self, card, context)
         if context.remove_playing_cards and not context.blueprint then
@@ -67,7 +66,6 @@ local cetoddle = {
 
 local cetitan = {
     name = "cetitan",
-    pos = {x = 10, y = 5},
     config = {extra = {Xmult_mod = 0.5, Xmult = 1}, evo_rqmt = 3},
     loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -79,7 +77,7 @@ local cetitan = {
     enhancement_gate = 'm_glass',
     stage = "One",
     ptype = "Water",
-    atlas = "Pokedex9",
+    gen = 9,
     blueprint_compat = true,
     calculate = function(self, card, context)
         if context.remove_playing_cards and not context.blueprint then

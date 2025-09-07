@@ -1,6 +1,5 @@
 local nincada = {
   name = "nincada",
-  pos = {x = 8, y = 3},
   config = {extra = {chips = 45, mult = 3, rounds = 5}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -11,7 +10,6 @@ local nincada = {
   cost = 5,
   stage = "Basic",
   ptype = "Grass",
-  atlas = "Pokedex3",
   blueprint_compat = true,
   eternal_compat = false,
   
@@ -49,7 +47,6 @@ local nincada = {
 
 local ninjask = {
   name = "ninjask",
-  pos = {x = 9, y = 3},
   config = {extra = {chips = 90, mult = 5, speedboost = 1}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -60,7 +57,6 @@ local ninjask = {
   cost = 5,
   stage = "One",
   ptype = "Grass",
-  atlas = "Pokedex3",
   blueprint_compat = true,
   
   calculate = function(self, card, context)
@@ -85,7 +81,6 @@ local ninjask = {
 
 local shedinja = {
   name = "shedinja",
-  pos = {x = 0, y = 4},
   config = {extra = {money = 0, money_mod = 2, earned = 0, threshold = 292, targets = {{value = "Ace", id = "14"}, {value = "King", id = "13"}, {value = "Queen", id = "12"}}}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -100,7 +95,6 @@ local shedinja = {
   cost = 5,
   stage = "Basic",
   ptype = "Psychic",
-  atlas = "Pokedex3",
   blueprint_compat = false,
   calc_dollar_bonus = function(self, card)
     card.ability.extra.earned = card.ability.extra.earned + card.ability.extra.money

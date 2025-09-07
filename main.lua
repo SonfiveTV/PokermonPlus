@@ -26,7 +26,9 @@ SMODS.Atlas({
   path = "sleeves.png"
 }):register()
 
+
 pokermon.add_family({"nincada", "ninjask", "shedinja"})
+pokermon.add_family({"vullaby", "mandibuzz"})
 pokermon.add_family({"meltan", "melmetal"})
 pokermon.add_family({"nacli", "naclstack", "garganacl"})
 pokermon.add_family({"cetoddle", "cetitan"})
@@ -55,6 +57,11 @@ SMODS.current_mod.config_tab = function()
                 label = localize("nincada_line"),
                 ref_table = sonfive_config,
                 ref_value = "Nincada",
+            }),
+            create_toggle({
+                label = localize("vullaby_line"),
+                ref_table = sonfive_config,
+                ref_value = "Vullaby",
             }),
             create_toggle({
                 label = localize("meltan_line"),
@@ -183,6 +190,18 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfiv
             if not item.config then
               item.config = {}
             end
+            if not item.pos then
+              local sprite = PokemonSprites[item.name]
+              if sprite and sprite.base then
+                  item.pos = sprite.base.pos
+              end
+              if sprite.base.soul_pos then 
+                item.soul_pos = sprite.base.soul_pos
+              end
+            end
+            if not item.atlas then
+                item.atlas = "AtlasJokersBasicNatdex"
+            end
             if item.ptype then
               if item.config and item.config.extra then
                 item.config.extra.ptype = item.ptype
@@ -236,8 +255,6 @@ for _, file in ipairs(pchallenges) do
     end
   end
 end 
-
-
 
 --Load Debuff logic
 local sprite, load_error = SMODS.load_file("functions/functions.lua")

@@ -3,22 +3,6 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
-[[patches]]
-[patches.pattern]
-target = 'functions/common_events.lua'
-pattern = 'if (area == G.shop_jokers) or (area == G.pack_cards) then'
-position = 'after'
-match_indent = true
-payload = '''
-
-if G.GAME.modifiers.enable_rocket_in_shop and pseudorandom(('rocket')..G.GAME.round_resets.ante) > 0.7 then
-    SMODS.Stickers['sonfive_rocket']:apply(card, true)
-end
-if G.GAME.modifiers.enable_inert_in_shop and pseudorandom(('ex')..G.GAME.round_resets.ante) > 0.7 then
-    SMODS.Stickers['sonfive_inert']:apply(card, true)
-end
-
-'''
 
 #Negative Energy Logic 1/4
 [[patches]]
@@ -26,13 +10,10 @@ end
 target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
 pattern = '''
 highlighted_energy_can_use = function(self, card)
-  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
 '''
-position = "at"
+position = "after"
 payload = '''
-highlighted_energy_can_use = function(self, card)
 if void == true and card.edition and card.edition.negative then return highlighted_negative_energy_can_use(self, card) end
-  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
 '''
 match_indent = true
 
@@ -43,15 +24,10 @@ match_indent = true
 target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
 pattern = '''
 highlighted_energy_use = function(self, card, area, copier)
-  local viable = false
-  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
 '''
-position = "at"
+position = "after"
 payload = '''
-highlighted_energy_use = function(self, card, area, copier)
 if void == true and card.edition and card.edition.negative then return highlighted_negative_energy_use(self, card, area, copier) end
-  local viable = false
-  if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then return false end
 '''
 match_indent = true
 
@@ -62,13 +38,10 @@ match_indent = true
 target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
 pattern = '''
 energy_can_use = function(self, card)
-  for k, v in pairs(G.jokers.cards) do
 '''
-position = "at"
+position = "after"
 payload = '''
-energy_can_use = function(self, card)
 if void == true and card.edition and card.edition.negative then return negative_energy_can_use(self, card) end
-  for k, v in pairs(G.jokers.cards) do
 '''
 match_indent = true
 
@@ -79,359 +52,44 @@ match_indent = true
 target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
 pattern = '''
 energy_use = function(self, card, area, copier)
-  local applied = false
 '''
-position = "at"
+position = "after"
 payload = '''
-energy_use = function(self, card, area, copier)
 if void == true and card.edition and card.edition.negative then return negative_energy_use(self, card) end
-  local applied = false
 '''
 match_indent = true
 
+#Negative Energy Cap
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
+pattern = '''return get_total_energy(card) < energy_max + (G.GAME.energy_plus or 0)'''
+position = "at"
+payload = '''return get_total_energy(card) < energy_max + (G.GAME.energy_plus or 0) + (card.ability.extra.energy_plus or 0)'''
+match_indent = true
 
-
-
-
-#Negative Energy Tooltip 1/2
+#Negative Energy Cap
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
-pattern = '''
-type_tooltip = function(self, info_queue, center)
-  local percent
-  if (center.ability and center.ability.extra and type(center.ability.extra) == "table" and ((center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0) > 0)) then
-      info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0)}}
-      if center.ability.money_frac and center.ability.money_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.money_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_chance", vars = {percent}}
-        end
-      end
-      if center.ability.money2_frac and center.ability.money2_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.money2_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_chance", vars = {percent}}
-        end
-      end
-      if center.ability.money_mod_frac and center.ability.money_mod_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.money_mod_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_progress", vars = {percent}}
-        end
-      end
-      if center.ability.mult_mod_frac and center.ability.mult_mod_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.mult_mod_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "mult_progress", vars = {percent}}
-        end
-      end
-      if center.ability.chip_mod_frac and center.ability.chip_mod_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.chip_mod_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "chip_progress", vars = {percent}}
-        end
-      end
-  elseif (center.ability and ((center.ability.energy_count or 0) + (center.ability.c_energy_count or 0) > 0)) then
-      info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.energy_count or 0) + (center.ability.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0)}}
-      if center.ability.money_frac then
-        percent = tonumber(string.format('%.3f', center.ability.money_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_chance", vars = {percent}}
-        end
-      end
-  end
-end
-'''
+pattern = '''info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0)}}'''
 position = "at"
-payload = '''
-type_tooltip = function(self, info_queue, center)
-  local percent
-  if (center.ability and center.ability.extra and type(center.ability.extra) == "table" and ((center.ability.extra.negative_energy_count or 0) + (center.ability.extra.negative_c_energy_count or 0) > 0)) then
-      info_queue[#info_queue+1] = {set = 'Other', key = "negative_energy", vars = {(center.ability.extra.negative_energy_count or 0) + (center.ability.extra.negative_c_energy_count or 0)}} end
-  if (center.ability and center.ability.extra and type(center.ability.extra) == "table" and ((center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0) > 0)) then
-      info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0)}}
-      if center.ability.money_frac and center.ability.money_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.money_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_chance", vars = {percent}}
-        end
-      end
-      if center.ability.money2_frac and center.ability.money2_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.money2_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_chance", vars = {percent}}
-        end
-      end
-      if center.ability.money_mod_frac and center.ability.money_mod_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.money_mod_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_progress", vars = {percent}}
-        end
-      end
-      if center.ability.mult_mod_frac and center.ability.mult_mod_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.mult_mod_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "mult_progress", vars = {percent}}
-        end
-      end
-      if center.ability.chip_mod_frac and center.ability.chip_mod_frac > 0 then
-        percent = tonumber(string.format('%.3f', center.ability.chip_mod_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "chip_progress", vars = {percent}}
-        end
-      end
-  elseif (center.ability and ((center.ability.energy_count or 0) + (center.ability.c_energy_count or 0) > 0)) then
-      info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.energy_count or 0) + (center.ability.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0)}}
-      if center.ability.money_frac then
-        percent = tonumber(string.format('%.3f', center.ability.money_frac)) * 100
-        if percent ~= 100 and percent ~= 0 then
-          info_queue[#info_queue+1] = {set = 'Other', key = "money_chance", vars = {percent}}
-        end
-      end
-    end
-end
-'''
+payload = '''info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0) + (center.ability.extra.energy_plus or 0)}}'''
 match_indent = true
-
-#Negative Energy Tooltip 2/2
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "localization/en-us.lua"]'
-pattern = '''
-            energy = {
-                name = "Energy Used",
-                text = {
-                    "{C:attention}#1#{}/#2#",
-                }
-            },
-            money_chance = {
-                name = "Money Chance",
-                text = {
-                    "{C:attention}#1#%{} chance of",
-                    "earning an additional {C:money}$1{}"
-                }
-            },
-'''
-position = "at"
-payload = '''
-            energy = {
-                name = "Energy Used",
-                text = {
-                    "{C:attention}#1#{}/#2#",
-                }
-            },
-            negative_energy = {
-                name = "Negative Energy",
-                text = {
-                        "{C:dark_edition}#1#{} Used"
-                },
-            },
-            money_chance = {
-                name = "Money Chance",
-                text = {
-                    "{C:attention}#1#%{} chance of",
-                    "earning an additional {C:money}$1{}"
-                }
-            },
-'''
-match_indent = true
-
 
 #Negative Energy Evolution
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
-pattern = '''
-  local new_card = G.P_CENTERS[to_key]
-  if card.config.center == new_card then return end
-
-  local old_key = card.config.center.key
-
-  -- if it's not a mega and not a devolution and still has rounds left, reset perish tally
-  if card.ability.perishable and card.config.center.rarity ~= "poke_mega" then
-    card.ability.perish_tally = G.GAME.perishable_rounds
-    card.debuff = false
-  end
-
-  local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count"}
-  if type_sticker_applied(card) then
-    table.insert(names_to_keep, "ptype")
-  end
-  local values_to_keep = copy_scaled_values(card)
-  if type(card.ability.extra) == "table" then
-    for _, k in pairs(names_to_keep) do
-      values_to_keep[k] = card.ability.extra[k]
-    end
-  end
-
-  -- value filtering
-  if values_to_keep.hazards_drawn then
-    values_to_keep.hazards_drawn = values_to_keep.hazards_drawn % 2
-  end
-
-  if values_to_keep.cards_scored and values_to_keep.cards_scored >= 15 then
-    values_to_keep.upgrade = true
-    values_to_keep.cards_scored = values_to_keep.cards_scored - 15
-  end
-
-  card.children.center = Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[new_card.atlas], new_card.pos)
-  card.children.center.states.hover = card.states.hover
-  card.children.center.states.click = card.states.click
-  card.children.center.states.drag = card.states.drag
-  card.children.center.states.collide.can = false
-  card.children.center:set_role({major = card, role_type = 'Glued', draw_major = card})
-  card:set_ability(new_card, true)
-  card:set_cost()
-
-  if type(card.ability.extra) == "table" then
-    for k,v in pairs(values_to_keep) do
-      if card.ability.extra[k] or k == "energy_count" or k == "c_energy_count" then
-        if type(card.ability.extra[k]) ~= "number" or (type(v) == "number" and v > card.ability.extra[k]) then
-          card.ability.extra[k] = v
-        end
-      end
-    end
-    if card.ability.extra.energy_count or card.ability.extra.c_energy_count then
-      energize(card, nil, true, true)
-    end
-  end
-
-  if new_card.soul_pos then
-    card.children.floating_sprite = Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[new_card.atlas], new_card.soul_pos)
-    card.children.floating_sprite.role.draw_major = card
-    card.children.floating_sprite.states.hover.can = false
-    card.children.floating_sprite.states.click.can = false
-  elseif card.children.floating_sprite then
-    card.children.floating_sprite:remove()
-    card.children.floating_sprite = nil
-  end
-
-  if not card.edition then
-    card:juice_up()
-    play_sound('generic1')
-  else
-    card:juice_up(1, 0.5)
-    if card.edition.foil then play_sound('foil1', 1.2, 0.4) end
-    if card.edition.holo then play_sound('holo1', 1.2*1.58, 0.4) end
-    if card.edition.polychrome then play_sound('polychrome1', 1.2, 0.7) end
-    if card.edition.negative then play_sound('negative', 1.5, 0.4) end
-    if card.edition.poke_shiny then
-      play_sound('poke_e_shiny', 1, 0.2)
-      G.P_CENTERS.e_poke_shiny.on_load(card)
-    end
-  end
-
-  -- can be removed once this PR has been merged:
-  --    https://github.com/Steamodded/smods/pull/611
-  local to_fix = {}
-  for k,_ in pairs(G.GAME.used_jokers) do
-    if not next(SMODS.find_card(k, true)) then
-      table.insert(to_fix, k)
-    end
-  end
-  for _,k in pairs(to_fix) do
-    G.GAME.used_jokers[k] = nil
-  end
-end
-'''
+pattern = '''if card.ability.extra[k] or k == "energy_count" or k == "c_energy_count" then'''
 position = "at"
-payload = '''
-  local new_card = G.P_CENTERS[to_key]
-  if card.config.center == new_card then return end
-
-  local old_key = card.config.center.key
-
-  -- if it's not a mega and not a devolution and still has rounds left, reset perish tally
-  if card.ability.perishable and card.config.center.rarity ~= "poke_mega" then
-    card.ability.perish_tally = G.GAME.perishable_rounds
-    card.debuff = false
-  end
-
-  local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "negative_energy_count", "negative_c_energy_count"}
-  if type_sticker_applied(card) then
-    table.insert(names_to_keep, "ptype")
-  end
-  local values_to_keep = copy_scaled_values(card)
-  if type(card.ability.extra) == "table" then
-    for _, k in pairs(names_to_keep) do
-      values_to_keep[k] = card.ability.extra[k]
-    end
-  end
-
-  -- value filtering
-  if values_to_keep.hazards_drawn then
-    values_to_keep.hazards_drawn = values_to_keep.hazards_drawn % 2
-  end
-
-  if values_to_keep.cards_scored and values_to_keep.cards_scored >= 15 then
-    values_to_keep.upgrade = true
-    values_to_keep.cards_scored = values_to_keep.cards_scored - 15
-  end
-
-  card.children.center = Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[new_card.atlas], new_card.pos)
-  card.children.center.states.hover = card.states.hover
-  card.children.center.states.click = card.states.click
-  card.children.center.states.drag = card.states.drag
-  card.children.center.states.collide.can = false
-  card.children.center:set_role({major = card, role_type = 'Glued', draw_major = card})
-  card:set_ability(new_card, true)
-  card:set_cost()
-
-  if type(card.ability.extra) == "table" then
-    for k,v in pairs(values_to_keep) do
-      if card.ability.extra[k] or k == "energy_count" or k == "c_energy_count" or k == "negative_energy_count" or k == "negative_c_energy_count"then
-        if type(card.ability.extra[k]) ~= "number" or (type(v) == "number" and v > card.ability.extra[k]) then
-          card.ability.extra[k] = v
-        end
-      end
-    end
-    if card.ability.extra.energy_count or card.ability.extra.c_energy_count then
-      energize(card, nil, true, true)
-    end
-    if card.ability.extra.negative_energy_count or card.ability.extra.negative_c_energy_count then
-      negative_energize(card, nil, true, true)
-    end
-  end
-
-  if new_card.soul_pos then
-    card.children.floating_sprite = Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[new_card.atlas], new_card.soul_pos)
-    card.children.floating_sprite.role.draw_major = card
-    card.children.floating_sprite.states.hover.can = false
-    card.children.floating_sprite.states.click.can = false
-  elseif card.children.floating_sprite then
-    card.children.floating_sprite:remove()
-    card.children.floating_sprite = nil
-  end
-
-  if not card.edition then
-    card:juice_up()
-    play_sound('generic1')
-  else
-    card:juice_up(1, 0.5)
-    if card.edition.foil then play_sound('foil1', 1.2, 0.4) end
-    if card.edition.holo then play_sound('holo1', 1.2*1.58, 0.4) end
-    if card.edition.polychrome then play_sound('polychrome1', 1.2, 0.7) end
-    if card.edition.negative then play_sound('negative', 1.5, 0.4) end
-    if card.edition.poke_shiny then
-      play_sound('poke_e_shiny', 1, 0.2)
-      G.P_CENTERS.e_poke_shiny.on_load(card)
-    end
-  end
-
-  -- can be removed once this PR has been merged:
-  --    https://github.com/Steamodded/smods/pull/611
-  local to_fix = {}
-  for k,_ in pairs(G.GAME.used_jokers) do
-    if not next(SMODS.find_card(k, true)) then
-      table.insert(to_fix, k)
-    end
-  end
-  for _,k in pairs(to_fix) do
-    G.GAME.used_jokers[k] = nil
-  end
-end
-'''
+payload = '''if card.ability.extra[k] or k == "energy_count" or k == "c_energy_count" or k == "energy_plus" then'''
 match_indent = true
-overwrite = true
 
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
+pattern = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count"}'''
+position = "at"
+payload = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "energy_plus"}'''
+match_indent = true
