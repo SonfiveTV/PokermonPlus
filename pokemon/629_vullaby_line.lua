@@ -5,6 +5,7 @@ local vullaby ={
     type_tooltip(self, info_queue, center)
     return {vars = {center.ability.extra.chips, center.ability.extra.chip_mod}}
   end,
+  designer = "Sonfive",
   rarity = 2, 
   cost = 7, 
   stage = "Basic", 
@@ -58,6 +59,7 @@ local mandibuzz ={
     local payout = math.floor(count / 4) * money
     return {vars = {center.ability.extra.chips, center.ability.extra.chip_mod, center.ability.extra.money, payout}}
   end,
+  designer = "Sonfive",
   rarity = 3, 
   cost = 7, 
   stage = "One", 

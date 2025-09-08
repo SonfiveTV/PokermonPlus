@@ -3,9 +3,9 @@ local meltan = {
   config = {extra = {chips = 0, retriggers = 1, count = 0, evo_rqmt = 100}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card) 
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		return {vars = {card.ability.extra.count, card.ability.extra.evo_rqmt, card.ability.extra.retriggers}} -- Here you can reference values in the Joker description
   end,
+  designer = "Sonfive",
   rarity = 4, -- 1 is Common, 2 is Uncommon, 3 is Rare, 4 is Legendary. Use "poke_safari" for Safari 
   cost = 20, -- This is the purchase cost, half is the sell cost
   stage = "Legendary", -- "Baby", "Basic", "One", "Two", "Legendary", "Mega"
@@ -47,9 +47,9 @@ local melmetal = {
   config = {extra = {}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		return {vars = {#find_joker('metal_energy') + #find_pokemon_type("Metal")}}
   end,
+  designer = "Sonfive",
   rarity = 4,
   cost = 20,
   stage = "Legendary",

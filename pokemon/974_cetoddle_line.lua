@@ -3,9 +3,9 @@ local cetoddle = {
     config = {extra = {Xmult_mod = 0.25, Xmult = 1}},
     loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult}}
     end,
+    designer = "Sonfive",
     rarity = 2,
     cost = 6,
     enhancement_gate = 'm_glass',
@@ -69,9 +69,9 @@ local cetitan = {
     config = {extra = {Xmult_mod = 0.5, Xmult = 1}, evo_rqmt = 3},
     loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult}}
     end,
+    designer = "Sonfive",
     rarity = "poke_safari",
     cost = 8,
     enhancement_gate = 'm_glass',

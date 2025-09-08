@@ -10,7 +10,6 @@ local stonjourner = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     unique_hand_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 
     local a = card.ability.extra
 
@@ -22,6 +21,7 @@ local stonjourner = {
 
     return {vars = vars}
   end,
+  designer = "Sonfive",
   rarity = 3,
   cost = 8,
   stage = "Basic",

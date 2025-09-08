@@ -3,9 +3,9 @@ local nincada = {
   config = {extra = {chips = 45, mult = 3, rounds = 5}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		return {vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.rounds}}
   end,
+  designer = "Sonfive",
   rarity = 1,
   cost = 5,
   stage = "Basic",
@@ -50,9 +50,9 @@ local ninjask = {
   config = {extra = {chips = 90, mult = 5, speedboost = 1}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		return {vars = {card.ability.extra.chips, card.ability.extra.mult, (7 - card.ability.extra.speedboost)}}
   end,
+  designer = "Sonfive",
   rarity = 2,
   cost = 5,
   stage = "One",
@@ -84,13 +84,12 @@ local shedinja = {
   config = {extra = {money = 0, money_mod = 2, earned = 0, threshold = 292, targets = {{value = "Ace", id = "14"}, {value = "King", id = "13"}, {value = "Queen", id = "12"}}}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    
-        local abbr = card.ability.extra
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
+    local abbr = card.ability.extra
     local card_vars = {abbr.money_mod, abbr.earned, abbr.threshold}
     add_target_cards_to_vars(card_vars, abbr.targets)
     return {vars = card_vars}
   end,
+  designer = "Sonfive",
   rarity = "poke_safari",
   cost = 5,
   stage = "Basic",

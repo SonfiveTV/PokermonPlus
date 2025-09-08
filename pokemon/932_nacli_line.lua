@@ -3,10 +3,10 @@ local nacli = {
   config = {extra = {Xmult_mod = 0.2, Xmult = 1, numerator = 1, denominator = 2}, evo_rqmt = 2},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
     local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator}}
   end,
+  designer = "Sonfive",
   rarity = 3,
   cost = 6,
   stage = "One",
@@ -57,10 +57,10 @@ local naclstack = {
   config = {extra = {Xmult = 2, Xmult_mod = 0.5, numerator = 1, denominator = 4}, evo_rqmt = 4},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
     local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
   end,
+  designer = "Sonfive",
   rarity = "poke_safari",
   cost = 6,
   stage = "One",
@@ -111,10 +111,10 @@ local garganacl = {
   config = {extra = {Xmult_multi = 1.1, Xmult = 4, numerator = 1, denominator = 8}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'designed_by', vars = {"Sonfive"}}
 		local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
   end,
+  designer = "Sonfive",
   rarity = "poke_safari",
   cost = 8,
   stage = "Two",
@@ -168,4 +168,3 @@ return {name = "Nacli",
 list = list
 
 }
-
