@@ -65,10 +65,10 @@ local shinysleeve = {
         return {key = key, vars = vars}
     end,
     calculate = function(self, card, context)
-    if context.setting_blind then
-      print(G.GAME.shiny_edition_rate)
-    end
-  end,
+        if context.setting_blind then
+        print(G.GAME.shiny_edition_rate)
+        end
+    end,
     apply = function(self)
             local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
             G.P_CENTERS.e_poke_shiny.get_weight = function(self)
@@ -89,19 +89,19 @@ local megasleeve = {
     atlas = "sleeves",
     pos = { x = 4, y = 0 },
 	config = {},
-  loc_vars = function(self, info_queue, center)
-    local key, vars
-    if self.get_current_deck_key() == "b_sonfive_megadeck" then
-        key = self.key
-        self.config = {consumables = {"c_poke_megastone"}}
-        vars = {}
-    else
-        key = self.key
-        self.config = {consumables = {"c_poke_megastone"}}
-        vars = {}
-    end
-    return {key = key, vars = vars}
-end,
+    loc_vars = function(self, info_queue, center)
+        local key, vars
+        if self.get_current_deck_key() == "b_sonfive_megadeck" then
+            key = self.key
+            self.config = {consumables = {"c_poke_megastone"}}
+            vars = {}
+        else
+            key = self.key
+            self.config = {consumables = {"c_poke_megastone"}}
+            vars = {}
+        end
+        return {key = key, vars = vars}
+    end,
 
   apply = function(self)
     G.GAME.win_ante = (G.GAME.win_ante + 4)
@@ -134,14 +134,31 @@ end,
     end
 } 
 
+
+
+local voidsleeve = {
+    key = 'voidsleeve',
+    name = 'Void Sleeve',
+    prefix_config = {},
+    atlas = "sleeves",
+    pos = { x = 5, y = 0 },
+    config = {},
+    loc_vars = function(self, info_queue, center)
+        return {vars = {"c_poke_nightmare"}}
+    end,
+    calculate = SMODS.Back.obj_table["b_sonfive_voiddeck"].calculate
+
+
+}
+
 if sonfive_config.customItems then
-local slist = {virtuoussleeve, propheticsleeve, shinysleeve, megasleeve}
+local slist = {virtuoussleeve, propheticsleeve, shinysleeve, megasleeve, voidsleeve}
 return {name = "Back",
         list = slist
         
 }
 else 
-  local slist = {propheticsleeve, shinysleeve, megasleeve}
+  local slist = {propheticsleeve, shinysleeve, megasleeve, voidsleeve}
 
 
 return {name = "Sleeves",

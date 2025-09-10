@@ -479,9 +479,11 @@ return {
             sleeve_sonfive_voidsleeve = {
                 name = "Void Sleeve",
                 text = {
-                        "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
-                        "{X:gray,C:attention}+4{} Ante win requirement"
-
+                        "{C:dark_edition}Negative{} {C:pink}Energy{} cards",
+                        "give {C:pink}+1 Energy Limit{}",
+                        "{br:4}text",
+                        "Gain a {C:spectral,T:c_poke_nightmare}Nightmare{} Card after",
+                        "defeating each {C:attention}Boss Blind"
                 }
             },
             sleeve_sonfive_voidsleeve_alt = {
