@@ -59,6 +59,11 @@ SMODS.current_mod.config_tab = function()
                 ref_value = "Nincada",
             }),
             create_toggle({
+                label = localize("darkrai_line"),
+                ref_table = sonfive_config,
+                ref_value = "Darkrai",
+            }),
+            create_toggle({
                 label = localize("vullaby_line"),
                 ref_table = sonfive_config,
                 ref_value = "Vullaby",
@@ -200,7 +205,10 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfiv
               end
             end
             if not item.atlas then
+              if not item.custom_art then
                 item.atlas = "AtlasJokersBasicNatdex"
+              else item.atlas = "AtlasJokersSeriesANatdex"
+              end
             end
             if item.ptype then
               if item.config and item.config.extra then

@@ -112,12 +112,15 @@ return {
                                   
                 } 
             },
-            j_sonfive_croagunk = {
-                name = 'Croagunk',
+            j_sonfive_darkrai = {
+                name = 'Darkrai',
                 text = {
-                    "{C:attention}Scoring cards{} have a",
-                    "{C:green}#1# in #2#{} chance to create",
-                    "a {C:purple}Hazard{} copy",                                 
+                    "Create a {C:spectral,T:c_poke_nightmare}Nightmare{} Card after",
+                    "defeating each {C:attention}Boss Blind",
+                    "{br:4}text",
+                    "{C:attention}Held{} {C:pink}Energy{} cards are {C:attention}applied{}",
+                    "to all Jokers with the same {C:pink}Type{}", 
+                    "{C:inactive}(Doesn't increment Energy count){}"                                
                 } 
             },
             j_sonfive_vullaby = {
@@ -549,6 +552,7 @@ return {
                 -- Config Descriptions
                 custom_jokers = "Allow Custom Jokers?",
                 nincada_line = "Nincada line?",
+                darkrai_line = "Darkrai line?",
                 vullaby_line = "Vullaby line?",
                 meltan_line = "Meltan line?",
                 stonjourner_line = "Stonjourner line?",
