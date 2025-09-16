@@ -13,6 +13,7 @@ local cetoddle = {
     stage = "Basic",
     ptype = "Water",
     gen = 9,
+    custom_art = true,
     blueprint_compat = true,
     calculate = function(self, card, context)
         if context.remove_playing_cards and not context.blueprint then

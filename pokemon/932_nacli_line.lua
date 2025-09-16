@@ -112,7 +112,7 @@ local garganacl = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
 		local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
-		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
+		return {vars = {card.ability.extra.Xmult_multi, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
   end,
   designer = "Sonfive",
   rarity = "poke_safari",

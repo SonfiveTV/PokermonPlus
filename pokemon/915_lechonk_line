@@ -30,7 +30,6 @@ local lechonk = {
     set_ability = function(self, card, initial, delay_sprites)
         if initial and G.STAGE == G.STAGES.RUN then
             card.ability.extra.starting_money = G.GAME.dollars
-            card.ability.extra_value = 0
             card.ability.extra.selling = false
             card:set_cost()
         end
@@ -118,7 +117,6 @@ local oinkologne = {
     set_ability = function(self, card, initial, delay_sprites)
         if initial and G.STAGE == G.STAGES.RUN then
             card.ability.extra.starting_money = G.GAME.dollars
-            card.ability.extra_value = 0
             card.ability.extra.selling = false
             card:set_cost()
         end
