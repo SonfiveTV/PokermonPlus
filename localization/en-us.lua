@@ -175,6 +175,28 @@ return {
                 }
             },
 
+            j_sonfive_lechonk = {
+                name = "Lechonk",
+                text = {
+                    "{C:attention}Negate{} earnings and increase",
+                    "this Joker's {C:attention}sell value{} by {C:money}#2#%{}",
+                    "of the amount negated",
+                    "{C:inactive,s:0.8}(Evolves after {C:attention,s:0.8}#1#{C:inactive,s:0.8} rounds)" 
+                }
+            },
+
+            j_sonfive_oinkologne = {
+                name = "Oinkologne",
+                text = {
+                    "{C:attention}Negate{} earnings and increase",
+                    "this Joker's {C:attention}sell value{} by {C:money}#2#%{}",
+                    "of the amount negated",
+                    "{br:4}text",
+                    "Multiply this Joker's {C:attention}sell value{}",
+                    "by {X:money,C:white}X#1#{} at end of round" 
+                }
+            },
+
             j_sonfive_nacli = {
                 name = 'Nacli',
                 text = {
@@ -556,6 +578,7 @@ return {
                 vullaby_line = "Vullaby line?",
                 meltan_line = "Meltan line?",
                 stonjourner_line = "Stonjourner line?",
+                lechonk_line = "Lechonk line?",
                 nacli_line = "Nacli line?",
                 cetoddle_line = "Cetoddle line?",
                 custom_consumeables = "Allow Custom Consumables?",

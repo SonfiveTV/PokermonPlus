@@ -30,6 +30,7 @@ SMODS.Atlas({
 pokermon.add_family({"nincada", "ninjask", "shedinja"})
 pokermon.add_family({"vullaby", "mandibuzz"})
 pokermon.add_family({"meltan", "melmetal"})
+pokermon.add_family({"lechonk", "oinkologne"})
 pokermon.add_family({"nacli", "naclstack", "garganacl"})
 pokermon.add_family({"cetoddle", "cetitan"})
 
@@ -77,6 +78,11 @@ SMODS.current_mod.config_tab = function()
                 label = localize("stonjourner_line"),
                 ref_table = sonfive_config,
                 ref_value = "Stonjourner",
+            }),
+            create_toggle({
+                label = localize("lechonk_line"),
+                ref_table = sonfive_config,
+                ref_value = "Lechonk",
             }),
             create_toggle({
                 label = localize("nacli_line"),
@@ -197,6 +203,7 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfiv
             end
             if not item.pos then
               local sprite = PokemonSprites[item.name]
+              
               if sprite and sprite.base then
                   item.pos = sprite.base.pos
               end
@@ -205,10 +212,24 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfiv
               end
             end
             if not item.atlas then
+              local sprite = PokemonSprites[item.name]
+              local gen_string = nil
+              local atlas_prefix = nil
               if not item.custom_art then
-                item.atlas = "AtlasJokersBasicNatdex"
-              else item.atlas = "AtlasJokersSeriesANatdex"
+                atlas_prefix = "AtlasJokersBasic"
+              else 
+                atlas_prefix = "AtlasJokersSeriesA"
               end
+              if sprite.gen_atlas and item.gen then
+                if item.gen < 10 then
+                  gen_string = 'Gen0'..item.gen 
+                else
+                  gen_string = 'Gen'..item.gen
+                end
+                item.atlas = atlas_prefix..gen_string
+              else
+                item.atlas = atlas_prefix.."Natdex"
+              end              
             end
             if item.ptype then
               if item.config and item.config.extra then
