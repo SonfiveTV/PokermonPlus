@@ -38,6 +38,7 @@ Each Pokemon line can be toggled on/off in the mod config options
 | Vullaby | Mandibuzz |  |
 | Meltan  | Melmetal |  |
 | Stonjourner |  |  |
+| Lechonk | Oinkologne |  |
 | Nacli | Naclstack | Garganacl |
 | Cetoddle | Cetitan |  |
 
