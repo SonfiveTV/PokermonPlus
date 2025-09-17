@@ -27,8 +27,8 @@ local lechonk = {
     gen = 9,
     blueprint_compat = false,
     poke_custom_values_to_keep = {"starting_money", "selling"},
-    set_ability = function(self, card, initial, delay_sprites)
-        if initial and G.STAGE == G.STAGES.RUN then
+    add_to_deck = function(self, card, from_debuff)
+        if G.STAGE == G.STAGES.RUN then
             card.ability.extra.starting_money = G.GAME.dollars
             card.ability.extra.selling = false
             card:set_cost()
@@ -45,38 +45,42 @@ local lechonk = {
         if context.blueprint then return end
 
         -- block siphon during actual selling
-        if context.selling_self then
+        if context.selling_self or (context.cardarea ~= G.jokers) then
             card.ability.extra.selling = true
             return
-        end  
+        end
+
 
         local a = card.ability.extra
         local current_money = G.GAME.dollars
 
-        if current_money > a.starting_money then
-            local earned = current_money - a.starting_money
+        if context.cardarea == G.jokers then 
 
-            -- siphon the earned money away from player
-            G.GAME.dollars = a.starting_money
+            if current_money > a.starting_money then
+                local earned = current_money - a.starting_money
 
-            -- store as Lechonk’s sell value (with multiplier)
-            card.ability.extra_value = (card.ability.extra_value or 0) + (earned * a.percentage)
+                -- siphon the earned money away from player
+                G.GAME.dollars = a.starting_money
 
-            -- reset baseline
-            a.starting_money = G.GAME.dollars  
+                -- store as Lechonk’s sell value (with multiplier)
+                card.ability.extra_value = (card.ability.extra_value or 0) + (earned * a.percentage)
 
-            card:set_cost()
+                -- reset baseline
+                a.starting_money = G.GAME.dollars  
 
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    card_eval_status_text(card, 'extra', nil, nil, nil,
-                        {message = localize('k_val_up')})
-                    return true
-                end
-            }))
-        elseif current_money < a.starting_money then
-            -- adjust baseline down when money is spent
-            a.starting_money = current_money
+                card:set_cost()
+
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        card_eval_status_text(card, 'extra', nil, nil, nil,
+                            {message = localize('k_val_up')})
+                        return true
+                    end
+                }))
+            elseif current_money < a.starting_money then
+                -- adjust baseline down when money is spent
+                a.starting_money = current_money
+            end
         end
         return level_evo(self, card, context, "j_sonfive_oinkologne")
     end,
@@ -114,8 +118,8 @@ local oinkologne = {
     gen = 9,
     blueprint_compat = false,
 
-    set_ability = function(self, card, initial, delay_sprites)
-        if initial and G.STAGE == G.STAGES.RUN then
+    add_to_deck = function(self, card, from_debuff)
+        if G.STAGE == G.STAGES.RUN then
             card.ability.extra.starting_money = G.GAME.dollars
             card.ability.extra.selling = false
             card:set_cost()
@@ -132,7 +136,7 @@ local oinkologne = {
         if context.blueprint then return end
 
         -- block siphon during actual selling
-        if context.selling_self then
+        if context.selling_self or (context.cardarea ~= G.jokers) then
             card.ability.extra.selling = true
             return
         end  
@@ -163,30 +167,33 @@ local oinkologne = {
         local a = card.ability.extra
         local current_money = G.GAME.dollars
 
-        if current_money > a.starting_money then
-            local earned = current_money - a.starting_money
+        if context.cardarea == G.jokers then 
 
-            -- siphon the earned money away from player
-            G.GAME.dollars = a.starting_money
+            if current_money > a.starting_money then
+                local earned = current_money - a.starting_money
 
-            -- store as oinkologne’s sell value (with multiplier)
-            card.ability.extra_value = (card.ability.extra_value or 0) + (earned * a.percentage)
+                -- siphon the earned money away from player
+                G.GAME.dollars = a.starting_money
 
-            -- reset baseline
-            a.starting_money = G.GAME.dollars  
+                -- store as oinkologne’s sell value (with multiplier)
+                card.ability.extra_value = (card.ability.extra_value or 0) + (earned * a.percentage)
 
-            card:set_cost()
+                -- reset baseline
+                a.starting_money = G.GAME.dollars  
 
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    card_eval_status_text(card, 'extra', nil, nil, nil,
-                        {message = localize('k_val_up')})
-                    return true
-                end
-            }))
-        elseif current_money < a.starting_money then
-            -- adjust baseline down when money is spent
-            a.starting_money = current_money
+                card:set_cost()
+
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        card_eval_status_text(card, 'extra', nil, nil, nil,
+                            {message = localize('k_val_up')})
+                        return true
+                    end
+                }))
+            elseif current_money < a.starting_money then
+                -- adjust baseline down when money is spent
+                a.starting_money = current_money
+            end
         end
     end,
 }
