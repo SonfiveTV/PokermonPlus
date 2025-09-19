@@ -109,7 +109,8 @@ local oinkologne = {
             }
         }
     end,
-
+    atlas = "AtlasJokersBasicGen09",
+    pos = {x = 0, y = 0},
     designer = "Sonfive",
     rarity = "poke_safari",
     cost = 8,
