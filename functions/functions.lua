@@ -1,5 +1,3 @@
-local lovely = require("lovely")
-
 -- Describe all the logic for debuffing or undebuffing
 
 -- return values: true, false, or 'prevent_debuff'
