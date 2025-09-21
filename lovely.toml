@@ -13,7 +13,7 @@ highlighted_energy_can_use = function(self, card)
 '''
 position = "after"
 payload = '''
-if void == true and card.edition and card.edition.negative then return highlighted_negative_energy_can_use(self, card) end
+if G.GAME.modifiers.void and card.edition and card.edition.negative then return highlighted_negative_energy_can_use(self, card) end
 '''
 match_indent = true
 
@@ -27,7 +27,7 @@ highlighted_energy_use = function(self, card, area, copier)
 '''
 position = "after"
 payload = '''
-if void == true and card.edition and card.edition.negative then return highlighted_negative_energy_use(self, card, area, copier) end
+if G.GAME.modifiers.void and card.edition and card.edition.negative then return highlighted_negative_energy_use(self, card, area, copier) end
 '''
 match_indent = true
 
@@ -41,7 +41,7 @@ energy_can_use = function(self, card)
 '''
 position = "after"
 payload = '''
-if void == true and card.edition and card.edition.negative then return negative_energy_can_use(self, card) end
+if G.GAME.modifiers.void and card.edition and card.edition.negative then return negative_energy_can_use(self, card) end
 '''
 match_indent = true
 
@@ -55,7 +55,7 @@ energy_use = function(self, card, area, copier)
 '''
 position = "after"
 payload = '''
-if void == true and card.edition and card.edition.negative then return negative_energy_use(self, card) end
+if G.GAME.modifiers.void and card.edition and card.edition.negative then return negative_energy_use(self, card) end
 '''
 match_indent = true
 
@@ -93,3 +93,5 @@ pattern = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "up
 position = "at"
 payload = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "energy_plus"}'''
 match_indent = true
+
+

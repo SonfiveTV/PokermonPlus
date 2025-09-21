@@ -1,3 +1,5 @@
+local lovely = require("lovely")
+
 -- Describe all the logic for debuffing or undebuffing
 
 -- return values: true, false, or 'prevent_debuff'
@@ -454,7 +456,3 @@ unique_hand_tooltip = function(self, info_queue, center)
     end
   end
 end
-
-
-
-
