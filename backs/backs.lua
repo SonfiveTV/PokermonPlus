@@ -72,6 +72,7 @@ local voiddeck = {
     return {vars = {"c_poke_nightmare"}}
   end,
   calculate = function(self, back, context)
+    G.GAME.modifiers.void = true
     if not context.repetition and not context.individual and context.end_of_round and G.GAME.last_blind and G.GAME.last_blind.boss then
       if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
       local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, 'c_poke_nightmare')
