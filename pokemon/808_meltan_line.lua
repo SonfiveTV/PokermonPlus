@@ -1,6 +1,6 @@
 local meltan = { 
   name = "meltan", 
-  config = {extra = {chips = 0, retriggers = 1, count = 0, evo_rqmt = 100}},
+  config = {extra = {retriggers = 1, count = 0, evo_rqmt = 100}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card) 
 		return {vars = {card.ability.extra.count, card.ability.extra.evo_rqmt, card.ability.extra.retriggers}} -- Here you can reference values in the Joker description
@@ -83,4 +83,5 @@ end
 
 return {name = "Meltan", 
 list = list
+
 }
