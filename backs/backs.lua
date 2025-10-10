@@ -33,15 +33,20 @@ local shinydeck ={
         return {vars = {}}
     end,    
 calculate = function(self, card, context)
-  if not G.GAME.shinydeck_applied then
-    local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
-    G.P_CENTERS.e_poke_shiny.get_weight = function(self)
-      return previous_shiny_get_weight(self) + ((G.GAME.shiny_edition_rate or 1) - 1) * G.P_CENTERS.e_poke_shiny.weight
+    if context.setting_blind then
+      print(G.GAME.shiny_edition_rate)
     end
-    G.GAME.shiny_edition_rate = (G.GAME.shiny_edition_rate or 1) * self.config.extra.chance
-    G.GAME.shinydeck_applied
-  end
-end
+  end,
+    apply = function(self)
+      if not G.GAME.modifiers.shinydeck then
+        local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
+        G.P_CENTERS.e_poke_shiny.get_weight = function(self)
+          return previous_shiny_get_weight(self) + ((G.GAME.shiny_edition_rate or 1) - 1) * G.P_CENTERS.e_poke_shiny.weight
+        end
+        G.GAME.shiny_edition_rate = (G.GAME.shiny_edition_rate or 1) * self.config.extra.chance
+        G.GAME.modifiers.shinydeck = true
+      end
+    end
 }
 
 local megadeck = {
