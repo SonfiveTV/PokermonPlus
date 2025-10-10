@@ -64,7 +64,7 @@ local shinysleeve = {
         -- end
         -- return {key = key, vars = vars}
     end,
-    apply = function(self)
+    calculate = function(self, card, context)
         if not G.GAME.shinydeck_applied then
             local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
             G.P_CENTERS.e_poke_shiny.get_weight = function(self)
