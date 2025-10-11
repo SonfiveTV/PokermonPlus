@@ -2,7 +2,8 @@ local lechonk = {
     name = "lechonk",
     config = {
         extra = {
-            starting_money = 0,
+            previous = 0,
+            current = 0,
             earned = 0,
             triggered = false,
             rounds = 5,
@@ -25,16 +26,14 @@ local lechonk = {
     ptype = "Colorless",
     gen = 9,
     blueprint_compat = false,
-    poke_custom_values_to_keep = {"starting_money", "earned", "triggered"},
+    poke_custom_values_to_keep = {"current", "earned", "triggered"},
     calculate = function(self, card, context)
         local a = card.ability.extra
-        if context.setting_blind and not context.blueprint then 
-            a.starting_money = G.GAME.dollars
-            a.triggered = false
-        end
-        if context.end_of_round and not a.triggered and not context.blueprint then
-            if G.GAME.dollars > a.starting_money then 
-                a.earned = math.floor(G.GAME.dollars - a.starting_money)
+        if context.setting_blind and not a.triggered and not context.blueprint then 
+            a.previous = a.current
+            a.current = G.GAME.dollars
+            if a.previous and (a.current > a.previous) then 
+                a.earned = math.floor(a.current - a.previous)
                 a.triggered = true
                 card.ability.extra_value = (card.ability.extra_value or 0) + (a.earned)
                 card:set_cost()
@@ -43,6 +42,9 @@ local lechonk = {
                     card = card
                 }
             end
+        end
+        if context.end_of_round and not context.blueprint then
+            a.triggered = false
         end
         return level_evo(self, card, context, "j_sonfive_oinkologne")
     end,
@@ -53,7 +55,7 @@ local oinkologne = {
     name = "oinkologne",
     config = {
         extra = {
-            starting_money = 0,
+            current = 0,
             percentage = 1.25,
             selling = false, -- internal flag to block siphon while selling
             interest = 1.01,
@@ -83,7 +85,7 @@ local oinkologne = {
 
     add_to_deck = function(self, card, from_debuff)
         if G.STAGE == G.STAGES.RUN then
-            card.ability.extra.starting_money = G.GAME.dollars
+            card.ability.extra.current = G.GAME.dollars
             card.ability.extra.selling = false
             card:set_cost()
         end
@@ -132,17 +134,17 @@ local oinkologne = {
 
         if context.cardarea == G.jokers then 
 
-            if current_money > a.starting_money then
-                local earned = current_money - a.starting_money
+            if current_money > a.current then
+                local earned = current_money - a.current
 
                 -- siphon the earned money away from player
-                G.GAME.dollars = a.starting_money
+                G.GAME.dollars = a.current
 
                 -- store as oinkologne’s sell value (with multiplier)
                 card.ability.extra_value = (card.ability.extra_value or 0) + (earned * a.percentage)
 
                 -- reset baseline
-                a.starting_money = G.GAME.dollars  
+                a.current = G.GAME.dollars  
 
                 card:set_cost()
 
@@ -153,9 +155,9 @@ local oinkologne = {
                         return true
                     end
                 }))
-            elseif current_money < a.starting_money then
+            elseif current_money < a.current then
                 -- adjust baseline down when money is spent
-                a.starting_money = current_money
+                a.current = current_money
             end
         end
     end,

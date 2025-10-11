@@ -178,8 +178,10 @@ return {
             j_sonfive_lechonk = {
                 name = "Lechonk",
                 text = {
-                    "At end of round, for every {C:money}$1{} {C:attention}earned{} during this Blind",
-                    "increase this Joker's {C:attention}sell value by {C:money}$1{} and {C:red}lose() {C:money}$1{}",
+                    "When {C:attention}Blind{} is selected {C:red}lose{} all",
+                    "money {C:attention}earned{} since the {C:attention}previous{}",
+                    "Blind was selected and increase this",
+                    "Joker's {C:attention}sell value by the amount lost",
                     "{C:inactive,s:0.8}(Evolves after {C:attention,s:0.8}#1#{C:inactive,s:0.8} rounds)" 
                 }
             },
