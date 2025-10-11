@@ -3,8 +3,8 @@ local lechonk = {
     config = {
         extra = {
             starting_money = 0,
-            percentage = 1.25,
-            selling = false, -- internal flag to block siphon while selling
+            earned = 0
+            triggered = false,
             rounds = 5,
         }
     },
@@ -13,8 +13,8 @@ local lechonk = {
         type_tooltip(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.rounds,             -- built-up sell value
-                (card.ability.extra.percentage * 100)       -- % multiplier
+                card.ability.extra.rounds,
+                math.floor(G.GAME.dollars - card.ability.starting_money)
             }
         }
     end,
@@ -26,60 +26,23 @@ local lechonk = {
     ptype = "Colorless",
     gen = 9,
     blueprint_compat = false,
-    poke_custom_values_to_keep = {"starting_money", "selling"},
-    add_to_deck = function(self, card, from_debuff)
-        if G.STAGE == G.STAGES.RUN then
-            card.ability.extra.starting_money = G.GAME.dollars
-            card.ability.extra.selling = false
-            card:set_cost()
-        end
-    end,
-
-    update = function(self, card, dt)
-        if G.STAGE == G.STAGES.RUN and not card.ability.extra.selling then
-            self:calculate(card, {selling_self = false})
-        end
-    end,
-
+    poke_custom_values_to_keep = {"starting_money", "earned", "triggered"},
     calculate = function(self, card, context)
-        if context.blueprint then return end
-
-        -- block siphon during actual selling
-        if context.selling_self or (context.cardarea ~= G.jokers) then
-            card.ability.extra.selling = true
-            return
-        end
-
-
         local a = card.ability.extra
-        local current_money = G.GAME.dollars
-
-        if context.cardarea == G.jokers then 
-
-            if current_money > a.starting_money then
-                local earned = current_money - a.starting_money
-
-                -- siphon the earned money away from player
-                G.GAME.dollars = a.starting_money
-
-                -- store as Lechonk’s sell value (with multiplier)
-                card.ability.extra_value = (card.ability.extra_value or 0) + (earned * a.percentage)
-
-                -- reset baseline
-                a.starting_money = G.GAME.dollars  
-
+        if context.setting_blind and not context.blueprint then 
+            a.starting_money = G.GAME.dollars
+            a.triggered = false
+        end
+        if context.end_of_round and not a.triggered and not context.blueprint then
+            if G.GAME.dollars > a.starting_money then 
+                a.earned = math.floor(G.GAME.dollars - a.starting_money)
+                a.triggered = true
+                card.ability.extra_value = (card.ability.extra_value or 0) + (a.earned)
                 card:set_cost()
-
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        card_eval_status_text(card, 'extra', nil, nil, nil,
-                            {message = localize('k_val_up')})
-                        return true
-                    end
-                }))
-            elseif current_money < a.starting_money then
-                -- adjust baseline down when money is spent
-                a.starting_money = current_money
+                return {
+                    dollars = -a.earned,
+                    card = card
+                }
             end
         end
         return level_evo(self, card, context, "j_sonfive_oinkologne")
