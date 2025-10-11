@@ -14,7 +14,7 @@ local lechonk = {
         return {
             vars = {
                 card.ability.extra.rounds,
-                math.floor(G.GAME.dollars - card.ability.starting_money)
+                (math.floor(G.GAME.dollars - card.ability.starting_money) or 0)
             }
         }
     end,
