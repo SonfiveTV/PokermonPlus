@@ -3,7 +3,7 @@ local lechonk = {
     config = {
         extra = {
             starting_money = 0,
-            earned = 0
+            earned = 0,
             triggered = false,
             rounds = 5,
         }
