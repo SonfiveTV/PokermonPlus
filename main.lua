@@ -53,73 +53,40 @@ SMODS.current_mod.config_tab = function()
     }
 
     local rows = {}
+    local row_nodes = {}
     local per_row = 3
-    local current_row = {}
 
-    for i, poke in ipairs(evo_lines) do
-        local ref_value = poke:gsub("^%l", string.upper)
-        local sprite_info = PokemonSprites[poke]
+    for i, name in ipairs(evo_lines) do
+        table.insert(row_nodes, create_toggle({
+            label = localize(name .. "_line"),
+            ref_table = sonfive_config,
+            ref_value = name:gsub("^%l", string.upper),
+        }))
 
-        if sprite_info and sprite_info.base and sprite_info.base.pos then
-            -- Create a Card object for the Pokémon sprite
-            local card = Card(
-                0, 0,                     -- X, Y (layout handles actual positioning)
-                G.CARD_W, G.CARD_H,       -- Width & height
-                nil,                       -- optional image
-                sprite_info                -- atlas + pos
-            )
-            card.poke_change_sprite = true
-            card:set_colour(sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK)
-
-            -- Function to get color based on toggle state
-            local function get_colour()
-                return sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK
-            end
-
-            -- Column containing Card and toggle
-            local pair = {
-                n = G.UIT.C,
-                config = { align = "cm", padding = 0.02 },
-                nodes = {
-                    { n = G.UIT.O, config = { object = card } },  -- Wrap Card in G.UIT.O
-                    create_toggle({
-                        label = localize(poke .. "_line"),
-                        ref_table = sonfive_config,
-                        ref_value = ref_value,
-                        callback = function()
-                            card:set_colour(get_colour())  -- Update Card color
-                        end
-                    }),
-                }
-            }
-
-            table.insert(current_row, pair)
-
-            -- Wrap 3 Pokémon into a row
-            if #current_row == per_row then
-                table.insert(rows, {
-                    n = G.UIT.R,
-                    config = { align = "cm", padding = 0.05, no_fill = true },
-                    nodes = current_row
-                })
-                current_row = {}
-            end
+        -- When 3 toggles have been added, wrap them into a row
+        if #row_nodes == per_row then
+            table.insert(rows, {
+                n = G.UIT.R,
+                config = { align = "cm", padding = 0.03, no_fill = true },
+                nodes = row_nodes
+            })
+            row_nodes = {}
         end
     end
 
-    -- Handle leftover Pokémon (less than 3 in last row)
-    if #current_row > 0 then
+    -- Add any remaining toggles (less than 3) as a final row
+    if #row_nodes > 0 then
         table.insert(rows, {
             n = G.UIT.R,
-            config = { align = "cm", padding = 0.05, no_fill = true },
-            nodes = current_row
+            config = { align = "cm", padding = 0.03, no_fill = true },
+            nodes = row_nodes
         })
     end
 
-    -- Add standalone "custom consumeables" toggle at the bottom
+    -- Add your final custom toggle as a new row
     table.insert(rows, {
         n = G.UIT.R,
-        config = { align = "cm", padding = 0.06 },
+        config = { align = "cm", padding = 0.05 },
         nodes = {
             create_toggle({
                 label = localize("custom_consumeables"),
