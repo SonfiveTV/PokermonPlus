@@ -6,6 +6,7 @@ local lechonk = {
             current = 0,
             earned = 0,
             triggered = false,
+            initial_blind = true,
             rounds = 5,
         }
     },
@@ -26,11 +27,16 @@ local lechonk = {
     ptype = "Colorless",
     gen = 9,
     blueprint_compat = false,
-    poke_custom_values_to_keep = {"current", "earned", "triggered"},
+    poke_custom_values_to_keep = {"current", "earned", "triggered", "initial_blind"},
     calculate = function(self, card, context)
         local a = card.ability.extra
         if context.setting_blind and not a.triggered and not context.blueprint then 
-            a.previous = a.current
+            if a.initial_blind then
+                a.previous = G.GAME.dollars
+                a.initial_blind = false
+            else 
+                a.previous = a.current
+            end
             a.current = G.GAME.dollars
             if a.previous and (a.current > a.previous) then 
                 a.earned = math.floor(a.current - a.previous)

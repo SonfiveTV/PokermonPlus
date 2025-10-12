@@ -40,62 +40,7 @@ if (SMODS.Mods["Pokermon"] or {}).can_load then
     pokermon_config = SMODS.Mods["Pokermon"].config
 end
 
-SMODS.current_mod.config_tab = function()
-    local evo_lines = {
-        "nincada",
-        "darkrai",
-        "vullaby",
-        "meltan",
-        "stonjourner",
-        "lechonk",
-        "nacli",
-        "cetoddle"
-    }
-
-    local rows = {}
-    local row_nodes = {}
-    local per_row = 3
-
-    for i, name in ipairs(evo_lines) do
-        table.insert(row_nodes, create_toggle({
-            label = localize(name .. "_line"),
-            ref_table = sonfive_config,
-            ref_value = name:gsub("^%l", string.upper),
-        }))
-
-        -- When 3 toggles have been added, wrap them into a row
-        if #row_nodes == per_row then
-            table.insert(rows, {
-                n = G.UIT.R,
-                config = { align = "cm", padding = 0.03, no_fill = true },
-                nodes = row_nodes
-            })
-            row_nodes = {}
-        end
-    end
-
-    -- Add any remaining toggles (less than 3) as a final row
-    if #row_nodes > 0 then
-        table.insert(rows, {
-            n = G.UIT.R,
-            config = { align = "cm", padding = 0.03, no_fill = true },
-            nodes = row_nodes
-        })
-    end
-
-    -- Add your final custom toggle as a new row
-    table.insert(rows, {
-        n = G.UIT.R,
-        config = { align = "cm", padding = 0.05 },
-        nodes = {
-            create_toggle({
-                label = localize("custom_consumeables"),
-                ref_table = sonfive_config,
-                ref_value = "customItems",
-            })
-        }
-    })
-
+SMODS.current_mod.config_tab = function() 
     return {
         n = G.UIT.ROOT,
         config = {
@@ -103,10 +48,32 @@ SMODS.current_mod.config_tab = function()
             padding = 0.05,
             colour = G.C.CLEAR,
         },
-        nodes = rows
+        local evo_lines = {
+          "nincada", 
+          "darkrai", 
+          "vullaby", 
+          "meltan", 
+          "stonjourner", 
+          "lechonk", 
+          "nacli", 
+          "cetoddle"
+        }
+        nodes = {
+          for i = 1, #evo_lines do
+            create_toggle({
+                label = localize(evo_lines[i].."_line"),
+                ref_table = sonfive_config,
+                ref_value = evo_lines[i]:gsub("^%l", string.upper),
+            }),
+          end
+            create_toggle({
+                label = localize("custom_consumeables"),
+                ref_table = sonfive_config,
+                ref_value = "customItems",
+            }),
+        },
     }
 end
-
 
 --Load Joker Display if the mod is enabled
 if (SMODS.Mods["JokerDisplay"] or {}).can_load then

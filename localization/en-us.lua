@@ -93,7 +93,7 @@ return {
                     "{C:mult}+#2#{} Mult",   
                     "{br:4}text needs to be here to work",
                     "Increases this Joker's {C:chips}Chips{}", 
-                    "and {C:mult}Mult{} at end of round",
+                    "and {C:mult}Mult{} when {C:attention}Boss Blind{} is defeated",
                     "{C:inactive}(#3# Speed Boosts remaining){}"
 
                 } 
