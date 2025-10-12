@@ -178,7 +178,7 @@ return {
             j_sonfive_lechonk = {
                 name = "Lechonk",
                 text = {
-                    "When {C:attention{}Blind is selected, {C:money}money{} earned", 
+                    "When {C:attention}Blind{} is selected, money {C:attention}earned{}", 
                     "since the {C:attention}previous{} Blind was selected",
                     "is added to this Joker's {C:attention}sell value{}",
                     "{C:red}Lose{} money equal to sell value gained",
@@ -190,10 +190,11 @@ return {
             j_sonfive_oinkologne = {
                 name = "Oinkologne",
                 text = {
-                    "When {C:attention{}Blind is selected, {C:money}money{} earned", 
+                    "When {C:attention}Blind{} is selected, money {C:attention}earned{}", 
                     "since the {C:attention}previous{} Blind was selected",
                     "is added to this Joker's {C:attention}sell value{}",
-                    "{C:red}Lose{} money equal to {C:attention}half{} of the sell value gained",
+                    "{C:red}Lose{} money equal to {C:attention}half{}",
+                    "of the sell value gained",
                     "{C:inactive}(Previous Blind's Balance: {}{C:attention}$#1#{}{C:inactive}){}",
                 }
             },
