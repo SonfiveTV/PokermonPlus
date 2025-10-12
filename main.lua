@@ -40,7 +40,94 @@ if (SMODS.Mods["Pokermon"] or {}).can_load then
     pokermon_config = SMODS.Mods["Pokermon"].config
 end
 
-SMODS.current_mod.config_tab = function() 
+SMODS.current_mod.config_tab = function()
+    local evo_lines = {
+        "nincada",
+        "darkrai",
+        "vullaby",
+        "meltan",
+        "stonjourner",
+        "lechonk",
+        "nacli",
+        "cetoddle"
+    }
+
+    local rows = {}
+    local per_row = 3
+    local current_row = {}
+
+    for i, poke in ipairs(evo_lines) do
+        local sprite_info = PokemonSprites[poke]
+        local ref_value = poke:gsub("^%l", string.upper)
+
+        if sprite_info then
+            -- function to dynamically get tint based on current toggle state
+            local function get_tint()
+                return sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK
+            end
+
+            local pair = {
+                n = G.UIT.C,
+                config = { align = "cm", padding = 0.02 },
+                nodes = {
+                    {
+                        n = G.UIT.SPRITE,
+                        config = {
+                            atlas = sprite_info.atlas or "AtlasJokersBasicNatdex",
+                            pos = sprite_info.pos,
+                            scale = 0.8,
+                            colour = get_tint(), -- initial tint
+                            id = poke .. "_sprite", -- unique id to update later
+                        }
+                    },
+                    create_toggle({
+                        label = localize(poke .. "_line"),
+                        ref_table = sonfive_config,
+                        ref_value = ref_value,
+                        callback = function()
+                            -- toggle state flipped, update sprite tint
+                            local ui_sprite = G.UIDEF[poke .. "_sprite"]
+                            if ui_sprite then
+                                ui_sprite.config.colour = get_tint()
+                            end
+                        end
+                    }),
+                }
+            }
+
+            table.insert(current_row, pair)
+
+            if #current_row == per_row then
+                table.insert(rows, {
+                    n = G.UIT.R,
+                    config = { align = "cm", padding = 0.05, no_fill = true },
+                    nodes = current_row
+                })
+                current_row = {}
+            end
+        end
+    end
+
+    if #current_row > 0 then
+        table.insert(rows, {
+            n = G.UIT.R,
+            config = { align = "cm", padding = 0.05, no_fill = true },
+            nodes = current_row
+        })
+    end
+
+    table.insert(rows, {
+        n = G.UIT.R,
+        config = { align = "cm", padding = 0.06 },
+        nodes = {
+            create_toggle({
+                label = localize("custom_consumeables"),
+                ref_table = sonfive_config,
+                ref_value = "customItems",
+            })
+        }
+    })
+
     return {
         n = G.UIT.ROOT,
         config = {
@@ -48,65 +135,10 @@ SMODS.current_mod.config_tab = function()
             padding = 0.05,
             colour = G.C.CLEAR,
         },
-        nodes = {
-          create_toggle({
-                label = localize("custom_jokers"),
-                ref_table = sonfive_config,
-                ref_value = "customJokers",
-            }),
-            create_toggle({
-                label = localize("nincada_line"),
-                ref_table = sonfive_config,
-                ref_value = "Nincada",
-            }),
-            create_toggle({
-                label = localize("darkrai_line"),
-                ref_table = sonfive_config,
-                ref_value = "Darkrai",
-            }),
-            create_toggle({
-                label = localize("vullaby_line"),
-                ref_table = sonfive_config,
-                ref_value = "Vullaby",
-            }),
-            create_toggle({
-                label = localize("meltan_line"),
-                ref_table = sonfive_config,
-                ref_value = "Meltan",
-            }),
-            create_toggle({
-                label = localize("stonjourner_line"),
-                ref_table = sonfive_config,
-                ref_value = "Stonjourner",
-            }),
-            create_toggle({
-                label = localize("lechonk_line"),
-                ref_table = sonfive_config,
-                ref_value = "Lechonk",
-            }),
-            create_toggle({
-                label = localize("nacli_line"),
-                ref_table = sonfive_config,
-                ref_value = "Nacli",
-            }),
-            create_toggle({
-                label = localize("cetoddle_line"),
-                ref_table = sonfive_config,
-                ref_value = "Cetoddle",
-            }),
-            create_toggle({
-                label = localize("custom_consumeables"),
-                ref_table = sonfive_config,
-                ref_value = "customItems",
-            }),
-            create_toggle({
-                label = "Allow Custom Stakes?",
-                ref_table = sonfive_config,
-                ref_value = "customStakes",
-            }),
-        },
+        nodes = rows
     }
 end
+
 
 --Load Joker Display if the mod is enabled
 if (SMODS.Mods["JokerDisplay"] or {}).can_load then
