@@ -61,34 +61,33 @@ SMODS.current_mod.config_tab = function()
         local sprite_info = PokemonSprites[poke]
 
         if sprite_info and sprite_info.base and sprite_info.base.pos then
-            -- Function to get sprite tint based on toggle state
-            local function get_tint()
+            -- Create a Card object for this Pokémon
+            local card = Card(
+                0, 0,                     -- X, Y position (layout will handle)
+                G.CARD_W, G.CARD_H,       -- Width & height
+                nil,                       -- optional image
+                sprite_info                -- Sprite info with atlas + pos
+            )
+            card.poke_change_sprite = true
+
+            -- Function to get sprite color based on toggle
+            local function get_colour()
                 return sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK
             end
+            card:set_colour(get_colour())
 
+            -- Create a column with Card + toggle
             local pair = {
-                n = G.UIT.C,  -- vertical stack: sprite above toggle
+                n = G.UIT.C,
                 config = { align = "cm", padding = 0.02 },
                 nodes = {
-                    { -- Sprite node using AtlasJokersBasicNatdex
-                        n = G.UIT.SPRITE,
-                        config = {
-                            atlas  = "AtlasJokersBasicNatdex",
-                            pos    = sprite_info.base.pos,
-                            scale  = 0.8,
-                            colour = get_tint(),
-                            id     = poke .. "_sprite",  -- unique id for updates
-                        }
-                    },
+                    { n = G.UIT.O, config = { object = card } },
                     create_toggle({
                         label = localize(poke .. "_line"),
                         ref_table = sonfive_config,
                         ref_value = ref_value,
                         callback = function()
-                            local ui_sprite = G.UIDEF[poke .. "_sprite"]
-                            if ui_sprite then
-                                ui_sprite.config.colour = get_tint()
-                            end
+                            card:set_colour(get_colour())
                         end
                     }),
                 }
