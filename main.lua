@@ -70,14 +70,14 @@ SMODS.current_mod.config_tab = function()
                 n = G.UIT.C,  -- vertical stack: sprite above toggle
                 config = { align = "cm", padding = 0.02 },
                 nodes = {
-                    { -- Sprite node with atlas and base.pos
+                    { -- Sprite node using AtlasJokersBasicNatdex
                         n = G.UIT.SPRITE,
                         config = {
-                            atlas  = "AtlasJokersSeriesA",              -- replace with your actual atlas
-                            pos    = sprite_info.base.pos,              -- nested pos
+                            atlas  = "AtlasJokersBasicNatdex",
+                            pos    = sprite_info.base.pos,
                             scale  = 0.8,
                             colour = get_tint(),
-                            id     = poke .. "_sprite",                 -- unique id for updates
+                            id     = poke .. "_sprite",  -- unique id for updates
                         }
                     },
                     create_toggle({
