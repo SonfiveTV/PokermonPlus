@@ -61,33 +61,33 @@ SMODS.current_mod.config_tab = function()
         local sprite_info = PokemonSprites[poke]
 
         if sprite_info and sprite_info.base and sprite_info.base.pos then
-            -- Create a Card object for this Pokémon
+            -- Create a Card object for the Pokémon sprite
             local card = Card(
-                0, 0,                     -- X, Y position (layout will handle)
+                0, 0,                     -- X, Y (layout handles actual positioning)
                 G.CARD_W, G.CARD_H,       -- Width & height
                 nil,                       -- optional image
-                sprite_info                -- Sprite info with atlas + pos
+                sprite_info                -- atlas + pos
             )
             card.poke_change_sprite = true
+            card:set_colour(sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK)
 
-            -- Function to get sprite color based on toggle
+            -- Function to get color based on toggle state
             local function get_colour()
                 return sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK
             end
-            card:set_colour(get_colour())
 
-            -- Create a column with Card + toggle
+            -- Column containing Card and toggle
             local pair = {
                 n = G.UIT.C,
                 config = { align = "cm", padding = 0.02 },
                 nodes = {
-                    { n = G.UIT.O, config = { object = card } },
+                    { n = G.UIT.O, config = { object = card } },  -- Wrap Card in G.UIT.O
                     create_toggle({
                         label = localize(poke .. "_line"),
                         ref_table = sonfive_config,
                         ref_value = ref_value,
                         callback = function()
-                            card:set_colour(get_colour())
+                            card:set_colour(get_colour())  -- Update Card color
                         end
                     }),
                 }
