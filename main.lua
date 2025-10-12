@@ -61,22 +61,23 @@ SMODS.current_mod.config_tab = function()
         local sprite_info = PokemonSprites[poke]
 
         if sprite_info and sprite_info.base and sprite_info.base.pos then
-            -- function to dynamically determine sprite tint based on toggle state
+            -- Function to get sprite tint based on toggle state
             local function get_tint()
                 return sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK
             end
 
             local pair = {
-                n = G.UIT.C,  -- column: sprite above toggle
+                n = G.UIT.C,  -- vertical stack: sprite above toggle
                 config = { align = "cm", padding = 0.02 },
                 nodes = {
-                    {  -- Sprite node
+                    { -- Sprite node with atlas and base.pos
                         n = G.UIT.SPRITE,
                         config = {
-                            sprite = sprite_info,
-                            scale = 0.8,
+                            atlas  = "AtlasJokersSeriesA",              -- replace with your actual atlas
+                            pos    = sprite_info.base.pos,              -- nested pos
+                            scale  = 0.8,
                             colour = get_tint(),
-                            id = poke .. "_sprite",  -- unique id for updates
+                            id     = poke .. "_sprite",                 -- unique id for updates
                         }
                     },
                     create_toggle({
@@ -84,7 +85,6 @@ SMODS.current_mod.config_tab = function()
                         ref_table = sonfive_config,
                         ref_value = ref_value,
                         callback = function()
-
                             local ui_sprite = G.UIDEF[poke .. "_sprite"]
                             if ui_sprite then
                                 ui_sprite.config.colour = get_tint()
@@ -96,6 +96,7 @@ SMODS.current_mod.config_tab = function()
 
             table.insert(current_row, pair)
 
+            -- Wrap 3 Pokémon into a row
             if #current_row == per_row then
                 table.insert(rows, {
                     n = G.UIT.R,
@@ -107,6 +108,7 @@ SMODS.current_mod.config_tab = function()
         end
     end
 
+    -- Handle leftover Pokémon (less than 3 in last row)
     if #current_row > 0 then
         table.insert(rows, {
             n = G.UIT.R,
@@ -115,6 +117,7 @@ SMODS.current_mod.config_tab = function()
         })
     end
 
+    -- Add standalone "custom consumeables" toggle at the bottom
     table.insert(rows, {
         n = G.UIT.R,
         config = { align = "cm", padding = 0.06 },
@@ -137,7 +140,6 @@ SMODS.current_mod.config_tab = function()
         nodes = rows
     }
 end
-
 
 
 --Load Joker Display if the mod is enabled
