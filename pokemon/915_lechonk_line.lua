@@ -58,6 +58,7 @@ local lechonk = {
                 }
             end
             a.current = G.GAME.dollars
+            a.previous = a.current
         end
         if context.end_of_round and not context.blueprint then
             a.triggered = false
@@ -123,6 +124,7 @@ local oinkologne = {
                 }
             end
             a.previous = G.GAME.dollars
+            a.previous = a.current
         end
         if context.end_of_round and not context.blueprint then
             a.triggered = false
