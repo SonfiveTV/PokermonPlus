@@ -62,7 +62,6 @@ SMODS.current_mod.config_tab = function()
         }))
     end
 
-    -- Add the custom consumables toggle
     table.insert(nodes, create_toggle({
         label = localize("custom_consumeables"),
         ref_table = sonfive_config,

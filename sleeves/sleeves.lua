@@ -65,9 +65,7 @@ local shinysleeve = {
         return {key = key, vars = vars}
     end,
     calculate = function(self, card, context)
-        if context.setting_blind then
-        print(G.GAME.shiny_edition_rate)
-        end
+        G.GAME.modifiers.shinydeck = true
     end,
     apply = function(self)
       if not G.GAME.modifiers.shinydeck then
