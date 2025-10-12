@@ -20,6 +20,7 @@ local lechonk = {
         else
             color = G.C.UI.TEXT_INACTIVE
             balance = "Not set"
+        end
         return {
             vars = {
                 card.ability.extra.rounds,
@@ -88,6 +89,7 @@ local oinkologne = {
         else
             color = G.C.UI.TEXT_INACTIVE
             balance = "Not set"
+        end
         return {
             vars = {
                 balance,
