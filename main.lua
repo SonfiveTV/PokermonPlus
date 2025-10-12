@@ -57,7 +57,7 @@ SMODS.current_mod.config_tab = function()
           "lechonk", 
           "nacli", 
           "cetoddle"
-        }
+        },
         nodes = {
           for i = 1, #evo_lines do
             create_toggle({
