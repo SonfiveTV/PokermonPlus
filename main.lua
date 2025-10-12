@@ -57,27 +57,26 @@ SMODS.current_mod.config_tab = function()
     local current_row = {}
 
     for i, poke in ipairs(evo_lines) do
-        local sprite_info = PokemonSprites[poke]
         local ref_value = poke:gsub("^%l", string.upper)
+        local sprite_info = PokemonSprites[poke]
 
-        if sprite_info then
-            -- function to dynamically get tint based on current toggle state
+        if sprite_info and sprite_info.base and sprite_info.base.pos then
+            -- function to dynamically determine sprite tint based on toggle state
             local function get_tint()
                 return sonfive_config[ref_value] and G.C.WHITE or G.C.UI.TRANSPARENT_DARK
             end
 
             local pair = {
-                n = G.UIT.C,
+                n = G.UIT.C,  -- column: sprite above toggle
                 config = { align = "cm", padding = 0.02 },
                 nodes = {
-                    {
+                    {  -- Sprite node
                         n = G.UIT.SPRITE,
                         config = {
-                            atlas = sprite_info.atlas or "AtlasJokersBasicNatdex",
-                            pos = sprite_info.pos,
+                            sprite = sprite_info,
                             scale = 0.8,
-                            colour = get_tint(), -- initial tint
-                            id = poke .. "_sprite", -- unique id to update later
+                            colour = get_tint(),
+                            id = poke .. "_sprite",  -- unique id for updates
                         }
                     },
                     create_toggle({
@@ -85,7 +84,7 @@ SMODS.current_mod.config_tab = function()
                         ref_table = sonfive_config,
                         ref_value = ref_value,
                         callback = function()
-                            -- toggle state flipped, update sprite tint
+
                             local ui_sprite = G.UIDEF[poke .. "_sprite"]
                             if ui_sprite then
                                 ui_sprite.config.colour = get_tint()
@@ -138,6 +137,7 @@ SMODS.current_mod.config_tab = function()
         nodes = rows
     }
 end
+
 
 
 --Load Joker Display if the mod is enabled
