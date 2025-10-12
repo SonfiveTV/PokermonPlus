@@ -41,6 +41,34 @@ if (SMODS.Mods["Pokermon"] or {}).can_load then
 end
 
 SMODS.current_mod.config_tab = function() 
+    local evo_lines = {
+        "nincada", 
+        "darkrai", 
+        "vullaby", 
+        "meltan", 
+        "stonjourner", 
+        "lechonk", 
+        "nacli", 
+        "cetoddle"
+    }
+
+    local nodes = {}
+
+    for i = 1, #evo_lines do
+        table.insert(nodes, create_toggle({
+            label = localize(evo_lines[i].."_line"),
+            ref_table = sonfive_config,
+            ref_value = evo_lines[i]:gsub("^%l", string.upper),
+        }))
+    end
+
+    -- Add the custom consumables toggle
+    table.insert(nodes, create_toggle({
+        label = localize("custom_consumeables"),
+        ref_table = sonfive_config,
+        ref_value = "customItems",
+    }))
+
     return {
         n = G.UIT.ROOT,
         config = {
@@ -48,30 +76,7 @@ SMODS.current_mod.config_tab = function()
             padding = 0.05,
             colour = G.C.CLEAR,
         },
-        local evo_lines = {
-          "nincada", 
-          "darkrai", 
-          "vullaby", 
-          "meltan", 
-          "stonjourner", 
-          "lechonk", 
-          "nacli", 
-          "cetoddle"
-        },
-        nodes = {
-          for i = 1, #evo_lines do
-            create_toggle({
-                label = localize(evo_lines[i].."_line"),
-                ref_table = sonfive_config,
-                ref_value = evo_lines[i]:gsub("^%l", string.upper),
-            }),
-          end
-            create_toggle({
-                label = localize("custom_consumeables"),
-                ref_table = sonfive_config,
-                ref_value = "customItems",
-            }),
-        },
+        nodes = nodes,
     }
 end
 
