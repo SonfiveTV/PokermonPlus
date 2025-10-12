@@ -13,10 +13,18 @@ local lechonk = {
 
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
+        local balance = "Not set"
+        if card.ability.extra.previous then
+            color = G.C.MONEY
+            balance = "$"..card.ability.extra.previous
+        else
+            color = G.C.UI.TEXT_INACTIVE
+            balance = "Not set"
         return {
             vars = {
                 card.ability.extra.rounds,
-                (card.ability.extra.previous or 0)
+                balance,
+                colours = {color}
             }
         }
     end,
@@ -73,9 +81,17 @@ local oinkologne = {
 
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
+        local balance = "Not set"
+        if card.ability.extra.previous then
+            color = G.C.MONEY
+            balance = "$"..card.ability.extra.previous
+        else
+            color = G.C.UI.TEXT_INACTIVE
+            balance = "Not set"
         return {
             vars = {
-                (card.ability.extra.previous or 0)
+                balance,
+                colours = {color}
             }
         }
     end,
