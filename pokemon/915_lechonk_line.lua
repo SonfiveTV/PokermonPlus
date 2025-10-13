@@ -42,7 +42,7 @@ local lechonk = {
                 if  G.GAME.dollars > a.previous then
                     earned = G.GAME.dollars - a.previous
 
-                    card.ability.extra_value = (card.ability.extra_value or 0) + (a.earned)
+                    card.ability.extra_value = (card.ability.extra_value or 0) + (earned)
                     card:set_cost()
                     return {
                         dollars = -earned,
