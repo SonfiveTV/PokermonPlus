@@ -65,10 +65,7 @@ local oinkologne = {
     name = "oinkologne",
     config = {
         extra = {
-            current = 0,
-            earned = 0,
             triggered = false,
-            initial_blind = true,
         }
     },
 
@@ -100,26 +97,24 @@ local oinkologne = {
     blueprint_compat = false,
     calculate = function(self, card, context)
         local a = card.ability.extra
+        local earned = nil
         if context.setting_blind and not a.triggered and not context.blueprint then 
-            if a.initial_blind then
-                a.previous = G.GAME.dollars
-                a.initial_blind = false
+            if a.previous then
+                if  G.GAME.dollars > a.previous then
+                    earned = G.GAME.dollars - a.previous
+
+                    card.ability.extra_value = (card.ability.extra_value or 0) + (earned)
+                    card:set_cost()
+                    return {
+                        dollars = -(earned / 2),
+                        card = card
+                    }
+                end
             end
-            a.current = G.GAME.dollars
-            if a.previous and (a.current > a.previous) then 
-                a.earned = math.floor(a.current - a.previous)
-                a.triggered = true
-                card.ability.extra_value = (card.ability.extra_value or 0) + (a.earned)
-                card:set_cost()
-                return {
-                    dollars = -(a.earned / 2),
-                    card = card
-                }
-            end
+            a.triggered = true
             a.previous = G.GAME.dollars
-            a.previous = a.current
         end
-        if context.end_of_round and not context.blueprint then
+        if context.end_of_round then
             a.triggered = false
         end
     end
