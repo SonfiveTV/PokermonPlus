@@ -111,8 +111,8 @@ local oinkologne = {
                     }
                 end
             end
-            a.triggered = true
             a.previous = G.GAME.dollars
+            a.triggered = true
         end
         if context.end_of_round then
             a.triggered = false
