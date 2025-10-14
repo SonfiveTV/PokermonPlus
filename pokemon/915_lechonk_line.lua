@@ -105,13 +105,13 @@ local oinkologne = {
 
                     card.ability.extra_value = (card.ability.extra_value or 0) + (earned)
                     card:set_cost()
+                    a.previous = G.GAME.dollars - (earned / 2)
                     return {
                         dollars = -(earned / 2),
                         card = card
                     }
                 end
             end
-            a.previous = G.GAME.dollars
             a.triggered = true
         end
         if context.end_of_round then
