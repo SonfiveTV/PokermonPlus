@@ -29,14 +29,12 @@ local function load_pokemon_folder(folder)
               if not pokermon_config.no_evos and not item.custom_pool_func then
                 item.custom_pool_func = true
                 item.in_pool = function(self)
-                  -- make sure curr_pokemon, its list, and the first element exist
-                  local name = curr_pokemon and curr_pokemon.list and curr_pokemon.list[1]
-                  if not name then
+                  local basic_name = curr_pokemon.list[1]
+                  if sonfive_config[basic_name] then
+                    return pokemon_in_pool(self)
+                  else
                     return false
                   end
-                  -- capitalize first letter
-                  local basic_name = name:gsub("^%l", string.upper)
-                  return sonfive_config[basic_name] and pokemon_in_pool(self) or false
                 end
               end
               if not item.config then

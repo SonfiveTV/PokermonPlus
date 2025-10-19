@@ -16,7 +16,7 @@ SMODS.current_mod.config_tab = function()
         table.insert(nodes, create_toggle({
             label = localize(evo_lines[i].."_line"),
             ref_table = sonfive_config,
-            ref_value = evo_lines[i]:gsub("^%l", string.upper),
+            ref_value = evo_lines[i]
         }))
     end
 
