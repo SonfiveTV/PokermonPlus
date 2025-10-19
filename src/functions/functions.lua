@@ -364,6 +364,17 @@ increment_negative_energy = function(card, etype)
 
 end
 
+function sonfive_base_evo_name(card)
+    -- Get the name of the base form if you can
+    local fam = poke_get_family_list(card.name)
+    -- Default is your own name, you may have no family T.T
+    local base_evo_name = card.name
+    if #fam > 0 then
+        -- Found a base evo, use it's name
+        base_evo_name = fam[1]
+    end
+    return base_evo_name
+end
 
 sandstorm = function()
   local count = 0
