@@ -52,8 +52,6 @@ local timerball = {
     or G.GAME.selected_back.effect.center.key == "b_sonfive_virtousdeck"
     or (next(SMODS.find_mod("CardSleeves")) and G.GAME.selected_sleeve == "sleeve_sonfive_virtuoussleeve") then
       return true
-    else
-      return false
     end
   end,
   can_use = function(self, card)

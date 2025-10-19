@@ -29,12 +29,11 @@ local function load_pokemon_folder(folder)
               if not pokermon_config.no_evos and not item.custom_pool_func then
                 item.custom_pool_func = true
                 item.in_pool = function(self)
-                  local basic_name = curr_pokemon.list[1]
-                  if sonfive_config[basic_name] then
+                  local base_evo_name = get_base_evo_name(self)
+                  if (sonfive_config[base_evo_name]) then
                     return pokemon_in_pool(self)
-                  else
-                    return false
                   end
+                  return false
                 end
               end
               if not item.config then
