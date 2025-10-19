@@ -7,7 +7,7 @@ pokermon.add_family({"cetoddle", "cetitan"})
 
 local subdir = "src/pokemon/"
 
-local load_pokemon_folder(folder)
+local function load_pokemon_folder(folder)
   local pfiles = NFS.getDirectoryItems(mod_dir..folder)
   if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfive_config.customJokers then
     for _, file in ipairs(pfiles) do
@@ -29,7 +29,7 @@ local load_pokemon_folder(folder)
               if not pokermon_config.no_evos and not item.custom_pool_func then
                 item.custom_pool_func = true
                 item.in_pool = function(self)
-                  local basic_name = curr_pokemon.list[1]:gsub("^%l", string.upper),
+                  local basic_name = curr_pokemon.list[1]:gsub("^%l", string.upper)
                   if sonfive_config.basic_name then
                     return pokemon_in_pool(self)
                   else
