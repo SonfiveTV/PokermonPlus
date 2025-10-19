@@ -37,8 +37,8 @@ return {
                 }
             },
 
-            b_sonfive_megadeck = {
-                name = "Mega Deck",
+            b_sonfive_roguedeck = {
+                name = "Rogue Deck",
                 text = {
                         "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
                         "{X:gray,C:attention}+4{} Ante win requirement"
@@ -495,8 +495,8 @@ return {
                         "even more likely to appear" 
                 },
             },
-            sleeve_sonfive_megasleeve = {
-                name = "Mega Sleeve",
+            sleeve_sonfive_roguesleeve = {
+                name = "Rogue Sleeve",
                 text = {
                         "Start with a {C:dark_edition,T:c_poke_megastone}Mega Stone{}",
                         "{X:gray,C:attention}+4{} Ante win requirement"
