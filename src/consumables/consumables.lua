@@ -48,9 +48,9 @@ local timerball = {
   discovered = true,
   custom_pool_func = true,
   in_pool = function(self)
-    if sonfive_config.CustomItems or 
-    if G.GAME.selected_back.effect.center.key == "b_sonfive_virtousdeck" or 
-    if (next(SMODS.find_mod("CardSleeves")) and G.GAME.selected_sleeve == "sleeve_sonfive_virtuoussleeve") then
+    if sonfive_config.CustomItems
+    or G.GAME.selected_back.effect.center.key == "b_sonfive_virtousdeck"
+    or (next(SMODS.find_mod("CardSleeves")) and G.GAME.selected_sleeve == "sleeve_sonfive_virtuoussleeve") then
       return true
     else
       return false
@@ -62,9 +62,6 @@ local timerball = {
       return false
     end
   end,
-  --in_pool = function(self)
-   -- return true, { allow_duplicates = true }
---  end,
   calculate = function(self, card, context)
     if context.setting_blind then
       card.ability.extra.count = card.ability.extra.count + 1
