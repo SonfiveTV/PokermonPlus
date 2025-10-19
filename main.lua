@@ -12,7 +12,6 @@ local function load_files()
     "challenges",
     "consumables",
     "functions",
-    "jokerdisplay",
     "pokemon",
     "settings",
     "sleeves",
