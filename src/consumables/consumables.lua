@@ -54,7 +54,8 @@ local timerball = {
       return true
     else
       return false
-    end,
+    end
+  end,
   can_use = function(self, card)
     if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (card.ability.extra.count - card.ability.extra.round_on_add) >= 1 then
       return true
