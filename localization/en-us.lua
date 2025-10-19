@@ -93,7 +93,7 @@ return {
                     "{C:mult}+#2#{} Mult",   
                     "{br:4}text needs to be here to work",
                     "Increases this Joker's {C:chips}Chips{}", 
-                    "and {C:mult}Mult{} at end of round",
+                    "and {C:mult}Mult{} when {C:attention}Boss Blind{} is defeated",
                     "{C:inactive}(#3# Speed Boosts remaining){}"
 
                 } 
@@ -178,9 +178,11 @@ return {
             j_sonfive_lechonk = {
                 name = "Lechonk",
                 text = {
-                    "{C:attention}Negate{} earnings and increase",
-                    "this Joker's {C:attention}sell value{} by {C:money}#2#%{}",
-                    "of the amount negated",
+                    "When {C:attention}Blind{} is selected, money {C:attention}earned{}", 
+                    "since the {C:attention}previous{} Blind was selected",
+                    "is added to this Joker's {C:attention}sell value{}",
+                    "{C:red}Lose{} money equal to sell value gained",
+                    "{C:inactive}(Previous Blind's Balance: {}{V:1}#2#{}{C:inactive}){}",
                     "{C:inactive,s:0.8}(Evolves after {C:attention,s:0.8}#1#{C:inactive,s:0.8} rounds)" 
                 }
             },
@@ -188,12 +190,12 @@ return {
             j_sonfive_oinkologne = {
                 name = "Oinkologne",
                 text = {
-                    "{C:attention}Negate{} earnings and increase",
-                    "this Joker's {C:attention}sell value{} by {C:money}#2#%{}",
-                    "of the amount negated",
-                    "{br:4}text",
-                    "Multiply this Joker's {C:attention}sell value{}",
-                    "by {X:money,C:white}X#1#{} at end of round" 
+                    "When {C:attention}Blind{} is selected, money {C:attention}earned{}", 
+                    "since the {C:attention}previous{} Blind was selected",
+                    "is added to this Joker's {C:attention}sell value{}",
+                    "{C:red}Lose{} money equal to {C:attention}half{}",
+                    "of the sell value gained",
+                    "{C:inactive}(Previous Blind's Balance: {}{V:1}#1#{}{C:inactive}){}",
                 }
             },
 

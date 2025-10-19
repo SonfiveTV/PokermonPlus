@@ -112,7 +112,7 @@ void = false
 
 
 highlighted_negative_energy_can_use = function(self, card)
-  if void and card.edition and card.edition.negative then
+
     if not G.jokers.highlighted or #G.jokers.highlighted ~= 1 then 
       return false 
     end
@@ -133,7 +133,6 @@ highlighted_negative_energy_can_use = function(self, card)
         or (choice.ability.x_mult and choice.ability.x_mult > 1) then
         return true
       end
-    end
   return false
 end
 

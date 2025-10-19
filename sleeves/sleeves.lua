@@ -65,21 +65,18 @@ local shinysleeve = {
         return {key = key, vars = vars}
     end,
     calculate = function(self, card, context)
-        if context.setting_blind then
-        print(G.GAME.shiny_edition_rate)
-        end
+        G.GAME.modifiers.shinydeck = true
     end,
     apply = function(self)
-            local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
-            G.P_CENTERS.e_poke_shiny.get_weight = function(self)
-              return previous_shiny_get_weight(self) + ((G.GAME.shiny_edition_rate or 1) - 1) * G.P_CENTERS.e_poke_shiny.weight
-            end
-            if self.get_current_deck_key() == "b_sonfive_shinydeck" then
-                G.GAME.shiny_edition_rate = (G.GAME.shiny_edition_rate) * self.config.extra.chance
-            else
-                G.GAME.shiny_edition_rate = (1) * self.config.extra.chance
-            end
-        end       
+      if not G.GAME.modifiers.shinydeck then
+        local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
+        G.P_CENTERS.e_poke_shiny.get_weight = function(self)
+          return previous_shiny_get_weight(self) + ((G.GAME.shiny_edition_rate or 1) - 1) * G.P_CENTERS.e_poke_shiny.weight
+        end
+        G.GAME.shiny_edition_rate = (G.GAME.shiny_edition_rate or 1) * self.config.extra.chance
+        G.GAME.modifiers.shinydeck = true
+      end
+    end       
 }
 
 local megasleeve = {

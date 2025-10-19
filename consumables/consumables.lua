@@ -2,12 +2,12 @@ local timerball = {
   name = "timerball",
   key = "timerball",
   set = "Item",
-  config = {extra = {round_on_add = 1, legendary = 15, rare = 7, uncommon = 3, common = 1}},
+  config = {extra = {count = 1, round_on_add = 1, legendary = 15, rare = 7, uncommon = 3, common = 1}},
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
     local rarities = {localize('k_common'), localize('k_uncommon'), localize('k_rare'), localize('k_legendary')}
     local rarity = rarities[1]
-    local round = G.GAME.round - center.ability.extra.round_on_add
+    local round = center.ability.extra.count - center.ability.extra.round_on_add
     local colors = {G.C.BLUE, G.C.GREEN, G.C.RED, G.C.PURPLE}
     local color = colors[1]
     local key
@@ -47,7 +47,7 @@ local timerball = {
   unlocked = true,
   discovered = true,
   can_use = function(self, card)
-    if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (G.GAME.round - card.ability.extra.round_on_add) >= 1 then
+    if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (card.ability.extra.count - card.ability.extra.round_on_add) >= 1 then
       return true
     else
       return false
@@ -56,18 +56,24 @@ local timerball = {
   --in_pool = function(self)
    -- return true, { allow_duplicates = true }
 --  end,
+  calculate = function(self, card, context)
+    if context.setting_blind then
+      card.ability.extra.count = card.ability.extra.count + 1
+    end
+  end,
   use = function(self, card, area, copier)
     set_spoon_item(card)
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
       play_sound('timpani')
       local _card = nil
-      if (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
+      local difference = (card.ability.extra.count - card.ability.extra.round_on_add)
+      if difference < self.config.extra.uncommon then
         _card = create_random_poke_joker("timerball", nil, "common", nil, nil)
-      elseif self.config.extra.uncommon <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.rare then
+      elseif self.config.extra.uncommon <= difference and difference < self.config.extra.rare then
         _card = create_random_poke_joker("timerball", nil, "uncommon", nil, nil)
-      elseif self.config.extra.rare <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.legendary then
+      elseif self.config.extra.rare <= difference and difference < self.config.extra.legendary then
         _card = create_random_poke_joker("timerball", nil, "rare", nil, nil)
-      elseif self.config.extra.legendary <= (G.GAME.round - card.ability.extra.round_on_add)  then
+      elseif self.config.extra.legendary <= difference  then
         _card = create_random_poke_joker("timerball", "Legendary")
       end
       _card:add_to_deck()
@@ -77,18 +83,19 @@ local timerball = {
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
-      card.ability.extra.round_on_add = G.GAME.round
+      card.ability.extra.round_on_add = 1
     end
   end,
   update = function(self, card, dt)
     if G.STAGE == G.STAGES.RUN then
-      if self.config.extra.common <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.uncommon then
+    local difference = (card.ability.extra.count - card.ability.extra.round_on_add)
+      if self.config.extra.common <= difference and difference < self.config.extra.uncommon then
         card.children.center:set_sprite_pos({x = 0, y = 1})
-      elseif self.config.extra.uncommon <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.rare then
+      elseif self.config.extra.uncommon <= difference and difference < self.config.extra.rare then
         card.children.center:set_sprite_pos({x = 0, y = 2})
-      elseif self.config.extra.rare <= (G.GAME.round - card.ability.extra.round_on_add) and (G.GAME.round - card.ability.extra.round_on_add) < self.config.extra.legendary then
+      elseif self.config.extra.rare <= difference and difference < self.config.extra.legendary then
         card.children.center:set_sprite_pos({x = 0, y = 3})
-      elseif self.config.extra.legendary <= (G.GAME.round - card.ability.extra.round_on_add)  then
+      elseif self.config.extra.legendary <= difference  then
         card.children.center:set_sprite_pos({x = 0, y = 4})
         card.children.floating_sprite:set_sprite_pos({ x = 1, y = 4 })
       else
