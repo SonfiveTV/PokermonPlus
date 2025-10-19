@@ -30,7 +30,7 @@ local function load_pokemon_folder(folder)
                 item.custom_pool_func = true
                 item.in_pool = function(self)
                   local basic_name = curr_pokemon.list[1]:gsub("^%l", string.upper)
-                  if sonfive_config.basic_name then
+                  if sonfive_config[basic_name] then
                     return pokemon_in_pool(self)
                   else
                     return false
