@@ -12,7 +12,7 @@ local lechonk = {
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
         if pokermon_config.detailed_tooltips then
-          info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..center.ability.extra.volatile}
+          info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..card.ability.extra.volatile}
         end
         return {
             vars = {
@@ -45,6 +45,7 @@ local lechonk = {
       }
     end
     return scaling_evo(self, card, context, "j_sonfive_oinkologne", card.ability.extra.triggers, 0)
+  end
 }
 
 
@@ -61,7 +62,7 @@ local oinkologne = {
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
         if pokermon_config.detailed_tooltips then
-          info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..center.ability.extra.volatile}
+          info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..card.ability.extra.volatile}
         end
         return {
             vars = {
@@ -91,7 +92,6 @@ local oinkologne = {
           card = card
       }
     end
-    return level_evo(self, card, context, "j_sonfive_oinkologne")
   end,
 }
 
