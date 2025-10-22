@@ -183,7 +183,7 @@ return {
                     "When {C:attention}Blind{} is selected",
                     "increase {C:attention}sell value{} by {C:attention}#1#%{} of",
                     "the amount of money you have",
-                    "{C:red}Reduce{} money to {C:money{}$#2#{}",
+                    "{C:red}Reduce{} money to {C:money}$#2#{}",
                     "{C:inactive}(Evolves after triggering {C:attention}#3#{} {C:inactive}times){}"
                 }
             },

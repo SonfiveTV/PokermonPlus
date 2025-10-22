@@ -19,8 +19,8 @@ local lechonk = {
             vars = {
                 card.ability.extra.percentage,
                 card.ability.extra.reset,
-                card.ability.extra.triggers,
-                card.ability.extra.evo_rqmt
+                card.ability.extra.evo_rqmt - card.ability.extra.triggers,
+                
             }
         }
     end,
@@ -36,7 +36,7 @@ local lechonk = {
     calculate = function(self, card, context)
     local a = card.ability.extra
     local earned = nil
-    if context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
+    if G.GAME.dollars > 0 and context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
       a.triggers = a.triggers + 1
       earned = G.GAME.dollars
       card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
@@ -85,7 +85,7 @@ local oinkologne = {
     calculate = function(self, card, context)
     local a = card.ability.extra
     local earned = nil
-    if context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
+    if G.GAME.dollars > 0 and context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
       earned = G.GAME.dollars
       card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
       card:set_cost()
