@@ -2,10 +2,11 @@ local lechonk = {
     name = "lechonk",
     config = {
         extra = {
-            triggers = 5,
+            triggers = 0,
             percentage = 50,
             reset = 0,
-            volatile = 'right'
+            volatile = 'right',
+            evo_rqmt = 5
         }
     },
 
@@ -18,7 +19,8 @@ local lechonk = {
             vars = {
                 card.ability.extra.percentage,
                 card.ability.extra.reset,
-                card.ability.extra.triggers
+                card.ability.extra.triggers,
+                card.ability.extra.evo_rqmt
             }
         }
     end,
@@ -35,7 +37,7 @@ local lechonk = {
     local a = card.ability.extra
     local earned = nil
     if context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
-      a.triggers = a.triggers - 1
+      a.triggers = a.triggers + 1
       earned = G.GAME.dollars
       card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
       card:set_cost()
@@ -44,7 +46,7 @@ local lechonk = {
           card = card
       }
     end
-    return scaling_evo(self, card, context, "j_sonfive_oinkologne", card.ability.extra.triggers, 0)
+    return scaling_evo(self, card, context, "j_sonfive_oinkologne", card.ability.extra.triggers, card.ability.extra.evo_rqmt)
   end
 }
 
