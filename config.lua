@@ -7,5 +7,5 @@ return {
     lechonk = true,
     nacli = true,
     cetoddle = true,
-	customItems = true,
+	  customItems = true,
 }

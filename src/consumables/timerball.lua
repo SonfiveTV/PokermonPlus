@@ -48,7 +48,7 @@ local timerball = {
   discovered = true,
   custom_pool_func = true,
   in_pool = function(self)
-    if sonfive_config.CustomItems
+    if sonfive_config.customItems
     or G.GAME.selected_back.effect.center.key == "b_sonfive_virtousdeck"
     or (next(SMODS.find_mod("CardSleeves")) and G.GAME.selected_sleeve == "sleeve_sonfive_virtuoussleeve") then
       return true
@@ -110,7 +110,7 @@ local timerball = {
   end,
 }
 
-return {name = "Items",
+return {name = "Timerball",
       list = {timerball}
 
 }
