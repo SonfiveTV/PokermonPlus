@@ -4,7 +4,7 @@ local lechonk = {
         extra = {
             triggers = 5,
             percentage = 50,
-            reset = 0
+            reset = 0,
             volatile = 'right'
         }
     },
