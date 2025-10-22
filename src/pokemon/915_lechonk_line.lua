@@ -2,26 +2,23 @@ local lechonk = {
     name = "lechonk",
     config = {
         extra = {
-            triggered = false,
-            rounds = 5,
+            triggers = 5,
+            percentage = 50,
+            reset = 0
+            volatile = 'right'
         }
     },
 
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
-        local balance = "Not set"
-        if card.ability.extra.previous then
-            color = G.C.MONEY
-            balance = "$"..card.ability.extra.previous
-        else
-            color = G.C.UI.TEXT_INACTIVE
-            balance = "Not set"
+        if pokermon_config.detailed_tooltips then
+          info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..center.ability.extra.volatile}
         end
         return {
             vars = {
-                card.ability.extra.rounds,
-                balance,
-                colours = {color}
+                card.ability.extra.percentage,
+                card.ability.extra.reset,
+                card.ability.extra.triggers
             }
         }
     end,
@@ -32,32 +29,22 @@ local lechonk = {
     stage = "Basic",
     ptype = "Colorless",
     gen = 9,
+    custom_art = true,
     blueprint_compat = false,
-    poke_custom_values_to_keep = {"previous", "earned"},
     calculate = function(self, card, context)
-        local a = card.ability.extra
-        local earned = nil
-        if context.setting_blind and not a.triggered and not context.blueprint then 
-            if a.previous then
-                if  G.GAME.dollars > a.previous then
-                    earned = G.GAME.dollars - a.previous
-
-                    card.ability.extra_value = (card.ability.extra_value or 0) + (earned)
-                    card:set_cost()
-                    return {
-                        dollars = -earned,
-                        card = card
-                    }
-                end
-            end
-            a.triggered = true
-            a.previous = G.GAME.dollars
-        end
-        if context.end_of_round then
-            a.triggered = false
-        end
-        return level_evo(self, card, context, "j_sonfive_oinkologne")
-    end,
+    local a = card.ability.extra
+    local earned = nil
+    if context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
+      a.triggers = a.triggers - 1
+      earned = G.GAME.dollars
+      card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
+      card:set_cost()
+      return {
+          dollars = a.reset - earned,
+          card = card
+      }
+    end
+    return scaling_evo(self, card, context, "j_sonfive_oinkologne", card.ability.extra.triggers, 0)
 }
 
 
@@ -65,24 +52,21 @@ local oinkologne = {
     name = "oinkologne",
     config = {
         extra = {
-            triggered = false,
+            percentage = 100,
+            reset = 25,
+            volatile = 'right'
         }
     },
 
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
-        local balance = "Not set"
-        if card.ability.extra.previous then
-            color = G.C.MONEY
-            balance = "$"..card.ability.extra.previous
-        else
-            color = G.C.UI.TEXT_INACTIVE
-            balance = "Not set"
+        if pokermon_config.detailed_tooltips then
+          info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..center.ability.extra.volatile}
         end
         return {
             vars = {
-                balance,
-                colours = {color}
+                card.ability.extra.percentage,
+                card.ability.extra.reset
             }
         }
     end,
@@ -96,28 +80,19 @@ local oinkologne = {
     gen = 9,
     blueprint_compat = false,
     calculate = function(self, card, context)
-        local a = card.ability.extra
-        local earned = nil
-        if context.setting_blind and not a.triggered and not context.blueprint then 
-            if a.previous then
-                if  G.GAME.dollars > a.previous then
-                    earned = G.GAME.dollars - a.previous
-
-                    card.ability.extra_value = (card.ability.extra_value or 0) + (earned)
-                    card:set_cost()
-                    a.previous = G.GAME.dollars - (earned / 2)
-                    return {
-                        dollars = -(earned / 2),
-                        card = card
-                    }
-                end
-            end
-            a.triggered = true
-        end
-        if context.end_of_round then
-            a.triggered = false
-        end
+    local a = card.ability.extra
+    local earned = nil
+    if context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
+      earned = G.GAME.dollars
+      card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
+      card:set_cost()
+      return {
+          dollars = a.reset - earned,
+          card = card
+      }
     end
+    return level_evo(self, card, context, "j_sonfive_oinkologne")
+  end,
 }
 
 list = {lechonk, oinkologne}
