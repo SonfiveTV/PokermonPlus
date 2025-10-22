@@ -3,7 +3,7 @@ local lechonk = {
     config = {
         extra = {
             triggers = 0,
-            percentage = 50,
+            percentage = 75,
             reset = 0,
             volatile = 'right',
             evo_rqmt = 5
@@ -55,8 +55,8 @@ local oinkologne = {
     name = "oinkologne",
     config = {
         extra = {
-            percentage = 100,
-            reset = 25,
+            percentage = 150,
+            reset = 0,
             volatile = 'right'
         }
     },
