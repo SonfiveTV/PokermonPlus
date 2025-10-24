@@ -69,14 +69,6 @@ local function load_pokemon_folder(folder)
               item.discovered = not pokermon_config.pokemon_discovery
               pokermon.Pokemon(item, "sonfive", nil)
             end
-
-            for _, v in ipairs(sonfive_evo_lines) do
-              if v == family[1] then
-                return  -- value already exists
-              else
-                table.insert(sonfive_evo_lines, family[1])
-              end
-            end
           end
           
           if #family > 1 then
