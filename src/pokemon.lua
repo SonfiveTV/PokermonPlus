@@ -71,10 +71,10 @@ local function load_pokemon_folder(folder)
             end
 
             for _, v in ipairs(sonfive_evo_lines) do
-              if v == sonfive_base_evo_name(item) then
+              if v == family[1] then
                 return  -- value already exists
               else
-                table.insert(sonfive_evo_lines, item.name)
+                table.insert(sonfive_evo_lines, family[1])
               end
             end
           end
