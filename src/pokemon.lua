@@ -69,18 +69,16 @@ local function load_pokemon_folder(folder)
               item.discovered = not pokermon_config.pokemon_discovery
               pokermon.Pokemon(item, "sonfive", nil)
             end
-            local function sonfive_create_config(sonfive_evo_lines, item)
-              for _, v in ipairs(sonfive_evo_lines) do
-                if v == sonfive_base_evo_name(item) then
-                  return  -- value already exists
-                end
+
+            for _, v in ipairs(sonfive_evo_lines) do
+              if v == sonfive_base_evo_name(item) then
+                return  -- value already exists
+              else
+                table.insert(sonfive_evo_lines, item)
               end
-              table.insert(sonfive_evo_lines, item)  -- value not found, insert it
             end
-            sonfive_create_config(sonfive_evo_lines, item.name)
           end
           
-
           if #family > 1 then
             pokermon.add_family(family)
           end
