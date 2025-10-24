@@ -13,6 +13,10 @@ if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] then
       if curr_consumable.init then curr_consumable:init() end
       
       for i, item in ipairs(curr_consumable.list) do
+        item.name = item.name or tostring(item)
+        item.key = item.key or tostring(item)
+        item.atlas = item.atlas or "consumables"
+        item.discovered = (item.discovered == nil) and true or item.discovered
         if ((not pokermon_config.jokers_only and not item.pokeball) or (item.pokeball and pokermon_config.pokeballs)) or (item.evo_item and not pokermon_config.no_evos) then
           SMODS.Consumable(item)
         end
