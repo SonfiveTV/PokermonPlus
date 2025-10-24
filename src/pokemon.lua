@@ -77,8 +77,9 @@ local function load_pokemon_folder(folder)
               end
               table.insert(sonfive_evo_lines, item)  -- value not found, insert it
             end
+            sonfive_create_config(sonfive_evo_lines, item.name)
           end
-          sonfive_create_config(sonfive_evo_lines, item.name)
+          
 
           if #family > 1 then
             pokermon.add_family(family)
