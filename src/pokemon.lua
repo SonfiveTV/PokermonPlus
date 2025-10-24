@@ -71,7 +71,7 @@ local function load_pokemon_folder(folder)
             end
             local function sonfive_create_config(sonfive_evo_lines, item_name)
               for _, v in ipairs(sonfive_evo_lines) do
-                if v == sonfive_base_evo_name(item) then
+                if v == sonfive_base_evo_name(tostring(item)) then
                   return  -- value already exists
                 end
               end
