@@ -44,13 +44,12 @@ local function load_pokemon_folder(folder)
                   item.soul_pos = item.soul_pos or sprite.base.soul_pos
               end
 
-                local sprite = PokemonSprites[item.name]
-                local atlas_prefix = item.custom_art and "AtlasJokersSeriesA" or "AtlasJokersBasic"
-                local gen_string = (sprite.gen_atlas and item.gen and item.gen < 10 and 'Gen0'..item.gen)
-                  or (sprite.gen_atlas and item.gen and 'Gen'..item.gen)
-                item.atlas = item.atlas or ((sprite.gen_atlas and item.gen) and atlas_prefix .. gen_string)
-                  or atlas_prefix .. "Natdex"
-              end
+              local sprite = PokemonSprites[item.name]
+              local atlas_prefix = item.custom_art and "AtlasJokersSeriesA" or "AtlasJokersBasic"
+              local gen_string = (sprite.gen_atlas and item.gen and item.gen < 10 and 'Gen0'..item.gen)
+                or (sprite.gen_atlas and item.gen and 'Gen'..item.gen)
+              item.atlas = item.atlas or ((sprite.gen_atlas and item.gen) and atlas_prefix .. gen_string)
+                or atlas_prefix .. "Natdex"
 
               if item.ptype then
                 item.config.extra.ptype = item.ptype
