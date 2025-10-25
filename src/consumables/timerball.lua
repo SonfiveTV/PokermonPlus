@@ -141,7 +141,7 @@ local timerball = {
           end
 
           if card.children.floating_sprite then
-              local float_y = (count >= (a.legendary or 15)) and 4 or sprite_y
+              local float_y = (count >= (a.legendary or 15)) and 4 or 0
               card.children.floating_sprite:set_sprite_pos({x = 1, y = float_y})
           end
 
