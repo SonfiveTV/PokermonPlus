@@ -27,7 +27,7 @@ local croagunk = {
     local a = card.ability.extra
 
     -- When a Tarot consumable is used
-    if context.using_consumeable and not context.blueprint and context.consumeable and context.consumeable.ability then
+    if context.using_consumeable and context.consumeable.ability.set == 'Tarot' and not context.blueprint and context.consumeable and context.consumeable.ability then
       if a.previous_tarot == context.consumeable.config.center_key then
         a.retriggers = (a.retriggers or 0) + 1
       else
@@ -54,7 +54,6 @@ local croagunk = {
         a.reset = true
       else
         a.retriggers = 0
-        a.previous_tarot = "poke_none"
         return {
         message = localize('k_reset'),
         colour = G.C.RED
