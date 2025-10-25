@@ -112,6 +112,27 @@ return {
                                   
                 } 
             },
+            j_sonfive_croagunk = {
+                name = 'Croagunk',
+                text = {
+                    "Played Purple Seal cards",
+                    "retrigger 0 times when scored",
+                    "{br:3}ribbit"
+                    "Gains 1 retrigger per consecutive",
+                    "usage of the previously played",
+                    "Tarot card until Boss Blind is defeated"
+                }
+            },
+            j_sonfive_toxicroak = {
+                name = 'Toxicroak',
+                text = {
+                    "Played Purple Seal cards",
+                    "retrigger 0 times when scored",
+                    "{br:3}ribbit"
+                    "Gains 1 retrigger per consecutive",
+                    "usage of the previously played Tarot Card",
+                }
+            },
             j_sonfive_darkrai = {
                 name = 'Darkrai',
                 text = {
@@ -575,15 +596,6 @@ return {
                 poke_deenergized_ex = "De-Energized!",
 
                 -- Config Descriptions
-                custom_jokers = "Allow Custom Jokers?",
-                nincada_line = "Nincada line?",
-                darkrai_line = "Darkrai line?",
-                vullaby_line = "Vullaby line?",
-                meltan_line = "Meltan line?",
-                stonjourner_line = "Stonjourner line?",
-                lechonk_line = "Lechonk line?",
-                nacli_line = "Nacli line?",
-                cetoddle_line = "Cetoddle line?",
                 enable_timerball = "Enable Timer Ball?",
             },
             v_text = {
