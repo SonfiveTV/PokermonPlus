@@ -89,7 +89,22 @@ local voiddeck = {
 } 
 
 
-local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck}
+local croagunkdeck = {
+	name = "croagunkdeck",
+	key = "croagunkdeck",  
+  unlocked = true,
+  discovered = true,
+	config = {jokers = {'j_sonfive_croagunk'}},
+  loc_vars = function(self, info_queue, center)
+  end,
+	pos = { x = 0, y = 0 },
+	atlas = "backs",
+  apply = function(self)
+    G.GAME.modifiers.poke_force_seal = "Purple"
+  end,
+}
+
+local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck, croagunkdeck}
 return {name = "Back",
         list = dList}
 
