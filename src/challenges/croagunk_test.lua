@@ -13,6 +13,6 @@ local croagunk_test = {
 
 list = {croagunk_test}
 
-return {name = "Croagunk Test", 
+return {name = "Challenges", 
 list = list
 }
