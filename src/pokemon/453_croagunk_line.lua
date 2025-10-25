@@ -4,14 +4,14 @@ local croagunk = {
     extra = {
       reset = true,
       retriggers = 0,
-      previous_tarot = "Not set!",
+      previous_tarot = "poke_none",
       evo_rqmt = 5
     }
   },
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
-    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt, a.previous_tarot
+    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt, localize(a.previous_tarot)
     return {vars = {retriggers, last_tarot, evo_rqmt}}
   end,
 
@@ -54,7 +54,7 @@ local croagunk = {
         a.reset = true
       else
         a.retriggers = 0
-        a.previous_tarot = "Not set!"
+        a.previous_tarot = "poke_none"
         return {
         message = localize('k_reset'),
         colour = G.C.RED
