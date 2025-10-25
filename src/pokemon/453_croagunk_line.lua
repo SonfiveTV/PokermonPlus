@@ -12,7 +12,7 @@ local croagunk = {
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
     local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt
-    if a.previous_tarot = "poke_none" then
+    if a.previous_tarot == "poke_none" then
       last_tarot = localize("poke_none")
     else
       last_tarot = localize{type = 'name_text', key = a.previous_tarot, set = 'Tarot'}
