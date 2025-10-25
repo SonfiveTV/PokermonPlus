@@ -108,7 +108,7 @@ return {
                     "If a {C:attention}#4#, #5#,{} or {C:attention}#6#{} is",
                     "held in hand then",
                     "{S:1.1,C:red,E:2}self destructs{}",
-                    "{C:inactive,s:0.8}(Rank changes every round){}",
+                    "{C:inactive,s:0.8}(Rank changes every round){}"
                                   
                 } 
             },
@@ -122,7 +122,7 @@ return {
                     "usage of the {C:attention}previously played{}",
                     "{C:purple}Tarot{} card until {C:attention}Boss Blind{} is defeated",
                     "{C:inactive}(Currently {C:purple}#2#{}{C:inactive}){}",
-                    "{C:inactive,s:0.8}(Evolves at 5 retriggers){}",
+                    "{C:inactive,s:0.8}(Evolves at 5 retriggers){}"
                 }
             },
             j_sonfive_toxicroak = {
