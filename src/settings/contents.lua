@@ -14,9 +14,9 @@ local function label(key)
   end
 end
 
-local function title(page_num)
+local function title(page_num, pages)
   return function()
-    return localize(TITLE_PREFIX) .. " " .. tostring(page_num)
+    return "Pokemon" .. " " .. tostring(page_num) .. "/" .. tostring(pages)
   end
 end
 
@@ -62,7 +62,7 @@ for i = 1, page_count do
   end
 
   table.insert(pages, {
-    title = title(i),
+    title = title(i, #pages),
     tiles = tiles,
   })
 end
