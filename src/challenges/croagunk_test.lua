@@ -5,8 +5,9 @@ local croagunk_test = {
         {id = "j_sonfive_croagunk"},
     },
     deck = {
+      type = 'Challenge Deck',
       seal = "Purple"
-    },
+    }
     
 }
 
