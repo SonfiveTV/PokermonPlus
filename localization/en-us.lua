@@ -584,7 +584,7 @@ return {
                 lechonk_line = "Lechonk line?",
                 nacli_line = "Nacli line?",
                 cetoddle_line = "Cetoddle line?",
-                custom_consumeables = "Allow Custom Consumables?",
+                enable_timerball = "Enable Timer Ball?",
             },
             v_text = {
            ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},

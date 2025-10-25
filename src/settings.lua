@@ -135,9 +135,9 @@ function SMODS.current_mod.extra_tabs()
           },
           nodes = {
             create_toggle({
-              label = localize("custom_consumables"),
+              label = localize("enable_timerball"),
               ref_table = sonfive_config,
-              ref_value = "customItems",
+              ref_value = "timerball",
             }),
           }
         }
