@@ -11,15 +11,7 @@ local croagunk = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
-    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt
-
-    -- Display last used Tarot name if available
-    if a.initialized then
-      last_tarot = localize { type = 'name_text', key = context.consumeable.config.center_key, set = "Tarot" }
-    else
-      last_tarot = localize('poke_none')
-    end
-
+    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt, context.consumeable.config.center_key
     return {vars = {retriggers, last_tarot, evo_rqmt}}
   end,
 
@@ -36,16 +28,13 @@ local croagunk = {
 
     -- When a Tarot consumable is used
     if context.using_consumeable and not context.blueprint and context.consumeable and context.consumeable.ability then
-      if context.consumeable.set == "Tarot" then
-        if a.previous_tarot == context.consumeable.config.center_key then
-          a.retriggers = (a.retriggers or 0) + 1
-          a.initialized = true
-        else
-          a.retriggers = 1
-          a.previous_tarot = context.consumeable.config.center_key
-        end
-        a.reset = false
+      if a.previous_tarot == context.consumeable.config.center_key then
+        a.retriggers = (a.retriggers or 0) + 1
+      else
+        a.retriggers = 1
+        a.previous_tarot = context.consumeable.config.center_key
       end
+      a.reset = false
     end
 
     -- When a Purple-sealed card is played, retrigger it
@@ -60,7 +49,7 @@ local croagunk = {
     end
 
     -- Reset retrigger counter at end of round
-    if context.end_of_round and not context.individual and not context.repetition and not context.blueprint then
+    if context.end_of_round and and not context.individual and not context.repetition and not context.blueprint then
       if not a.reset then
         a.reset = true
       else
