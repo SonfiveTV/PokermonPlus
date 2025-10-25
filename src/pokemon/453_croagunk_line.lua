@@ -33,7 +33,7 @@ local croagunk = {
   calculate = function(self, card, context)
     local a = card.ability.extra
     if context.using_consumeable and not context.blueprint then
-      if context.consumeable.ability == a.previous_tarot then
+      if context.consumeable.ability and context.consumeable.ability == a.previous_tarot then
         a.retriggers = (a.retriggers or 0) + 1
       else
         a.retriggers = 1
@@ -48,7 +48,7 @@ local croagunk = {
             card = card
           }
       end
-    elseif (context.end_of_round) and not context.repetition and not context.individual and not context.blueprint then
+    elseif (context.end_of_round) and not context.blueprint then
       a.retriggers = a.reset and 0 or a.retriggers
     end
     return scaling_evo(self, card, context, "j_sonfive_toxicroak", a.retriggers, a.evo_rqmt)
