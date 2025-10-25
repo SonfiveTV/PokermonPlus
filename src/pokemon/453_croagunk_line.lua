@@ -11,7 +11,7 @@ local croagunk = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
-    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt, localize(a.previous_tarot)
+    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt, localize{type = 'name_text', key = a.previous_tarot, set = 'Tarot'}
     return {vars = {retriggers, last_tarot, evo_rqmt}}
   end,
 
