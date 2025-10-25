@@ -16,6 +16,7 @@ local croagunk = {
       last_tarot = localize("poke_none")
     else
       last_tarot = localize{type = 'name_text', key = a.previous_tarot, set = 'Tarot'}
+    end
     return {vars = {retriggers, last_tarot, evo_rqmt}}
   end,
 
