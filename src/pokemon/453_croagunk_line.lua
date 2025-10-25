@@ -88,11 +88,11 @@ local toxicroak = {
   calculate = function(self, card, context)
     local a = card.ability.extra
     if context.using_consumeable and not context.blueprint then
-      if context.consumeable.ability == a.previous_tarot then
+      if context.consumeable.ability.name == a.previous_tarot then
         a.retriggers = (a.retriggers or 0) + 1
       else
         a.retriggers = 1
-        a.previous_tarot = context.consumeable.ability
+        a.previous_tarot = context.consumeable.ability.name
       end
       a.reset = false
     elseif context.repetition and context.cardarea == G.play and not context.other_card.debuff then
