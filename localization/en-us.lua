@@ -115,22 +115,26 @@ return {
             j_sonfive_croagunk = {
                 name = 'Croagunk',
                 text = {
-                    "Played Purple Seal cards",
-                    "retrigger 0 times when scored",
+                    "Played {C:purple}Purple Seal{} cards",
+                    "retrigger {C:attention}#1#{} times when scored",
                     "{br:3}ribbit"
-                    "Gains 1 retrigger per consecutive",
-                    "usage of the previously played",
-                    "Tarot card until Boss Blind is defeated"
+                    "Increase retriggers by {C:attention}1{} per {C:attention}consecutive{}",
+                    "usage of the {C:attention}previously played{}",
+                    "{C:purple}Tarot{} card until {C:attention}Boss Blind{} is defeated",
+                    "{C:inactive}(Currently {C:purple}#2#{}{C:inactive}){}",
+                    "{C:inactive,s:0.8}(Evolves at 5 retriggers){}"
+                    ,
                 }
             },
             j_sonfive_toxicroak = {
                 name = 'Toxicroak',
                 text = {
-                    "Played Purple Seal cards",
-                    "retrigger 0 times when scored",
+                    "Played {C:purple}Purple Seal{} cards",
+                    "retrigger {C:attention}#1#{} times when scored",
                     "{br:3}ribbit"
-                    "Gains 1 retrigger per consecutive",
-                    "usage of the previously played Tarot Card",
+                    "Increase retriggers by {C:attention}1{} per {C:attention}consecutive{}",
+                    "usage of the {C:attention}previously played{} {C:purple}Tarot{} Card",
+                    "{C:inactive}(Currently {C:purple}#2#{}{C:inactive}){}",
                 }
             },
             j_sonfive_darkrai = {

@@ -101,3 +101,9 @@ local toxicroak = {
     end
   end
 }
+
+list = {croagunk, toxicroak}
+
+return {name = "Croagunk", 
+list = list
+}
