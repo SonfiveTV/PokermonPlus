@@ -49,7 +49,7 @@ local croagunk = {
     end
 
     -- Reset retrigger counter at end of round
-    if context.end_of_round and and not context.individual and not context.repetition and not context.blueprint then
+    if context.end_of_round and not context.individual and not context.repetition and not context.blueprint then
       if not a.reset then
         a.reset = true
       else
