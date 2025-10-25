@@ -32,12 +32,13 @@ local croagunk = {
   poke_custom_values_to_keep = {"retriggers", "previous_tarot"},
   calculate = function(self, card, context)
     local a = card.ability.extra
-    if context.using_consumeable and not context.blueprint then
-      if context.consumeable.ability and context.consumeable.ability == a.previous_tarot then
+    if context.using_consumeable and not context.blueprint and context.consumeable and context.consumeable.ability then
+      local key = context.consumeable.ability.key
+      if a.previous_tarot == key then
         a.retriggers = (a.retriggers or 0) + 1
       else
         a.retriggers = 1
-        a.previous_tarot = context.consumeable.ability
+        a.previous_tarot = key
       end
       a.reset = false
     elseif context.repetition and context.cardarea == G.play and not context.other_card.debuff then
