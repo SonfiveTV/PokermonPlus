@@ -9,36 +9,56 @@ local timerball = {
   },
 
   loc_vars = function(self, info_queue, center)
-    info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
-    local a = center.ability.extra
-    local round = a.count or 0
-    local rarity, color, key = localize('k_common'), G.C.BLUE
+    info_queue[#info_queue + 1] = {set = 'Other', key = 'timer'}
+
+    local a = center.ability.extra or {}
+    local count = a.count or 0
+
+    -- Default rarity and color
+    local rarity, color = localize('k_common'), G.C.BLUE
+
+    -- Rarity thresholds
     local rarities = {
-        {threshold = a.legendary, name = localize('k_legendary'), color = G.C.PURPLE},
-        {threshold = a.rare,      name = localize('k_rare'),      color = G.C.RED},
-        {threshold = a.uncommon,  name = localize('k_uncommon'),  color = G.C.GREEN},
-        {threshold = a.common,    name = localize('k_common'),    color = G.C.BLUE},
+        {threshold = a.legendary or 15, name = localize('k_legendary'), color = G.C.PURPLE},
+        {threshold = a.rare or 7,      name = localize('k_rare'),      color = G.C.RED},
+        {threshold = a.uncommon or 3,  name = localize('k_uncommon'),  color = G.C.GREEN},
+        {threshold = a.common or 1,    name = localize('k_common'),    color = G.C.BLUE},
     }
-    
-    for i = #rarities, 1, 1 do
-        if round >= rarities[i].threshold then
+
+    -- Determine rarity based on count
+    for i = #rarities, 1, -1 do
+        if count >= rarities[i].threshold then
             rarity = rarities[i].name
             color = rarities[i].color
             break
         end
     end
 
-    key = (round >= a.legendary and self.key.."_max")
-        or (round > 0 and round < a.common and self.key.."_start")
-        or self.key.."_deck"
+    -- Determine key based on count
+    local key
+    if count >= (a.legendary or 15) then
+        key = self.key .. "_max"
+    elseif count > 0 and count < (a.common or 1) then
+        key = self.key .. "_start"
+    else
+        key = self.key .. "_deck"
+    end
 
-    round = (round >= a.legendary and 999)
-        or (round >= a.rare and (a.legendary - round))
-        or (round >= a.uncommon and (a.rare - round))
-        or (round >= a.common and (a.uncommon - round))
-        or (round >= 0 and (a.common - round))
-        or round
-    return {vars = {rarity, round, colours = {color}},  key = key}
+    -- Calculate rounds until next threshold
+    local rounds
+    if count >= (a.legendary or 15) then
+        rounds = 999
+    elseif count >= (a.rare or 7) then
+        rounds = (a.legendary or 15) - count
+    elseif count >= (a.uncommon or 3) then
+        rounds = (a.rare or 7) - count
+    elseif count >= (a.common or 1) then
+        rounds = (a.uncommon or 3) - count
+    else
+        rounds = (a.common or 1) - count
+    end
+
+    return {vars = {rarity, rounds, colours = {color}}, key = key}
   end,
   pos = { x = 0, y = 0 },
   soul_pos = {x = 1, y = 3},
