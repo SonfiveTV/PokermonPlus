@@ -1,6 +1,6 @@
 return {
     nincada = true,
-    croagunk = true,
+    croagunk = false,
     darkrai = true,
     vullaby = true,
     meltan = true,
