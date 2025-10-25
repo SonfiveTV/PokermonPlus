@@ -38,19 +38,14 @@ local timerball = {
       key = self.key.."_deck"
     end
     return {vars = {rarity, round, colours = {color}},  key = key}
-
+    
   end,
   pos = { x = 0, y = 0 },
   soul_pos = {x = 1, y = 3},
+  atlas = "consumables",
   cost = 3,
-  custom_pool_func = true,
-  in_pool = function(self)
-    if sonfive_config.customItems
-    or G.GAME.selected_back.effect.center.key == "b_sonfive_virtousdeck"
-    or (next(SMODS.find_mod("CardSleeves")) and G.GAME.selected_sleeve == "sleeve_sonfive_virtuoussleeve") then
-      return true
-    end
-  end,
+  unlocked = true,
+  discovered = true,
   can_use = function(self, card)
     if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) and (card.ability.extra.count - card.ability.extra.round_on_add) >= 1 then
       return true
@@ -58,6 +53,9 @@ local timerball = {
       return false
     end
   end,
+  --in_pool = function(self)
+   -- return true, { allow_duplicates = true }
+--  end,
   calculate = function(self, card, context)
     if context.setting_blind then
       card.ability.extra.count = card.ability.extra.count + 1
@@ -107,6 +105,7 @@ local timerball = {
   end,
 }
 
-return {name = "Timerball",
+return {name = "Items",
       list = {timerball}
+
 }
