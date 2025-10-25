@@ -1,7 +1,7 @@
 -- Automatically derive naming and prefix from current mod
 local PREFIX = "j_" .. SMODS.current_mod.prefix .. "_"
 local TITLE_PREFIX = SMODS.current_mod.prefix .. "_regular_pokemon"
-local TILES_PER_PAGE = 6  -- adjust number of tiles per page
+local TILES_PER_PAGE = 8  -- adjust number of tiles per page
 
 -- Helpers
 local function label(key)
