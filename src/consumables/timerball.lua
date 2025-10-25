@@ -36,9 +36,11 @@ local timerball = {
 
     -- Determine key based on count
     local key
-    if count >= (a.legendary or 15) then
+    if count >= (a.legendary) then
         key = self.key .. "_max"
-    elseif count > 0 and count < (a.common or 1) then
+    elseif count >= (a.common) then
+        key = self.key
+    elseif count > 0 and count < (a.common) then
         key = self.key .. "_start"
     else
         key = self.key .. "_deck"
@@ -138,9 +140,9 @@ local timerball = {
               sprite_y = 0
           end
 
-          -- Update floating sprite for max
-          if count >= a.legendary and card.children.floating_sprite then
-              card.children.floating_sprite:set_sprite_pos({x = 1, y = 4})
+          if card.children.floating_sprite then
+              local float_y = (count >= (a.legendary or 15)) and 4 or sprite_y
+              card.children.floating_sprite:set_sprite_pos({x = 1, y = float_y})
           end
 
           -- Update center sprite
