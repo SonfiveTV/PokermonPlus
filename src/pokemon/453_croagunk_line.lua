@@ -14,9 +14,8 @@ local croagunk = {
     local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt
 
     -- Display last used Tarot name if available
-    if type(a.previous_tarot) == "string" and G.P_CARDS[a.previous_tarot] then
-      local prev = G.P_CARDS[a.previous_tarot]
-      last_tarot = localize { type = 'name_text', key = prev.key, set = prev.set }
+
+      last_tarot = localize { type = 'name_text', key = context.consumeable.config.center_key, set = "Tarot" }
     else
       last_tarot = localize('poke_none')
     end
@@ -58,12 +57,16 @@ local croagunk = {
     end
 
     -- Reset retrigger counter at end of round
-    if context.end_of_round and not context.blueprint then
-      if a.reset then
+    if context.end_of_round and and not context.individual and not context.repetition and not context.blueprint then
+      if not a.reset then
+        a.reset = true
+      else
         a.retriggers = 0
         a.previous_tarot = "Not set!"
-      else
-        a.reset = true
+        return {
+        message = localize('k_reset'),
+        colour = G.C.RED
+      }
       end
     end
 
