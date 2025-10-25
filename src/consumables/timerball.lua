@@ -20,7 +20,7 @@ local timerball = {
         {threshold = a.common,    name = localize('k_common'),    color = G.C.BLUE},
     }
     
-    for i = #rarities, 1, do
+    for i = #rarities, 1, 1 do
         if round >= rarities[i].threshold then
             rarity = rarities[i].name
             color = rarities[i].color
