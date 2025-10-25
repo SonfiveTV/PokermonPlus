@@ -591,6 +591,7 @@ return {
             c_sonfive_salt_cured = "Salt Cured",
             c_sonfive_metallurgy = "Metallurgy",
             c_sonfive_wonder_guard = "Guard the Wonder",
+            c_sonfive_croagunk_test = "Croagunk Test",
             },
             dictionary = {
                 -- Joker Messages

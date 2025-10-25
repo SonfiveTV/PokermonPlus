@@ -2,10 +2,9 @@ local croagunk_test = {
     object_type = "Challenge",
     key = "croagunk_test",
     jokers = {
-        {id = "j_sonfive_croagunk"},
+        {id = "j_sonfive_croagunk"}
     },
     deck = {
-      type = 'Challenge Deck',
       seal = "Purple"
     }
     
