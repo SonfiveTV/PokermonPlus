@@ -117,13 +117,12 @@ return {
                 text = {
                     "Played {C:purple}Purple Seal{} cards",
                     "retrigger {C:attention}#1#{} times when scored",
-                    "{br:3}ribbit"
+                    "{br:3}ribbit",
                     "Increase retriggers by {C:attention}1{} per {C:attention}consecutive{}",
                     "usage of the {C:attention}previously played{}",
                     "{C:purple}Tarot{} card until {C:attention}Boss Blind{} is defeated",
                     "{C:inactive}(Currently {C:purple}#2#{}{C:inactive}){}",
-                    "{C:inactive,s:0.8}(Evolves at 5 retriggers){}"
-                    ,
+                    "{C:inactive,s:0.8}(Evolves at 5 retriggers){}",
                 }
             },
             j_sonfive_toxicroak = {
@@ -131,7 +130,7 @@ return {
                 text = {
                     "Played {C:purple}Purple Seal{} cards",
                     "retrigger {C:attention}#1#{} times when scored",
-                    "{br:3}ribbit"
+                    "{br:3}ribbit",
                     "Increase retriggers by {C:attention}1{} per {C:attention}consecutive{}",
                     "usage of the {C:attention}previously played{} {C:purple}Tarot{} Card",
                     "{C:inactive}(Currently {C:purple}#2#{}{C:inactive}){}",
