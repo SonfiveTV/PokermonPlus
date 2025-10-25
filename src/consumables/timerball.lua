@@ -130,6 +130,7 @@ local timerball = {
           local sprite_y
           if count >= a.legendary then
               sprite_y = 4
+              card.children.floating_sprite:set_sprite_pos({x = 1, y = 4})
           elseif count >= a.rare then
               sprite_y = 3
           elseif count >= a.uncommon then
@@ -138,11 +139,6 @@ local timerball = {
               sprite_y = 1
           else
               sprite_y = 0
-          end
-
-          if card.children.floating_sprite then
-              local float_y = (count >= (a.legendary or 15)) and 4 or 0
-              card.children.floating_sprite:set_sprite_pos({x = 1, y = float_y})
           end
 
           -- Update center sprite
