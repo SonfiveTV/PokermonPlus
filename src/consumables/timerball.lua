@@ -78,12 +78,12 @@ local timerball = {
   update = function(self, card, dt)
     if G.STAGE == G.STAGES.RUN then
       local a = self.config.extra
-      local sprite_y = (a.count >= a.legendary and 4)
-      or (a.count >= a.rare and 3)
-      or (a.count >= a.uncommon and 2)
-      or (a.count >= a.common and 1)
+      local sprite_y = ((a.count or 0) >= a.legendary and 4)
+      or ((a.count or 0) >= a.rare and 3)
+      or ((a.count or 0) >= a.uncommon and 2)
+      or ((a.count or 0) >= a.common and 1)
       or 0
-      if a.count >= a.legendary then
+      if (a.count or 0) >= a.legendary then
         card.children.floating_sprite:set_sprite_pos({ x = 1, y = 4})
       end
       card.children.center:set_sprite_pos({x = 0, y = sprite_y})
