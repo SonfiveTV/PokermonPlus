@@ -12,8 +12,9 @@ local croagunk = {
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
     local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt
-    if type(a.previous_tarot) == "table" and a.previous_tarot.key and a.previous_tarot.set then
-      last_tarot = localize { type = 'name_text', key = a.previous_tarot.key, set = a.previous_tarot.set }
+    if a.previous_tarot and G.P_CARDS[a.previous_tarot] then
+      local prev = G.P_CARDS[a.previous_tarot]
+      last_tarot = localize { type = 'name_text', key = prev.key, set = prev.set }
     else
       last_tarot = localize('poke_none')
     end
@@ -32,16 +33,21 @@ local croagunk = {
   poke_custom_values_to_keep = {"retriggers", "previous_tarot"},
   calculate = function(self, card, context)
     local a = card.ability.extra
-    if context.using_consumeable and not context.blueprint and context.consumeable and context.consumeable.ability then
-      local key = context.consumeable.ability.key
+        if context.using_consumeable and not context.blueprint and context.consumeable and context.consumeable.ability then
+      local ability = context.consumeable.ability
+      local key = ability.key or "unknown"
+
       if a.previous_tarot == key then
         a.retriggers = (a.retriggers or 0) + 1
       else
         a.retriggers = 1
         a.previous_tarot = key
       end
+
       a.reset = false
-    elseif context.repetition and context.cardarea == G.play and not context.other_card.debuff then
+    end
+
+    if context.repetition and context.cardarea == G.play and not context.other_card.debuff then
       if context.other_card.seal == "Purple" then
           return {
             message = localize('k_again_ex'),
@@ -49,7 +55,8 @@ local croagunk = {
             card = card
           }
       end
-    elseif (context.end_of_round) and not context.blueprint then
+    end
+    if (context.end_of_round) and not context.blueprint then
       a.retriggers = a.reset and 0 or a.retriggers
     end
     return scaling_evo(self, card, context, "j_sonfive_toxicroak", a.retriggers, a.evo_rqmt)
