@@ -64,11 +64,11 @@ local timerball = {
       play_sound('timpani')
       local _card = nil
       local a = self.config.extra
-      local stage = (a.count >= a.legendary and "Legendary")
-      local rarity = (a.count >= a.legendary and nil)
-      or (a.count >= a.rare and "rare")
-      or (a.count >= a.uncommon and "uncommon")
-      or (a.count >= a.common and "common")
+      local stage = ((a.count or 0) >= a.legendary and "Legendary")
+      local rarity = ((a.count or 0) >= a.legendary and nil)
+      or ((a.count or 0)nt >= a.rare and "rare")
+      or ((a.count or 0) >= a.uncommon and "uncommon")
+      or ((a.count or 0) >= a.common and "common")
       _card = create_random_poke_joker("timerball", stage, rarity)
       _card:add_to_deck()
       G.jokers:emplace(_card)
