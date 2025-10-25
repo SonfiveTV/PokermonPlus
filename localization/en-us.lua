@@ -115,25 +115,25 @@ return {
             j_sonfive_croagunk = {
                 name = 'Croagunk',
                 text = {
-                    "Played {C:purple}Purple Seal{} cards",
-                    "retrigger {C:attention}#1#{} times when scored",
+                    "Played {C:purple}Purple Seal{} cards retrigger",
+                    "for each time the last played {C:purple}Tarot{}",
+                    "card has been used consecutively",
+                    "{C:inactive,s:0.8}(Resets at end of round if no Tarot cards were used){}",
                     "{br:3}ribbit",
-                    "Increase retriggers by {C:attention}1{} per {C:attention}consecutive{}",
-                    "usage of the {C:attention}previously played{}",
-                    "{C:purple}Tarot{} card until {C:attention}Boss Blind{} is defeated",
-                    "{C:inactive}(Currently {C:purple}#2#{}{C:inactive}){}",
-                    "{C:inactive,s:0.8}(Evolves at 5 retriggers){}"
+                    "{C:inactive}(Previous Tarot: {C:purple}#2#{}{C:inactive}){}",
+                    "{C:inactive,s:0.8}(Evolves at {C:attention,s:0.8}#1#{}{C:inactive,s:0.8}/5 retriggers){}"
                 }
             },
             j_sonfive_toxicroak = {
                 name = 'Toxicroak',
                 text = {
-                    "Played {C:purple}Purple Seal{} cards",
-                    "retrigger {C:attention}#1#{} times when scored",
+                    "Played {C:purple}Purple Seal{} cards retrigger",
+                    "for each time the last played {C:purple}Tarot{}",
+                    "card has been used consecutively",
+                    "{C:inactive,s:0.8}(Resets at end of Ante if no Tarot cards were used){}",
                     "{br:3}ribbit",
-                    "Increase retriggers by {C:attention}1{} per {C:attention}consecutive{}",
-                    "usage of the {C:attention}previously played{} {C:purple}Tarot{} Card",
-                    "{C:inactive}(Currently {C:purple}#2#{}{C:inactive}){}",
+                    "{C:inactive}(Previous Tarot: {C:purple}#2#{}{C:inactive}){}",
+                    "{C:inactive}(Currently {C:attention}#1#{}{C:inactive} retriggers){}"
                 }
             },
             j_sonfive_darkrai = {

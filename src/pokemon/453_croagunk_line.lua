@@ -2,6 +2,7 @@ local croagunk = {
   name = "croagunk",
   config = {
     extra = {
+      reset = true,
       retriggers = 0, 
       previous_tarot = "Not set!", 
       evo_rqmt = 5
@@ -10,7 +11,7 @@ local croagunk = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
-    local evo_rqmt, retriggers, last_tarot = a.retriggers, a.evo_rqmt
+    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt
     if type(a.previous_tarot) == "table" and a.previous_tarot.key and a.previous_tarot.set then
       last_tarot = localize { type = 'name_text', key = a.previous_tarot.key, set = a.previous_tarot.set }
     else
@@ -38,6 +39,7 @@ local croagunk = {
         a.retriggers = 1
         a.previous_tarot = context.consumeable.ability
       end
+      a.reset = false
     elseif context.repetition and context.cardarea == G.play and not context.other_card.debuff then
       if context.other_card.seal == "Purple" then
           return {
@@ -46,8 +48,8 @@ local croagunk = {
             card = card
           }
       end
-    elseif (context.end_of_round and G.GAME.blind.boss) and not context.repetition and not context.individual and not context.blueprint then
-      a.retriggers = 0
+    elseif (context.end_of_round) and not context.repetition and not context.individual and not context.blueprint then
+      a.retriggers = a.reset and 0 or a.retriggers
     end
     return scaling_evo(self, card, context, "j_sonfive_toxicroak", a.retriggers, a.evo_rqmt)
   end
@@ -57,6 +59,8 @@ local toxicroak = {
   name = "toxicroak",
   config = {
     extra = {
+      reset = true,
+      card_limit = 1,
       retriggers = 0, 
       previous_tarot = "None", 
     }
@@ -64,7 +68,7 @@ local toxicroak = {
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
-    local retriggers, last_tarot = a.retriggers
+    local retriggers, card_limit, last_tarot = a.retriggers, a.card_limit
     if type(a.previous_tarot) == "table" and a.previous_tarot.key and a.previous_tarot.set then
       last_tarot = localize { type = 'name_text', key = a.previous_tarot.key, set = a.previous_tarot.set }
     else
@@ -90,6 +94,7 @@ local toxicroak = {
         a.retriggers = 1
         a.previous_tarot = context.consumeable.ability
       end
+      a.reset = false
     elseif context.repetition and context.cardarea == G.play and not context.other_card.debuff then
       if context.other_card.seal == "Purple" then
           return {
@@ -98,6 +103,8 @@ local toxicroak = {
             card = card
           }
       end
+    elseif (context.end_of_round and G.GAME.blind.boss) and not context.repetition and not context.individual and not context.blueprint then
+      a.retriggers = a.reset and 0 or a.retriggers
     end
   end
 }
