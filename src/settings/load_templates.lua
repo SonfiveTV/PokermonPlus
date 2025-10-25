@@ -1,18 +1,18 @@
 -- This is just the Load Pokemon file but tweaked a bit
 
 local poke_templates = {}
-local PREFIX = SMODS.current_mod.prefix
+
 local function load_template(item)
-  local custom_atlas = item.atlas and string.find(item.atlas, PREFIX)
+  local custom_atlas = item.atlas and string.find(item.atlas, "sonfive")
 
   if not item.atlas then
     poke_load_atlas(item)
     poke_load_sprites(item)
   end
 
-  item.atlas = (custom_atlas and PREFIX.."_" or "poke_") .. item.atlas
+  item.atlas = (custom_atlas and "sonfive_" or "poke_") .. item.atlas
   item.set = 'Joker'
-  item.key = 'j_'..PREFIX .. item.name
+  item.key = 'j_sonfive_' .. item.name
   item.ability = item.config
 
   poke_templates[item.key] = item
