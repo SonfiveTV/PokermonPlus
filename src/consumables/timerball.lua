@@ -59,36 +59,77 @@ local timerball = {
     end
   end,
   use = function(self, card, area, copier)
-    set_spoon_item(card)
-    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-      play_sound('timpani')
-      local _card = nil
-      local a = self.config.extra
-      local stage = ((a.count or 0) >= a.legendary and "Legendary")
-      local rarity = ((a.count or 0) >= a.legendary and nil)
-      or ((a.count or 0)nt >= a.rare and "rare")
-      or ((a.count or 0) >= a.uncommon and "uncommon")
-      or ((a.count or 0) >= a.common and "common")
-      _card = create_random_poke_joker("timerball", stage, rarity)
-      _card:add_to_deck()
-      G.jokers:emplace(_card)
-      return true end }))
-    delay(0.6)
+      set_spoon_item(card)
+      G.E_MANAGER:add_event(Event({
+          trigger = 'after',
+          delay = 0.4,
+          func = function()
+              play_sound('timpani')
+
+              local a = self.config.extra
+              local count = a.count or 0
+
+              -- Determine stage
+              local stage = count >= a.legendary and "Legendary" or nil
+
+              -- Determine rarity
+              local rarity
+              if count >= a.legendary then
+                  rarity = nil
+              elseif count >= a.rare then
+                  rarity = "rare"
+              elseif count >= a.uncommon then
+                  rarity = "uncommon"
+              elseif count >= a.common then
+                  rarity = "common"
+              else
+                  rarity = "common"
+              end
+
+              -- Create card safely
+              local _card = create_random_poke_joker("timerball", stage, rarity)
+              if _card then
+                  _card:add_to_deck()
+                  G.jokers:emplace(_card)
+              end
+
+              return true
+          end
+      }))
+      delay(0.6)
   end,
+
   update = function(self, card, dt)
-    if G.STAGE == G.STAGES.RUN then
-      local a = self.config.extra
-      local sprite_y = ((a.count or 0) >= a.legendary and 4)
-      or ((a.count or 0) >= a.rare and 3)
-      or ((a.count or 0) >= a.uncommon and 2)
-      or ((a.count or 0) >= a.common and 1)
-      or 0
-      if (a.count or 0) >= a.legendary then
-        card.children.floating_sprite:set_sprite_pos({ x = 1, y = 4})
+      if G.STAGE == G.STAGES.RUN then
+          local a = self.config.extra
+          local count = a.count or 0
+
+          -- Determine sprite Y position
+          local sprite_y
+          if count >= a.legendary then
+              sprite_y = 4
+          elseif count >= a.rare then
+              sprite_y = 3
+          elseif count >= a.uncommon then
+              sprite_y = 2
+          elseif count >= a.common then
+              sprite_y = 1
+          else
+              sprite_y = 0
+          end
+
+          -- Update floating sprite for max
+          if count >= a.legendary and card.children.floating_sprite then
+              card.children.floating_sprite:set_sprite_pos({x = 1, y = 4})
+          end
+
+          -- Update center sprite
+          if card.children.center then
+              card.children.center:set_sprite_pos({x = 0, y = sprite_y})
+          end
       end
-      card.children.center:set_sprite_pos({x = 0, y = sprite_y})
-    end
   end,
+
 }
 
 return {
