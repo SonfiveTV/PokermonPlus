@@ -37,16 +37,12 @@ local croagunk = {
 
     -- When a Tarot consumable is used
     if context.using_consumeable and not context.blueprint and context.consumeable and context.consumeable.ability then
-      local ability = context.consumeable.ability
-      local key = ability.key or "unknown"
-
-      if a.previous_tarot == key then
+      if a.previous_tarot == context.consumeable.config.center_key then
         a.retriggers = (a.retriggers or 0) + 1
       else
         a.retriggers = 1
-        a.previous_tarot = key
+        a.previous_tarot = context.consumeable.config.center_key
       end
-
       a.reset = false
     end
 
