@@ -14,6 +14,12 @@ local function label(key)
   end
 end
 
+local function title()
+  return function()
+    return "Toggle Pokemon lines"
+  end
+end
+
 -- Define all tiles (key inferred from first element in list)
 local all_tiles = {
   { list = { "nincada", "ninjask", "shedinja" } },
@@ -56,7 +62,7 @@ for i = 1, page_count do
   end
 
   table.insert(pages, {
-    title = "Toggle Pokemon lines",
+    title = title(),
     tiles = tiles,
   })
 end
