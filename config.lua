@@ -8,5 +8,5 @@ return {
     lechonk = true,
     nacli = true,
     cetoddle = true,
-	  timerball = true,
+	timerball = true,
 }

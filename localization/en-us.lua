@@ -115,12 +115,13 @@ return {
             j_sonfive_croagunk = {
                 name = 'Croagunk',
                 text = {
-                    "Played {C:purple}Purple Seal{} cards retrigger",
-                    "for each time the last played {C:purple}Tarot{}",
-                    "card has been used consecutively",
-                    "{C:inactive,s:0.8}(Resets at end of round if no Tarot cards were used){}",
+                    "If discard contains {C:attention}5{} {C:purple}Purple Seal{} cards",
+                    "increase this Joker's retriggers by {C:attention}1{}",
                     "{br:3}ribbit",
-                    "{C:inactive}(Previous Tarot: {C:purple}#2#{}{C:inactive}){}",
+                    "If scoring hand contains {C:purple}Purple Seal{} cards,",
+                    "retrigger them and reset this",
+                    "Joker's retriggers to {C:attention}0{}",
+                    "{C:inactive,s:0.8}(#1# Retrigger(s) divided evenly between scoring cards){}",
                     "{C:inactive,s:0.8}(Evolves at {C:attention,s:0.8}#1#{}{C:inactive,s:0.8}/5 retriggers){}"
                 }
             },

@@ -17,6 +17,8 @@ local function load_pokemon_folder(folder)
         local family = {}
         local orderlist = {}
 
+
+
         if curr_pokemon.list and #curr_pokemon.list > 0 then
           for _, item in ipairs(curr_pokemon.list) do
             family[#family + 1] = item.name
@@ -35,6 +37,10 @@ local function load_pokemon_folder(folder)
                   end
                   return false
                 end
+              end
+
+              if not item.tagged then
+                item.tagged = "sonfive"
               end
 
               item.config = item.config or {} 
