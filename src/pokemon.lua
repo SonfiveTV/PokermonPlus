@@ -37,6 +37,10 @@ local function load_pokemon_folder(folder)
                 end
               end
 
+              if not item.tagged then
+                item.tagged = "sonfive"
+              end
+
               item.config = item.config or {} 
               item.config.extra = item.config.extra or {} 
 

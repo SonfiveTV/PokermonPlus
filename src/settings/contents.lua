@@ -27,6 +27,7 @@ local all_tiles = {
   { list = { "darkrai" } },
   { list = { "vullaby", "mandibuzz" } },
   { list = { "meltan", "melmetal" } },
+  { list = { "stonjourner" } },
   { list = { "lechonk", "oinkologne" } },
   { list = { "nacli", "naclstack", "garganacl" } },
   { list = { "cetoddle", "cetitan" } },

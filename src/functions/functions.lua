@@ -459,3 +459,13 @@ unique_hand_tooltip = function(self, info_queue, center)
     end
   end
 end
+
+local original_pokemon_in_pool = pokemon_in_pool
+
+function pokemon_in_pool(v)
+  if v and v.tagged == "sonfive" and type(v.in_pool) == "function" then
+    local ok, result = pcall(function() return v:in_pool() end)
+    if ok then return result end
+  end
+  return original_pokemon_in_pool(v)
+end

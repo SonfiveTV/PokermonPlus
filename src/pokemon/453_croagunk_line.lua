@@ -4,20 +4,14 @@ local croagunk = {
     extra = {
       reset = true,
       retriggers = 0,
-      previous_tarot = "poke_none",
       evo_rqmt = 5
     }
   },
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local a = card.ability.extra
-    local retriggers, evo_rqmt, last_tarot = a.retriggers, a.evo_rqmt
-    if a.previous_tarot == "poke_none" then
-      last_tarot = localize("poke_none")
-    else
-      last_tarot = localize{type = 'name_text', key = a.previous_tarot, set = 'Tarot'}
-    end
-    return {vars = {retriggers, last_tarot, evo_rqmt}}
+    local retriggers, evo_rqmt = (a.retriggers or 0), a.evo_rqmt
+    return {vars = {retriggers, evo_rqmt}}
   end,
 
   designer = "Sonfive",
@@ -31,42 +25,57 @@ local croagunk = {
   calculate = function(self, card, context)
     local a = card.ability.extra
 
-    -- When a Tarot consumable is used
-    if context.using_consumeable and context.consumeable.ability.set == 'Tarot' and not context.blueprint and context.consumeable and context.consumeable.ability then
-      if a.previous_tarot == context.consumeable.config.center_key then
-        a.retriggers = (a.retriggers or 0) + 1
-      else
-        a.retriggers = 1
-        a.previous_tarot = context.consumeable.config.center_key
+    if context.discard and context.full_hand and #context.full_hand == 5 then
+      if not a.handled then
+        local all_purple = true
+        for i = 1, #context.full_hand do
+          if context.full_hand[i].seal ~= "Purple" then
+            all_purple = false
+            break
+          end
+        end
+
+        if all_purple then
+          a.retriggers = (a.retriggers or 0) + 1
+        end
+        a.handled = true
       end
-      a.reset = false
     end
 
-    -- When a Purple-sealed card is played, retrigger it
-    if context.repetition and context.cardarea == G.play and not context.other_card.debuff then
+    -- or when you detect the discard phase isn't active:
+    if not context.discard then
+      a.handled = false
+    end
+
+    if context.repetition and not context.end_of_round and context.cardarea == G.play then
       if context.other_card.seal == "Purple" then
+        local total = a.retriggers
+        local cards = #context.scoring_hand
+        local pos
+
+        for i = 1, cards do
+          if context.scoring_hand[i] == context.other_card then
+            pos = i
+            break
+          end
+        end
+
+        local retriggers = math.floor(total / cards)
+        local remainder = total % cards
+        if pos <= remainder then retriggers = retriggers + 1 end
+
         return {
           message = localize('k_again_ex'),
-          repetitions = a.retriggers,
+          repetitions = retriggers,
           card = card
         }
       end
     end
 
-    -- Reset retrigger counter at end of round
-    if context.end_of_round and not context.individual and not context.repetition and not context.blueprint then
-      if not a.reset then
-        a.reset = true
-      else
-        a.retriggers = a.retriggers - 1
-        return {
-        message = localize('k_reset'),
-        colour = G.C.RED
-      }
-      end
+    if context.after then
+      a.retriggers = 0
     end
 
-    -- Handle evolution scaling logic
     return scaling_evo(self, card, context, "j_sonfive_toxicroak", a.retriggers, a.evo_rqmt)
   end
 }
