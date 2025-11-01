@@ -1,8 +1,8 @@
 local stonjourner = {
   name = "stonjourner",
   config = {extra = {
-    Xmult_multi = 1.3,
-    Xmult_mod = 0.1,
+    Xmult_multi = 1.25,
+    Xmult_mod = 0.25,
     count = 8,
     reset = 8,
     played_hands = {} 
