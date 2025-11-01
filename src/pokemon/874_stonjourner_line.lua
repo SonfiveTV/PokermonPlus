@@ -1,10 +1,10 @@
 local stonjourner = {
   name = "stonjourner",
   config = {extra = {
-    Xmult_multi = 1.2,
+    Xmult_multi = 1.3,
     Xmult_mod = 0.1,
-    count = 9,
-    reset = 9,
+    count = 8,
+    reset = 8,
     played_hands = {} 
   }},
   loc_vars = function(self, info_queue, card)

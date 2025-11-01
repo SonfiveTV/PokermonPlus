@@ -2,7 +2,7 @@ return {
     nincada = true,
     croagunk = false,
     darkrai = true,
-    vullaby = true,
+    vullaby = false,
     meltan = true,
     stonjourner = true,
     lechonk = true,
