@@ -65,7 +65,7 @@ match_indent = true
 target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
 pattern = '''return get_total_energy(card) < energy_max + (G.GAME.energy_plus or 0)'''
 position = "at"
-payload = '''return get_total_energy(card) < energy_max + (G.GAME.energy_plus or 0) + (card.ability.extra.energy_plus or 0)'''
+payload = '''return get_total_energy(card) < energy_max + (G.GAME.energy_plus or 0) + (card.ability and card.ability.extra and (card.ability.extra.energy_plus or 0))'''
 match_indent = true
 
 #Negative Energy Cap
