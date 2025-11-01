@@ -89,9 +89,9 @@ match_indent = true
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
-pattern = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count"}'''
+pattern = ''' local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "form", "jack_target", "jacks_discarded"}'''
 position = "at"
-payload = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "energy_plus"}'''
+payload = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "form", "jack_target", "jacks_discarded", "energy_plus"}'''
 match_indent = true
 
 [[patches]]
