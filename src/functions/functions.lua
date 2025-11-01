@@ -463,9 +463,11 @@ end
 local original_pokemon_in_pool = pokemon_in_pool
 
 function pokemon_in_pool(v)
-  if v and v.tagged == "sonfive" and type(v.in_pool) == "function" then
-    local ok, result = pcall(function() return v:in_pool() end)
-    if ok then return result end
+  if v and v.tagged == "sonfive" then
+    local base_evo_name = sonfive_base_evo_name(v)
+    if not sonfive_config[base_evo_name] then
+      return false
+    end
   end
   return original_pokemon_in_pool(v)
 end
