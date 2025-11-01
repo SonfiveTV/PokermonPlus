@@ -438,7 +438,7 @@ return {
                 name = "Weakened",
                 text = {
                         "Base values",
-                        "are {C:attention}decreased{}"
+                        "are {C:attention}de-energized{}"
                     },
             },
 
@@ -568,7 +568,7 @@ return {
             stake_sonfive_lilac_stake = {
             name = "Lilac Stake",
             text = {"Shop can have {C:attention}Weakened{} Jokers",
-                    "{C:inactive,s:0.8}(Starts with de-energized values){}",
+                    "{C:inactive,s:0.8}(Base values are {C:attention,s:0.8}de-energized{}{C:inactive,s:0.8}){}",
                     "{s:0.8}Applies all previous Stakes"
                 },
             },
