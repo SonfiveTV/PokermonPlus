@@ -94,4 +94,41 @@ position = "at"
 payload = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "energy_plus"}'''
 match_indent = true
 
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = 'if (area == G.shop_jokers) or (area == G.pack_cards) then'
+position = 'after'
+match_indent = true
+payload = '''
+if G.GAME.modifiers.enable_weakened_in_shop then
+  local energy_values = {"mult", "chips"}
+  local has_energy = false
 
+  if card.ability and card.ability.extra then
+    for _, k in ipairs(energy_values) do
+      if card.ability.extra[k] ~= nil then
+        has_energy = true
+        break
+      end
+    end
+  end
+
+  if has_energy and pseudorandom('weakened' .. G.GAME.round_resets.ante) > 0.7 then
+    SMODS.Stickers['sonfive_weakened']:apply(card, true)
+  end
+end
+
+'''
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
+pattern = 'if new_card.soul_pos then'
+position = "before"
+payload = '''
+    if card.ability.sonfive_weakened then
+        energy_shift(card, -2, card.ability.extra.ptype, false, true, false)
+    end
+'''
+match_indent = true

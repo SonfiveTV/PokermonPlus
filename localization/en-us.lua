@@ -434,10 +434,11 @@ return {
             },
 
 
-            sonfive_rocket = {
-                name = "sonfive Rocket",
+            sonfive_weakened = {
+                name = "Weakened",
                 text = {
-                        "{X:mult,C:white}X2{} Mult, {C:red}-1{} Joker slot"
+                        "Base values",
+                        "are {C:attention}decreased{}"
                     },
             },
 
@@ -564,19 +565,10 @@ return {
 
         },
         Stake={
-            stake_sonfive_rocket_stake = {
-            name = "Rocket Stake",
-            text = {"Shop can have sonfive Rocket Jokers",
-                    "{C:inactive,s:0.8}({}{X:mult,C:white,s:0.8}X2{} {C:inactive,s:0.8}Mult, {}{C:red,s:0.8}-1{}{C:inactive,s:0.8} Joker slot){}",
-                    "{s:0.8}Applies all previous Stakes"
-                },
-            },
-
-            stake_sonfive_ex_stake = {
-            name = "EX Stake",
-            text = {"Shop can have {C:attention}EX{} Jokers",
-                    "{C:inactive,s:0.8}(Starts fully {C:pink,s:0.8}Energized{}{C:inactive,s:0.8}...){}",
-
+            stake_sonfive_lilac_stake = {
+            name = "Lilac Stake",
+            text = {"Shop can have {C:attention}Weakened{} Jokers",
+                    "{C:inactive,s:0.8}(Starts with de-energized values){}",
                     "{s:0.8}Applies all previous Stakes"
                 },
             },
@@ -608,6 +600,7 @@ return {
             },
 
             labels={
+                sonfive_weakened = "Weakened"
             },
 
 

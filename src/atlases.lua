@@ -25,3 +25,24 @@ SMODS.Atlas({
   py = 95,
   path = "sleeves.png"
 }):register()
+
+SMODS.Atlas({
+    key = "stakes",
+    px = 29,
+    py = 29,
+    path = "stakes.png"
+}):register()
+
+SMODS.Atlas({
+    key = "stake_stickers",
+    px = 71,
+    py = 95,
+    path = "stakes_stickers.png"
+}):register()
+
+SMODS.Atlas({
+    key = "stickers",
+    px = 71,
+    py = 95,
+    path = "stickers.png"
+}):register()
