@@ -442,15 +442,12 @@ return {
                     },
             },
 
-                sonfive_ex = {
-                name = "EX",
+                sonfive_lilac_stake_sticker = {
+                name = "Lilac Sticker",
                 text = {
-                        "Starts fully {C:pink}Energized{}",
-                        "{br:4}exexexexexe",
-                        "When {C:attention}Blind{} is selected,",
-                        "{C:pink}-1{} Energy",
-                        "{br:4}exexexexexe",
-                        "Debuffs if {C:pink}0{} Energy"
+                        "Used this Joker",
+                        "to win on {C:attention}Lilac",
+                        "{C:attention}Stake{} difficulty"
                     },
             },
         },
