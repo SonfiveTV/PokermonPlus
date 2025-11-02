@@ -196,7 +196,27 @@ return {
                 name = "Stonjourner",
                 text = {
                     "Adjacent Jokers each give {X:red,C:white}X#1#{} Mult,",
-                    "gains {X:red,C:white}X#2#{} Mult after {C:inactive}[{}{C:attention}#3#{}{C:inactive}]{} {C:attention}unique{} hands",
+                    "gains {X:red,C:white}X#2#{} Mult after {C:inactive}[{}{C:attention}#3#{}{C:inactive}]{} {C:attention}unique{} hands"
+                }
+            },
+
+            j_sonfive_duraludon = {
+                name = "Duraludon",
+                text = {
+                    "{X:red,C:white}X#1#{} Mult on each {C:attention}odd{} hand played",
+                    "{C:inactive,s:0.8}(Evolves with a {C:metal,s:0.8}Metal{C:inactive,s:0.8} sticker)"
+                }
+            },
+
+
+            j_sonfive_archaludon = {
+                name = "Archaludon",
+                text = {
+                    "Gain {X:red,C:white}X#1#{} Mult for each {X:lightning,C:black}Lightning{} Joker",
+                    "you have on each {C:attention}odd{} hand played",
+                    "{C:inactive}(Resets at end of round){}",
+                    "{br:3}brrrr",
+                    "{X:red,C:white}X#2#{} Mult on each {C:attention}even{} hand played"
                 }
             },
 

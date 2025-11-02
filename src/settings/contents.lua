@@ -23,11 +23,10 @@ end
 -- Define all tiles (key inferred from first element in list)
 local all_tiles = {
   { list = { "nincada", "ninjask", "shedinja" } },
-  { list = { "croagunk", "toxicroak" } },
   { list = { "darkrai" } },
-  { list = { "vullaby", "mandibuzz" } },
   { list = { "meltan", "melmetal" } },
   { list = { "stonjourner" } },
+  { list = { "duraludon", "archaludon" } },
   { list = { "lechonk", "oinkologne" } },
   { list = { "nacli", "naclstack", "garganacl" } },
   { list = { "cetoddle", "cetitan" } },
