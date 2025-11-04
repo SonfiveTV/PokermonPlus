@@ -212,7 +212,8 @@ return {
             j_sonfive_archaludon = {
                 name = "Archaludon",
                 text = {
-                    "Gain {X:red,C:white}X#1#{} Mult for each {X:lightning,C:black}Lightning{} Joker",
+                    "Gain {X:red,C:white}X#1#{} Mult plus an additional",
+                    "{X:red,C:white}X#1#{} Mult for each {X:lightning,C:black}Lightning{} Joker",
                     "you have on each {C:attention}odd{} hand played",
                     "{C:inactive}(Resets at end of round){}",
                     "{br:3}brrrr",

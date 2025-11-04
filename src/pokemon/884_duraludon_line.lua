@@ -76,7 +76,7 @@ local archaludon = {
   calculate = function(self, card, context)
     local a = card.ability.extra
     local odd, even = (a.current_hand == "odd"), (a.current_hand == "even")
-    local count = #find_pokemon_type("Lightning")
+    local count = 1 + #find_pokemon_type("Lightning")
     if context.joker_main and not context.repetition then
       if even then 
         a.current_hand = "odd"
