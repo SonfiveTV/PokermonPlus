@@ -112,29 +112,20 @@ return {
                                   
                 } 
             },
-            j_sonfive_croagunk = {
-                name = 'Croagunk',
+            j_sonfive_helioptile = {
+                name = 'Helioptile',
                 text = {
-                    "If discard contains {C:attention}5{} {C:purple}Purple Seal{} cards",
-                    "increase this Joker's retriggers by {C:attention}1{}",
-                    "{br:3}ribbit",
-                    "If scoring hand contains {C:purple}Purple Seal{} cards,",
-                    "retrigger them and reset this",
-                    "Joker's retriggers to {C:attention}0{}",
-                    "{C:inactive,s:0.8}(#1# Retrigger(s) divided evenly between scoring cards){}",
-                    "{C:inactive,s:0.8}(Evolves at {C:attention,s:0.8}#1#{}{C:inactive,s:0.8}/5 retriggers){}"
+                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
+                    "{C:green}#4# in #5#{} chance to earn {C:money}$#2#{} instead",
+                    "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Sun Stone{C:inactive,s:0.8})",
                 }
             },
-            j_sonfive_toxicroak = {
-                name = 'Toxicroak',
+            j_sonfive_heliolisk = {
+                name = 'Heliolisk',
                 text = {
-                    "Played {C:purple}Purple Seal{} cards retrigger",
-                    "for each time the last played {C:purple}Tarot{}",
-                    "card has been used consecutively",
-                    "{C:inactive,s:0.8}(Resets at end of Ante if no Tarot cards were used){}",
-                    "{br:3}ribbit",
-                    "{C:inactive}(Previous Tarot: {C:purple}#2#{}{C:inactive}){}",
-                    "{C:inactive}(Currently {C:attention}#1#{}{C:inactive} retriggers){}"
+                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
+                    "{C:green}#4# in #5#{} chance to earn {C:money}#6#%{} of",
+                    "current money"
                 }
             },
             j_sonfive_darkrai = {

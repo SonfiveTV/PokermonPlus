@@ -24,6 +24,7 @@ end
 local all_tiles = {
   { list = { "nincada", "ninjask", "shedinja" } },
   { list = { "darkrai" } },
+  { list = { "helioptile", "heliolisk" } },
   { list = { "meltan", "melmetal" } },
   { list = { "stonjourner" } },
   { list = { "duraludon", "archaludon" } },
