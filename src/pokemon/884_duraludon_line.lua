@@ -95,9 +95,13 @@ local archaludon = {
       end
     end
 
-    if context.end_of_round then
+    if context.end_of_round and not context.repetition and not context.individual and not context.blueprint then
       a.Xmult = 1
       a.current_hand = "odd"
+      return {
+        message = localize('k_reset'),
+        colour = G.C.RED
+      }
     end
   end,
 }
