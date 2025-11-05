@@ -81,28 +81,18 @@ local heliolisk = {
     local a = card.ability.extra
 
     if context.before or context.end_of_round then
-        a.temp_balance = 0
+        a.count = 0
     end
     if context.individual and context.cardarea == G.play and context.other_card:is_suit(a.suit) then
         if not context.end_of_round and not context.before and not context.after and not context.other_card.debuff then
             local current_dollars = G.GAME.dollars or 0
 
 
-            -- Simulate live update
-            if a.temp_balance then
-                current_dollars = current_dollars + a.temp_balance
-            end
-
-            local earned = ease_poke_dollars(card, "heliolisk", a.money_mod, true)
-            local bonus = 0
+            local earned = ease_poke_dollars(card, "heliolisk", a.money_mod * ((a.count or 1)^2), true)
 
             if SMODS.pseudorandom_probability(card, 'heliolisk', a.numerator, a.denominator, 'heliolisk') then
-                bonus = math.floor((current_dollars / 100 * a.percentage) * 10) / 10
-                earned = ease_poke_dollars(card, "heliolisk", a.money_mod + bonus, true)
+                a.count = a.count + 1
             end
-
-            -- Track the running total manually
-            a.temp_balance = (a.temp_balance or 0) + earned
 
             return {
                 dollars = earned,

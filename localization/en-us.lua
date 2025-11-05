@@ -124,8 +124,8 @@ return {
                 name = 'Heliolisk',
                 text = {
                     "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
-                    "{C:green}#4# in #5#{} chance to also earn {C:money}#6#%{} of",
-                    "current money"
+                    "{C:green}#4# in #5#{} chance to double {C:money}payout{} for",
+                    "the rest of the current hand instead"
                 }
             },
             j_sonfive_darkrai = {
