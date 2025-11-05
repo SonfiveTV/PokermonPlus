@@ -88,16 +88,18 @@ local heliolisk = {
             local current_dollars = G.GAME.dollars or 0
 
 
-            local earned = ease_poke_dollars(card, "heliolisk", a.money_mod * ((a.count or 1)^2), true)
+            local earned = ease_poke_dollars(card, "heliolisk", a.money_mod * 2^a.count, true)
 
             if SMODS.pseudorandom_probability(card, 'heliolisk', a.numerator, a.denominator, 'heliolisk') then
                 a.count = a.count + 1
+                earned = 0
             end
-
-            return {
-                dollars = earned,
-                card = card
-            }
+            if earned > 0 then
+                return {
+                    dollars = earned,
+                    card = card
+                }
+            end
         end
     end
 end
