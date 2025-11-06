@@ -104,7 +104,6 @@ payload = '''
   if pseudorandom('weakened' .. G.GAME.round_resets.ante) > 0.7 then
     SMODS.Stickers['sonfive_weakened']:apply(card, true)
   end
-end
 
 '''
 
