@@ -101,23 +101,7 @@ pattern = 'if (area == G.shop_jokers) or (area == G.pack_cards) then'
 position = 'after'
 match_indent = true
 payload = '''
-if G.GAME.modifiers.enable_weakened_in_shop then
-  local energy_values = {
-  mult, mult1, mult2, chips, chips1, chips2, chips3, Xmult, Xmult1, Xmult2, Xchips, money, money1, money2, money_mod, 
-  mult_mod, mult_mod2, s_mult, chip_mod, Xmult_mod, Xmult_multi, Xmult_multi2, Xchips_multi
-}
-  local has_energy = false
-
-  if card.ability and card.ability.extra then
-    for _, k in ipairs(energy_values) do
-      if card.ability.extra[k] ~= nil then
-        has_energy = true
-        break
-      end
-    end
-  end
-
-  if has_energy and pseudorandom('weakened' .. G.GAME.round_resets.ante) > 0.7 then
+  if pseudorandom('weakened' .. G.GAME.round_resets.ante) > 0.7 then
     SMODS.Stickers['sonfive_weakened']:apply(card, true)
   end
 end
