@@ -10,6 +10,7 @@ local nincada = {
   cost = 5,
   stage = "Basic",
   ptype = "Grass",
+  gen = 3,
   blueprint_compat = true,
   eternal_compat = false,
   
@@ -57,6 +58,7 @@ local ninjask = {
   cost = 5,
   stage = "One",
   ptype = "Grass",
+  gen = 3,
   blueprint_compat = true,
   
   calculate = function(self, card, context)
@@ -94,6 +96,7 @@ local shedinja = {
   cost = 5,
   stage = "Basic",
   ptype = "Psychic",
+  gen = 3,
   blueprint_compat = false,
   calc_dollar_bonus = function(self, card)
     card.ability.extra.earned = card.ability.extra.earned + card.ability.extra.money
