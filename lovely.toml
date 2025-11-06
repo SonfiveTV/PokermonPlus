@@ -102,7 +102,10 @@ position = 'after'
 match_indent = true
 payload = '''
 if G.GAME.modifiers.enable_weakened_in_shop then
-  local energy_values = {"mult", "chips"}
+  local energy_values = {
+  mult, mult1, mult2, chips, chips1, chips2, chips3, Xmult, Xmult1, Xmult2, Xchips, money, money1, money2, money_mod, 
+  mult_mod, mult_mod2, s_mult, chip_mod, Xmult_mod, Xmult_multi, Xmult_multi2, Xchips_multi
+}
   local has_energy = false
 
   if card.ability and card.ability.extra then
