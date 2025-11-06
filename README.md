@@ -1,6 +1,5 @@
 # **Sonfive's Pokermon+**
-This is an add-on mod for Pokermon - an add-on mod for Balatro. 
-Thanks to marcavis, Kek, and MyDude for contributing
+This is an add-on mod for InertSteak's Pokermon mod. This mod aims to implement features that I personally believe could be a part of the Pokermon mod. I try to not make things overpowered and aim to keep things balanced whilst still being a lot of fun! 
 
 
 
@@ -15,6 +14,12 @@ Thanks to marcavis, Kek, and MyDude for contributing
 | Void Deck | Negative Energy cards give +1 Energy Limit, <br/> Creates a Nightmare Spectral after each Boss Blind |
 
 
+## Stakes
+
+| Name         | Base Effect   |
+| ------------- | ------------- |
+| Lilac Stake  | Shop can have Weakened Jokers  |
+
 
 ## Consumables
 
@@ -25,8 +30,6 @@ Consumables can be toggled on/off in the mod config options
 | Timer Ball | Create a Pokemon of increasing rarity the longer you wait to use  <br/>this item |
 
 
-
-
 ## Jokers
 
 Each Pokemon line can be toggled on/off in the mod config options
@@ -35,12 +38,22 @@ Each Pokemon line can be toggled on/off in the mod config options
 |-----|------|-----|
 | Nincada | Ninjask | Shedinja |
 | Darkrai | | |
-| Vullaby | Mandibuzz |  |
+| Helioptile | Heliolisk |  |
 | Meltan  | Melmetal |  |
 | Stonjourner |  |  |
+| Duraludon | Archaludon |  |
 | Lechonk | Oinkologne |  |
 | Nacli | Naclstack | Garganacl |
 | Cetoddle | Cetitan |  |
+
+
+## Credits
+Huge thanks to the following people:
+
+Kek: Helped with Timer Ball
+MyDude: Prophetic Deck artwork
+marcavis: Provided initial add-on framework
+emmadenslemma: Amazing UI for config screen
 
 
 
