@@ -101,10 +101,11 @@ pattern = 'if (area == G.shop_jokers) or (area == G.pack_cards) then'
 position = 'after'
 match_indent = true
 payload = '''
+if G.GAME.modifiers.enable weakened in. shop then
   if pseudorandom('weakened' .. G.GAME.round_resets.ante) > 0.7 then
     SMODS.Stickers['sonfive_weakened']:apply(card, true)
   end
-
+end
 '''
 
 [[patches]]
