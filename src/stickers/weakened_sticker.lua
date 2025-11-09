@@ -9,7 +9,7 @@ local weakened = {
     card.ability[self.key] = val
     if card.ability.extra then
       if type(card.ability.extra) == "table" then
-        energy_shift(card, -2, card.ability.extra.ptype, false, true, true)
+        energy_shift(card, -1, card.ability.extra.ptype, false, true, true)
       end
     end
   end,
