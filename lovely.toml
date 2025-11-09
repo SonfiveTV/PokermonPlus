@@ -104,50 +104,7 @@ payload = '''
 
 
 if G.GAME.modifiers.enable_weakened_in_shop then 
-  local energy_values = { mult, mult1, mult2, chips, chips1, chips2, chips3, Xmult, Xmult1, Xmult2, Xchips, 
-  money, money1, money2, money_mod, mult_mod, mult_mod2, s_mult, chip_mod, 
-  Xmult_mod, Xmult_multi, Xmult_multi2, Xchips_multi } 
-  
-  local has_energy = false 
-  if card.ability and card.ability.extra then 
-    for _, k in ipairs(energy_values) do 
-      if card.ability.extra[k] ~= nil then 
-        has_energy = true 
-        break 
-      end 
-    end 
-  end 
-  local family_values = 
-  
-  {"bulbasaur","ivysaur","venusaur","mega_venusaur", "charmander","charmeleon","charizard","mega_charizard_x","mega_charizard_y", 
-  "squirtle","wartortle","blastoise","mega_blastoise", "caterpie","metapod","butterfree", "weedle","kakuna","beedrill","mega_beedrill", "pidgey","pidgeotto","pidgeot","mega_pidgeot", 
-  "ekans","arbok", "pichu", "pikachu","raichu", "sandshrew","sandslash", "nidoranf","nidorina","nidoqueen", "nidoranm","nidorino","nidoking", "cleffa", "clefairy","clefable", "igglybuff", "jigglypuff","wigglytuff", 
-  "zubat","golbat", "crobat", "oddish","gloom","vileplume", "bellossom", "paras","parasect", "diglett","dugtrio", "meowth","persian", "psyduck","golduck", "mankey","primeape", "annihilape", "growlithe","arcanine", 
-  "poliwag","poliwhirl","poliwrath", "politoed", "abra","kadabra","alakazam","mega_alakazam", "machop","machoke","machamp", "bellsprout","weepinbell","victreebel", "tentacool","tentacruel", "geodude","graveler","golem", 
-  "ponyta","rapidash", "slowpoke", "slowbro", "slowking", "shell", "mega_slowbro", "magnemite","magneton", "magnezone", "doduo","dodrio", "grimer","muk", "onix","steelix", "mega_steelix", "drowzee","hypno", "krabby","kingler", 
-  "voltorb","electrode", "exeggcute","exeggutor", "cubone","marowak", "rhyhorn","rhydon", "rhyperior", "horsea","seadra", "kingdra", "staryu","starmie", "scyther", "scizor", "mega_scizor", "kleavor", "tauros", "taurosh", "elekid", 
-  "electabuzz", "electivire", "magby", "magmar", "magmortar", "tangela", "tangrowth", "pinsir", "mega_pinsir", "magikarp","gyarados", "mega_gyarados", "munchlax", "snorlax", "aerodactyl", "mega_aerodactyl", "lickitung", "lickilicky", 
-  "porygon", "porygon2", "porygonz", "eevee", "vaporeon", "jolteon", "flareon", "espeon", "umbreon", "glaceon", "leafeon", "sylveon", "omanyte","omastar", "kabuto","kabutops", "dratini","dragonair","dragonite", "mewtwo","mega_mewtwo_x",
-  "mega_mewtwo_y", "chikorita", "bayleef", "meganium", "cyndaquil", "quilava", "typhlosion", "totodile", "croconaw", "feraligatr", "tyrogue", "hitmonlee", "hitmonchan", "hitmontop", "poochyena", "mightyena", "numel", "camerupt", 
-  "mega_camerupt", "feebas", "milotic", "nosepass", "probopass", "beldum", "metang", "metagross", "jirachi", "jirachi_banker", "jirachi_booster", "jirachi_power", "jirachi_invis", "jirachi_fixer", "sentret", "furret", "ledyba", 
-  "ledian", "spinarak", "ariados", "mareep", "flaaffy", "ampharos", "mega_ampharos", "wooper", "quagsire", "sneasel", "weavile", "teddiursa", "ursaring", "ursaluna", "heracross", "mega_heracross", "togepi", "togetic", "togekiss", 
-  "yanma", "yanmega", "azurill", "marill", "azumarill", "phanpy", "donphan", "girafarig", "farigiraf", "murkrow", "honchkrow", "sunkern", "sunflora", "houndour", "houndoom", "mega_houndoom", "misdreavus", "mismagius", "pineco", 
-  "forretress", "gligar", "gliscor", "slugma", "magcargo", "chinchou", "lanturn", "swinub", "piloswine", "mamoswine", "snubbull", "granbull", "mantyke", "mantine", "larvitar", "pupitar", "tyranitar", "mega_tyranitar", "treecko", 
-  "grovyle", "sceptile", "torchic", "combusken", "blaziken", "mudkip", "marshtomp", "swampert", "aron","lairon","aggron", "kricketot", "kricketune", "buizel", "floatzel", "buneary", "lopunny", "mega_lopunny", "riolu", "lucario", 
-  "rotom", "rotomh", "rotomw", "rotomf", "rotomfan", "rotomm", "gothita", "gothorita", "gothitelle", "vanillite", "vanillish", "vanilluxe", "frillish", "jellicent", "trubbish", "garbodor", "litwick", "lampent", "chandelure", "drilbur", 
-  "excadrill", "golett", "golurk", "pawniard", "bisharp", "kingambit", "roggenrola", "boldore", "gigalith", "ferroseed", "ferrothorn", "deino", "zweilous", "hydreigon", "litleo", "pyroar", "pumpkaboo", "gourgeist", "grubbin", 
-  "charjabug", "vikavolt", "rockruff", "lycanroc_day", "lycanroc_night", "lycanroc_dusk", "dreepy", "drakloak", "dragapult", "dreepy_dart", "hisuian_qwilfish", "overqwil", "nickit", "thievul", "yamper","boltund", "fidough", "dachsbun", 
-  "charcadet", "armarouge", "ceruledge", "tinkatink", "tinkatuff", "tinkaton", "wiglett", "wugtrio", "gimmighoul", "gholdengo", "gimmighoulr", "ruins_of_alph", "rival", "unown"} 
-  
-  local has_family = false 
-  for _, k in ipairs(family_values) do 
-    if card.config.center.name == k then 
-      has_family = true 
-      break 
-    end 
-  end 
-  
-  if (card.config.center.weakened_compat or has_energy or has_family) and pseudorandom('weakened' .. G.GAME.round_resets.ante) > 0.7 then 
+  if pseudorandom('weakened' .. G.GAME.round_resets.ante) > 0.7 then 
     SMODS.Stickers['sonfive_weakened']:apply(card, true) 
   end 
 end

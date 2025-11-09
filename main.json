@@ -9,7 +9,7 @@
 	"badge_colour": "87deff",
 	"badge_text_colour": "ffffff",
   "display_name": "Pokermon+",
-	"version": "1.0.3-251109b",
+	"version": "1.0.3-251109c",
 	"dependencies": [
       		"Pokermon (>=3.2.0-911a)"
 	],
