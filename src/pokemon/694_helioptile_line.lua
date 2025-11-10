@@ -91,27 +91,27 @@ local heliolisk = {
   blueprint_compat = true,  
   calculate = function(self, card, context)
     local a = card.ability.extra
-    local percentage = a.percentage + 100
-    if context.individual and context.cardarea == G.play and context.other_card:is_suit(a.suit) and not context.end_of_round and not context.before and not context.after and not context.other_card.debuff then
-      local earned
+    if context.individual and context.cardarea == G.play
+    and context.other_card:is_suit(a.suit)
+    and not context.end_of_round and not context.before and not context.after
+    and not context.other_card.debuff then
+
+      local total_earned = a.money_mod
+
       if SMODS.pseudorandom_probability(card, "heliolisk", a.numerator, a.denominator, "heliolisk") then
         local current = G.GAME.dollars + (G.GAME.dollar_buffer or 0)
-        local target = current * (percentage / 100)
-        local bonus = target - current
-        bonus = math.floor(bonus)
-
-        G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + bonus
-        earned = ease_poke_dollars(card, "heliolisk", bonus, true)
-      else
-        G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + a.money_mod
-        earned = ease_poke_dollars(card, "heliolisk", a.money_mod, true)
+        local bonus = math.floor(current * (a.percentage / 100))
+        total_earned = total_earned + bonus
       end
+
+      G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + total_earned
+      local earned = ease_poke_dollars(card, "heliolisk", total_earned, true)
 
       G.E_MANAGER:add_event(Event({
         func = function()
           G.GAME.dollar_buffer = 0
-            return true
-          end
+          return true
+        end
       }))
 
       if earned and earned > 0 then
