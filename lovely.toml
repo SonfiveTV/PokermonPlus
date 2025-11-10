@@ -117,7 +117,7 @@ pattern = 'if new_card.soul_pos then'
 position = "before"
 payload = '''
     if card.ability.sonfive_weakened then
-        energy_shift(card, -2, card.ability.extra.ptype, false, true, false)
+        energy_shift(card, -1, card.ability.extra.ptype, false, true, false)
     end
 '''
 match_indent = true
