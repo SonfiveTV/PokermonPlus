@@ -30,12 +30,24 @@ local helioptile = {
   blueprint_compat = true,  
   calculate = function(self, card, context)
     local a = card.ability.extra
+    local bonus = 0
     if context.individual and context.cardarea == G.play and context.other_card:is_suit(a.suit) then
       if not context.end_of_round and not context.before and not context.after and not context.other_card.debuff then
-        local earned = ease_poke_dollars(card, "helioptile", a.money_mod, true)
         if SMODS.pseudorandom_probability(card, 'helioptile', a.numerator, a.denominator, 'helioptile') then
-            earned = ease_poke_dollars(card, "helioptile", a.money_mod * 2, true)
+          bonus =  a.money_mod * 2
+        else
+          bonus = a.money_mod
         end
+
+        G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + bonus
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.GAME.dollar_buffer = 0
+                return true
+            end
+        }))
+
+        local earned = ease_poke_dollars(card, "helioptile", bonus, true)
         return {
           dollars = earned,
           card = card
@@ -79,31 +91,37 @@ local heliolisk = {
   blueprint_compat = true,  
   calculate = function(self, card, context)
     local a = card.ability.extra
+    local percentage = a.percentage + 100
+    if context.individual and context.cardarea == G.play and context.other_card:is_suit(a.suit) and not context.end_of_round and not context.before and not context.after and not context.other_card.debuff then
+      local earned
+      if SMODS.pseudorandom_probability(card, "heliolisk", a.numerator, a.denominator, "heliolisk") then
+        local current = G.GAME.dollars + (G.GAME.dollar_buffer or 0)
+        local target = current * (percentage / 100)
+        local bonus = target - current
+        bonus = math.floor(bonus)
 
-    if context.before or context.end_of_round then
-        a.count = 0
+        G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + bonus
+        earned = ease_poke_dollars(card, "heliolisk", bonus, true)
+      else
+        G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + a.money_mod
+        earned = ease_poke_dollars(card, "heliolisk", a.money_mod, true)
+      end
+
+      G.E_MANAGER:add_event(Event({
+        func = function()
+          G.GAME.dollar_buffer = 0
+            return true
+          end
+      }))
+
+      if earned and earned > 0 then
+        return {
+          dollars = earned,
+          card = card
+        }
+      end
     end
-    if context.individual and context.cardarea == G.play and context.other_card:is_suit(a.suit) then
-        if not context.end_of_round and not context.before and not context.after and not context.other_card.debuff then
-            local current_dollars = G.GAME.dollars or 0
-
-
-            local earned = ease_poke_dollars(card, "heliolisk", a.money_mod * 2^a.count, true)
-
-            if SMODS.pseudorandom_probability(card, 'heliolisk', a.numerator, a.denominator, 'heliolisk') then
-                a.count = a.count + 1
-                earned = 0
-            end
-            if earned > 0 then
-                return {
-                    dollars = earned,
-                    card = card
-                }
-            end
-        end
-    end
-end
-
+  end
 }
 
 

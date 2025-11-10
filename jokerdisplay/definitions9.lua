@@ -77,51 +77,6 @@ jd_def["j_sonfive_helioptile"] = {
     end
 }
 
-jd_def["j_sonfive_heliolisk"] = {
-  text = {
-    { text = "Min: ", colour = G.C.GREY },
-    { text = "+$", colour = G.C.GOLD },
-    { ref_table = "card.joker_display_values", ref_value = "money", colour = G.C.GOLD },
-    { text = " Max: ", colour = G.C.GREY },
-    { text = "+$", colour = G.C.GOLD },
-    { ref_table = "card.joker_display_values", ref_value = "money2", colour = G.C.GOLD }
-  },
-  reminder_text = {
-    { text = "(" },
-    { ref_table = "card.joker_display_values", ref_value = "localized_text", colour = lighten(G.C.SUITS["Hearts"], 0.35) },
-    { text = ")" }
-  },
-  extra = {
-    {
-      { text = "(", colour = G.C.GREEN, scale = 0.3 },
-      { ref_table = "card.joker_display_values", ref_value = "odds", colour = G.C.GREEN, scale = 0.3 },
-      { text = ")", colour = G.C.GREEN, scale = 0.3 },
-    },
-  },
-  calc_function = function(card)
-    local count = 0
-    if G.play then
-      local text, _, scoring_hand = JokerDisplay.evaluate_hand()
-      if text ~= 'Unknown' then
-        for _, scoring_card in pairs(scoring_hand) do
-          if scoring_card:is_suit("Hearts") then
-            count = count + JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
-          end
-        end
-      end
-    end
-    card.joker_display_values.money = 0
-    if count == 0 then
-        card.joker_display_values.money2 = 0
-    else
-        card.joker_display_values.money2 = card.ability.extra.money_mod * 2^(count - 1)
-    end
-    card.joker_display_values.localized_text = localize("Hearts", 'suits_plural')
-    local num, dem = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'heliolisk')
-    card.joker_display_values.odds = localize { type = 'variable', key = "jdis_odds", vars = { num, dem } }
-    end
-}
-
 jd_def["j_sonfive_meltan"] = {
     retrigger_function = function(playing_card, scoring_hand, held_in_hand, joker_card)
         return held_in_hand and playing_card.ability.effect == "Steel Card" and (joker_card.ability.extra.retriggers * JokerDisplay.calculate_joker_triggers(joker_card)) or 0
