@@ -50,9 +50,9 @@ Each Pokemon line can be toggled on/off in the mod config options
 ## Credits
 Huge thanks to the following people:
 
-Kek: Helped with Timer Ball
-MyDude: Prophetic Deck artwork
-marcavis: Provided initial add-on framework
+Kek: Helped with Timer Ball<br/>
+MyDude: Prophetic Deck artwork<br/>
+marcavis: Provided initial add-on framework<br/>
 emmadenslemma: Amazing UI for config screen
 
 
