@@ -143,19 +143,11 @@ function SMODS.current_mod.extra_tabs()
         }
       end,
     },
-
-		-- insert more tables with the same structure here
 	}
 end
 
 
 
--- {
---     create_toggle({
---         label = localize("custom_jokers"),
---         ref_table = sonfive_config,
---         ref_value = "customJokers",
---     }),
 --     create_toggle({
 --         label = "Allow Custom Stakes?",
 --         ref_table = sonfive_config,

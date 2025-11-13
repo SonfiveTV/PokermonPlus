@@ -4,7 +4,7 @@ sonfive_evo_lines = sonfive_evo_lines or {}
 
 local function load_pokemon_folder(folder)
   local pfiles = NFS.getDirectoryItems(mod_dir..folder)
-  if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] and sonfive_config.customJokers then
+  if (SMODS.Mods["Pokermon"] or {}).can_load and SMODS.Mods["Pokermon"] then
     for _, file in ipairs(pfiles) do
       sendDebugMessage("The file is: " .. file)
       local pokemon, load_error = SMODS.load_file(folder .. file)
