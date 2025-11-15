@@ -31,8 +31,9 @@ return {
             b_sonfive_shinydeck = {
                 name = "Shiny Deck",
                 text = {
-                        "{C:dark_edition}Shiny Pokemon{} are",
-                        "more likely to appear" 
+                        "After defeating each",
+                        "{C:attention}Small{} or {C:attention}Big Blind{}, gain",
+                        "a {C:attention,T:tag_poke_shiny_tag}Shiny Tag"
 
                 }
             },

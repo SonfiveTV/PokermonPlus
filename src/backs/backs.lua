@@ -24,27 +24,29 @@ local propheticdeck ={
 }
 
 local shinydeck ={
-    name = "shinydeck",
-    key = "shinydeck",
-    atlas = "backs",
-    pos = { x = 3, y = 0 },
-    config = {extra = {chance = 100}},
-    loc_vars = function(self, info_queue, center)
-        return {vars = {}}
-    end,    
-calculate = function(self, card, context)
-    G.GAME.modifiers.shinydeck = true
-  end,
-    apply = function(self)
-      if not G.GAME.modifiers.shinydeck then
-        local previous_shiny_get_weight = G.P_CENTERS.e_poke_shiny.get_weight
-        G.P_CENTERS.e_poke_shiny.get_weight = function(self)
-          return previous_shiny_get_weight(self) + ((G.GAME.shiny_edition_rate or 1) - 1) * G.P_CENTERS.e_poke_shiny.weight
+  name = "shinydeck",
+  key = "shinydeck",
+  atlas = "backs",
+  pos = { x = 3, y = 0 },
+  config = {extra = {pack_slots = -1}},
+  loc_vars = function(self, info_queue, center)
+      return {vars = {}}
+  end,    
+  calculate = function(self, back, context)
+    if context.round_eval and G.GAME.last_blind and not G.GAME.last_blind.boss then
+      G.E_MANAGER:add_event(Event({
+        func = function()
+          add_tag(Tag('tag_poke_shiny_tag'))
+          play_sound('generic1', 0.9 + math.random() * 0.1, 0.8)
+          play_sound('holo1', 1.2 + math.random() * 0.1, 0.4)
+          return true
         end
-        G.GAME.shiny_edition_rate = (G.GAME.shiny_edition_rate or 1) * self.config.extra.chance
-        G.GAME.modifiers.shinydeck = true
-      end
+      }))
     end
+  end,
+  apply = function(self)
+    SMODS.change_booster_limit(self.config.extra.pack_slots)
+  end
 }
 
 local roguedeck = {
@@ -58,6 +60,8 @@ local roguedeck = {
   end,
   apply = function(self)
     G.GAME.win_ante = (G.GAME.win_ante + 4)
+    -- G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+    -- G.GAME.perscribed_bosses[1] = 'bl_fish'
   end
 } 
 
