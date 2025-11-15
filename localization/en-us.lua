@@ -31,10 +31,10 @@ return {
             b_sonfive_shinydeck = {
                 name = "Shiny Deck",
                 text = {
+                        "{C:attention}-1{} Booster Pack slot available in shop",
                         "After defeating each",
                         "{C:attention}Small{} or {C:attention}Big Blind{}, gain",
                         "a {C:attention,T:tag_poke_shiny_tag}Shiny Tag"
-
                 }
             },
 
@@ -466,21 +466,6 @@ return {
         },
 
         Sleeve = {
-
-            sleeve_sonfive_reverencesleeve = {
-                name = "Reverence Sleeve",
-                text = {
-                        "All cards have ",
-                        "a {C:dark_edition}Silver Seal{}"
-                },
-            },
-
-            sleeve_sonfive_reverencesleeve_alt = {
-                name = "Reverence Sleeve",
-                text = {
-                        "{C:attention}+1{} consumable slot"
-                },
-            },
 
             sleeve_sonfive_virtuoussleeve = {
                 name = "Virtuous Sleeve",
