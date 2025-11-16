@@ -23,7 +23,7 @@ match_indent = true
 [patches.pattern]
 target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
 pattern = '''
-highlighted_energy_use = function(self, card, area, copier)
+highlighted_energy_use = function(self, card, area, copier, exclude_spoon)
 '''
 position = "after"
 payload = '''
@@ -51,7 +51,7 @@ match_indent = true
 [patches.pattern]
 target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
 pattern = '''
-energy_use = function(self, card, area, copier)
+energy_use = function(self, card, area, copier, exclude_spoon)
 '''
 position = "after"
 payload = '''
