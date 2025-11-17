@@ -15,6 +15,7 @@ local cetoddle = {
     gen = 9,
     custom_art = true,
     blueprint_compat = true,
+    perishable_compat = false,
     calculate = function(self, card, context)
         if context.remove_playing_cards and not context.blueprint then
             local glass_cards = 0
@@ -80,6 +81,7 @@ local cetitan = {
     ptype = "Water",
     gen = 9,
     blueprint_compat = true,
+    perishable_compat = false,
     calculate = function(self, card, context)
         if context.remove_playing_cards and not context.blueprint then
             local glass_cards = 0

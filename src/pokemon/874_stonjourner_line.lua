@@ -27,7 +27,8 @@ local stonjourner = {
   stage = "Basic",
   ptype = "Earth",
   gen = 8,
-  blueprint_compat = false,  
+  blueprint_compat = false,
+  perishable_compat = false,  
   calculate = function(self, card, context)
     local a = card.ability.extra
     if context.scoring_hand and not context.individual and not context.repetition and not context.blueprint then
