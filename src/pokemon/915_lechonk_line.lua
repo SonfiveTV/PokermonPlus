@@ -9,7 +9,6 @@ local lechonk = {
             evo_rqmt = 5
         }
     },
-
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
         if pokermon_config.detailed_tooltips then
@@ -24,7 +23,6 @@ local lechonk = {
             }
         }
     end,
-
     designer = "Sonfive",
     rarity = 1,
     cost = 6,
@@ -36,15 +34,17 @@ local lechonk = {
     calculate = function(self, card, context)
     local a = card.ability.extra
     local earned = nil
-    if G.GAME.dollars > 0 and context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
+    if context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
       a.triggers = a.triggers + 1
-      earned = G.GAME.dollars
-      card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
-      card:set_cost()
-      return {
-          dollars = a.reset - earned,
-          card = card
-      }
+      earned = (SMODS.Mods["Talisman"] or {}).can_load and to_number(G.GAME.dollars) or G.GAME.dollars
+      if earned > 0 then
+        card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
+        card:set_cost()
+        return {
+            dollars = a.reset - earned,
+            card = card
+        }
+      end
     end
     return scaling_evo(self, card, context, "j_sonfive_oinkologne", card.ability.extra.triggers, card.ability.extra.evo_rqmt)
   end
@@ -60,7 +60,6 @@ local oinkologne = {
             volatile = 'right'
         }
     },
-
     loc_vars = function(self, info_queue, card)
         type_tooltip(self, info_queue, card)
         if pokermon_config.detailed_tooltips then
@@ -85,14 +84,16 @@ local oinkologne = {
     calculate = function(self, card, context)
     local a = card.ability.extra
     local earned = nil
-    if G.GAME.dollars > 0 and context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
-      earned = G.GAME.dollars
-      card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
-      card:set_cost()
-      return {
-          dollars = a.reset - earned,
-          card = card
-      }
+    if context.setting_blind and not context.blueprint and volatile_active(self, card, card.ability.extra.volatile) then
+      earned = (SMODS.Mods["Talisman"] or {}).can_load and to_number(G.GAME.dollars) or G.GAME.dollars
+      if earned > 0 then
+        card.ability.extra_value = (card.ability.extra_value or 0) + (a.percentage / 100 * earned)
+        card:set_cost()
+        return {
+            dollars = a.reset - earned,
+            card = card
+        }
+      end
     end
   end,
 }
