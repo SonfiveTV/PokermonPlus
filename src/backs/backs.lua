@@ -92,7 +92,51 @@ local voiddeck = {
   end
 } 
 
-local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck}
+local foolishdeck = {
+  name = "foolishdeck",
+  key = "foolishdeck",
+  atlas = "backs",
+  pos = { x = 0, y = 0 },
+  config = {
+    joker_slot = 1,
+    consumable_slot = 1,
+    shop_size = 1,
+    voucher_limit = 1,
+    booster_limit = 1,
+    hands = 1,
+    discards = 1,
+    hand_size = 1,
+    ante_scaling = 3,
+  },
+  loc_vars = function(self)
+    return {
+      vars = {
+        self.config.joker_slot,
+        self.config.consumable_slot,
+        self.config.shop_size,
+        self.config.voucher_limit,
+        self.config.booster_limit,
+        self.config.hands,
+        self.config.discards,
+        self.config.hand_size,
+        self.config.ante_scaling,
+      }
+    }
+  end,
+  apply = function(self)
+    G.GAME.starting_params.vouchers_in_shop = G.GAME.starting_params.vouchers_in_shop + self.config.voucher_limit
+    G.E_MANAGER:add_event(Event({
+      func = function()
+        change_shop_size(self.config.shop_size)
+        SMODS.change_voucher_limit(self.config.voucher_limit)
+        SMODS.change_booster_limit(self.config.booster_limit)
+        return true
+      end
+    }))
+  end,
+}
+
+local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck, foolishdeck}
 return {name = "Back",
         list = dList}
 
