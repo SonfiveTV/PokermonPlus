@@ -124,7 +124,6 @@ local foolishdeck = {
     }
   end,
   apply = function(self)
-    G.GAME.starting_params.vouchers_in_shop = G.GAME.starting_params.vouchers_in_shop + self.config.voucher_limit
     G.E_MANAGER:add_event(Event({
       func = function()
         change_shop_size(self.config.shop_size)
