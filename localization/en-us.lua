@@ -68,8 +68,8 @@ return {
             },
 
 
-            b_sonfive_foolishdeck = {
-                name = "Foolish Deck",
+            b_sonfive_pyritedeck = {
+                name = "Pyrite Deck",
                 text = {
                         "{C:blue}+#1#{} Joker slot, {C:blue}+#2#{} consumable slot,",
                         "{C:blue}+#3#{} shop slot, {C:blue}+#4#{} Voucher slot,",

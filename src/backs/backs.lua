@@ -92,11 +92,11 @@ local voiddeck = {
   end
 } 
 
-local foolishdeck = {
-  name = "foolishdeck",
-  key = "foolishdeck",
+local pyritedeck = {
+  name = "pyritedeck",
+  key = "pyritedeck",
   atlas = "backs",
-  pos = { x = 0, y = 0 },
+  pos = { x = 0, y = 6 },
   config = {
     joker_slot = 1,
     consumable_slot = 1,
@@ -137,7 +137,7 @@ local foolishdeck = {
   end,
 }
 
-local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck, foolishdeck}
+local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck, pyritedeck}
 return {name = "Back",
         list = dList}
 
