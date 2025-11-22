@@ -71,11 +71,12 @@ return {
             b_sonfive_foolishdeck = {
                 name = "Foolish Deck",
                 text = {
-                    "{C:blue}+#1#{} Joker slot, {C:blue}+#2#{} consumable slot,",
-                    "{C:blue}+#3#{} shop slot, {C:blue}+#4#{} Voucher slot,",
-                    "{C:blue}+#5#{} Booster Pack slot, {C:blue}+#6#{} hand,",
-                    "{C:blue}+#7#{} discard, {C:blue}+#8#{} hand size",
-                    "{C:red}X#9#{} base Blind size"
+                        "{C:blue}+#1#{} Joker slot, {C:blue}+#2#{} consumable slot,",
+                        "{C:blue}+#3#{} shop slot, {C:blue}+#4#{} Voucher slot,",
+                        "{C:blue}+#5#{} Booster Pack slot, {C:blue}+#6#{} hand,",
+                        "{C:blue}+#7#{} discard, {C:blue}+#8#{} hand size",
+                        "{C:red}X#9#{} base Blind size",
+                        "{C:inactive}(Doubles each Ante)"
                 }
             },
 

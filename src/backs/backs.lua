@@ -106,7 +106,6 @@ local foolishdeck = {
     hands = 1,
     discards = 1,
     hand_size = 1,
-    ante_scaling = 3,
   },
   loc_vars = function(self)
     return {
@@ -119,9 +118,12 @@ local foolishdeck = {
         self.config.hands,
         self.config.discards,
         self.config.hand_size,
-        self.config.ante_scaling,
+        (2^(((G.GAME.round_resets.ante - 1) or 0)))
       }
     }
+  end,
+  calculate = function(self, back, context)
+    G.GAME.starting_params.ante_scaling = 2^((G.GAME.round_resets.ante - 1))
   end,
   apply = function(self)
     G.E_MANAGER:add_event(Event({
