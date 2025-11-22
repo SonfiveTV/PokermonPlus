@@ -96,7 +96,7 @@ local pyritedeck = {
   name = "pyritedeck",
   key = "pyritedeck",
   atlas = "backs",
-  pos = { x = 0, y = 6 },
+  pos = { x = 6, y = 0 },
   config = {
     joker_slot = 1,
     consumable_slot = 1,
