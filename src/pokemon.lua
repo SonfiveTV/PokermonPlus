@@ -15,12 +15,10 @@ local function load_pokemon_folder(folder)
         if curr_pokemon.init then curr_pokemon:init() end
 
         local family = {}
-        local orderlist = {}
 
         if curr_pokemon.list and #curr_pokemon.list > 0 then
           for _, item in ipairs(curr_pokemon.list) do
             family[#family + 1] = item.name
-            orderlist[#orderlist+1] = item.name
 
             if (pokermon_config.jokers_only and not item.joblacklist) or not pokermon_config.jokers_only then
               item.discovered = true
@@ -69,7 +67,6 @@ local function load_pokemon_folder(folder)
           if #family > 1 then
             pokermon.add_family(family)
           end
-          if (SMODS.Mods["NachosPokermonDip"] or {}).can_load then PkmnDip.dex_order_groups[#PkmnDip.dex_order_groups+1] = orderlist end
         end
       end
     end
