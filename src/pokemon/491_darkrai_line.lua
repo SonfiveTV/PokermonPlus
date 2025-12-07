@@ -73,7 +73,7 @@ local darkrai = {
                             local diff = desired - last_applied
                             if diff ~= 0 then
                                 joker.ability.extra[energy_key] = current + diff
-                                energy_shift(joker, diff, type_key, false, true, false)
+                                energize(joker, type_key, false, true, diff)
                             end
                             joker.ability.extra.darkrai_applied[energy_key] = desired
                         end
@@ -81,7 +81,7 @@ local darkrai = {
                         -- Joker no longer this type → remove old Darkrai-applied energy
                         if last_applied > 0 then
                             joker.ability.extra[energy_key] = current - last_applied
-                            energy_shift(joker, -last_applied, type_key, false, true, false)
+                            energize(joker, type_key, false, true, -last_applied)
                             joker.ability.extra.darkrai_applied[energy_key] = 0
                         end
                     end
@@ -107,7 +107,7 @@ local darkrai = {
                 if last_applied > 0 then
                     local current = joker.ability.extra[energy_key] or 0
                     joker.ability.extra[energy_key] = current - last_applied
-                    energy_shift(joker, -last_applied, energy_key, false, true, false)
+                    energize(joker, energy_key, false, true, -last_applied)
                     applied[energy_key] = 0
                 end
             end

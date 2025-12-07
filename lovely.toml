@@ -3,97 +3,6 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
-
-#Negative Energy Logic 1/4
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
-pattern = '''
-highlighted_energy_can_use = function(self, card)
-'''
-position = "after"
-payload = '''
-if G.GAME.modifiers.void and card.edition and card.edition.negative then return highlighted_negative_energy_can_use(self, card) end
-'''
-match_indent = true
-
-
-#Negative Energy Logic 2/4
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
-pattern = '''
-highlighted_energy_use = function(self, card, area, copier, exclude_spoon)
-'''
-position = "after"
-payload = '''
-if G.GAME.modifiers.void and card.edition and card.edition.negative then return highlighted_negative_energy_use(self, card, area, copier) end
-'''
-match_indent = true
-
-
-#Negative Energy Logic 3/4
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
-pattern = '''
-energy_can_use = function(self, card)
-'''
-position = "after"
-payload = '''
-if G.GAME.modifiers.void and card.edition and card.edition.negative then return negative_energy_can_use(self, card) end
-'''
-match_indent = true
-
-
-#Negative Energy Logic 4/4
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
-pattern = '''
-energy_use = function(self, card, area, copier, exclude_spoon)
-'''
-position = "after"
-payload = '''
-if G.GAME.modifiers.void and card.edition and card.edition.negative then return negative_energy_use(self, card) end
-'''
-match_indent = true
-
-#Negative Energy Cap
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
-pattern = '''return get_total_energy(card) < energy_max + (G.GAME.energy_plus or 0)'''
-position = "at"
-payload = '''return get_total_energy(card) < energy_max + (G.GAME.energy_plus or 0) + (card.ability and card.ability.extra and (card.ability.extra.energy_plus or 0))'''
-match_indent = true
-
-#Negative Energy Cap
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
-pattern = '''info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0)}}'''
-position = "at"
-payload = '''info_queue[#info_queue+1] = {set = 'Other', key = "energy", vars = {(center.ability.extra.energy_count or 0) + (center.ability.extra.c_energy_count or 0), energy_max + (G.GAME.energy_plus or 0) + (center.ability.extra.energy_plus or 0)}}'''
-match_indent = true
-
-#Negative Energy Evolution
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
-pattern = '''if card.ability.extra[k] or k == "energy_count" or k == "c_energy_count" then'''
-position = "at"
-payload = '''if card.ability.extra[k] or k == "energy_count" or k == "c_energy_count" or k == "energy_plus" then'''
-match_indent = true
-
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
-pattern = ''' local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "form", "jack_target", "jacks_discarded"}'''
-position = "at"
-payload = '''local names_to_keep = {"targets", "rank", "id", "cards_scored", "upgrade", "hazards_drawn", "energy_count", "c_energy_count", "form", "jack_target", "jacks_discarded", "energy_plus"}'''
-match_indent = true
-
 [[patches]]
 [patches.pattern]
 target = 'functions/common_events.lua'
@@ -117,7 +26,7 @@ pattern = 'if new_card.soul_pos then'
 position = "before"
 payload = '''
     if card.ability.sonfive_weakened then
-        energy_shift(card, -1, card.ability.extra.ptype, false, true, false)
+        energize(card, card.ability.extra.ptype, false, true, -1)
     end
 '''
 match_indent = true
