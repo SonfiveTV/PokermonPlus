@@ -9,7 +9,7 @@ local weakened = {
     card.ability[self.key] = val
     if card.ability.extra then
       if type(card.ability.extra) == "table" then
-        increment_energy(card, card.ability.extra.ptype, -1)
+        increment_energy(card, get_type(card), -1)
         card.ability.extra.e_limit_up = card.ability.extra.e_limit_up and (card.ability.extra.e_limit_up - 1) or -1
       end
     end
