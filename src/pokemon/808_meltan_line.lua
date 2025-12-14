@@ -15,7 +15,6 @@ local meltan = {
   
   calculate = function(self, card, context)
     local abbr = card.ability.extra
-    abbr.odds = (1 / (#find_joker('metalcoat') + 1))
     if context.individual and not context.end_of_round and context.cardarea == G.hand then
       if SMODS.has_enhancement(context.other_card, 'm_steel') then 
         abbr.count = abbr.count + 1
@@ -47,7 +46,7 @@ local melmetal = {
   config = {extra = {}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-		return {vars = {#find_joker('metal_energy') + #find_pokemon_type("Metal")}}
+		return {vars = {#SMODS.find_card('c_poke_metal_energy') + #find_pokemon_type("Metal")}}
   end,
   designer = "Sonfive",
   rarity = 4,
@@ -64,7 +63,7 @@ local melmetal = {
   
   calculate = function(self, card, context)
     if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and SMODS.has_enhancement(context.other_card, 'm_steel') then
-      local retriggers = #find_joker('metal_energy') + #find_pokemon_type("Metal")
+      local retriggers = #SMODS.find_card('c_poke_metal_energy') + #find_pokemon_type("Metal")
       if retriggers > 0 then
         return {
           message = localize('k_again_ex'),
