@@ -11,7 +11,7 @@
   "display_name": "Pokermon+",
 	"version": "1.0.3-251214a",
 	"dependencies": [
-      		"Pokermon (>=3.5.1-1206b)"
+      		"Pokermon (>=3.5.1-1216a)"
 	],
   "conflicts": [],
 	"provides": [],

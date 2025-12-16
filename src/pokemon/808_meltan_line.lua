@@ -56,7 +56,6 @@ local melmetal = {
   gen = 7,
   blueprint_compat = true,
   custom_pool_func = true,
-  aux_poke = true,
   in_pool = function(self)
     return false
   end,
@@ -75,7 +74,7 @@ local melmetal = {
   end,
 }
 
-list = {meltan, melmetal}
+local list = {meltan, melmetal}
 
 return {name = "Meltan", 
 list = list

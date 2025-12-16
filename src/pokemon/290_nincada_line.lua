@@ -154,7 +154,7 @@ local shedinja = {
   end
 }
 
-list = {nincada, ninjask, shedinja}
+local list = {nincada, ninjask, shedinja}
 
 return {name = "Nincada", 
 list = list

@@ -98,7 +98,7 @@ local oinkologne = {
   end,
 }
 
-list = {lechonk, oinkologne}
+local list = {lechonk, oinkologne}
 
 return {name = "Lechonk", 
 list = list

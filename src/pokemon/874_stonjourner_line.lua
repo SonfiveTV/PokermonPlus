@@ -113,7 +113,7 @@ local stonjourner = {
 }
 
 
-list = {stonjourner}
+local list = {stonjourner}
 
 return {name = "Stonjourner", 
 list = list

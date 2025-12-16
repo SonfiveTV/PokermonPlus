@@ -139,7 +139,7 @@ local cetitan = {
 }
 
 
-list = {cetoddle, cetitan}
+local list = {cetoddle, cetitan}
 
 return {name = "Cetoddle", 
 list = list

@@ -159,7 +159,7 @@ local garganacl = {
   end
 }
 
-list = {nacli, naclstack, garganacl}
+local list = {nacli, naclstack, garganacl}
 
 return {name = "Nacli", 
 list = list

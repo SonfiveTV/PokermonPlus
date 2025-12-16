@@ -107,7 +107,7 @@ local archaludon = {
 }
 
 
-list = {duraludon, archaludon}
+local list = {duraludon, archaludon}
 
 return {name = "Duraludon", 
 list = list

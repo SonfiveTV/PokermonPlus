@@ -125,7 +125,7 @@ local heliolisk = {
 }
 
 
-list = {helioptile, heliolisk}
+local list = {helioptile, heliolisk}
 
 return {name = "Helioptile", 
 list = list
