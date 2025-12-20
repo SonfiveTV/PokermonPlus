@@ -190,8 +190,8 @@ return {
                 name = 'Melmetal',
                 text = {
                     "Retrigger each {C:attention}Steel{} card",
-                    "held in hand for each",
-                    "{X:metal,C:white}Metal{} card you have",
+                    "held in hand for every",
+                    "{C:attention}2{} {X:metal,C:white}Metal{} card you have",
                     "{C:inactive,s:0.8}(includes Jokers and Energy cards){}",
                     "{C:inactive}(Currently #1# retriggers)"
                 } 
