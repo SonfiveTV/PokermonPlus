@@ -153,6 +153,14 @@ return {
                     "{C:inactive}(Doesn't increment Energy count){}"                                
                 } 
             },
+            j_sonfive_mega_darkrai = {
+                name = 'Mega Darkrai',
+                text = {
+                    "Every held {C:pink}Energy{} card gives",
+                    "{X:red,C:white}X#1#{} Mult for each Joker you have",
+                    "of the corresponding {C:pink}Type{}", 
+                } 
+            },
             j_sonfive_vullaby = {
                 name = 'Vullaby',
                 text = {

@@ -91,11 +91,58 @@ local darkrai = {
       end
       -- Clear Darkrai's own stored snapshot
       a.darkrai_applied_energy = {}
-  end
+  end,
+  megas = {"mega_darkrai"}
+}
+
+local mega_darkrai = {
+  name = "mega_darkrai",
+  config = {extra = {Xmult_multi = 1}},
+  loc_vars = function(self, info_queue, card)
+      type_tooltip(self, info_queue, card)
+      local vars = {
+      card.ability.extra.Xmult_multi
+    }
+
+    return {vars = vars}
+  end,
+  designer = "Sonfive",
+  rarity = "poke_mega",
+  cost = 20,
+  atlas = "sonfive_mega",
+  pos = {x = 0, y = 0},
+  soul_pos = {x = 1, y = 0},
+  stage = "Mega",
+  ptype = "Dark",
+  gen = 4,
+  blueprint_compat = true,
+
+calculate = function(self, card, context)
+    if context.other_consumeable and context.other_consumeable.ability.set == 'Energy' then
+        local types = {"Grass", "Fire", "Water", "Lightning", "Psychic",
+                       "Fighting", "Colorless", "Dark", "Metal", "Fairy",
+                       "Dragon", "Earth"}
+        local Xmult = 0
+        for _, ptype in pairs(types) do
+            if context.other_consumeable.ability.name == 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy' then
+                Xmult = (#find_pokemon_type(ptype) * card.ability.extra.Xmult_multi)
+                break 
+            end
+        end
+        
+        if Xmult > 1 then
+            return {
+                message = localize{type = 'variable', key = 'a_xmult', vars = {Xmult}}, 
+                colour = G.C.XMULT,
+                Xmult_mod = Xmult
+            }
+        end
+    end
+end
 }
 
 
-local list = {darkrai}
+local list = {darkrai, mega_darkrai}
 
 return {name = "Darkrai",
 list = list

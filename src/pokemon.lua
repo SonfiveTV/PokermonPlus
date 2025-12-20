@@ -31,18 +31,9 @@ local function load_pokemon_folder(folder)
               item.config = item.config or {} 
               item.config.extra = item.config.extra or {} 
 
-              local sprite = PokemonSprites[item.name]
-              if sprite and sprite.base then
-                  item.pos = item.pos or sprite.base.pos
-                  item.soul_pos = item.soul_pos or sprite.base.soul_pos
-              end
+              
 
-              local sprite = PokemonSprites[item.name]
-              local atlas_prefix = item.custom_art and "AtlasJokersSeriesA" or "AtlasJokersBasic"
-              local gen_string = (sprite.gen_atlas and item.gen and item.gen < 10 and 'Gen0'..item.gen)
-                or (sprite.gen_atlas and item.gen and 'Gen'..item.gen)
-              item.atlas = item.atlas or ((sprite.gen_atlas and item.gen) and atlas_prefix .. gen_string)
-                or atlas_prefix .. "Natdex"
+              
 
               if item.ptype then
                 item.config.extra.ptype = item.ptype
@@ -60,7 +51,13 @@ local function load_pokemon_folder(folder)
               end
 
               item.discovered = not pokermon_config.pokemon_discovery
-              pokermon.Pokemon(item, "sonfive", nil)
+              if item.atlas and string.find(item.atlas, "sonfive") then
+                pokermon.Pokemon(item,"sonfive",true)
+              else
+                  poke_load_atlas(item)
+                  poke_load_sprites(item)
+                pokermon.Pokemon(item,"sonfive",false)
+              end
             end
           end
           

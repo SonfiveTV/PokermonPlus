@@ -46,3 +46,10 @@ SMODS.Atlas({
     py = 95,
     path = "stickers.png"
 }):register()
+
+SMODS.Atlas({
+    key = "sonfive_mega",
+    path = "sonfive_mega.png",
+    px = 71,
+    py = 95
+}):register()
