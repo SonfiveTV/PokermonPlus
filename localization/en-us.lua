@@ -182,16 +182,16 @@ return {
                 text = {
                     "{C:attention}Holding {C:dark_edition}Negative {C:item}Metal Coat{}",
                     "Retrigger each {C:attention}Steel{} card",
-                    "held in hand {C:attention}#3#{} time",
+                    "held in hand {C:attention}#3#{} additional time",
                     "{C:inactive,s:0.8}(Evolves after scoring #1#/#2# Steel cards){}"
                 } 
             },
             j_sonfive_melmetal = {
                 name = 'Melmetal',
                 text = {
-                    "Retrigger each {C:attention}Steel{} card",
-                    "held in hand for every",
-                    "{C:attention}2{} {X:metal,C:white}Metal{} card you have",
+                    "{C:attention}Steel{} cards held in hand",
+                    "retrigger an additional time for",
+                    "every {C:attention}2{} {X:metal,C:white}Metal{} cards you have",
                     "{C:inactive,s:0.8}(includes Jokers and Energy cards){}",
                     "{C:inactive}(Currently #1# retriggers)"
                 } 
