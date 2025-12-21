@@ -18,15 +18,3 @@ if G.GAME.modifiers.enable_weakened_in_shop then
   end 
 end
 '''
-
-[[patches]]
-[patches.pattern]
-target = '=[SMODS Pokermon "functions/pokefunctions.lua"]'
-pattern = 'if new_card.soul_pos then'
-position = "before"
-payload = '''
-    if card.ability.sonfive_weakened then
-        energize(card, card.ability.extra.ptype, false, true, -1)
-    end
-'''
-match_indent = true

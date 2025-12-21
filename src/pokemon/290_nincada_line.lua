@@ -1,6 +1,6 @@
 local nincada = {
   name = "nincada",
-  config = {extra = {chips = 45, mult = 3, rounds = 5}},
+  config = {extra = {chips = 15, mult = 1, rounds = 4}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
 		return {vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.rounds}}
@@ -15,23 +15,11 @@ local nincada = {
   eternal_compat = false,
   
   calculate = function(self, card, context)
-    if context.cardarea == G.jokers and context.scoring_hand then
-              if context.joker_main then
-        local chips = card.ability.extra.chips
-        if pseudorandom('nincada') <= 0.5 then
-            return {
-            message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips}}, 
-            colour = G.C.CHIPS,
-            chip_mod = card.ability.extra.chips
-            }
-        else
-            return {
-            message = localize{type = 'variable', key = 'a_mult', vars = {card.ability.extra.mult}}, 
-            colour = G.C.MULT,
-            mult_mod = card.ability.extra.mult
-            }
-        end
-      end
+    if context.cardarea == G.jokers and context.scoring_hand and context.joker_main then
+      return {
+      chip_mod = card.ability.extra.chips,
+      mult_mod = card.ability.extra.mult,
+      }
     end
     local evo = level_evo(self, card, context, "j_sonfive_ninjask")
     if evo and type(evo) == "table" and G.jokers and #G.jokers.cards < G.jokers.config.card_limit and not context.blueprint then
@@ -48,10 +36,10 @@ local nincada = {
 
 local ninjask = {
   name = "ninjask",
-  config = {extra = {chips = 90, mult = 5, speedboost = 1}},
+  config = {extra = {chips = 40, mult = 5}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
-		return {vars = {card.ability.extra.chips, card.ability.extra.mult, (7 - card.ability.extra.speedboost)}}
+		return {vars = {card.ability.extra.chips, card.ability.extra.mult}}
   end,
   designer = "Sonfive",
   rarity = 2,
@@ -62,17 +50,14 @@ local ninjask = {
   blueprint_compat = true,
   
   calculate = function(self, card, context)
-    if context.cardarea == G.jokers and context.scoring_hand then
-        if context.joker_main then
-            return {
-            chips = card.ability.extra.chips,
-            mult = card.ability.extra.mult,
-        }
-      end
+    if context.cardarea == G.jokers and context.scoring_hand and context.joker_main then
+        return {
+        chips = card.ability.extra.chips,
+        mult = card.ability.extra.mult,
+    }
     end
-    if not context.individual and context.end_of_round and card.ability.extra.speedboost < 7 and not context.repetition and G.GAME.last_blind and G.GAME.last_blind.boss then
-        energize(card, card.ability.extra.ptype, false, true)
-        card.ability.extra.speedboost = card.ability.extra.speedboost + 1
+    if not context.individual and context.end_of_round and not context.repetition and G.GAME.last_blind and G.GAME.last_blind.boss then
+        card.ability.extra.e_limit_up = (card.ability.extra.e_limit_up or 0) + 1
         return{
             message = localize('sonfive_speedboost'), colour = HEX('A8F2FF')
           }

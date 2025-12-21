@@ -96,7 +96,8 @@ return {
             j_sonfive_nincada = {
                 name = 'Nincada',
                 text = {
-                    "{C:chips}+#1#{} Chips or {C:mult}+#2#{} Mult",
+                    "{C:chips}+#1#{} Chips",
+                    "{C:mult}+#2#{} Mult",
                     "{C:inactive,s:0.8}(Evolves after {C:attention,s:0.8}#3#{C:inactive,s:0.8} rounds)"                    
                 } 
             },
@@ -106,10 +107,8 @@ return {
                     "{C:chips}+#1#{} Chips",
                     "{C:mult}+#2#{} Mult",   
                     "{br:4}text needs to be here to work",
-                    "Increases this Joker's {C:chips}Chips{}", 
-                    "and {C:mult}Mult{} when {C:attention}Boss Blind{} is defeated",
-                    "{C:inactive}(#3# Speed Boosts remaining){}"
-
+                    "Increases this Joker's {C:pink}Energy{} limit", 
+                    "when {C:attention}Boss Blind{} is defeated",
                 } 
             },
             j_sonfive_shedinja = {
