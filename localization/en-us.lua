@@ -141,6 +141,15 @@ return {
                     "for every {C:money}$100{} you have"
                 }
             },
+            j_sonfive_heatran = {
+                name = 'Heatran',
+                text = {
+                    "Scored cards {C:attention}permanently{} gain",
+                    "the stats of their {C:attention}modifiers{},",
+                    "then remove all {C:attention}modifiers{}",
+                    "{C:inactive}(Enhancements, Editions, and Seals)"
+                } 
+            },
             j_sonfive_darkrai = {
                 name = 'Darkrai',
                 text = {
