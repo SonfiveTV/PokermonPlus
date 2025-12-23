@@ -53,3 +53,12 @@ SMODS.Atlas({
     px = 71,
     py = 95
 }):register()
+
+SMODS.Atlas({
+    key = "sonfive_boss_blinds",
+    atlas_table = "ANIMATION_ATLAS",
+    path = "boss_blinds.png",
+    px = 34,
+    py = 34,
+    frames = 21,
+}):register()

@@ -14,6 +14,22 @@ SMODS.current_mod.set_debuff = function(card)
    return false
 end
 
+local old_reroll = G.FUNCS.reroll_boss
+G.FUNCS.reroll_boss = function(...)
+    local result = old_reroll(...)   -- call original
+    if G.GAME.quest_active then
+        G.GAME.quest_active = false
+    end
+    return result
+end
+
+SMODS.current_mod.calculate = function(self, context)
+  if context.end_of_round and not (G.GAME.heatran_quest_complete or G.GAME.quest_active) then
+    sonfive_heatran_quest()
+  end
+end
+
+
 -- Void Deck Negative Energy check
 local energy_use_ref = energy_use
 energy_use = function(self, card, area, copier, highlighted, exclude_spoon)

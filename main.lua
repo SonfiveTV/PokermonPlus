@@ -23,6 +23,7 @@ local function load_files()
   local files = {
     "atlases",
     "backs",
+    "blinds",
     "challenges",
     "consumables",
     "functions",

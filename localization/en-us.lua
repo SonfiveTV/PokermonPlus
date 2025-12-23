@@ -83,11 +83,13 @@ return {
 
         },
         Blind = {
-            bl_sonfive_memento = {
-                name = "Magenta Memento",
+            bl_sonfive_heatran_boss = {
+                name = "The Lava Dome",
                 text = {
-                    "All Jokers lose 1",
-                    "Energy per hand played",
+                    "Cards with {C:attention}enhancements{},",
+                    "{C:attention}editions{}, or {C:attention}seals{}",
+                    "give {X:red,C:white}X0.5{} Mult when played",
+                    "and when held in hand"
                 }, 
             },
         },
