@@ -95,7 +95,7 @@ return {
             bl_sonfive_darkrai_boss = {
                 name = "The Newmoon Nightmare",
                 text = {
-                    "Jokers are weakened and"
+                    "Jokers are weakened and",
                     "drained of any Energy",
                 }, 
             },
