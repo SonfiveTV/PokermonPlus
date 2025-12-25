@@ -52,7 +52,6 @@ function sonfive_darkrai_quest(self, context)
   }
 
   G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
-print('Used consumable key:', context.consumeable.ability.name)
 
   for _, ptype in ipairs(types) do
     local energy_key =
@@ -63,7 +62,6 @@ print('Used consumable key:', context.consumeable.ability.name)
     if context.consumeable.ability.name == energy_key then
       if not G.GAME.darkrai_quest_types[ptype] then
         G.GAME.darkrai_quest_types[ptype] = true
-        print('Darkrai quest: collected ' .. ptype .. ' energy')
       end
     end
   end
@@ -72,7 +70,6 @@ print('Used consumable key:', context.consumeable.ability.name)
   for _ in pairs(G.GAME.darkrai_quest_types) do
     count = count + 1
   end
-  print('Darkrai quest: total types collected: ' .. count)
   if count == 12 and context.consumeable.ability.name == 'nightmare' then
     set_quest_boss('sonfive', 'darkrai')
   end
