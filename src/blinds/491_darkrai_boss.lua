@@ -1,7 +1,7 @@
 local darkrai_boss={
     key = "darkrai_boss",
     dollars = 10,
-    mult = 10,
+    mult = 4,
     atlas = "sonfive_boss_blinds",
     pos = { 
         x = 0, 
