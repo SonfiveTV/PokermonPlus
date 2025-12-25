@@ -1,4 +1,4 @@
-function sonfive_heatran_quest()
+function sonfive_heatran_quest(self, context)
 
   local cards = G.playing_cards
 
@@ -43,14 +43,16 @@ function sonfive_heatran_quest()
   
 end
 
-function sonfive_darkrai_quest()
+function sonfive_darkrai_quest(self, context)
+
   local types = {
     "Grass", "Fire", "Water", "Lightning", "Psychic",
     "Fighting", "Colorless", "Dark", "Metal", "Fairy",
     "Dragon", "Earth"
   }
 
-  local unique_count = 0
+  G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
+print('Used consumable key:', context.consumeable.ability.name)
 
   for _, ptype in ipairs(types) do
     local energy_key =
@@ -58,12 +60,20 @@ function sonfive_darkrai_quest()
       .. (ptype == 'Dark' and 'ness' or '')
       .. '_energy'
 
-    if #SMODS.find_card(energy_key) > 0 then
-      unique_count = unique_count + 1
+    if context.consumeable.ability.name == energy_key then
+      if not G.GAME.darkrai_quest_types[ptype] then
+        G.GAME.darkrai_quest_types[ptype] = true
+        print('Darkrai quest: collected ' .. ptype .. ' energy')
+      end
     end
   end
 
-  if unique_count >= 4 then
-    set_quest_boss('sonfive','darkrai')
+  local count = 0
+  for _ in pairs(G.GAME.darkrai_quest_types) do
+    count = count + 1
+  end
+  print('Darkrai quest: total types collected: ' .. count)
+  if count == 12 and context.consumeable.ability.name == 'nightmare' then
+    set_quest_boss('sonfive', 'darkrai')
   end
 end

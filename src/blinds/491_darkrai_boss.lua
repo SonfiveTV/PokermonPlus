@@ -24,10 +24,8 @@ local darkrai_boss={
             func = function()
                 for i = 1, #G.jokers.cards do
                     local card = G.jokers.cards[i]
-                    card.ability.extra.drain = ((card.ability.extra.energy_count or 0) + (card.ability.extra.c_energy_count or 0))
+                    card.ability.extra.drain = ((card.ability.extra.energy_count or 0) + (card.ability.extra.c_energy_count or 0)) + 1
                     local drain = card.ability.extra.drain
-                    if (card.ability.extra.energy_count and card.ability.extra.energy_count > 0) 
-                        or (card.ability.extra.c_energy_count and card.ability.extra.c_energy_count > 0) then
                         
                         G.E_MANAGER:add_event(Event({
                             func = function()
@@ -38,7 +36,6 @@ local darkrai_boss={
 
                         energize(card, ptype, nil, true, -drain)
                         delay(0.1)
-                    end
                 end
                 return true
             end

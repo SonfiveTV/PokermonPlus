@@ -55,10 +55,10 @@ end
 
 SMODS.current_mod.calculate = function(self, context)
   if context.end_of_round and not (G.GAME.heatran_quest_complete or G.GAME.quest_active) then
-    sonfive_heatran_quest()
+    sonfive_heatran_quest(self, context)
   end
-  if context.using_consumeable and context.consumeable.ability.name == 'nightmare' and not (G.GAME.darkrai_quest_complete or G.GAME.quest_active) then
-    sonfive_darkrai_quest()
+  if context.using_consumeable and not (G.GAME.darkrai_quest_complete or G.GAME.quest_active) then
+    sonfive_darkrai_quest(self, context)
   end
 end
 
