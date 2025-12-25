@@ -38,24 +38,8 @@ local heatran_boss={
 
 
     defeat = function(self)
-        if (#G.jokers.cards + G.GAME.joker_buffer) < G.jokers.config.card_limit then
-            G.GAME.joker_buffer = G.GAME.joker_buffer + 1
-                G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-                G.GAME.joker_buffer = 0
-                play_sound('timpani')
-                local _card = SMODS.create_card{
-                    set = "Joker",
-                    area = G.jokers,
-                    key = "j_sonfive_heatran",
-                    no_edition = true
-                }
-                _card:add_to_deck()
-                G.jokers:emplace(_card)
-                return true end }))
-            delay(0.6)
-        end
+        complete_quest('sonfive', 'heatran')
         G.GAME.heatran_quest_complete = true
-        G.GAME.quest_active = false
     end
 }
 

@@ -1,4 +1,4 @@
-function sonfive_heatran_quest(self, context)
+function sonfive_heatran_quest()
 
   local cards = G.playing_cards
 
@@ -38,11 +38,32 @@ function sonfive_heatran_quest(self, context)
   for _, key in ipairs(REQUIRED_SEALS) do
     if not seal_present[key] then return end
   end
+   
+  set_quest_boss('sonfive','heatran')
+  
+end
 
-  G.GAME.quest_active = true
-  G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
-  G.GAME.bosses_used = G.GAME.bosses_used or {}
+function sonfive_darkrai_quest()
+  local types = {
+    "Grass", "Fire", "Water", "Lightning", "Psychic",
+    "Fighting", "Colorless", "Dark", "Metal", "Fairy",
+    "Dragon", "Earth"
+  }
 
-  G.GAME.bosses_used['bl_sonfive_heatran_boss'] = G.GAME.bosses_used['bl_sonfive_heatran_boss'] or 0
-  G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_sonfive_heatran_boss'
+  local unique_count = 0
+
+  for _, ptype in ipairs(types) do
+    local energy_key =
+      'c_poke_' .. string.lower(ptype)
+      .. (ptype == 'Dark' and 'ness' or '')
+      .. '_energy'
+
+    if #SMODS.find_card(energy_key) > 0 then
+      unique_count = unique_count + 1
+    end
+  end
+
+  if unique_count >= 4 then
+    set_quest_boss('sonfive','darkrai')
+  end
 end

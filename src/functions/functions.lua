@@ -23,9 +23,42 @@ G.FUNCS.reroll_boss = function(...)
     return result
 end
 
+set_quest_boss = function(mod_prefix, pokemon)
+    G.GAME.quest_active = true
+    G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+    G.GAME.bosses_used = G.GAME.bosses_used or {}
+
+    G.GAME.bosses_used['bl_'..mod_prefix..'_'..pokemon..'_boss'] = G.GAME.bosses_used['bl_'..mod_prefix..'_'..pokemon..'_boss'] or 0
+    G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_'..mod_prefix..'_'..pokemon..'_boss'
+end
+
+complete_quest = function(mod_prefix, pokemon)
+  G.GAME.quest_active = false
+  if (#G.jokers.cards + G.GAME.joker_buffer) < G.jokers.config.card_limit then
+    G.GAME.joker_buffer = G.GAME.joker_buffer + 1
+    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+    G.GAME.joker_buffer = 0
+    play_sound('timpani')
+    local _card = SMODS.create_card{
+        set = "Joker",
+        area = G.jokers,
+        key = "j_"..mod_prefix..'_'..pokemon,
+        no_edition = true
+    }
+    _card:add_to_deck()
+    G.jokers:emplace(_card)
+    return true end }))
+    delay(0.6)
+  end
+  
+end
+
 SMODS.current_mod.calculate = function(self, context)
   if context.end_of_round and not (G.GAME.heatran_quest_complete or G.GAME.quest_active) then
     sonfive_heatran_quest()
+  end
+  if context.using_consumeable and context.consumeable.ability.name == 'nightmare' and not (G.GAME.darkrai_quest_complete or G.GAME.quest_active) then
+    sonfive_darkrai_quest()
   end
 end
 
