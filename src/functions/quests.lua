@@ -1,4 +1,5 @@
 function sonfive_heatran_quest(self, context)
+  if not context.consumeable.ability.name == 'immolate' then return end
 
   local cards = G.playing_cards
 

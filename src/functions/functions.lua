@@ -34,6 +34,7 @@ end
 
 complete_quest = function(mod_prefix, pokemon)
   G.GAME.quest_active = false
+
   if (#G.jokers.cards + G.GAME.joker_buffer) < G.jokers.config.card_limit then
     G.GAME.joker_buffer = G.GAME.joker_buffer + 1
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
@@ -50,17 +51,33 @@ complete_quest = function(mod_prefix, pokemon)
     return true end }))
     delay(0.6)
   end
-  
 end
 
 SMODS.current_mod.calculate = function(self, context)
-  if context.end_of_round and not (G.GAME.heatran_quest_complete or G.GAME.quest_active) then
+  if context.using_consumeable and not (G.GAME.heatran_quest_complete or G.GAME.quest_active) then
     sonfive_heatran_quest(self, context)
   end
   if context.using_consumeable and not (G.GAME.darkrai_quest_complete or G.GAME.quest_active) then
     sonfive_darkrai_quest(self, context)
   end
 end
+
+pokermon_quest_keys = {"j_sonfive_quest_heatran", "j_sonfive_quest_darkrai"}
+function G.FUNCS.sonfive_quest()
+    G.SETTINGS.paused = true
+    G.FUNCS.overlay_menu {
+        definition = create_UIBox_generic_options {
+            back_func = 'options',
+            contents = poke_create_UIBox_your_collection {
+                keys = pokermon_quest_keys,
+                cols = 4,
+                dynamic_sizing = true
+            },
+        }
+    }
+end
+
+SMODS.Keybind({ key = "openQuests", key_pressed = "o", action = G.FUNCS.sonfive_quest })
 
 
 -- Void Deck Negative Energy check

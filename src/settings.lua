@@ -97,31 +97,45 @@ function G.FUNCS.sonfive_update_config_page(e)
 end
 
 function SMODS.current_mod.extra_tabs()
-	return {
+  return {
+    -- ======================
+    -- Pokemon Config tab
+    -- ======================
     {
       label = 'Pokemon Config',
-      tab_definition_function = function ()
+      tab_definition_function = function()
         local grid = UIBox {
           definition = create_tile_grid { page_num = 1 },
           config = { type = "cm" },
         }
+
         return {
           n = G.UIT.ROOT,
           config = {
-          r = 0.1,
-          minw = 14,
-          minh = 8.5,
-          align = "cm",
-          colour = G.C.BLACK,
-          emboss = 0.05,
+            r = 0.1,
+            minw = 14,
+            minh = 8.5,
+            align = "cm",
+            colour = G.C.BLACK,
+            emboss = 0.05,
           },
           nodes = {
-          { n = G.UIT.O, config = { id = "sonfive_grid_wrap", object = grid } }
+            {
+              n = G.UIT.O,
+              config = {
+                id = "sonfive_grid_wrap",
+                object = grid
+              }
+            }
           }
         }
       end
     },
-        {
+
+    -- ======================
+    -- Extra tab
+    -- ======================
+    {
       label = 'Extra',
       tab_definition_function = function()
         return {
@@ -141,10 +155,59 @@ function SMODS.current_mod.extra_tabs()
             }),
           }
         }
-      end,
+      end
     },
-	}
+
+    -- ======================
+    -- Quests tab (FIXED)
+    -- ======================
+    {
+      label = 'Quests',
+      tab_definition_function = function()
+        return {
+          n = G.UIT.ROOT,
+          config = {
+            r = 0.1,
+            minw = 7,
+            align = "cm",
+            colour = G.C.BLACK,
+            emboss = 0.05,
+          },
+          nodes = {
+            {
+              n = G.UIT.R,           -- Row = horizontal stack
+              config = {
+                align = "cm",        -- top-middle alignment
+                padding = 0.2        -- space between items
+              },
+              nodes = {
+                {
+                  n = G.UIT.T,
+                  config = {
+                    text = 'Heatran',
+                    shadow = true,
+                    scale = 1.0,
+                    colour = G.C.UI.TEXT_LIGHT
+                  }
+                },
+                {
+                  n = G.UIT.T,
+                  config = {
+                    text = 'Have at least 1 Lucky card in your deck.',
+                    shadow = true,
+                    scale = 0.5,
+                    colour = G.C.UI.TEXT_LIGHT
+                  }
+                }
+              }
+            }
+          }
+        }
+      end
+    },
+  }
 end
+
 
 
 

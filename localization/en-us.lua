@@ -331,6 +331,53 @@ return {
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
                 } 
             },
+            j_sonfive_questbook = {
+                name = "Quest Book",
+                text = {
+                    "Double-click to view Quest progress"
+                }
+            },
+            j_sonfive_quest_heatran = {
+                name = "Into The Volcano",
+                text = {
+                    {
+                    "Use an {C:spectral,T:c_immolate}Immolate{} card to",
+                    "challenge {C:attention}Heatran{} next Ante",
+                    },
+                    {
+                    "Requirements:",
+                    "{V:2,s:0.8}#2#{}",
+                    "{V:5,s:0.8}#5#{}{V:6,s:0.8} #6#{}{V:7,s:0.8} #7#{}{V:8,s:0.8} #8#{}{V:9,s:0.8} #9#{}{V:10,s:0.8} #10#{}{V:11,s:0.8} #11#{}{V:12,s:0.8} #12#{}",
+                    "{V:3,s:0.8}#3#{}",
+                    "{V:13,s:0.8}#13#{}{V:14,s:0.8} #14#{}{V:15,s:0.8} #15#{}",
+                    "{V:4,s:0.8}#4#{}",
+                    "{V:16,s:0.8}#16#{}{V:17,s:0.8} #17#{}{V:18,s:0.8} #18#{}{V:19,s:0.8} #19#{}{V:20,s:0.8} #20#{}{V:21,s:0.8} #21#{}"
+                    }
+                }
+            },
+            j_sonfive_quest_darkrai = {
+                name = "The Nightmare Begins",
+                text = {
+                    {
+                    "Use a {C:spectral,T:c_poke_nightmare}Nightmare{} card to",
+                    "challenge {C:attention}Darkrai{} next Ante",
+                    },
+                    {"{s:0.8}Requirements:{}",
+                    "{V:1,s:0.8}#2#",
+                    "{V:2,s:0.8}#3#",
+                    "{V:3,s:0.8}#4#",
+                    "{V:4,s:0.8}#5#",
+                    "{V:5,s:0.8}#6#",
+                    "{V:6,s:0.8}#7#",
+                    "{V:7,s:0.8}#8#",
+                    "{V:8,s:0.8}#9#",
+                    "{V:9,s:0.8}#10#",
+                    "{V:10,s:0.8}#11#",
+                    "{V:11,s:0.8}#12#",
+                    "{V:12,s:0.8}#13#"}
+                }
+            },
+
         },
 
         Item = {

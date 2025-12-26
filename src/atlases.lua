@@ -55,6 +55,13 @@ SMODS.Atlas({
 }):register()
 
 SMODS.Atlas({
+    key = "questbook",
+    path = "questbook.png",
+    px = 71,
+    py = 95
+}):register()
+
+SMODS.Atlas({
     key = "sonfive_boss_blinds",
     atlas_table = "ANIMATION_ATLAS",
     path = "boss_blinds.png",
