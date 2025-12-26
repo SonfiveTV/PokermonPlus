@@ -67,7 +67,7 @@ function G.FUNCS.sonfive_quest()
     G.SETTINGS.paused = true
     G.FUNCS.overlay_menu {
         definition = create_UIBox_generic_options {
-            back_func = 'options',
+            back_func = 'exit_overlay_menu',
             contents = poke_create_UIBox_your_collection {
                 keys = pokermon_quest_keys,
                 cols = 4,
@@ -78,6 +78,14 @@ function G.FUNCS.sonfive_quest()
 end
 
 SMODS.Keybind({ key = "openQuests", key_pressed = "o", action = G.FUNCS.sonfive_quest })
+
+local capture_focused_input_ref = G.CONTROLLER.capture_focused_input
+G.CONTROLLER.capture_focused_input = function(self, button, input_type, dt)
+  if input_type == 'press' and button == 'leftstick' then
+    G.FUNCS.sonfive_quest()
+  end
+  return capture_focused_input_ref(self, button, input_type, dt)
+end
 
 
 -- Void Deck Negative Energy check
