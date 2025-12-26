@@ -41,7 +41,6 @@ function sonfive_heatran_quest(self, context)
   end
    
   set_quest_boss('sonfive','heatran')
-  
 end
 
 function sonfive_darkrai_quest(self, context)

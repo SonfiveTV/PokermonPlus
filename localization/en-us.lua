@@ -355,6 +355,20 @@ return {
                     }
                 }
             },
+            j_sonfive_quest_heatran_active = {
+                name = "Into The Volcano",
+                text = {
+                    "Get ready to battle {C:attention}Heatran{}!",
+                    "You'll need an empty Joker slot if you",
+                    "plan on catching them after the battle"
+                }
+            },
+            j_sonfive_quest_heatran_complete = {
+                name = "Into The Volcano",
+                text = {
+                    "You have completed this Quest already!",
+                }
+            },
             j_sonfive_quest_darkrai = {
                 name = "The Nightmare Begins",
                 text = {
@@ -375,6 +389,20 @@ return {
                     "{V:10,s:0.8}#11#",
                     "{V:11,s:0.8}#12#",
                     "{V:12,s:0.8}#13#"}
+                }
+            },
+            j_sonfive_quest_darkrai_active = {
+                name = "The Nightmare Begins",
+                text = {
+                    "Get ready to battle {C:attention}Darkrai{}!",
+                    "You'll need an empty Joker slot if you",
+                    "plan on catching them after the battle"
+                }
+            },
+            j_sonfive_quest_darkrai_complete = {
+                name = "The Nightmare Begins",
+                text = {
+                    "You have completed this Quest already!",
                 }
             },
 

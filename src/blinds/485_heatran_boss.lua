@@ -39,7 +39,6 @@ local heatran_boss={
 
     defeat = function(self)
         complete_quest('sonfive', 'heatran')
-        G.GAME.heatran_quest_complete = true
     end
 }
 

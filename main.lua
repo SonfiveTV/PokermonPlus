@@ -28,6 +28,7 @@ local function load_files()
     "consumables",
     "functions",
     "pokemon",
+    "quests",
     "settings",
     "sleeves",
     "stakes",

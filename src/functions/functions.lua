@@ -16,15 +16,25 @@ end
 
 local old_reroll = G.FUNCS.reroll_boss
 G.FUNCS.reroll_boss = function(...)
-    local result = old_reroll(...)   -- call original
-    if G.GAME.quest_active then
-        G.GAME.quest_active = false
+    local active = G.GAME.active_quest
+    if active then
+        local boss_key = 'bl_sonfive_'..active..'_boss'
+
+        -- Current boss being shown in shop
+        local current_boss = G.GAME.round_resets.blind_choices.Boss
+
+        if current_boss == boss_key then
+            G.GAME.active_quest = nil
+        end
     end
-    return result
+
+    return old_reroll(...)
 end
 
-set_quest_boss = function(mod_prefix, pokemon)
-    G.GAME.quest_active = true
+
+set_quest_boss = function(mod_prefix, pokemon) -- Adds the quest boss and marks the quest as active
+    G.GAME.active_quest = pokemon
+
     G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
     G.GAME.bosses_used = G.GAME.bosses_used or {}
 
@@ -32,9 +42,10 @@ set_quest_boss = function(mod_prefix, pokemon)
     G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_'..mod_prefix..'_'..pokemon..'_boss'
 end
 
-complete_quest = function(mod_prefix, pokemon)
-  G.GAME.quest_active = false
-
+complete_quest = function(mod_prefix, pokemon) -- Occurs when defeating the pokemon's Boss Blind 
+  G.GAME.active_quest = nil
+  G.GAME.quest_complete = G.GAME.quest_complete or {}
+  G.GAME.quest_complete[pokemon] = true
   if (#G.jokers.cards + G.GAME.joker_buffer) < G.jokers.config.card_limit then
     G.GAME.joker_buffer = G.GAME.joker_buffer + 1
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
@@ -53,23 +64,38 @@ complete_quest = function(mod_prefix, pokemon)
   end
 end
 
+sonfive_quest_keys = {}
 SMODS.current_mod.calculate = function(self, context)
-  if context.using_consumeable and not (G.GAME.heatran_quest_complete or G.GAME.quest_active) then
-    sonfive_heatran_quest(self, context)
-  end
-  if context.using_consumeable and not (G.GAME.darkrai_quest_complete or G.GAME.quest_active) then
-    sonfive_darkrai_quest(self, context)
+  local active = G.GAME.active_quest
+  local complete = G.GAME.quest_complete
+  local quests = {
+    {name = "heatran", func = sonfive_heatran_quest, trigger = context.using_consumeable}, 
+    {name = "darkrai", func = sonfive_darkrai_quest, trigger = context.using_consumeable}
+  }
+
+  for i, pokemon in ipairs(quests) do
+    if pokemon.trigger and not ((complete and complete[pokemon.name]) or (active == pokemon.name)) then
+      pokemon.func(self, context)
+    end
+
+    if active and active == pokemon.name then
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..pokemon.name.."_active"
+    elseif complete and complete[pokemon.name] then
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..pokemon.name.."_complete"
+    else
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..pokemon.name
+    end
   end
 end
 
-pokermon_quest_keys = {"j_sonfive_quest_heatran", "j_sonfive_quest_darkrai"}
+
 function G.FUNCS.sonfive_quest()
     G.SETTINGS.paused = true
     G.FUNCS.overlay_menu {
         definition = create_UIBox_generic_options {
             back_func = 'exit_overlay_menu',
             contents = poke_create_UIBox_your_collection {
-                keys = pokermon_quest_keys,
+                keys = sonfive_quest_keys,
                 cols = 4,
                 dynamic_sizing = true
             },

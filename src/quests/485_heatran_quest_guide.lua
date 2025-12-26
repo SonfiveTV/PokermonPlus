@@ -1,10 +1,5 @@
 local quest_heatran = {
     name = "quest_heatran",
-    config = {extra = {}},
-    atlas = "sonfive_questbook",
-    pos = {x = 2, y = 0},
-    discovered = true,
-    unlocked = true,
     loc_vars = function(self, info_queue, card)
         local cards = G.playing_cards or {}
 
@@ -103,88 +98,18 @@ local quest_heatran = {
     end,
 
 
-
-    rarity = "poke_safari",
-    cost = 6,
-    stage = "Other",
-    no_collection = true,
-    no_mod_badges = true,
-    custom_pool_func = true,
-    aux_poke = true,
-    in_pool = function(self)
-        return false
-    end,
-    set_card_type_badge = function(self, card, badges)
-        badges[#badges + 1] = create_badge('Quest', G.C.CLEAR , G.C.CLEAR , 0)
-    end
-
 }
 
-local quest_darkrai = {
-    name = "quest_darkrai",
-    config = {extra = {}},
-    atlas = "sonfive_questbook",
-    pos = {x = 1, y = 0},
-    discovered = true,
-    unlocked = true,
-    loc_vars = function(self, info_queue, card)
-        G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
-
-        local energy_tasks = {
-            "Grass", "Fire", "Water", "Lightning", "Psychic",
-            "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-            "Dragon", "Earth",
-        }
-
-        local vars = {}
-        local colours = {}
-
-        -- Count completed tasks
-        local completed_count = 0
-        for _, energy in ipairs(energy_tasks) do
-            if G.GAME.darkrai_quest_types[energy] then
-                completed_count = completed_count + 1
-            end
-        end
-        vars[1] = completed_count
-
-        -- Populate task texts and colours
-        for i, energy in ipairs(energy_tasks) do
-            local done = G.GAME.darkrai_quest_types[energy]
-
-            if done then
-                vars[i + 1] =
-                    "Use a " .. energy .. (energy == "Dark" and "ness" or "") .. " Energy"
-                colours[i] = G.C.GREEN
-            else
-                vars[i + 1] = "???"
-                colours[i] = G.C.UI.TEXT_INACTIVE
-            end
-        end
-
-        vars.colours = colours
-        return { vars = vars }
-    end,
-
-    rarity = "poke_safari",
-    cost = 6,
-    stage = "Other",
-    no_collection = true,
-    no_mod_badges = true,
-    custom_pool_func = true,
-    aux_poke = true,
-    in_pool = function(self)
-        return false
-    end,
-    set_card_type_badge = function(self, card, badges)
-        badges[#badges + 1] = create_badge('Quest', G.C.CLEAR , G.C.CLEAR , 0)
-    end
-
+local quest_heatran_active = {
+    name = "quest_heatran_active",
 }
 
+local quest_heatran_complete = {
+    name = "quest_heatran_complete",
+}
 
-local list = {quest_heatran, quest_darkrai}
+local list = {quest_heatran, quest_heatran_active, quest_heatran_complete}
 
-return {name = "Quests", 
+return {name = "Heatran Quest", 
 list = list
 }

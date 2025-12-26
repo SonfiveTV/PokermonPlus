@@ -65,7 +65,6 @@ local darkrai_boss={
             end
         }))
         complete_quest('sonfive','darkrai')
-        G.GAME.darkrai_quest_complete = true
     end
 
 }
