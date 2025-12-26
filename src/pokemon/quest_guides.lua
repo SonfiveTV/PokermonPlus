@@ -3,6 +3,8 @@ local quest_heatran = {
     config = {extra = {}},
     atlas = "sonfive_questbook",
     pos = {x = 2, y = 0},
+    discovered = true,
+    unlocked = true,
     loc_vars = function(self, info_queue, card)
         local cards = G.playing_cards or {}
 
@@ -123,6 +125,8 @@ local quest_darkrai = {
     config = {extra = {}},
     atlas = "sonfive_questbook",
     pos = {x = 1, y = 0},
+    discovered = true,
+    unlocked = true,
     loc_vars = function(self, info_queue, card)
         G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
 
@@ -179,7 +183,7 @@ local quest_darkrai = {
 }
 
 
-local list = {quest_darkrai, quest_heatran}
+local list = {quest_heatran, quest_darkrai}
 
 return {name = "Quests", 
 list = list
