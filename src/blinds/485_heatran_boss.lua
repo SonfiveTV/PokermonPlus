@@ -16,28 +16,23 @@ local heatran_boss={
     in_pool = function(self)
         return false
     end,
-
     calculate = function(self, card, context)
-    local target = context.other_card
-    
-        if context.individual and context.cardarea ==  G.play and context.scoring_hand and not context.end_of_round then
-            if (target.config.center ~= G.P_CENTERS.c_base) or target.edition or target.seal then
-                return {
-                x_mult = 0.5
-                }
-            end   
+        local target = context.other_card
+        G.GAME.heatran_boss_count = G.GAME.heatran_boss_count or 0
+
+        if context.cardarea == G.play and context.individual and not target.debuff and not context.end_of_round then
+            if target.config.center ~= G.P_CENTERS.c_base then G.GAME.heatran_boss_count = G.GAME.heatran_boss_count + 1 end
+            if target.edition then G.GAME.heatran_boss_count = G.GAME.heatran_boss_count + 1 end
+            if target.seal then G.GAME.heatran_boss_count = G.GAME.heatran_boss_count + 1 end
         end
-        if context.individual and context.cardarea ==  G.hand and context.scoring_hand and not context.end_of_round then
-            if (target.config.center ~= G.P_CENTERS.c_base) or target.edition or target.seal then
-                return {
-                x_mult = 0.5
-                }
-            end   
+        if context.final_scoring_step then
+            local f_count = G.GAME.heatran_boss_count
+            G.GAME.heatran_boss_count = 0 -- reset for next hand
+            return { xmult = 0.9 ^ f_count }
         end
     end,
-
-
     defeat = function(self)
+        G.GAME.heatran_boss_count = 0
         complete_quest('sonfive', 'heatran')
     end
 }

@@ -1,76 +1,98 @@
-function sonfive_heatran_quest(self, context)
-  if not context.consumeable.ability.name == 'immolate' then return end
+local old_reroll = G.FUNCS.reroll_boss
+G.FUNCS.reroll_boss = function(...)
+    local active = G.GAME.active_quest
+    if active then
+        local boss_key = 'bl_sonfive_'..active..'_boss'
 
-  local cards = G.playing_cards
+        -- Current boss being shown in shop
+        local current_boss = G.GAME.round_resets.blind_choices.Boss
 
-  local REQUIRED_CENTERS = {
-    "m_bonus", "m_mult", "m_wild", "m_glass",
-    "m_steel", "m_stone", "m_gold", "m_lucky",
-    "e_foil", "e_holo", "e_polychrome"
-  }
-
-  local REQUIRED_SEALS = {
-    "gold", "red", "blue", "purple", "poke_pink_seal", "poke_silver"
-  }
-
-  local center_present = {}
-  local seal_present   = {}
-
-  for _, card in pairs(cards) do
-    if card.config and card.config.center then
-      local center_key = card.config.center.key
-      if center_key then center_present[center_key] = true end
+        if current_boss == boss_key then
+            G.GAME.active_quest = nil
+        end
     end
 
-    if card.edition and card.edition.key then
-      center_present[card.edition.key] = true
-    end
-
-    if card.seal then
-      local seal_key = type(card.seal) == "table" and card.seal.key or card.seal
-      if seal_key then seal_present[seal_key:lower()] = true end
-    end
-  end
-
-  for _, key in ipairs(REQUIRED_CENTERS) do
-    if not center_present[key] then return end
-  end
-
-  for _, key in ipairs(REQUIRED_SEALS) do
-    if not seal_present[key] then return end
-  end
-   
-  set_quest_boss('sonfive','heatran')
+    return old_reroll(...)
 end
 
-function sonfive_darkrai_quest(self, context)
 
-  local types = {
-    "Grass", "Fire", "Water", "Lightning", "Psychic",
-    "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-    "Dragon", "Earth"
+set_quest_boss = function(mod_prefix, pokemon) -- Adds the quest boss and marks the quest as active
+    G.GAME.active_quest = pokemon
+
+    G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+    G.GAME.bosses_used = G.GAME.bosses_used or {}
+
+    G.GAME.bosses_used['bl_'..mod_prefix..'_'..pokemon..'_boss'] = G.GAME.bosses_used['bl_'..mod_prefix..'_'..pokemon..'_boss'] or 0
+    G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_'..mod_prefix..'_'..pokemon..'_boss'
+end
+
+complete_quest = function(mod_prefix, pokemon) -- Occurs when defeating the pokemon's Boss Blind 
+  G.GAME.active_quest = nil
+  G.GAME.quest_complete = G.GAME.quest_complete or {}
+  G.GAME.quest_complete[pokemon] = true
+  if (#G.jokers.cards + G.GAME.joker_buffer) < G.jokers.config.card_limit then
+    G.GAME.joker_buffer = G.GAME.joker_buffer + 1
+    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+    G.GAME.joker_buffer = 0
+    play_sound('timpani')
+    local _card = SMODS.create_card{
+        set = "Joker",
+        area = G.jokers,
+        key = "j_"..mod_prefix..'_'..pokemon,
+        no_edition = true
+    }
+    _card:add_to_deck()
+    G.jokers:emplace(_card)
+    return true end }))
+    delay(0.6)
+  end
+end
+
+sonfive_quest_keys = {}
+SMODS.current_mod.calculate = function(self, context)
+  local active = G.GAME.active_quest
+  local complete = G.GAME.quest_complete
+  local quests = {
+    {pokemon = "heatran", func = sonfive_heatran_quest}, 
+    {pokemon = "darkrai", func = sonfive_darkrai_quest}
   }
 
-  G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
+  for i, q in ipairs(quests) do
+    if not ((complete and complete[q.pokemon]) or (active == q.pokemon)) then
+      q.func(self, context)
+    end
 
-  for _, ptype in ipairs(types) do
-    local energy_key =
-      'c_poke_' .. string.lower(ptype)
-      .. (ptype == 'Dark' and 'ness' or '')
-      .. '_energy'
-
-    if context.consumeable.ability.name == energy_key then
-      if not G.GAME.darkrai_quest_types[ptype] then
-        G.GAME.darkrai_quest_types[ptype] = true
-      end
+    if active and active == q.pokemon then
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_active"
+    elseif complete and complete[q.pokemon] then
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_complete"
+    else
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon
     end
   end
+end
 
-  local count = 0
-  for _ in pairs(G.GAME.darkrai_quest_types) do
-    count = count + 1
+
+function G.FUNCS.sonfive_quest()
+    G.SETTINGS.paused = true
+    G.FUNCS.overlay_menu {
+        definition = create_UIBox_generic_options {
+            back_func = 'exit_overlay_menu',
+            contents = poke_create_UIBox_your_collection {
+                keys = sonfive_quest_keys,
+                cols = 4,
+                dynamic_sizing = true
+            },
+        }
+    }
+end
+
+SMODS.Keybind({ key = "openQuests", key_pressed = "o", action = G.FUNCS.sonfive_quest })
+
+local capture_focused_input_ref = G.CONTROLLER.capture_focused_input
+G.CONTROLLER.capture_focused_input = function(self, button, input_type, dt)
+  if input_type == 'press' and button == 'leftstick' then
+    G.FUNCS.sonfive_quest()
   end
-  if count == 12 and context.consumeable.ability.name == 'nightmare' then
-    set_quest_boss('sonfive', 'darkrai')
-  end
+  return capture_focused_input_ref(self, button, input_type, dt)
 end

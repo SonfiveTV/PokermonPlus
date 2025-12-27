@@ -58,9 +58,7 @@ local cetoddle = {
             end
         end
         if context.joker_main then
-            return {
-                xmult = card.ability.extra.Xmult
-            }
+            return { xmult = card.ability.extra.Xmult }
         end
         return item_evo(self, card, context, "j_sonfive_cetitan")
     end,
@@ -125,14 +123,20 @@ local cetitan = {
         end
 
         if context.joker_main then
-            if hail() then
-                return {
-                    xmult = (card.ability.extra.Xmult * 2)
-                }
+            local count = 0
+            local hail = false
+            for i=1, #G.hand.cards do
+                if SMODS.has_enhancement(G.hand.cards[i], 'm_glass') then 
+                    count = count + 1
+                end
+            end
+            if count == #G.hand.cards then
+                hail = true
+            end
+            if hail then
+                return { xmult = (card.ability.extra.Xmult * 2) }
             else
-                return {
-                    xmult = card.ability.extra.Xmult
-                }
+                return { xmult = card.ability.extra.Xmult }
             end
         end
     end,

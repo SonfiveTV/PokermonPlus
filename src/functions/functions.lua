@@ -14,106 +14,6 @@ SMODS.current_mod.set_debuff = function(card)
    return false
 end
 
-local old_reroll = G.FUNCS.reroll_boss
-G.FUNCS.reroll_boss = function(...)
-    local active = G.GAME.active_quest
-    if active then
-        local boss_key = 'bl_sonfive_'..active..'_boss'
-
-        -- Current boss being shown in shop
-        local current_boss = G.GAME.round_resets.blind_choices.Boss
-
-        if current_boss == boss_key then
-            G.GAME.active_quest = nil
-        end
-    end
-
-    return old_reroll(...)
-end
-
-
-set_quest_boss = function(mod_prefix, pokemon) -- Adds the quest boss and marks the quest as active
-    G.GAME.active_quest = pokemon
-
-    G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
-    G.GAME.bosses_used = G.GAME.bosses_used or {}
-
-    G.GAME.bosses_used['bl_'..mod_prefix..'_'..pokemon..'_boss'] = G.GAME.bosses_used['bl_'..mod_prefix..'_'..pokemon..'_boss'] or 0
-    G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = 'bl_'..mod_prefix..'_'..pokemon..'_boss'
-end
-
-complete_quest = function(mod_prefix, pokemon) -- Occurs when defeating the pokemon's Boss Blind 
-  G.GAME.active_quest = nil
-  G.GAME.quest_complete = G.GAME.quest_complete or {}
-  G.GAME.quest_complete[pokemon] = true
-  if (#G.jokers.cards + G.GAME.joker_buffer) < G.jokers.config.card_limit then
-    G.GAME.joker_buffer = G.GAME.joker_buffer + 1
-    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-    G.GAME.joker_buffer = 0
-    play_sound('timpani')
-    local _card = SMODS.create_card{
-        set = "Joker",
-        area = G.jokers,
-        key = "j_"..mod_prefix..'_'..pokemon,
-        no_edition = true
-    }
-    _card:add_to_deck()
-    G.jokers:emplace(_card)
-    return true end }))
-    delay(0.6)
-  end
-end
-
-sonfive_quest_keys = {}
-SMODS.current_mod.calculate = function(self, context)
-  local active = G.GAME.active_quest
-  local complete = G.GAME.quest_complete
-  local quests = {
-    {name = "heatran", func = sonfive_heatran_quest, trigger = context.using_consumeable}, 
-    {name = "darkrai", func = sonfive_darkrai_quest, trigger = context.using_consumeable}
-  }
-
-  for i, pokemon in ipairs(quests) do
-    if pokemon.trigger and not ((complete and complete[pokemon.name]) or (active == pokemon.name)) then
-      pokemon.func(self, context)
-    end
-
-    if active and active == pokemon.name then
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..pokemon.name.."_active"
-    elseif complete and complete[pokemon.name] then
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..pokemon.name.."_complete"
-    else
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..pokemon.name
-    end
-  end
-end
-
-
-function G.FUNCS.sonfive_quest()
-    G.SETTINGS.paused = true
-    G.FUNCS.overlay_menu {
-        definition = create_UIBox_generic_options {
-            back_func = 'exit_overlay_menu',
-            contents = poke_create_UIBox_your_collection {
-                keys = sonfive_quest_keys,
-                cols = 4,
-                dynamic_sizing = true
-            },
-        }
-    }
-end
-
-SMODS.Keybind({ key = "openQuests", key_pressed = "o", action = G.FUNCS.sonfive_quest })
-
-local capture_focused_input_ref = G.CONTROLLER.capture_focused_input
-G.CONTROLLER.capture_focused_input = function(self, button, input_type, dt)
-  if input_type == 'press' and button == 'leftstick' then
-    G.FUNCS.sonfive_quest()
-  end
-  return capture_focused_input_ref(self, button, input_type, dt)
-end
-
-
 -- Void Deck Negative Energy check
 local energy_use_ref = energy_use
 energy_use = function(self, card, area, copier, highlighted, exclude_spoon)
@@ -140,75 +40,6 @@ type_tooltip = function(self, info_queue, center)
   end
   type_tooltip_ref(self, info_queue, center)
 end
-
-function sonfive_base_evo_name(card)
-    -- Get the name of the base form if you can
-    local fam = poke_get_family_list(card.name)
-    -- Default is your own name, you may have no family T.T
-    local base_evo_name = card.name
-    if #fam > 0 then
-        -- Found a base evo, use it's name
-        base_evo_name = fam[1]
-    end
-    return base_evo_name
-end
-
-sandstorm = function()
-  local count = 0
-  for i=1, #G.hand.cards do
-    if SMODS.has_enhancement(G.hand.cards[i], 'm_count') then 
-        count = count + 1
-    end
-  end
-  if count == #G.hand.cards then
-    return true
-  else 
-    return false
-  end
-end
-
-hail = function()
-  local count = 0
-  for i=1, #G.hand.cards do
-    if SMODS.has_enhancement(G.hand.cards[i], 'm_glass') then 
-        count = count + 1
-    end
-  end
-  if count == #G.hand.cards then
-    return true
-  else 
-    return false
-  end
-end
-
-rain = function()
-  local count = 0
-  for i=1, #G.hand.cards do
-    if SMODS.has_enhancement(G.hand.cards[i], 'm_bonus') then 
-        count = count + 1
-    end
-  end
-  if count == #G.hand.cards then
-    return true
-  else 
-    return false
-  end
-end
-
-sunny = function()
-  local count = 0
-  for i=1, #G.hand.cards do
-    if SMODS.has_enhancement(G.hand.cards[i], 'm_mult') then 
-        count = count + 1
-    end
-  end
-  if count == #G.hand.cards then
-    return true
-  else 
-    return false
-  end
-end
-
 
 unique_hand_tooltip = function(self, info_queue, center)
   if center.ability and center.ability.extra and type(center.ability.extra) == "table" and center.ability.extra.played_hands then
@@ -241,7 +72,7 @@ local original_pokemon_in_pool = pokemon_in_pool
 
 function pokemon_in_pool(v)
   if v and v.tagged == "sonfive" then
-    local base_evo_name = sonfive_base_evo_name(v)
+    local base_evo_name = get_lowest_evo(v)
     if not sonfive_config[base_evo_name] then
       return false
     end
