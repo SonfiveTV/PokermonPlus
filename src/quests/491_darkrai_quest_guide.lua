@@ -19,17 +19,22 @@ local quest_darkrai = {
                 completed_count = completed_count + 1
             end
         end
-        vars[1] = (completed_count == 12) and "(Requirements have been met!)" or "(Must meet all requirements)"
-        colours[1] = (completed_count == 12) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
 
-        -- Populate task texts and colours
+        vars[1] = (completed_count == 12)
+            and "(Requirements have been met!)"
+            or "(Must meet all requirements)"
+        colours[1] = (completed_count == 12)
+            and G.C.GREEN
+            or G.C.UI.TEXT_INACTIVE
+
+        -- Populate task texts and colours (FIXED)
         for i, energy in ipairs(energy_tasks) do
             local done = G.GAME.darkrai_quest_types[energy]
 
             if done then
                 vars[i + 1] =
                     "Use a " .. energy .. (energy == "Dark" and "ness" or "") .. " Energy"
-                colours[i] = G.C.GREEN
+                colours[i + 1] = G.C.GREEN
             else
                 vars[i + 1] = "???"
                 colours[i + 1] = G.C.UI.TEXT_INACTIVE

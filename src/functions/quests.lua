@@ -1,6 +1,6 @@
 function sonfive_heatran_quest(self, context) -- Collect all Enhancements, Editions, and Seals, then use Immolate to activate the quest
   if not context.using_consumeable then return end
-  if not context.consumeable.ability.name == 'Immolate' then return end
+  if context.consumeable.ability.name ~= 'Immolate' then return end
 
   local cards = G.playing_cards
 
