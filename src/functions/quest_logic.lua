@@ -54,7 +54,8 @@ SMODS.current_mod.calculate = function(self, context)
   local complete = G.GAME.quest_complete
   local quests = {
     {pokemon = "heatran", func = sonfive_heatran_quest}, 
-    {pokemon = "darkrai", func = sonfive_darkrai_quest}
+    {pokemon = "darkrai", func = sonfive_darkrai_quest},
+    {pokemon = "meltan", func = sonfive_meltan_quest}
   }
 
   for i, q in ipairs(quests) do

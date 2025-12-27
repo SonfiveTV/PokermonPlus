@@ -3,7 +3,6 @@ local quest_heatran = {
     loc_vars = function(self, info_queue, card)
         local cards = G.playing_cards or {}
 
-        -- All requirements: Centers / Editions / Seals
         local REQUIREMENTS = {
             -- Enhancements / Centers
             { key = "m_bonus",        text = "Bonus",           type = "enhancement" },
@@ -32,42 +31,34 @@ local quest_heatran = {
         local center_present = {}
         local seal_present   = {}
 
-        -- Scan deck (same logic as quest)
+        -- Scan deck
         for _, card in pairs(cards) do
             if card.config and card.config.center and card.config.center.key then
                 center_present[card.config.center.key] = true
             end
-
             if card.edition and card.edition.key then
                 center_present[card.edition.key] = true
             end
-
             if card.seal then
                 local seal_key = type(card.seal) == "table" and card.seal.key or card.seal
-                if seal_key then
-                    seal_present[seal_key:lower()] = true
-                end
+                if seal_key then seal_present[seal_key:lower()] = true end
             end
         end
 
         local vars = {}
         local colours = {}
-        local completed_count = 0
+        local found_type = { enhancement = false, edition = false, seal = false }
 
         -- Initialize headers
         vars[2], vars[3], vars[4] = "???:", "???:", "???:"
-        colours[2], colours[3], colours[4] =
-            G.C.UI.TEXT_INACTIVE, G.C.UI.TEXT_INACTIVE, G.C.UI.TEXT_INACTIVE
+        colours[2], colours[3], colours[4] = G.C.UI.TEXT_INACTIVE, G.C.UI.TEXT_INACTIVE, G.C.UI.TEXT_INACTIVE
 
-        -- Track which header types have been revealed
-        local found_type = { enhancement = false, edition = false, seal = false }
+        local all_met = true
 
-        -- Loop through all requirements
         for i, req in ipairs(REQUIREMENTS) do
             local done = center_present[req.key] or seal_present[req.key]
 
             if done then
-                completed_count = completed_count + 1
                 vars[i + 4] = req.text
                 colours[i + 4] = G.C.GREEN
 
@@ -88,16 +79,17 @@ local quest_heatran = {
             else
                 vars[i + 4] = "???"
                 colours[i + 4] = G.C.UI.TEXT_INACTIVE
+                all_met = false
             end
         end
 
-        vars[1] = completed_count
+        -- Top line: all requirements met or not
+        vars[1] = all_met and "(Requirements have been met!)" or "(Must meet all requirements)"
+        colours[1] = all_met and G.C.GREEN or G.C.UI.TEXT_INACTIVE
         vars.colours = colours
 
-        return { vars = vars}
+        return { vars = vars }
     end,
-
-
 }
 
 local quest_heatran_active = {

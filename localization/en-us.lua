@@ -98,6 +98,13 @@ return {
                     "drained of any Energy",
                 }, 
             },
+            bl_sonfive_meltan_boss = {
+                name = "Metallic Mutiny",
+                text = {
+                    "Steel cards give 0.8X Mult",
+                    "for every Metal Joker you have",
+                }, 
+            },
         },
 
         Joker = {
@@ -342,6 +349,7 @@ return {
                     {
                     "Use an {C:spectral,T:c_immolate}Immolate{} card to",
                     "challenge {C:attention}Heatran{} next Ante",
+                    "{V:1,s:0.8}#1#"
                     },
                     {
                     "Requirements:",
@@ -374,20 +382,21 @@ return {
                     {
                     "Use a {C:spectral,T:c_poke_nightmare}Nightmare{} card to",
                     "challenge {C:attention}Darkrai{} next Ante",
+                    "{V:1,s:0.8}#1#"
                     },
                     {"{s:0.8}Requirements:{}",
-                    "{V:1,s:0.8}#2#",
-                    "{V:2,s:0.8}#3#",
-                    "{V:3,s:0.8}#4#",
-                    "{V:4,s:0.8}#5#",
-                    "{V:5,s:0.8}#6#",
-                    "{V:6,s:0.8}#7#",
-                    "{V:7,s:0.8}#8#",
-                    "{V:8,s:0.8}#9#",
-                    "{V:9,s:0.8}#10#",
-                    "{V:10,s:0.8}#11#",
-                    "{V:11,s:0.8}#12#",
-                    "{V:12,s:0.8}#13#"}
+                    "{V:2,s:0.8}#2#",
+                    "{V:3,s:0.8}#3#",
+                    "{V:4,s:0.8}#4#",
+                    "{V:5,s:0.8}#5#",
+                    "{V:6,s:0.8}#6#",
+                    "{V:7,s:0.8}#7#",
+                    "{V:8,s:0.8}#8#",
+                    "{V:9,s:0.8}#9#",
+                    "{V:10,s:0.8}#10#",
+                    "{V:11,s:0.8}#11#",
+                    "{V:12,s:0.8}#12#",
+                    "{V:13,s:0.8}#13#"}
                 }
             },
             j_sonfive_quest_darkrai_active = {
@@ -400,6 +409,35 @@ return {
             },
             j_sonfive_quest_darkrai_complete = {
                 name = "The Nightmare Begins",
+                text = {
+                    "You have completed this Quest already!",
+                }
+            },
+            j_sonfive_quest_meltan = {
+                name = "Superalloy Showdown",
+                text = {
+                    {
+                    "Use an {C:spectral,T:c_ankh}Ankh{} card to",
+                    "challenge {C:attention}Meltan{} next Ante",
+                    "{V:4,s:0.8}#4#"
+                    },
+                    {"{s:0.8}Requirements:{}",
+                    "{V:1,s:0.8}#1#",
+                    "{V:2,s:0.8}#2#",
+                    "{V:3,s:0.8}#3#",
+                    }
+                }
+            },
+            j_sonfive_quest_meltan_active = {
+                name = "Superalloy Showdown",
+                text = {
+                    "Get ready to battle {C:attention}Meltan{}!",
+                    "You'll need an empty Joker slot if you",
+                    "plan on catching them after the battle"
+                }
+            },
+            j_sonfive_quest_meltan_complete = {
+                name = "Superalloy Showdown",
                 text = {
                     "You have completed this Quest already!",
                 }

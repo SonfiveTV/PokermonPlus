@@ -1,6 +1,6 @@
-function sonfive_heatran_quest(self, context)
+function sonfive_heatran_quest(self, context) -- Collect all Enhancements, Editions, and Seals, then use Immolate to activate the quest
   if not context.using_consumeable then return end
-  if not context.consumeable.ability.name == 'immolate' then return end
+  if not context.consumeable.ability.name == 'Immolate' then return end
 
   local cards = G.playing_cards
 
@@ -44,7 +44,7 @@ function sonfive_heatran_quest(self, context)
   set_quest_boss('sonfive','heatran')
 end
 
-function sonfive_darkrai_quest(self, context)
+function sonfive_darkrai_quest(self, context) -- Use all 12 Energy card types, then use Nightmare to activate the quest
   if not context.using_consumeable then return end
   local types = {
     "Grass", "Fire", "Water", "Lightning", "Psychic",
@@ -75,3 +75,40 @@ function sonfive_darkrai_quest(self, context)
     set_quest_boss('sonfive', 'darkrai')
   end
 end
+
+function sonfive_meltan_quest(self, context) -- Use Metal Energy, Metal Coat, and The Chariot 10 times each, then use Ankh to activate the quest
+    G.GAME.meltan_quest = G.GAME.meltan_quest or {}
+    local quest = G.GAME.meltan_quest
+
+    -- Define counters with default values
+    quest.energy_used = quest.energy_used or 0
+    quest.metalcoat = quest.metalcoat or 0
+    quest.chariot = quest.chariot or 0
+
+    if not context.using_consumeable then return end
+
+    -- Map ability names to quest counters
+    local ability_map = {
+        ['c_poke_metal_energy'] = 'energy_used',
+        ['metalcoat']           = 'metalcoat',
+        ['The Chariot']         = 'chariot'
+    }
+
+    local ability_name = context.consumeable.ability.name
+    local counter = ability_map[ability_name]
+
+    -- Increment the counter if applicable
+    if counter then
+        quest[counter] = math.min(quest[counter] + 1, 10)
+    end
+
+    -- Trigger the quest boss when all requirements are met
+    if ability_name == 'Ankh' and
+       quest.energy_used >= 10 and
+       quest.metalcoat >= 10 and
+       quest.chariot >= 10 then
+        set_quest_boss('sonfive', 'meltan')
+    end
+end
+
+

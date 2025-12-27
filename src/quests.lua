@@ -27,8 +27,10 @@ local function load_quest_folder(folder)
 
             if not item.key then item.key = item.name end
             item.cost = 1
+
             item.config = item.config or {}
             item.config.extra = item.config.extra or {}
+
             item.discovered = true
             item.unlocked = true
             item.stage = "Other"
@@ -49,6 +51,17 @@ local function load_quest_folder(folder)
                 create_badge('Quest', G.C.CLEAR, G.C.CLEAR, 0)
             end
 
+            if item.ptype then
+              item.config.extra.ptype = item.ptype
+            end
+
+            if item.atlas and string.find(item.atlas, "sonfive") then
+              pokermon.Pokemon(item, "sonfive", true)
+            else
+              poke_load_atlas(item)
+              poke_load_sprites(item)
+              pokermon.Pokemon(item, "sonfive", false)
+            end
           end
 
           if #family > 1 then
