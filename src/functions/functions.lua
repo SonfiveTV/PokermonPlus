@@ -41,6 +41,18 @@ type_tooltip = function(self, info_queue, center)
   type_tooltip_ref(self, info_queue, center)
 end
 
+function sonfive_base_evo_name(card)
+    -- Get the name of the base form if you can
+    local fam = poke_get_family_list(card.name)
+    -- Default is your own name, you may have no family T.T
+    local base_evo_name = card.name
+    if #fam > 0 then
+        -- Found a base evo, use it's name
+        base_evo_name = fam[1]
+    end
+    return base_evo_name
+end
+
 unique_hand_tooltip = function(self, info_queue, center)
   if center.ability and center.ability.extra and type(center.ability.extra) == "table" and center.ability.extra.played_hands then
     local a = center.ability.extra
@@ -72,7 +84,7 @@ local original_pokemon_in_pool = pokemon_in_pool
 
 function pokemon_in_pool(v)
   if v and v.tagged == "sonfive" then
-    local base_evo_name = get_lowest_evo(v)
+    local base_evo_name = sonfive_base_evo_name(v)
     if not sonfive_config[base_evo_name] then
       return false
     end

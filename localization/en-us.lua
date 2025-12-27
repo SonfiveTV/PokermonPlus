@@ -84,16 +84,15 @@ return {
         },
         Blind = {
             bl_sonfive_heatran_boss = {
-                name = "The Molten Mountain",
+                name = "Molten Mountain",
                 text = {
-                    "Cards with {C:attention}enhancements{},",
-                    "{C:attention}editions{}, or {C:attention}seals{}",
-                    "give {X:red,C:white}X0.5{} Mult when played",
-                    "and when held in hand"
+                    "X0.9 Mult for each",
+                    "enhancement, edition, and",
+                    "seal in played hand",
                 }, 
             },
             bl_sonfive_darkrai_boss = {
-                name = "The Newmoon Nightmare",
+                name = "Newmoon Nightmare",
                 text = {
                     "Jokers are weakened and",
                     "drained of any Energy",
