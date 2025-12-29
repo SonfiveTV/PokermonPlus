@@ -10,6 +10,9 @@ local heatran = {
     available = true,
     no_collection = true,
     cost = 10,
+    in_pool = function(self)
+        return false
+    end,
     set_card_type_badge = function(self, card, badges)
         badges[#badges + 1] =
         create_badge('Quest', HEX('582312'), G.C.WHITE, 1)
@@ -48,6 +51,9 @@ local darkrai = {
     available = true,
     no_collection = true,
     cost = 10,
+    in_pool = function(self)
+        return false
+    end,
     set_card_type_badge = function(self, card, badges)
         badges[#badges + 1] =
         create_badge('Quest', HEX('582312'), G.C.WHITE, 1)
@@ -86,6 +92,9 @@ local meltan = {
     available = true,
     no_collection = true,
     cost = 10,
+    in_pool = function(self)
+        return false
+    end,
     set_card_type_badge = function(self, card, badges)
         badges[#badges + 1] =
         create_badge('Quest', HEX('582312'), G.C.WHITE, 1)
