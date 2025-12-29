@@ -32,7 +32,8 @@ local function load_files()
     "settings",
     "sleeves",
     "stakes",
-    "stickers"
+    "stickers",
+    "vouchers"
   }
   for i = 1, #files do 
     assert(SMODS.load_file("src/"..files[i]..".lua"))()

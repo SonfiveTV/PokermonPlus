@@ -84,7 +84,7 @@ local quest_heatran = {
         end
 
         -- Top line: all requirements met or not
-        vars[1] = all_met and "(Requirements have been met!)" or "(Must meet all requirements)"
+        vars[1] = all_met and "(Quest available in the shop!)" or "(Must meet all requirements)"
         colours[1] = all_met and G.C.GREEN or G.C.UI.TEXT_INACTIVE
         vars.colours = colours
 

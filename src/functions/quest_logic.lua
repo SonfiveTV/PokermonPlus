@@ -97,3 +97,85 @@ G.CONTROLLER.capture_focused_input = function(self, button, input_type, dt)
   end
   return capture_focused_input_ref(self, button, input_type, dt)
 end
+
+function add_quest_voucher(key)
+  G.E_MANAGER:add_event(Event({
+    trigger = 'after',
+    delay = 0,
+    func = function()
+      if not (G.shop_vouchers and G.shop_vouchers.cards) then
+        return true
+      end
+
+      -- Already present? Bail.
+      for _, c in ipairs(G.shop_vouchers.cards) do
+        if c.ability and c.ability.name == key then
+          return true
+        end
+      end
+
+      -- Ensure capacity
+      G.shop_vouchers.config.card_limit =
+        (G.shop_vouchers.config.card_limit or #G.shop_vouchers.cards) + 1
+
+      local _card = Card(
+        G.shop_vouchers.T.x + G.shop_vouchers.T.w / 2,
+        G.shop_vouchers.T.y,
+        G.CARD_W,
+        G.CARD_H,
+        G.P_CARDS.empty,
+        G.P_CENTERS[key],
+        { bypass_discovery_center = true, bypass_discovery_ui = true }
+      )
+
+      create_shop_card_ui(_card, 'Voucher', G.shop_vouchers)
+      _card:start_materialize()
+      G.shop_vouchers:emplace(_card)
+
+      return true
+    end
+  }))
+end
+
+
+-- Thanks Mael :D
+function sonfive_set_next_boss(key,force_next_ante,allow_during_boss,reset_chips)
+  if force_next_ante or ((not allow_during_boss) and G.GAME and G.GAME.blind and G.GAME.blind.boss) then
+    G.GAME.perscribed_bosses[G.GAME.round_resets.ante + 1] = key
+    return
+  end
+
+  if (G.GAME and G.GAME.blind and G.GAME.blind.boss) and allow_during_boss then
+    G.GAME.blind:set_blind(G.P_BLINDS[key])
+    ease_background_colour_blind(G.STATE)
+    if reset_chips then G.GAME.chips = 0 end
+    return
+  end
+
+  G.E_MANAGER:add_event(Event({
+    trigger = "condition",
+    blocking = false,
+    func = function()
+      if not G.blind_select then return false end
+      local par = G.blind_select_opts.boss.parent
+      G.GAME.round_resets.blind_choices.Boss = key
+      G.blind_select_opts.boss = UIBox{
+        T = {par.T.x, 0, 0, 0, },
+        definition =
+        {n=G.UIT.ROOT, config={align = "cm", colour = G.C.CLEAR}, nodes={
+            UIBox_dyn_container({create_UIBox_blind_choice('Boss')},false,get_blind_main_colour('Boss'), mix_colours(G.C.BLACK, get_blind_main_colour('Boss'), 0.8))
+        }},
+        config = {align="bmi",
+          offset = {x=0,y=G.ROOM.T.y + 9},
+          major = par,
+          xy_bond = 'Weak'
+        }
+      }
+      par.config.object = G.blind_select_opts.boss
+      par.config.object:recalculate()
+      G.blind_select_opts.boss.parent = par
+      G.blind_select_opts.boss.alignment.offset.y = 0
+      return true
+    end
+  }))
+end

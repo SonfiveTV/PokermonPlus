@@ -347,8 +347,6 @@ return {
                 name = "Into The Volcano",
                 text = {
                     {
-                    "Use an {C:spectral,T:c_immolate}Immolate{} card to",
-                    "challenge {C:attention}Heatran{} next Ante",
                     "{V:1,s:0.8}#1#"
                     },
                     {
@@ -380,8 +378,6 @@ return {
                 name = "The Nightmare Begins",
                 text = {
                     {
-                    "Use a {C:spectral,T:c_poke_nightmare}Nightmare{} card to",
-                    "challenge {C:attention}Darkrai{} next Ante",
                     "{V:1,s:0.8}#1#"
                     },
                     {"{s:0.8}Requirements:{}",
@@ -417,8 +413,6 @@ return {
                 name = "Superalloy Showdown",
                 text = {
                     {
-                    "Use an {C:spectral,T:c_ankh}Ankh{} card to",
-                    "challenge {C:attention}Meltan{} next Ante",
                     "{V:4,s:0.8}#4#"
                     },
                     {"{s:0.8}Requirements:{}",
@@ -720,8 +714,29 @@ return {
     },
             Tag={},
         Tarot={},
-        Voucher={},
-},
+        Voucher={
+            v_sonfive_heatran = {
+                name = "Magma Stone",
+                text = {
+                    "Change upcoming Boss Blind",
+                    "to {C:attention}Heatran{}",
+                    },
+                },
+            v_sonfive_darkrai = {
+                name = "Member Card",
+                text = {
+                    "Change upcoming Boss Blind",
+                    "to {C:attention}Darkrai{}",
+                    },
+                },
+            v_sonfive_meltan = {
+                name = "Mystery Box",
+                text = {
+                    "Change upcoming Boss Blind",
+                    "to {C:attention}Meltan{}",
+                    },
+                },
+        },
 
         misc = {
             challenge_names = {
@@ -765,3 +780,4 @@ return {
         }       
     }
 
+}

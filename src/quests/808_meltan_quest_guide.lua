@@ -7,14 +7,14 @@ local quest_meltan = {
         quest.energy_used = quest.energy_used or 0
         quest.metalcoat = quest.metalcoat or 0
         quest.chariot = quest.chariot or 0
-        vars[1] = (quest.energy_used > 0) and "Use Metal Energy: "..quest.energy_used.."/10" or "???: 0/10"
-        vars[2] = (quest.metalcoat > 0) and "Use Metal Coat: "..quest.metalcoat.."/10" or "???: 0/10"
-        vars[3] = (quest.chariot > 0) and "Use Chariot: "..quest.chariot.."/10" or "???: 0/10"
-        vars[4] = (quest.energy_used >=10 and quest.metalcoat >=10 and quest.chariot >=10) and "(Requirements have been met!)" or "(Must meet all requirements)"
-        colours[1] = (quest.energy_used >=10) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
-        colours[2] = (quest.metalcoat >=10) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
-        colours[3] = (quest.chariot >=10) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
-        colours[4] = (quest.energy_used >=10 and quest.metalcoat >=10 and quest.chariot >=10) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+        vars[1] = (quest.energy_used > 0) and "Use Metal Energy: "..quest.energy_used.."/8" or "???: 0/8"
+        vars[2] = (quest.metalcoat > 0) and "Use Metal Coat: "..quest.metalcoat.."/8" or "???: 0/8"
+        vars[3] = (quest.chariot > 0) and "Use Chariot: "..quest.chariot.."/8" or "???: 0/8"
+        vars[4] = (quest.energy_used >=8 and quest.metalcoat >=8 and quest.chariot >=8) and "(Quest available in the shop!)" or "(Must meet all requirements)"
+        colours[1] = (quest.energy_used >=8) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+        colours[2] = (quest.metalcoat >=8) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+        colours[3] = (quest.chariot >=8) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+        colours[4] = (quest.energy_used >=8 and quest.metalcoat >=8 and quest.chariot >=8) and G.C.GREEN or G.C.UI.TEXT_INACTIVE
         vars.colours = colours
         return { vars = vars }
     end,

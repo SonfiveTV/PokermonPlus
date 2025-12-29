@@ -1,6 +1,6 @@
 function sonfive_heatran_quest(self, context) -- Collect all Enhancements, Editions, and Seals, then use Immolate to activate the quest
-  if not context.using_consumeable then return end
-  if context.consumeable.ability.name ~= 'Immolate' then return end
+  if G.GAME.quest_complete and G.GAME.quest_complete['heatran'] then return end
+  if G.GAME.active_quest == 'heatran' then return end
 
   local cards = G.playing_cards
 
@@ -40,12 +40,16 @@ function sonfive_heatran_quest(self, context) -- Collect all Enhancements, Editi
   for _, key in ipairs(REQUIRED_SEALS) do
     if not seal_present[key] then return end
   end
-   
-  set_quest_boss('sonfive','heatran')
+  
+  if context.starting_shop and G.GAME.active_quest ~= 'heatran' then
+    add_quest_voucher('v_sonfive_heatran')
+  end
 end
 
 function sonfive_darkrai_quest(self, context) -- Use all 12 Energy card types, then use Nightmare to activate the quest
-  if not context.using_consumeable then return end
+  if G.GAME.quest_complete and G.GAME.quest_complete['darkrai'] then return end
+  if G.GAME.active_quest == 'darkrai' then return end
+
   local types = {
     "Grass", "Fire", "Water", "Lightning", "Psychic",
     "Fighting", "Colorless", "Dark", "Metal", "Fairy",
@@ -53,41 +57,43 @@ function sonfive_darkrai_quest(self, context) -- Use all 12 Energy card types, t
   }
 
   G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
+  if context.using_consumeable then
+    for _, ptype in ipairs(types) do
+      local energy_key =
+        'c_poke_' .. string.lower(ptype)
+        .. (ptype == 'Dark' and 'ness' or '')
+        .. '_energy'
 
-  for _, ptype in ipairs(types) do
-    local energy_key =
-      'c_poke_' .. string.lower(ptype)
-      .. (ptype == 'Dark' and 'ness' or '')
-      .. '_energy'
-
-    if context.consumeable.ability.name == energy_key then
-      if not G.GAME.darkrai_quest_types[ptype] then
-        G.GAME.darkrai_quest_types[ptype] = true
+      if context.consumeable.ability.name == energy_key then
+        if not G.GAME.darkrai_quest_types[ptype] then
+          G.GAME.darkrai_quest_types[ptype] = true
+        end
       end
     end
-  end
+end
 
   local count = 0
   for _ in pairs(G.GAME.darkrai_quest_types) do
     count = count + 1
   end
-  if count == 12 and context.consumeable.ability.name == 'nightmare' then
-    set_quest_boss('sonfive', 'darkrai')
+  if context.starting_shop and count == 12 and G.GAME.active_quest ~= 'darkrai' then
+    add_quest_voucher('v_sonfive_darkrai')
   end
 end
 
 function sonfive_meltan_quest(self, context) -- Use Metal Energy, Metal Coat, and The Chariot 10 times each, then use Ankh to activate the quest
-    G.GAME.meltan_quest = G.GAME.meltan_quest or {}
-    local quest = G.GAME.meltan_quest
+  if G.GAME.quest_complete and G.GAME.quest_complete['meltan'] then return end
 
-    -- Define counters with default values
-    quest.energy_used = quest.energy_used or 0
-    quest.metalcoat = quest.metalcoat or 0
-    quest.chariot = quest.chariot or 0
+  G.GAME.meltan_quest = G.GAME.meltan_quest or {}
+  local quest = G.GAME.meltan_quest
 
-    if not context.using_consumeable then return end
+  -- Define counters with default values
+  quest.energy_used = quest.energy_used or 0
+  quest.metalcoat = quest.metalcoat or 0
+  quest.chariot = quest.chariot or 0
 
-    -- Map ability names to quest counters
+  if context.using_consumeable then
+  -- Map ability names to quest counters
     local ability_map = {
         ['c_poke_metal_energy'] = 'energy_used',
         ['metalcoat']           = 'metalcoat',
@@ -99,16 +105,18 @@ function sonfive_meltan_quest(self, context) -- Use Metal Energy, Metal Coat, an
 
     -- Increment the counter if applicable
     if counter then
-        quest[counter] = math.min(quest[counter] + 1, 10)
+        quest[counter] = math.min(quest[counter] + 1, 8)
     end
+  end
 
-    -- Trigger the quest boss when all requirements are met
-    if ability_name == 'Ankh' and
-       quest.energy_used >= 10 and
-       quest.metalcoat >= 10 and
-       quest.chariot >= 10 then
-        set_quest_boss('sonfive', 'meltan')
-    end
+  -- Trigger the quest boss when all requirements are met
+  if context.starting_shop and
+  G.GAME.active_quest ~= 'meltan' and
+     quest.energy_used >= 8 and
+     quest.metalcoat >= 8 and
+      quest.chariot >= 8 then
+      add_quest_voucher('v_sonfive_meltan')
+  end
 end
 
 

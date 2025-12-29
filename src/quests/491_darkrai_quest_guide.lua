@@ -21,7 +21,7 @@ local quest_darkrai = {
         end
 
         vars[1] = (completed_count == 12)
-            and "(Requirements have been met!)"
+            and "(Quest available in the shop!)"
             or "(Must meet all requirements)"
         colours[1] = (completed_count == 12)
             and G.C.GREEN
