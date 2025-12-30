@@ -42,55 +42,59 @@ local darkrai = {
               a.darkrai_applied_energy[ptype] = energy_type_count
 
               -- Step 2: Apply to jokers
-              for j = 1, #G.jokers.cards do
-                  local joker = G.jokers.cards[j]
-                  joker.ability.extra = joker.ability.extra or {}
-                  if not joker.ability.extra.darkrai_applied then
-                      joker.ability.extra.darkrai_applied = {}
-                  end
-                  local to_apply = a.darkrai_applied_energy[ptype]
-                  local last_applied = joker.ability.extra.darkrai_applied[ptype] or 0
+              for _, card in ipairs(G.jokers.cards) do
+                local extra = card.ability and card.ability.extra
+                if type(extra) == "table" then
+                    card.ability.extra = card.ability.extra or {}
+                    if not card.ability.extra.darkrai_applied then
+                        card.ability.extra.darkrai_applied = {}
+                    end
+                    local to_apply = a.darkrai_applied_energy[ptype]
+                    local last_applied = card.ability.extra.darkrai_applied[ptype] or 0
 
-                  if is_type(joker, ptype) then
-                      -- Joker matches this type → sync energies
-                      if to_apply ~= last_applied then
-                          local diff = to_apply - last_applied
-                          energize(joker, ptype, nil, true, diff)
-                          joker.ability.extra.darkrai_applied[ptype] = to_apply
-                      end
-                  else
-                      -- Joker no longer this type → remove old Darkrai-applied energy
-                      if last_applied > 0 then
-                          energize(joker, ptype, false, true, -last_applied)
-                          joker.ability.extra.darkrai_applied[ptype] = 0
-                      end
-                  end
-              end
+                    if is_type(card, ptype) then
+                        -- Joker matches this type → sync energies
+                        if to_apply ~= last_applied then
+                            local diff = to_apply - last_applied
+                            energize(card, ptype, nil, true, diff)
+                            card.ability.extra.darkrai_applied[ptype] = to_apply
+                        end
+                    else
+                        -- Joker no longer this type → remove old Darkrai-applied energy
+                        if last_applied > 0 then
+                            energize(card, ptype, false, true, -last_applied)
+                            card.ability.extra.darkrai_applied[ptype] = 0
+                        end
+                    end
+                end
+            end
           end
       end
   end,
 
   remove_from_deck = function(self, card, from_debuff)
-      local a = card.ability.extra
-      local types = {"Grass", "Fire", "Water", "Lightning", "Psychic",
-                    "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-                    "Dragon", "Earth"}
+    for _, card in ipairs(G.jokers.cards) do
+        local extra = card.ability and card.ability.extra
+        if type(extra) == "table" then
+            local a = card.ability.extra
+            local types = {"Grass", "Fire", "Water", "Lightning", "Psychic",
+                            "Fighting", "Colorless", "Dark", "Metal", "Fairy",
+                            "Dragon", "Earth"}
 
-      for j = 1, #G.jokers.cards do
-          local joker = G.jokers.cards[j]
-          joker.ability.extra = joker.ability.extra or {}
-          local applied = joker.ability.extra.darkrai_applied or {}
+            card.ability.extra = card.ability.extra or {}
+            local applied = card.ability.extra.darkrai_applied or {}
 
-          for _, ptype in pairs(types) do
-              local last_applied = applied[ptype] or 0
-              if last_applied > 0 then
-                  energize(joker, ptype, false, true, -last_applied)
-                  applied[ptype] = 0
-              end
-          end
-      end
-      -- Clear Darkrai's own stored snapshot
-      a.darkrai_applied_energy = {}
+            for _, ptype in pairs(types) do
+                local last_applied = applied[ptype] or 0
+                if last_applied > 0 then
+                    energize(card, ptype, false, true, -last_applied)
+                    applied[ptype] = 0
+                end
+            end
+        end
+        -- Clear Darkrai's own stored snapshot
+        a.darkrai_applied_energy = {}
+    end
   end,
   megas = {"mega_darkrai"}
 }

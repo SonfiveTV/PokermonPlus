@@ -2,6 +2,36 @@ local subdir = "src/quests/"
 
 sonfive_quests = sonfive_quests or {}
 
+local load_quests = function(item)
+  item.discovered = true
+  if not item.key then
+    item.key = item.name
+  end
+  if not item.custom_pool_func then
+    item.in_pool = function(self)
+      return pokemon_in_pool(self)
+    end
+  end
+  if not item.config then
+    item.config = {}
+  end
+  SMODS.Joker(item)
+end
+
+local quests = function(item, custom_prefix, custom_atlas)
+  if custom_prefix then
+    item.poke_custom_prefix = custom_prefix
+  end
+  if not custom_atlas then
+    item.atlas = 'poke_'..item.atlas
+    item.poke_no_custom_atlas = true
+    item.prefix_config = {atlas = false}
+  else
+    item.poke_custom_atlas = true
+  end
+  load_quests(item)
+end
+
 local function load_quest_folder(folder)
   local pfiles = NFS.getDirectoryItems(mod_dir .. folder)
     local count = 0
@@ -56,11 +86,11 @@ local function load_quest_folder(folder)
             end
 
             if item.atlas and string.find(item.atlas, "sonfive") then
-              pokermon.Pokemon(item, "sonfive", true)
+              quests(item, "sonfive", true)
             else
               poke_load_atlas(item)
               poke_load_sprites(item)
-              pokermon.Pokemon(item, "sonfive", false)
+              quests(item, "sonfive", false)
             end
           end
 

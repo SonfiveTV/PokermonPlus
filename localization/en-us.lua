@@ -698,10 +698,6 @@ return {
                   "or selected {C:attention}Joker{}"
                 }
             },
-
-            
-        
-
         },
         Stake={
             stake_sonfive_lilac_stake = {
@@ -711,8 +707,8 @@ return {
                     "{s:0.8}Applies all previous Stakes"
                 },
             },
-    },
-            Tag={},
+        },
+        Tag={},
         Tarot={},
         Voucher={
             v_sonfive_heatran = {
@@ -736,48 +732,32 @@ return {
                     "to {C:attention}Meltan{}",
                     },
                 },
+            },
         },
 
-        misc = {
-            challenge_names = {
-            c_sonfive_balls_of_patience = "Balls of Patience",
-            c_sonfive_salt_cured = "Salt Cured",
-            c_sonfive_metallurgy = "Metallurgy",
-            c_sonfive_wonder_guard = "Guard the Wonder",
-            c_sonfive_croagunk_test = "Croagunk Test",
-            },
-            dictionary = {
-                -- Joker Messages
-                sonfive_saltcure_ex = "Salt Cure!",
-                sonfive_speedboost = "Speed Boost!",
-                poke_deenergized_ex = "De-Energized!",
+    misc = {
+        challenge_names = {
+        c_sonfive_balls_of_patience = "Balls of Patience",
+        c_sonfive_salt_cured = "Salt Cured",
+        c_sonfive_metallurgy = "Metallurgy",
+        c_sonfive_wonder_guard = "Guard the Wonder",
+        c_sonfive_croagunk_test = "Croagunk Test",
+        },
+        dictionary = {
+            -- Joker Messages
+            sonfive_saltcure_ex = "Salt Cure!",
+            sonfive_speedboost = "Speed Boost!",
+            poke_deenergized_ex = "De-Energized!",
 
-                -- Config Descriptions
-                enable_timerball = "Enable Timer Ball?",
-            },
-            v_text = {
-           ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
-            },
+            -- Config Descriptions
+            enable_timerball = "Enable Timer Ball?",
+        },
+        v_text = {
+        ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
+        },
 
-            labels={
-                sonfive_weakened = "Weakened"
-            },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }       
-    }
-
+        labels={
+            sonfive_weakened = "Weakened"
+        },
+    }       
 }
