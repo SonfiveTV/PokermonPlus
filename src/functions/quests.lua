@@ -41,7 +41,7 @@ function sonfive_heatran_quest(self, context) -- Collect all Enhancements, Editi
     if not seal_present[key] then return end
   end
 
-  local finisher = G.P_BLINDS(G.GAME.round_resets.blind_choices.Boss).boss.showdown
+  local finisher = G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown
   if not finisher and context.starting_shop and G.GAME.active_quest ~= 'heatran' then
     add_quest_voucher('v_sonfive_heatran')
   end
@@ -78,8 +78,8 @@ end
     count = count + 1
   end
 
-  local finisher = G.P_BLINDS(G.GAME.round_resets.blind_choices.Boss).boss.showdown
-  if not finisher and context.starting_shop and count == 12 and G.GAME.active_quest ~= 'darkrai' then
+  local finisher = G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown
+  if not finisher and context.starting_shop and count == 0 and G.GAME.active_quest ~= 'darkrai' then
     add_quest_voucher('v_sonfive_darkrai')
   end
 end
@@ -113,7 +113,7 @@ function sonfive_meltan_quest(self, context) -- Use Metal Energy, Metal Coat, an
   end
 
   -- Trigger the quest boss when all requirements are met
-  local finisher = G.P_BLINDS(G.GAME.round_resets.blind_choices.Boss).boss.showdown
+  local finisher = G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown
   if not finisher and context.starting_shop and
   G.GAME.active_quest ~= 'meltan' and
      quest.energy_used >= 8 and
