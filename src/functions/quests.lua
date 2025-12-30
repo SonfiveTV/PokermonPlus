@@ -79,7 +79,7 @@ end
   end
 
   local finisher = G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown
-  if not finisher and context.starting_shop and count == 0 and G.GAME.active_quest ~= 'darkrai' then
+  if not finisher and context.starting_shop and count == 12 and G.GAME.active_quest ~= 'darkrai' then
     add_quest_voucher('v_sonfive_darkrai')
   end
 end
