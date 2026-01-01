@@ -1,6 +1,6 @@
 local shroodle = {
   name = "shroodle",
-  config = {extra = {targets = {{value = "Grass"}, {value = "Fire"}, {value = "Water"}}}},
+  config = {extra = {targets = {{value = "Grass"}, {value = "Fire"}, {value = "Water"}}, tags_generated = 0}, evo_rqmt = 1},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local abbr = card.ability.extra
@@ -11,7 +11,7 @@ local shroodle = {
       colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].value)] or G.C.UI.TEXT_INACTIVE
       colours[i + #abbr.targets] = (abbr.targets[i].value == 'Lightning' and G.C.BLACK or G.C.WHITE)
     end
-    vars[(1+#abbr.targets)] = G.GAME.last_tag and localize{type = 'name_text', key = G.GAME.last_tag, set = 'Tag'} or localize('k_none')
+    vars[(1+#abbr.targets)] = math.max(0, (self.config.evo_rqmt + 1) - card.ability.extra.tags_generated)
     vars.colours = colours
 
     return {vars = vars}
@@ -34,7 +34,7 @@ local shroodle = {
                 tags[#tags + 1] = v
               end
             end
-            local temp_tag = pseudorandom_element(tags, pseudoseed(mseed))
+            local temp_tag = pseudorandom_element(tags, pseudoseed('shroodle'))
             local tag = Tag(temp_tag.key)
             if tag.key == "tag_orbital" then 
               local _poker_hands = {}
@@ -43,63 +43,68 @@ local shroodle = {
                   _poker_hands[#_poker_hands + 1] = k
                 end
               end
-              tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed(mseed))
+              tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('shroodle'))
             end
             add_tag(tag)
             play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
             play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+            card.ability.extra.tags_generated = card.ability.extra.tags_generated + 1
             return true
         end)
       }))
     end
+    return scaling_evo(self, card, context, "j_sonfive_grafaiai", card.ability.extra.tags_generated, self.config.evo_rqmt)
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
-      local types = {
-        "Grass", "Fire", "Water", "Lightning", "Psychic",
-        "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-        "Dragon", "Earth"
-      }
-
-      local targets = card.ability.extra.targets or {}
-      local total = #targets
-      local replace_count = math.min(3, total)
-      local start_index = total - replace_count + 1
-
-      local new_targets = {}
-      local used = {}
-
-      -- mark existing (untouched) targets as used
-      for i = 1, start_index - 1 do
-        new_targets[i] = targets[i]
-        used[targets[i].value] = true
-      end
-
-      -- build available pool excluding used values
-      local pool = {}
-      for _, t in ipairs(types) do
-        if not used[t] then
-          table.insert(pool, t)
-        end
-      end
-
-      -- replace last N targets without duplicates
-      for i = start_index, total do
-        if #pool == 0 then break end
-
-        local choice = pseudorandom_element(pool, pseudoseed("shroodle_" .. i))
-        new_targets[i] = { value = choice }
-
-        for j, v in ipairs(pool) do
-          if v == choice then
-            table.remove(pool, j)
-            break
-          end
-        end
-      end
-
-      card.ability.extra.targets = new_targets
+      self:set_nature(card)
     end
+  end,
+  set_nature = function(self, card)
+    local types = {
+      "Grass", "Fire", "Water", "Lightning", "Psychic",
+      "Fighting", "Colorless", "Dark", "Metal", "Fairy",
+      "Dragon", "Earth"
+    }
+
+    local targets = card.ability.extra.targets or {}
+    local total = #targets
+    local replace_count = math.min(3, total)
+    local start_index = total - replace_count + 1
+
+    local new_targets = {}
+    local used = {}
+
+    -- mark existing (untouched) targets as used
+    for i = 1, start_index - 1 do
+      new_targets[i] = targets[i]
+      used[targets[i].value] = true
+    end
+
+    -- build available pool excluding used values
+    local pool = {}
+    for _, t in ipairs(types) do
+      if not used[t] then
+        table.insert(pool, t)
+      end
+    end
+
+    -- replace last N targets without duplicates
+    for i = start_index, total do
+      if #pool == 0 then break end
+
+      local choice = pseudorandom_element(pool, pseudoseed("shroodle_" .. i))
+      new_targets[i] = { value = choice }
+
+      for j, v in ipairs(pool) do
+        if v == choice then
+          table.remove(pool, j)
+          break
+        end
+      end
+    end
+
+    card.ability.extra.targets = new_targets
   end
 
 }
@@ -146,51 +151,54 @@ local grafaiai = {
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
-      local types = {
-        "Grass", "Fire", "Water", "Lightning", "Psychic",
-        "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-        "Dragon", "Earth"
-      }
-
-      local targets = card.ability.extra.targets or {}
-      local total = #targets
-      local replace_count = math.min(3, total)
-      local start_index = total - replace_count + 1
-
-      local new_targets = {}
-      local used = {}
-
-      -- mark existing (untouched) targets as used
-      for i = 1, start_index - 1 do
-        new_targets[i] = targets[i]
-        used[targets[i].value] = true
-      end
-
-      -- build available pool excluding used values
-      local pool = {}
-      for _, t in ipairs(types) do
-        if not used[t] then
-          table.insert(pool, t)
-        end
-      end
-
-      -- replace last N targets without duplicates
-      for i = start_index, total do
-        if #pool == 0 then break end
-
-        local choice = pseudorandom_element(pool, pseudoseed("shroodle_" .. i))
-        new_targets[i] = { value = choice }
-
-        for j, v in ipairs(pool) do
-          if v == choice then
-            table.remove(pool, j)
-            break
-          end
-        end
-      end
-
-      card.ability.extra.targets = new_targets
+      self:set_nature(card)
     end
+  end,
+  set_nature = function(self, card)
+    local types = {
+      "Grass", "Fire", "Water", "Lightning", "Psychic",
+      "Fighting", "Colorless", "Dark", "Metal", "Fairy",
+      "Dragon", "Earth"
+    }
+
+    local targets = card.ability.extra.targets or {}
+    local total = #targets
+    local replace_count = math.min(3, total)
+    local start_index = total - replace_count + 1
+
+    local new_targets = {}
+    local used = {}
+
+    -- mark existing (untouched) targets as used
+    for i = 1, start_index - 1 do
+      new_targets[i] = targets[i]
+      used[targets[i].value] = true
+    end
+
+    -- build available pool excluding used values
+    local pool = {}
+    for _, t in ipairs(types) do
+      if not used[t] then
+        table.insert(pool, t)
+      end
+    end
+
+    -- replace last N targets without duplicates
+    for i = start_index, total do
+      if #pool == 0 then break end
+
+      local choice = pseudorandom_element(pool, pseudoseed("shroodle_" .. i))
+      new_targets[i] = { value = choice }
+
+      for j, v in ipairs(pool) do
+        if v == choice then
+          table.remove(pool, j)
+          break
+        end
+      end
+    end
+
+    card.ability.extra.targets = new_targets
   end
 }
 

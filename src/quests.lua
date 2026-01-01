@@ -9,7 +9,7 @@ local load_quests = function(item)
   end
   if not item.custom_pool_func then
     item.in_pool = function(self)
-      return false(self)
+      return false
     end
   end
   if not item.config then

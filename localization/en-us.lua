@@ -322,7 +322,8 @@ return {
                     "{C:attention}Nature:{} {B:1,V:4}#1#{}, {B:2,V:5}#2#{}, {B:3,V:6}#3#{}",
                     "{br:3}text",
                     "When {C:attention}Boss Blind{} is defeated",
-                    "create a {C:attention}random{} tag"
+                    "create a {C:attention}random{} tag",
+                    "{C:inactive,s:0.8}(Evolves after defeating {C:attention,s:0.8}#4#{C:inactive,s:0.8} Boss Blinds){}"
                 } 
             },
 
