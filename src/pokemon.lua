@@ -24,8 +24,8 @@ local function load_pokemon_folder(folder)
               item.discovered = true
               if not item.key then item.key = item.name end
 
-              if not item.tagged then
-                item.tagged = "sonfive"
+              if not item.sonfive_config_key then
+                item.sonfive_config_key = family[1] or item.name
               end
 
               item.config = item.config or {} 

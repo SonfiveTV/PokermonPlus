@@ -9,7 +9,7 @@ local load_quests = function(item)
   end
   if not item.custom_pool_func then
     item.in_pool = function(self)
-      return pokemon_in_pool(self)
+      return false(self)
     end
   end
   if not item.config then

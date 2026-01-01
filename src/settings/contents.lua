@@ -31,6 +31,7 @@ local all_tiles = {
   { list = { "duraludon", "archaludon" } },
   { list = { "lechonk", "oinkologne" } },
   { list = { "nacli", "naclstack", "garganacl" } },
+  { list = { "shroodle", "grafaiai" } },
   { list = { "cetoddle", "cetitan" } },
 }
 

@@ -316,6 +316,28 @@ return {
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}"
                 } 
             },
+            j_sonfive_shroodle = {
+                name = 'Shroodle',
+                text = {
+                    "{C:attention}Nature:{} {B:1,V:4}#1#{}, {B:2,V:5}#2#{}, {B:3,V:6}#3#{}",
+                    "{br:3}text",
+                    "When {C:attention}Boss Blind{} is defeated",
+                    "create a {C:attention}random{} tag"
+                } 
+            },
+
+            j_sonfive_grafaiai = {
+                name = 'Grafaiai',
+                text = {
+                    "{C:attention}Nature:{} {B:1,V:4}#1#{}, {B:2,V:5}#2#{}, {B:3,V:6}#3#{}",
+                    "Jokers with a {C:attention}Nature{} type also",
+                    "count as the other {C:attention}Nature{} Types",
+                    "{br:3}text",
+                    "When {C:attention}Boss Blind{} is defeated, create the",
+                    "last {C:attention}tag{} used during this run",
+                    "{C:inactive}(Last used: #4#){}"
+                } 
+            },
 
             j_sonfive_cetoddle = {
                 name = 'Cetoddle',

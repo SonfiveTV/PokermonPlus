@@ -8,6 +8,7 @@ return {
     lechonk = true,
     duraludon = true,
     nacli = true,
+    shroodle = true,
     cetoddle = true,
 	timerball = true,
 }

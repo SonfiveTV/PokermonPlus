@@ -48,31 +48,6 @@ complete_quest = function(mod_prefix, pokemon) -- Occurs when defeating the poke
   end
 end
 
-sonfive_quest_keys = {}
-SMODS.current_mod.calculate = function(self, context)
-  local active = G.GAME.active_quest
-  local complete = G.GAME.quest_complete
-  local quests = {
-    {pokemon = "heatran", func = sonfive_heatran_quest}, 
-    {pokemon = "darkrai", func = sonfive_darkrai_quest},
-    {pokemon = "meltan", func = sonfive_meltan_quest}
-  }
-
-  for i, q in ipairs(quests) do
-    if not ((complete and complete[q.pokemon]) or (active == q.pokemon)) then
-      q.func(self, context)
-    end
-
-    if active and active == q.pokemon then
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_active"
-    elseif complete and complete[q.pokemon] then
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_complete"
-    else
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon
-    end
-  end
-end
-
 
 function G.FUNCS.sonfive_quest()
     G.SETTINGS.paused = true

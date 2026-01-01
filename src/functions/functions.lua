@@ -14,6 +14,47 @@ SMODS.current_mod.set_debuff = function(card)
    return false
 end
 
+SMODS.current_mod.reset_game_globals = function(run_start)
+  if run_start then
+    for _, center in pairs(G.P_CENTERS) do
+      if center.sonfive_config_key and not sonfive_config[center.sonfive_config_key] then
+        G.GAME.banned_keys[center.key] = true
+      end
+    end
+  end
+end
+
+sonfive_quest_keys = {}
+SMODS.current_mod.calculate = function(self, context)
+  -- For Grafaiai
+  if context.tag_triggered then
+    G.GAME.last_tag = context.tag_triggered.key
+  end
+
+  -- For Quests
+  local active = G.GAME.active_quest
+  local complete = G.GAME.quest_complete
+  local quests = {
+    {pokemon = "heatran", func = sonfive_heatran_quest}, 
+    {pokemon = "darkrai", func = sonfive_darkrai_quest},
+    {pokemon = "meltan", func = sonfive_meltan_quest}
+  }
+
+  for i, q in ipairs(quests) do
+    if not ((complete and complete[q.pokemon]) or (active == q.pokemon)) then
+      q.func(self, context)
+    end
+
+    if active and active == q.pokemon then
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_active"
+    elseif complete and complete[q.pokemon] then
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_complete"
+    else
+      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon
+    end
+  end
+end
+
 -- Void Deck Negative Energy check
 local energy_use_ref = energy_use
 energy_use = function(self, card, area, copier, highlighted, exclude_spoon)
@@ -80,14 +121,34 @@ unique_hand_tooltip = function(self, info_queue, center)
   end
 end
 
-local original_pokemon_in_pool = pokemon_in_pool
 
-function pokemon_in_pool(v)
-  if v and v.tagged == "sonfive" then
-    local base_evo_name = sonfive_base_evo_name(v)
-    if not sonfive_config[base_evo_name] then
-      return false
+
+local is_type_ref = is_type
+
+is_type = function(card, target_type)
+  if not card then return false end
+
+  if next(SMODS.find_card('j_sonfive_grafaiai')) then
+    for _, graf in ipairs(G.jokers.cards) do
+      if graf.ability and graf.ability.name == 'grafaiai' then
+        local targets = graf.ability.extra.targets or {}
+
+        -- build a lookup set
+        local set = {}
+        for _, t in ipairs(targets) do
+          set[t.value] = true
+        end
+
+        -- both must be in the same target set, but not equal
+        if set[target_type] and set[get_type(card)]
+          and target_type ~= get_type(card)
+        then
+          return true
+        end
+      end
     end
   end
-  return original_pokemon_in_pool(v)
+
+  return is_type_ref(card, target_type)
 end
+
