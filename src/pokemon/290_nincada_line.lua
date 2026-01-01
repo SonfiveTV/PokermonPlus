@@ -95,7 +95,7 @@ local shedinja = {
   end,
   calculate = function(self, card, context)
     if context.end_of_round and not context.blueprint then 
-        card.ability.extra.targets = get_poke_target_card_ranks("shedinja", 3, card.ability.extra.targets, true)
+      self:set_nature(card)
     --     local turn_neg = nil
     --     turn_neg = card.ability.extra.earned >= card.ability.extra.threshold
     --     if turn_neg then
@@ -134,9 +134,13 @@ local shedinja = {
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
-      card.ability.extra.targets = get_poke_target_card_ranks("shedinja", 3, card.ability.extra.targets, true)
+      self:set_nature(card)
     end
+  end,
+  set_nature = function(self, card)
+    card.ability.extra.targets = get_poke_target_card_ranks("shedinja", 3, card.ability.extra.targets, true)
   end
+
 }
 
 local list = {nincada, ninjask, shedinja}
