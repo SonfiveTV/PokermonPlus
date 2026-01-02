@@ -323,7 +323,7 @@ return {
                     "{br:3}text",
                     "When {C:attention}Boss Blind{} is defeated",
                     "create a {C:attention}random{} tag",
-                    "{C:inactive,s:0.8}(Evolves after defeating {C:attention,s:0.8}#4#{C:inactive,s:0.8} Boss Blinds){}"
+                    "{C:inactive,s:0.8}(Evolves after triggering {C:attention,s:0.8}#4#{C:inactive,s:0.8} tags){}"
                 } 
             },
 

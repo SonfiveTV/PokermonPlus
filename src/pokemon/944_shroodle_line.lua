@@ -1,6 +1,6 @@
 local shroodle = {
   name = "shroodle",
-  config = {extra = {targets = {{value = "Grass"}, {value = "Fire"}, {value = "Water"}}, tags_generated = 0}, evo_rqmt = 1},
+  config = {extra = {targets = {{value = "Grass"}, {value = "Fire"}, {value = "Water"}}, count = 0}, evo_rqmt = 3},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local abbr = card.ability.extra
@@ -11,7 +11,7 @@ local shroodle = {
       colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].value)] or G.C.UI.TEXT_INACTIVE
       colours[i + #abbr.targets] = (abbr.targets[i].value == 'Lightning' and G.C.BLACK or G.C.WHITE)
     end
-    vars[(1+#abbr.targets)] = math.max(0, (self.config.evo_rqmt + 1) - card.ability.extra.tags_generated)
+    vars[(1+#abbr.targets)] = math.max(0, (self.config.evo_rqmt - card.ability.extra.count))
     vars.colours = colours
 
     return {vars = vars}
@@ -25,6 +25,9 @@ local shroodle = {
   blueprint_compat = true,
   
   calculate = function(self, card, context)
+    if context.tag_triggered then
+      card.ability.extra.count = card.ability.extra.count + 1
+    end
     if (context.end_of_round and G.GAME.blind.boss) and not context.repetition and not context.individual then
       G.E_MANAGER:add_event(Event({
         func = (function()
@@ -48,12 +51,11 @@ local shroodle = {
             add_tag(tag)
             play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
             play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
-            card.ability.extra.tags_generated = card.ability.extra.tags_generated + 1
             return true
         end)
       }))
     end
-    return scaling_evo(self, card, context, "j_sonfive_grafaiai", card.ability.extra.tags_generated, self.config.evo_rqmt)
+    return scaling_evo(self, card, context, "j_sonfive_grafaiai", card.ability.extra.count, self.config.evo_rqmt)
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
