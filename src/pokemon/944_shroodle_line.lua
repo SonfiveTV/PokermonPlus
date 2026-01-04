@@ -1,15 +1,15 @@
 local shroodle = {
   name = "shroodle",
-  config = {extra = {targets = {{value = "Grass"}, {value = "Fire"}, {value = "Water"}}, count = 0}, evo_rqmt = 3},
+  config = {extra = {targets = {{type = "Grass"}, {type = "Fire"}, {type = "Water"}}, count = 0}, evo_rqmt = 3},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local abbr = card.ability.extra
     local vars = {}
     local colours = {}
     for i = 1, #abbr.targets do
-      vars[i] = abbr.targets[i].value
-      colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].value)] or G.C.UI.TEXT_INACTIVE
-      colours[i + #abbr.targets] = (abbr.targets[i].value == 'Lightning' and G.C.BLACK or G.C.WHITE)
+      vars[i] = abbr.targets[i].type
+      colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].type)] or G.C.UI.TEXT_INACTIVE
+      colours[i + #abbr.targets] = (abbr.targets[i].type == 'Lightning' and G.C.BLACK or G.C.WHITE)
     end
     vars[(1+#abbr.targets)] = math.max(0, (self.config.evo_rqmt - card.ability.extra.count))
     vars.colours = colours
@@ -80,10 +80,10 @@ local shroodle = {
     -- mark existing (untouched) targets as used
     for i = 1, start_index - 1 do
       new_targets[i] = targets[i]
-      used[targets[i].value] = true
+      used[targets[i].type] = true
     end
 
-    -- build available pool excluding used values
+    -- build available pool excluding used types
     local pool = {}
     for _, t in ipairs(types) do
       if not used[t] then
@@ -96,7 +96,7 @@ local shroodle = {
       if #pool == 0 then break end
 
       local choice = pseudorandom_element(pool, pseudoseed("shroodle_" .. i))
-      new_targets[i] = { value = choice }
+      new_targets[i] = { type = choice }
 
       for j, v in ipairs(pool) do
         if v == choice then
@@ -113,16 +113,16 @@ local shroodle = {
 
 local grafaiai = {
   name = "grafaiai",
-  config = {extra = {targets = {{value = "Grass"}, {value = "Fire"}, {value = "Water"}}}},
+  config = {extra = {targets = {{type = "Grass"}, {type = "Fire"}, {type = "Water"}}}},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
     local abbr = card.ability.extra
     local vars = {}
     local colours = {}
     for i = 1, #abbr.targets do
-      vars[i] = abbr.targets[i].value
-      colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].value)] or G.C.UI.TEXT_INACTIVE
-      colours[i + #abbr.targets] = (abbr.targets[i].value == 'Lightning' and G.C.BLACK or G.C.WHITE)
+      vars[i] = abbr.targets[i].type
+      colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].type)] or G.C.UI.TEXT_INACTIVE
+      colours[i + #abbr.targets] = (abbr.targets[i].type == 'Lightning' and G.C.BLACK or G.C.WHITE)
     end
     vars[(1+#abbr.targets)] = G.GAME.last_tag and localize{type = 'name_text', key = G.GAME.last_tag, set = 'Tag'} or localize('k_none')
     vars.colours = colours
@@ -174,10 +174,10 @@ local grafaiai = {
     -- mark existing (untouched) targets as used
     for i = 1, start_index - 1 do
       new_targets[i] = targets[i]
-      used[targets[i].value] = true
+      used[targets[i].type] = true
     end
 
-    -- build available pool excluding used values
+    -- build available pool excluding used types
     local pool = {}
     for _, t in ipairs(types) do
       if not used[t] then
@@ -190,7 +190,7 @@ local grafaiai = {
       if #pool == 0 then break end
 
       local choice = pseudorandom_element(pool, pseudoseed("shroodle_" .. i))
-      new_targets[i] = { value = choice }
+      new_targets[i] = { type = choice }
 
       for j, v in ipairs(pool) do
         if v == choice then

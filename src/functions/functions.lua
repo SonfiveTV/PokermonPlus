@@ -136,7 +136,7 @@ is_type = function(card, target_type)
         -- build a lookup set
         local set = {}
         for _, t in ipairs(targets) do
-          set[t.value] = true
+          set[t.type] = true
         end
 
         -- both must be in the same target set, but not equal
