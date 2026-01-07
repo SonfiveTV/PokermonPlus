@@ -5,6 +5,8 @@ local weakened = {
   order = 5,
   pos = {x = 0, y = 0},
   atlas = 'stickers',
+  rate = 0.3,
+  needs_enable_flag = true,
   apply = function(self, card, val)
     card.ability[self.key] = val
     if card.ability.extra then

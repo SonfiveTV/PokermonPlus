@@ -5,7 +5,7 @@ local lilac = {
     prefix_config = {above_stake = {mod = false}, applied_stakes = {mod = false}},
 
     modifiers = function()
-        G.GAME.modifiers.enable_weakened_in_shop = true
+        G.GAME.modifiers.enable_sonfive_weakened = true
     end,
 
     colour = HEX('E8CCE8'),
