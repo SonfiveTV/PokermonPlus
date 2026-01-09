@@ -7,6 +7,7 @@ local weakened = {
   atlas = 'stickers',
   rate = 0.3,
   needs_enable_flag = true,
+  default_compat = false,
   apply = function(self, card, val)
     card.ability[self.key] = val
     if card.ability.extra then

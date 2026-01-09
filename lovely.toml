@@ -1,0 +1,15 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# Make `energizable_vanilla` global.
+#   we need this until an `is_energizable` function using centers is created,
+#   or until it becomes a global variable by default
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Pokermon "functions/energyfunctions.lua"]'
+pattern = '''local energizable_vanilla = assert(SMODS.load_file("functions/energizable_vanilla.lua"))()'''
+position = 'at'
+match_indent = true
+payload = '''energizable_vanilla = assert(SMODS.load_file("functions/energizable_vanilla.lua"))()'''
