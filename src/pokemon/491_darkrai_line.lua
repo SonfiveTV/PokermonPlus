@@ -93,7 +93,7 @@ local darkrai = {
             end
         end
         -- Clear Darkrai's own stored snapshot
-        a.darkrai_applied_energy = {}
+        card.ability.extra.darkrai_applied_energy = {}
     end
   end,
   megas = {"mega_darkrai"}
