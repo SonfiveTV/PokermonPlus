@@ -17,6 +17,10 @@ local weakened = {
       end
     end
   end,
+  should_apply = function(self, card, center, area, bypass_roll)
+    return (area == G.shop_jokers or area == G.pack_cards)
+        and SMODS.Sticker.should_apply(self, card, center, area, bypass_roll)
+  end,
 }
 
 return {name = "Stickers",
