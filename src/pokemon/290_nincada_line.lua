@@ -84,7 +84,6 @@ local shedinja = {
   gen = 3,
   blueprint_compat = false,
   calc_dollar_bonus = function(self, card)
-    card.ability.extra.earned = card.ability.extra.earned + card.ability.extra.money
     return ease_poke_dollars(card, "shedinja", (card.ability.extra.money), true)
     
 	end,
