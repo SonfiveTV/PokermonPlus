@@ -40,6 +40,9 @@ local heatran = {
         if effect then
           effect(target)
           target:set_ability(G.P_CENTERS.c_base, nil, true)
+          if not (target.ability and target.ability.sonfive_heatran) then
+            SMODS.Stickers["sonfive_heatran"]:apply(target, true)
+          end
         end
       end
 
@@ -48,6 +51,9 @@ local heatran = {
         if effect then
           effect(target)
           target:set_edition()
+          if not (target.ability and target.ability.sonfive_heatran) then
+            SMODS.Stickers["sonfive_heatran"]:apply(target, true)
+          end
         end
       end
 
@@ -56,6 +62,9 @@ local heatran = {
         if effect then
           effect(target)
           target:set_seal()
+          if not (target.ability and target.ability.sonfive_heatran) then
+            SMODS.Stickers["sonfive_heatran"]:apply(target, true)
+          end
         end
       end
     end

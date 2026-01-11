@@ -622,6 +622,14 @@ return {
                     },
             },
 
+            sonfive_heatran = {
+                name = "Forged",
+                text = {
+                        "This card has been",
+                        "forged by {C:attention}Heatran{}",
+                    },
+            },
+
                 sonfive_lilac_stake_sticker = {
                 name = "Lilac Sticker",
                 text = {
@@ -780,7 +788,9 @@ return {
         },
 
         labels={
-            sonfive_weakened = "Weakened"
+            sonfive_weakened = "Weakened",
+            sonfive_heatran = "Forged"
+
         },
     }       
 }

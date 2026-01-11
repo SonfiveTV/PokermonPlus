@@ -23,9 +23,14 @@ local heatran = {
     redeem = function(self, card)
         G.E_MANAGER:add_event(Event({
         func = function()
-            sonfive_set_next_boss('bl_sonfive_heatran_boss')
-            G.GAME.active_quest = 'heatran'
-            return true
+            if (SMODS.Mods["Multiplayer"] or {}).can_load and MP.LOBBY and MP.LOBBY.code then
+                complete_quest('sonfive', 'heatran')
+                return true
+            else
+                sonfive_set_next_boss('bl_sonfive_heatran_boss')
+                G.GAME.active_quest = 'heatran'
+                return true
+            end
         end
         }))
     end,
@@ -64,9 +69,14 @@ local darkrai = {
     redeem = function(self, card)
         G.E_MANAGER:add_event(Event({
         func = function()
-            sonfive_set_next_boss('bl_sonfive_darkrai_boss')
-            G.GAME.active_quest = 'darkrai'
-            return true
+            if (SMODS.Mods["Multiplayer"] or {}).can_load and MP.LOBBY and MP.LOBBY.code then
+                complete_quest('sonfive', 'darkrai')
+                return true
+            else
+                sonfive_set_next_boss('bl_sonfive_darkrai_boss')
+                G.GAME.active_quest = 'darkrai'
+                return true
+            end
         end
         }))
     end,
@@ -105,9 +115,14 @@ local meltan = {
     redeem = function(self, card)
         G.E_MANAGER:add_event(Event({
         func = function()
-            sonfive_set_next_boss('bl_sonfive_meltan_boss')
-            G.GAME.active_quest = 'meltan'
-            return true
+            if (SMODS.Mods["Multiplayer"] or {}).can_load and MP.LOBBY and MP.LOBBY.code then
+                complete_quest('sonfive', 'meltan')
+                return true
+            else
+                sonfive_set_next_boss('bl_sonfive_meltan_boss')
+                G.GAME.active_quest = 'meltan'
+                return true
+            end
         end
         }))
     end,
