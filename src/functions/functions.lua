@@ -80,6 +80,23 @@ SMODS.current_mod.reset_game_globals = function(run_start)
   end
 end
 
+-- function Card:calculate_shadow()
+--     if self.ability.sonfive_shadow and self.ability.shadow_tally > 0 then
+--         if self.ability.shadow_tally == 1 then
+--           print(self.ability.extra_slots_used)
+--             self.ability.shadow_tally = 0
+--             -- card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_disabled_ex'),colour = G.C.FILTER, delay = 0.45})
+--             SMODS.Stickers["sonfive_purified"]:apply(self, true)
+--             self:remove_sticker('sonfive_shadow')
+--             self.ability.extra_slots_used = self.ability.extra_slots_used - 1
+--             print(self.ability.extra_slots_used)
+--         else
+--             self.ability.shadow_tally = self.ability.shadow_tally - 1
+--             card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_remaining',vars={self.ability.shadow_tally}},colour = G.C.FILTER, delay = 0.45})
+--         end
+--     end
+-- end
+
 sonfive_quest_keys = {}
 SMODS.current_mod.calculate = function(self, context)
   -- For Grafaiai
