@@ -80,8 +80,95 @@ SMODS.current_mod.reset_game_globals = function(run_start)
   end
 end
 
+-- function Card:calculate_shadow()
+--     if self.ability.sonfive_shadow and self.ability.shadow_tally > 0 then
+--         if self.ability.shadow_tally == 1 then
+--           print(self.ability.extra_slots_used)
+--             self.ability.shadow_tally = 0
+--             -- card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_disabled_ex'),colour = G.C.FILTER, delay = 0.45})
+--             SMODS.Stickers["sonfive_purified"]:apply(self, true)
+--             self:remove_sticker('sonfive_shadow')
+--             self.ability.extra_slots_used = self.ability.extra_slots_used - 1
+--             print(self.ability.extra_slots_used)
+--         else
+--             self.ability.shadow_tally = self.ability.shadow_tally - 1
+--             card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_remaining',vars={self.ability.shadow_tally}},colour = G.C.FILTER, delay = 0.45})
+--         end
+--     end
+-- end
+
 sonfive_quest_keys = {}
 SMODS.current_mod.calculate = function(self, context)
+
+  -- For Paralyzed status condition
+  if context.after then
+    for i, joker in ipairs(G.jokers.cards) do
+      if joker.ability.extra.paralyzed then
+        joker.ability.extra.paralyzed = false
+        print('test')
+        joker:set_debuff(false)
+      end
+    end
+  end
+
+  -- For Frozen status condition
+  if context.setting_blind then
+    for i, joker in ipairs(G.jokers.cards) do
+      if joker.ability.extra.frozen_tally then
+        local fire_count = 0
+        for j = 1, #G.jokers.cards do
+          if G.jokers.cards[j] == joker then
+            if j > 1 and is_type(G.jokers.cards[j - 1], 'Fire') then
+              fire_count = fire_count + 1
+            end
+            if j < #G.jokers.cards and is_type(G.jokers.cards[j + 1], 'Fire') then
+              fire_count = fire_count + 1
+            end
+          end
+        end
+        joker.ability.extra.frozen_tally = joker.ability.extra.frozen_tally - (1 + fire_count)
+        if joker.ability.extra.frozen_tally <= 0 then
+          joker.ability.extra.frozen_tally = nil
+          joker.ability.perma_debuff = false
+          joker:set_debuff(false)
+          joker:remove_sticker('sonfive_frozen')
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Thawed!"})
+        else
+          joker:set_debuff(true)
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Frozen! ("..joker.ability.extra.frozen_tally.." turns left)"})
+        end
+      end
+    end
+  end
+
+  -- For Asleep status condition  
+  if context.setting_blind then
+    for i, joker in ipairs(G.jokers.cards) do
+      if joker.ability.extra.wake_chance then
+        if joker.ability.extra.wake_chance <= 0 then
+          joker.ability.extra.wake_chance = nil
+          joker.ability.perma_debuff = false
+          joker:set_debuff(false)
+          joker:remove_sticker('sonfive_asleep')
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Woke up!"})
+        else
+          joker.ability.extra.wake_chance = joker.ability.extra.wake_chance - 1
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Asleep!"})
+        end
+      end
+    end
+  end
+
+  -- For Poisoned status condition
+  -- if G.shop_jokers then
+  --   for i, joker in ipairs(G.shop_jokers.cards) do
+  --     if joker.ability.rental or joker.ability.eternal then
+  --       joker:remove_sticker('sonfive_poisoned')
+  --       SMODS.Stickers['sonfive_statuscondition']:apply(joker, true)
+  --     end
+  --   end
+  -- end
+
   -- For Grafaiai
   if context.tag_triggered then
     G.GAME.last_tag = context.tag_triggered.key
