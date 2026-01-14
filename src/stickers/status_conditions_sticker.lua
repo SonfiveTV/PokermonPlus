@@ -13,7 +13,7 @@ local statuscondition = {
   badge_colour = HEX('c497c4'),
   pos = {x = 0, y = 1},
   atlas = 'stickers',
-  rate = 1,
+  rate = 0.3,
   no_collection = true,
   needs_enable_flag = false,
   default_compat = true,
