@@ -99,6 +99,13 @@ end
 
 sonfive_quest_keys = {}
 SMODS.current_mod.calculate = function(self, context)
+  for i, joker in ipairs(G.jokers.cards) do
+    if context.after and joker.ability.extra.paralyzed then
+      joker.ability.extra.paralyzed = false
+      print('test')
+      joker:set_debuff(false)
+    end
+  end
   -- For Grafaiai
   if context.tag_triggered then
     G.GAME.last_tag = context.tag_triggered.key
