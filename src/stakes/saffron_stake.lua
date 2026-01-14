@@ -19,5 +19,5 @@ local saffron = {
 
 
 return {name = "Stakes",
-      list = {saffron}
+      list = {}
 }
