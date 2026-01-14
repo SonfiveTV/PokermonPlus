@@ -57,7 +57,7 @@ local paralyzed = {
       if pseudorandom('paralyzed') < 0.25 then
         card.ability.extra.paralyzed = true
         card:set_debuff(true)
-        return {message = "Paralyzed!", sound = 'tarot1'}
+        return {message = "Paralyzed!", sound = 'sonfive_paralyzed'}
       end
     end
   end,
