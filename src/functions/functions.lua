@@ -159,6 +159,16 @@ SMODS.current_mod.calculate = function(self, context)
     end
   end
 
+  -- For Poisoned status condition
+  -- if G.shop_jokers then
+  --   for i, joker in ipairs(G.shop_jokers.cards) do
+  --     if joker.ability.rental or joker.ability.eternal then
+  --       joker:remove_sticker('sonfive_poisoned')
+  --       SMODS.Stickers['sonfive_statuscondition']:apply(joker, true)
+  --     end
+  --   end
+  -- end
+
   -- For Grafaiai
   if context.tag_triggered then
     G.GAME.last_tag = context.tag_triggered.key

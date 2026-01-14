@@ -630,11 +630,61 @@ return {
                     },
             },
 
+            sonfive_burned = {
+                name = "Burned",
+                text = {
+                        "{X:red,C:white}X0.5{} Mult",
+                    },
+            },
+            sonfive_paralyzed = {
+                name = "Paralyzed",
+                text = {
+                        "When a hand is played,",
+                        "{C:green}25%{} chance to be",
+                        "debuffed for that hand"
+                    },
+            },
+            sonfive_frozen = {
+                name = "Frozen",
+                text = {
+                        "{C:attention}Frozen Count{}: {C:attention}#1#{}",
+                        "{C:attention}Debuffed{} while Frozen Count is greater than {C:attention}0{}",
+                        "When Blind is selected decrease Frozen Count by {C:attention}1{}",
+                        "plus {C:attention}1{} for each adjacent {X:fire,C:white}Fire{} Joker",
+                    },
+            },
+            sonfive_asleep = {
+                name = "Asleep",
+                text = {
+                        "{C:attention}Debuffed{} for",
+                        "{C:attention}2{} to {C:attention}4{} rounds",
+                    },
+            },
+            sonfive_poisoned = {
+                name = "Poisoned",
+                text = {
+                        "When Blind is selected, if this",
+                        "Joker's sell value is {C:money}$1{}",
+                        "{S:1.1,C:red,E:2}self destructs{}",
+                        "Otherwise, lose {C:money}$#1#{} of sell value",
+                        "{C:inactive,s:0.8}(Increases by $0.1 after each Blind selection){}",
+                    },
+            },
+
                 sonfive_lilac_stake_sticker = {
                 name = "Lilac Sticker",
                 text = {
                         "Used this Joker",
                         "to win on {C:attention}Lilac",
+                        "{C:attention}Stake{} difficulty"
+                    },
+            },
+
+                sonfive_saffron_stake_sticker = {
+                name = "Saffron Sticker",
+                text = {
+                        "Used this Joker",
+                        "to win on {C:attention}Saffron",
                         "{C:attention}Stake{} difficulty"
                     },
             },
@@ -738,6 +788,13 @@ return {
                     "{s:0.8}Applies all previous Stakes"
                 },
             },
+            stake_sonfive_saffron_stake = {
+            name = "Saffron Stake",
+            text = {"Shop can have Jokers",
+                    "with {C:attention}Status Conditions{}",
+                    "{s:0.8}Applies White Stake"
+                },
+            },
         },
         Tag={},
         Tarot={},
@@ -789,8 +846,12 @@ return {
 
         labels={
             sonfive_weakened = "Weakened",
-            sonfive_heatran = "Forged"
-
+            sonfive_heatran = "Forged",
+            sonfive_burned = "Burned",
+            sonfive_paralyzed = "Paralyzed",
+            sonfive_frozen = "Frozen",
+            sonfive_asleep = "Asleep",
+            sonfive_poisoned = "Poisoned"
         },
     }       
 }

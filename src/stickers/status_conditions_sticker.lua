@@ -27,6 +27,8 @@ local statuscondition = {
     local status = pseudorandom_element(statuses, pseudoseed('statuscondition'))
 
     SMODS.Stickers[status]:apply(card, true)
+    card:remove_sticker('sonfive_statiscondition')
+
   end,
 
   should_apply = function(self, card, center, area, bypass_roll)
@@ -74,6 +76,9 @@ local frozen = {
   atlas = 'stickers',
   rate = 0,
   default_compat = true,
+  loc_vars = function(self, info_queue, card)
+    return {vars = {(card.ability and card.ability.extra and card.ability.extra.frozen_tally) or 6}}
+  end,
   calculate = function(self, card, context)
     if not card.ability.extra.frozen_tally then
       card.ability.extra.frozen_tally = 6
@@ -104,6 +109,9 @@ local poisoned = {
   atlas = 'stickers',
   rate = 0,
   default_compat = true,
+  loc_vars = function(self, info_queue, card)
+    return {vars = {(card.ability and card.ability.extra and card.ability.extra.poison_damage) or 0.0}}
+  end,
   calculate = function(self, card, context)
     if not card.ability.extra.poison_damage then
       card.ability.extra.poison_damage = 0.0
