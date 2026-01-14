@@ -1,3 +1,13 @@
+local function remove_value(t, value)
+  for i = 1, #t do
+    if t[i] == value then
+      table.remove(t, i)
+      return true
+    end
+  end
+  return false
+end
+
 local statuscondition = { 
   key = 'statuscondition',
   badge_colour = HEX('c497c4'),
@@ -8,16 +18,12 @@ local statuscondition = {
   needs_enable_flag = false,
   default_compat = true,
   apply = function(self, card, val)
-    local statuses = {}
-    if is_type(card,'Fire') then
-      statuses = {'sonfive_paralyzed', 'sonfive_frozen', 'sonfive_asleep', 'sonfive_poisoned'}
-    elseif is_type(card,'Lightning') then
-      statuses = {'sonfive_burned', 'sonfive_frozen', 'sonfive_asleep', 'sonfive_poisoned'}
-    elseif is_type(card,'Metal') then
-      statuses = {'sonfive_burned', 'sonfive_paralyzed', 'sonfive_frozen', 'sonfive_asleep'}
-    else
-      statuses = {'sonfive_burned', 'sonfive_paralyzed', 'sonfive_frozen', 'sonfive_asleep', 'sonfive_poisoned'}
-    end
+    print(card.ability)
+    local statuses = {'sonfive_burned', 'sonfive_paralyzed', 'sonfive_frozen', 'sonfive_asleep', 'sonfive_poisoned'}
+    if is_type(card,'Fire') then remove_value(statuses, 'sonfive_burned') end
+    if is_type(card,'Lightning') then remove_value(statuses, 'sonfive_paralyzed') end
+    if is_type(card,'Metal') or (card.sell_cost <= 1) then remove_value(statuses, 'sonfive_poisoned') end
+    print(statuses)
     local status = pseudorandom_element(statuses, pseudoseed('statuscondition'))
 
     SMODS.Stickers[status]:apply(card, true)
@@ -31,23 +37,21 @@ local statuscondition = {
 
 local burned = { 
   key = 'burned',
-  badge_colour = HEX('c497c4'),
+  badge_colour = HEX('f94e00'),
   pos = {x = 1, y = 1},
   atlas = 'stickers',
   rate = 0,
   default_compat = true,
   calculate = function(self, card, context)
     if context.joker_main then
-      return {
-        x_mult = 0.5
-      }
+      return {x_mult = 0.5, message = "Burned!"}
     end
   end,
 }
 
 local paralyzed = { 
   key = 'paralyzed',
-  badge_colour = HEX('c497c4'),
+  badge_colour = HEX('fdae10'),
   pos = {x = 2, y = 1},
   atlas = 'stickers',
   rate = 0,
@@ -65,63 +69,60 @@ local paralyzed = {
 
 local frozen = { 
   key = 'frozen',
-  badge_colour = HEX('c497c4'),
+  badge_colour = HEX('62ccd4'),
   pos = {x = 3, y = 1},
   atlas = 'stickers',
   rate = 0,
   default_compat = true,
   calculate = function(self, card, context)
-    if context.before then
-      if pseudorandom('paralyzed') < 0.25 then
-        card.ability.extra.paralyzed = true
-        card:set_debuff(true)
-      end
-    end
-    if context.final_scoring_step and card.ability.extra.paralyzed then
-      card.ability.extra.paralyzed = false
-      card:set_debuff(false)
+    if not card.ability.extra.frozen_tally then
+      card.ability.extra.frozen_tally = 6
+      card.ability.perma_debuff = true
     end
   end,
 }
 
 local asleep = { 
   key = 'asleep',
-  badge_colour = HEX('c497c4'),
+  badge_colour = HEX('7d7d7d'),
   pos = {x = 4, y = 1},
   atlas = 'stickers',
   rate = 0,
   default_compat = true,
   calculate = function(self, card, context)
-    if context.before then
-      if pseudorandom('paralyzed') < 0.25 then
-        card.ability.extra.paralyzed = true
-        card:set_debuff(true)
-      end
-    end
-    if context.final_scoring_step and card.ability.extra.paralyzed then
-      card.ability.extra.paralyzed = false
-      card:set_debuff(false)
+    if not card.ability.extra.wake_chance then
+      card.ability.extra.wake_chance = math.random(1, 3)
+      card.ability.perma_debuff = true
     end
   end,
 }
 
 local poisoned = { 
   key = 'poisoned',
-  badge_colour = HEX('c497c4'),
+  badge_colour = HEX('bc52e7'),
   pos = {x = 5, y = 1},
   atlas = 'stickers',
   rate = 0,
   default_compat = true,
   calculate = function(self, card, context)
-    if context.before then
-      if pseudorandom('paralyzed') < 0.25 then
-        card.ability.extra.paralyzed = true
-        card:set_debuff(true)
-      end
+    if not card.ability.extra.poison_damage then
+      card.ability.extra.poison_damage = 0.0
     end
-    if context.final_scoring_step and card.ability.extra.paralyzed then
-      card.ability.extra.paralyzed = false
-      card:set_debuff(false)
+    if context.setting_blind then
+      if card.sell_cost > 1 then
+        local temp = nil
+        card.ability.extra_value = (card.ability.extra_value or 0) - card.ability.extra.poison_damage
+        card:set_cost()
+        if card.ability.extra.poison_damage > 0 then
+          temp = true
+        end
+        card.ability.extra.poison_damage = card.ability.extra.poison_damage + 0.1
+        if temp then
+          return {message = "Poisoned!"}
+        end
+      else
+        remove(self, card)
+      end
     end
   end,
 }

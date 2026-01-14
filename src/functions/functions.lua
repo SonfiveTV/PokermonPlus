@@ -99,13 +99,66 @@ end
 
 sonfive_quest_keys = {}
 SMODS.current_mod.calculate = function(self, context)
-  for i, joker in ipairs(G.jokers.cards) do
-    if context.after and joker.ability.extra.paralyzed then
-      joker.ability.extra.paralyzed = false
-      print('test')
-      joker:set_debuff(false)
+
+  -- For Paralyzed status condition
+  if context.after then
+    for i, joker in ipairs(G.jokers.cards) do
+      if joker.ability.extra.paralyzed then
+        joker.ability.extra.paralyzed = false
+        print('test')
+        joker:set_debuff(false)
+      end
     end
   end
+
+  -- For Frozen status condition
+  if context.setting_blind then
+    for i, joker in ipairs(G.jokers.cards) do
+      if joker.ability.extra.frozen_tally then
+        local fire_count = 0
+        for j = 1, #G.jokers.cards do
+          if G.jokers.cards[j] == joker then
+            if j > 1 and is_type(G.jokers.cards[j - 1], 'Fire') then
+              fire_count = fire_count + 1
+            end
+            if j < #G.jokers.cards and is_type(G.jokers.cards[j + 1], 'Fire') then
+              fire_count = fire_count + 1
+            end
+          end
+        end
+        joker.ability.extra.frozen_tally = joker.ability.extra.frozen_tally - (1 + fire_count)
+        if joker.ability.extra.frozen_tally <= 0 then
+          joker.ability.extra.frozen_tally = nil
+          joker.ability.perma_debuff = false
+          joker:set_debuff(false)
+          joker:remove_sticker('sonfive_frozen')
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Thawed!"})
+        else
+          joker:set_debuff(true)
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Frozen! ("..joker.ability.extra.frozen_tally.." turns left)"})
+        end
+      end
+    end
+  end
+
+  -- For Asleep status condition  
+  if context.setting_blind then
+    for i, joker in ipairs(G.jokers.cards) do
+      if joker.ability.extra.wake_chance then
+        if joker.ability.extra.wake_chance <= 0 then
+          joker.ability.extra.wake_chance = nil
+          joker.ability.perma_debuff = false
+          joker:set_debuff(false)
+          joker:remove_sticker('sonfive_asleep')
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Woke up!"})
+        else
+          joker.ability.extra.wake_chance = joker.ability.extra.wake_chance - 1
+          card_eval_status_text(joker, 'extra', nil, nil, nil, {message = "Asleep!"})
+        end
+      end
+    end
+  end
+
   -- For Grafaiai
   if context.tag_triggered then
     G.GAME.last_tag = context.tag_triggered.key
