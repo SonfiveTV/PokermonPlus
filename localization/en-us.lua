@@ -829,7 +829,7 @@ return {
         c_sonfive_salt_cured = "Salt Cured",
         c_sonfive_metallurgy = "Metallurgy",
         c_sonfive_wonder_guard = "Guard the Wonder",
-        c_sonfive_croagunk_test = "Croagunk Test",
+        c_sonfive_status_test = "Status Condition Test",
         },
         dictionary = {
             -- Joker Messages
@@ -842,6 +842,7 @@ return {
         },
         v_text = {
         ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
+        ch_c_enable_sonfive_statuscondition = {"Jokers can appear in the shop with {C:attention}Status Conditions{}"},
         },
 
         labels={
