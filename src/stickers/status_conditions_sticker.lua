@@ -13,17 +13,15 @@ local statuscondition = {
   badge_colour = HEX('c497c4'),
   pos = {x = 0, y = 1},
   atlas = 'stickers',
-  rate = 0.3,
+  rate = 0.5,
   no_collection = true,
   needs_enable_flag = false,
   default_compat = true,
   apply = function(self, card, val)
-    print(card.ability)
     local statuses = {'sonfive_burned', 'sonfive_paralyzed', 'sonfive_frozen', 'sonfive_asleep', 'sonfive_poisoned'}
     if is_type(card,'Fire') then remove_value(statuses, 'sonfive_burned') end
     if is_type(card,'Lightning') then remove_value(statuses, 'sonfive_paralyzed') end
     if is_type(card,'Metal') or (card.sell_cost <= 1) then remove_value(statuses, 'sonfive_poisoned') end
-    print(statuses)
     local status = pseudorandom_element(statuses, pseudoseed('statuscondition'))
 
     SMODS.Stickers[status]:apply(card, true)
