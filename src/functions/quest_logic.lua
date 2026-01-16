@@ -63,14 +63,26 @@ function G.FUNCS.sonfive_quest()
     }
 end
 
-SMODS.Keybind({ key = "openQuests", key_pressed = "o", action = G.FUNCS.sonfive_quest })
+-- SMODS.Keybind({ key = "openQuests", key_pressed = "o", action = G.FUNCS.sonfive_quest })
 
-local capture_focused_input_ref = G.CONTROLLER.capture_focused_input
-G.CONTROLLER.capture_focused_input = function(self, button, input_type, dt)
-  if input_type == 'press' and button == 'leftstick' then
-    G.FUNCS.sonfive_quest()
+-- local capture_focused_input_ref = G.CONTROLLER.capture_focused_input
+-- G.CONTROLLER.capture_focused_input = function(self, button, input_type, dt)
+--   if input_type == 'press' and button == 'leftstick' then
+--     G.FUNCS.sonfive_quest()
+--   end
+--   return capture_focused_input_ref(self, button, input_type, dt)
+-- end
+
+if not next(SMODS.find_mod("PokermonMaelmc")) then
+  SMODS.Keybind({ key = "openQuests", key_pressed = "o", action = G.FUNCS.sonfive_quest })
+
+  local capture_focused_input_ref = G.CONTROLLER.capture_focused_input
+  G.CONTROLLER.capture_focused_input = function(self, button, input_type, dt)
+    if input_type == 'press' and button == 'leftstick' then
+      G.FUNCS.sonfive_quest()
+    end
+    return capture_focused_input_ref(self, button, input_type, dt)
   end
-  return capture_focused_input_ref(self, button, input_type, dt)
 end
 
 function add_quest_voucher(key)

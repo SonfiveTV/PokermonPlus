@@ -832,6 +832,26 @@ return {
         c_sonfive_status_test = "Status Condition Test",
         },
         dictionary = {
+            -- Quest Names
+            quest_heatran = "Into The Volcano",
+            quest_darkrai = "The Nightmare Begins",
+            quest_meltan = "A Superalloy Showdown",
+
+            -- Quest Rewards
+            reward_heatran = "Challenge The Molten Mountain",
+            reward_darkrai = "Challenge The Newmoon Nightmare",
+            reward_meltan = "Challenge The Metallic Mutiny",
+
+            -- Quest Messages
+            key_heatran = "Accquire the Magma Stone",
+            key_heatran_active = "Defeat The Molten Mountain",
+            key_darkrai = "Accquire the Member Card",
+            key_darkrai_active = "Defeat The Newmoon Nightmare",
+            key_meltan = "Accquire the Mystery Box",
+            key_meltan_active = "Defeat The Metallic Mutiny",
+
+            quest_completed = "You have already completed this Quest!",
+
             -- Joker Messages
             sonfive_saltcure_ex = "Salt Cure!",
             sonfive_speedboost = "Speed Boost!",
