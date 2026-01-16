@@ -3,18 +3,12 @@ local quest_darkrai = {
     loc_vars = function(self, info_queue, card)
         G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
 
-        local energy_tasks = {
-            "Grass", "Fire", "Water", "Lightning", "Psychic",
-            "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-            "Dragon", "Earth",
-        }
-
         local vars = {}
         local colours = {}
 
         -- Count completed tasks
         local completed_count = 0
-        for _, energy in ipairs(energy_tasks) do
+        for _, energy in ipairs(poketype_list) do
             if G.GAME.darkrai_quest_types[energy] then
                 completed_count = completed_count + 1
             end
@@ -28,7 +22,7 @@ local quest_darkrai = {
             or G.C.UI.TEXT_INACTIVE
 
         -- Populate task texts and colours (FIXED)
-        for i, energy in ipairs(energy_tasks) do
+        for i, energy in ipairs(poketype_list) do
             local done = G.GAME.darkrai_quest_types[energy]
 
             if done then
@@ -50,23 +44,15 @@ local function display_text()
     local display_text = {}
     if not (G.GAME.quest_complete and G.GAME.quest_complete.darkrai) then
         G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
-        local energy_tasks = {
-            "Grass", "Fire", "Water", "Lightning", "Psychic",
-            "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-            "Dragon", "Earth",
-        }
         display_text = {}
         local count = 0
-        for _, energy in ipairs(energy_tasks) do
+        for _, energy in ipairs(poketype_list) do
             if G.GAME.darkrai_quest_types[energy] then
                 count = count + 1
-                -- table.insert(display_text, "Use a " .. energy .. (energy == "Dark" and "ness" or "") .. " Energy")
-            -- else
-                -- table.insert(display_text, "???")
             end
         end
-        display_text[1] = (count > 0) and string.format("Use a unique Energy: "..count.."/"..#energy_tasks) or "???: 0/"..#energy_tasks
-        display_text[2] = (count == #energy_tasks) and localize("key_darkrai") or "???"
+        display_text[1] = (count > 0) and string.format("Use a unique Energy: "..count.."/"..#poketype_list) or "???: 0/"..#poketype_list
+        display_text[2] = (count == #poketype_list) and localize("key_darkrai") or "???"
         display_text[3] = (G.GAME.active_quest == "darkrai") and localize("key_darkrai_active") or "???"
     else
         display_text = {localize("quest_completed")}

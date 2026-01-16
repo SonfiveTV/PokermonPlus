@@ -63,12 +63,6 @@ local shroodle = {
     end
   end,
   set_nature = function(self, card)
-    local types = {
-      "Grass", "Fire", "Water", "Lightning", "Psychic",
-      "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-      "Dragon", "Earth"
-    }
-
     local targets = card.ability.extra.targets or {}
     local total = #targets
     local replace_count = math.min(3, total)
@@ -85,7 +79,7 @@ local shroodle = {
 
     -- build available pool excluding used types
     local pool = {}
-    for _, t in ipairs(types) do
+    for _, t in ipairs(poketype_list) do
       if not used[t] then
         table.insert(pool, t)
       end
@@ -157,12 +151,6 @@ local grafaiai = {
     end
   end,
   set_nature = function(self, card)
-    local types = {
-      "Grass", "Fire", "Water", "Lightning", "Psychic",
-      "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-      "Dragon", "Earth"
-    }
-
     local targets = card.ability.extra.targets or {}
     local total = #targets
     local replace_count = math.min(3, total)
@@ -179,7 +167,7 @@ local grafaiai = {
 
     -- build available pool excluding used types
     local pool = {}
-    for _, t in ipairs(types) do
+    for _, t in ipairs(poketype_list) do
       if not used[t] then
         table.insert(pool, t)
       end

@@ -51,15 +51,9 @@ function sonfive_darkrai_quest(self, context) -- Use all 12 Energy card types, t
   if G.GAME.quest_complete and G.GAME.quest_complete['darkrai'] then return end
   if G.GAME.active_quest == 'darkrai' then return end
 
-  local types = {
-    "Grass", "Fire", "Water", "Lightning", "Psychic",
-    "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-    "Dragon", "Earth"
-  }
-
   G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
   if context.using_consumeable then
-    for _, ptype in ipairs(types) do
+    for _, ptype in ipairs(poketype_list) do
       local energy_key =
         'c_poke_' .. string.lower(ptype)
         .. (ptype == 'Dark' and 'ness' or '')

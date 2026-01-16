@@ -22,24 +22,19 @@ local darkrai = {
           end
       end
 
-      local a = card.ability.extra
-      local types = {"Grass", "Fire", "Water", "Lightning", "Psychic",
-                    "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-                    "Dragon", "Earth"}
-
       if not context.blueprint then
           local darkrai_count = #SMODS.find_card("j_sonfive_darkrai")
 
           -- Initialize Darkrai's snapshot
-          if not a.darkrai_applied_energy then
-              a.darkrai_applied_energy = {}
+          if not card.ability.extra.darkrai_applied_energy then
+              card.ability.extra.darkrai_applied_energy = {}
           end
 
           -- Step 1: Calculate desired energy per type
-          for _, ptype in pairs(types) do
+          for _, ptype in pairs(poketype_list) do
               local energy_key = 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy'
               local energy_type_count = #SMODS.find_card(energy_key) * darkrai_count
-              a.darkrai_applied_energy[ptype] = energy_type_count
+              card.ability.extra.darkrai_applied_energy[ptype] = energy_type_count
 
               -- Step 2: Apply to jokers
               for _, card in ipairs(G.jokers.cards) do
@@ -49,7 +44,7 @@ local darkrai = {
                     if not card.ability.extra.darkrai_applied then
                         card.ability.extra.darkrai_applied = {}
                     end
-                    local to_apply = a.darkrai_applied_energy[ptype]
+                    local to_apply = card.ability.extra.darkrai_applied_energy[ptype]
                     local last_applied = card.ability.extra.darkrai_applied[ptype] or 0
 
                     if is_type(card, ptype) then
@@ -76,15 +71,10 @@ local darkrai = {
     for _, card in ipairs(G.jokers.cards) do
         local extra = card.ability and card.ability.extra
         if type(extra) == "table" then
-            local a = card.ability.extra
-            local types = {"Grass", "Fire", "Water", "Lightning", "Psychic",
-                            "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-                            "Dragon", "Earth"}
-
             card.ability.extra = card.ability.extra or {}
             local applied = card.ability.extra.darkrai_applied or {}
 
-            for _, ptype in pairs(types) do
+            for _, ptype in pairs(poketype_list) do
                 local last_applied = applied[ptype] or 0
                 if last_applied > 0 then
                     energize(card, ptype, false, true, -last_applied)
@@ -123,11 +113,8 @@ local mega_darkrai = {
 
 calculate = function(self, card, context)
     if context.other_consumeable and context.other_consumeable.ability.set == 'Energy' then
-        local types = {"Grass", "Fire", "Water", "Lightning", "Psychic",
-                       "Fighting", "Colorless", "Dark", "Metal", "Fairy",
-                       "Dragon", "Earth"}
         local Xmult = 0
-        for _, ptype in pairs(types) do
+        for _, ptype in pairs(poketype_list) do
             if context.other_consumeable.ability.name == 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy' then
                 Xmult = (#find_pokemon_type(ptype) * card.ability.extra.Xmult_multi)
                 break 
