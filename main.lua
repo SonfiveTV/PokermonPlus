@@ -36,7 +36,7 @@ local function load_files()
     "vouchers"
   }
   for i = 1, #files do 
-    assert(SMODS.load_file("src/"..files[i]..".lua"))()
+    assert(SMODS.load_file("loaders/"..files[i]..".lua"))()
   end
 end
 load_files()
