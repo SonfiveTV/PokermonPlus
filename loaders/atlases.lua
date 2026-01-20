@@ -74,3 +74,8 @@ SMODS.Sound({
     key = "paralyzed",
     path = "status_paralyzed.ogg"
 })
+
+-- Colors
+G.C.SONFIVE = {
+    BLUE = HEX("87DEFF"),
+}

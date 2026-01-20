@@ -46,6 +46,10 @@ local function display_text()
     return display_text
 end
 
+local function designer()
+  return {name = "Sonfive", colour = G.C.SONFIVE.BLUE}
+end
+
 local function reward_text()
   return {localize("reward_meltan")}
 end
@@ -61,6 +65,7 @@ if next(SMODS.find_mod("PokermonMaelmc")) then
         reward_atlas = "sonfive_boss_blinds",
         reward_pos = {x = 0, y = 2},
         set = "Blind",
+        designer = designer,
     })
 end
 

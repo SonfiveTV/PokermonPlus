@@ -46,11 +46,10 @@ local function display_text()
         G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
         display_text = {}
         local count = 0
-        for _, energy in ipairs(poketype_list) do
-            if G.GAME.darkrai_quest_types[energy] then
-                count = count + 1
-            end
+        for _ in pairs(G.GAME.darkrai_quest_types) do
+            count = count + 1
         end
+        count = math.min(count, 12)
         display_text[1] = (count > 0) and string.format("Use a unique Energy: "..count.."/"..#poketype_list) or "???: 0/"..#poketype_list
         display_text[2] = (count == #poketype_list) and localize("key_darkrai") or "???"
         display_text[3] = (G.GAME.active_quest == "darkrai") and localize("key_darkrai_active") or "???"
@@ -58,6 +57,10 @@ local function display_text()
         display_text = {localize("quest_completed")}
     end
     return display_text
+end
+
+local function designer()
+  return {name = "Sonfive", colour = G.C.SONFIVE.BLUE}
 end
 
 local function reward_text()
@@ -75,6 +78,7 @@ if next(SMODS.find_mod("PokermonMaelmc")) then
         reward_atlas = "sonfive_boss_blinds",
         reward_pos = {x = 0, y = 1},
         set = "Blind",
+        designer = designer,
     })
 end
 

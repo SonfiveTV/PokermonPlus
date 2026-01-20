@@ -65,7 +65,12 @@ function sonfive_darkrai_quest(self, context) -- Use all 12 Energy card types, t
         end
       end
     end
-end
+    if context.consumeable.ability.name == 'double_rainbow_energy' then
+      if not G.GAME.darkrai_quest_types.rainbow then
+        G.GAME.darkrai_quest_types.DoubleRainbow = true
+      end
+    end
+  end
 
   local count = 0
   for _ in pairs(G.GAME.darkrai_quest_types) do
