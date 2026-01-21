@@ -37,28 +37,28 @@ local darkrai = {
               card.ability.extra.darkrai_applied_energy[ptype] = energy_type_count
 
               -- Step 2: Apply to jokers
-              for _, card in ipairs(G.jokers.cards) do
-                local extra = card.ability and card.ability.extra
+              for _, joker in ipairs(G.jokers.cards) do
+                local extra = joker.ability and joker.ability.extra
                 if type(extra) == "table" then
-                    card.ability.extra = card.ability.extra or {}
-                    if not card.ability.extra.darkrai_applied then
-                        card.ability.extra.darkrai_applied = {}
+                    joker.ability.extra = joker.ability.extra or {}
+                    if not joker.ability.extra.darkrai_applied then
+                        joker.ability.extra.darkrai_applied = {}
                     end
                     local to_apply = card.ability.extra.darkrai_applied_energy[ptype]
-                    local last_applied = card.ability.extra.darkrai_applied[ptype] or 0
+                    local last_applied = joker.ability.extra.darkrai_applied[ptype] or 0
 
-                    if is_type(card, ptype) then
+                    if is_type(joker, ptype) then
                         -- Joker matches this type → sync energies
                         if to_apply ~= last_applied then
                             local diff = to_apply - last_applied
-                            energize(card, ptype, nil, true, diff)
-                            card.ability.extra.darkrai_applied[ptype] = to_apply
+                            energize(joker, ptype, nil, true, diff)
+                            joker.ability.extra.darkrai_applied[ptype] = to_apply
                         end
                     else
                         -- Joker no longer this type → remove old Darkrai-applied energy
                         if last_applied > 0 then
-                            energize(card, ptype, false, true, -last_applied)
-                            card.ability.extra.darkrai_applied[ptype] = 0
+                            energize(joker, ptype, false, true, -last_applied)
+                            joker.ability.extra.darkrai_applied[ptype] = 0
                         end
                     end
                 end
