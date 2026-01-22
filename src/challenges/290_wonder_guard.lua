@@ -17,7 +17,7 @@ local wonder_guard = {
     }
 }
 
-list = {wonder_guard}
+list = {}
 
 return {name = "Challenges", 
 list = list

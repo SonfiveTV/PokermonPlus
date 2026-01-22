@@ -142,7 +142,7 @@ local shedinja = {
 
 }
 
-local list = {nincada, ninjask, shedinja}
+local list = {}
 
 return {name = "Nincada", 
 list = list
