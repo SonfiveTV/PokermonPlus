@@ -31,7 +31,7 @@ local darkrai = {
           end
 
           -- Step 1: Calculate desired energy per type
-          for _, ptype in pairs(poketype_list) do
+          for _, ptype in pairs(POKE_TYPES) do
               local energy_key = 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy'
               local energy_type_count = #SMODS.find_card(energy_key) * darkrai_count
               card.ability.extra.darkrai_applied_energy[ptype] = energy_type_count
@@ -74,7 +74,7 @@ local darkrai = {
             card.ability.extra = card.ability.extra or {}
             local applied = card.ability.extra.darkrai_applied or {}
 
-            for _, ptype in pairs(poketype_list) do
+            for _, ptype in pairs(POKE_TYPES) do
                 local last_applied = applied[ptype] or 0
                 if last_applied > 0 then
                     energize(card, ptype, false, true, -last_applied)
@@ -114,7 +114,7 @@ local mega_darkrai = {
 calculate = function(self, card, context)
     if context.other_consumeable and context.other_consumeable.ability.set == 'Energy' then
         local Xmult = 0
-        for _, ptype in pairs(poketype_list) do
+        for _, ptype in pairs(POKE_TYPES) do
             if context.other_consumeable.ability.name == 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy' then
                 Xmult = (#find_pokemon_type(ptype) * card.ability.extra.Xmult_multi)
                 break 

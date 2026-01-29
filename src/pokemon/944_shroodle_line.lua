@@ -79,7 +79,7 @@ local shroodle = {
 
     -- build available pool excluding used types
     local pool = {}
-    for _, t in ipairs(poketype_list) do
+    for _, t in ipairs(POKE_TYPES) do
       if not used[t] then
         table.insert(pool, t)
       end
@@ -167,7 +167,7 @@ local grafaiai = {
 
     -- build available pool excluding used types
     local pool = {}
-    for _, t in ipairs(poketype_list) do
+    for _, t in ipairs(POKE_TYPES) do
       if not used[t] then
         table.insert(pool, t)
       end

@@ -8,7 +8,7 @@ local quest_darkrai = {
 
         -- Count completed tasks
         local completed_count = 0
-        for _, energy in ipairs(poketype_list) do
+        for _, energy in ipairs(POKE_TYPES) do
             if G.GAME.darkrai_quest_types[energy] then
                 completed_count = completed_count + 1
             end
@@ -22,7 +22,7 @@ local quest_darkrai = {
             or G.C.UI.TEXT_INACTIVE
 
         -- Populate task texts and colours (FIXED)
-        for i, energy in ipairs(poketype_list) do
+        for i, energy in ipairs(POKE_TYPES) do
             local done = G.GAME.darkrai_quest_types[energy]
 
             if done then
@@ -50,8 +50,8 @@ local function display_text()
             count = count + 1
         end
         count = math.min(count, 12)
-        display_text[1] = (count > 0) and string.format("Use a unique Energy: "..count.."/"..#poketype_list) or "???: 0/"..#poketype_list
-        display_text[2] = (count == #poketype_list) and localize("key_darkrai") or "???"
+        display_text[1] = (count > 0) and string.format("Use a unique Energy: "..count.."/"..#POKE_TYPES) or "???: 0/"..#POKE_TYPES
+        display_text[2] = (count == #POKE_TYPES) and localize("key_darkrai") or "???"
         display_text[3] = (G.GAME.active_quest == "darkrai") and localize("key_darkrai_active") or "???"
     else
         display_text = {localize("quest_completed")}

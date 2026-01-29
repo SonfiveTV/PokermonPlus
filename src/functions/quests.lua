@@ -53,7 +53,7 @@ function sonfive_darkrai_quest(self, context) -- Use all 12 Energy card types, t
 
   G.GAME.darkrai_quest_types = G.GAME.darkrai_quest_types or {}
   if context.using_consumeable then
-    for _, ptype in ipairs(poketype_list) do
+    for _, ptype in ipairs(POKE_TYPES) do
       local energy_key =
         'c_poke_' .. string.lower(ptype)
         .. (ptype == 'Dark' and 'ness' or '')
