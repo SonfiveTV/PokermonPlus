@@ -25,6 +25,7 @@ local all_tiles = {
   { list = { "heatran" } },
   { list = { "darkrai" } },
   { list = { "helioptile", "heliolisk" } },
+  { list = { "minior" } },
   { list = { "meltan", "melmetal" } },
   { list = { "stonjourner" } },
   { list = { "duraludon", "archaludon" } },

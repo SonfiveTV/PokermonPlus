@@ -3,6 +3,7 @@ return {
     darkrai = true,
     heatran = true,
     helioptile = true,
+    minior = true,
     meltan = true,
     stonjourner = true,
     lechonk = true,

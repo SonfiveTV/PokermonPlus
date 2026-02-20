@@ -140,22 +140,6 @@ return {
                                   
                 } 
             },
-            j_sonfive_helioptile = {
-                name = 'Helioptile',
-                text = {
-                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
-                    "{C:green}#4# in #5#{} chance to earn {C:money}$#2#{} instead",
-                    "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Sun Stone{C:inactive,s:0.8})",
-                }
-            },
-            j_sonfive_heliolisk = {
-                name = 'Heliolisk',
-                text = {
-                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
-                    "{C:green}#4# in #5#{} chance to earn an additional {C:money}$#6#{}",
-                    "for every {C:money}$100{} you have"
-                }
-            },
             j_sonfive_heatran = {
                 name = 'Heatran',
                 text = {
@@ -184,28 +168,77 @@ return {
                     "of the corresponding {C:pink}Type{}", 
                 } 
             },
-            j_sonfive_vullaby = {
-                name = 'Vullaby',
+            j_sonfive_helioptile = {
+                name = 'Helioptile',
                 text = {
-                    "Scoring cards in first played",
-                    "hand are permanently {C:attention}debuffed{}",
-                    "Gains {C:chips}+#2#{} Chips for each card debuffed",
-                    "{C:inactive}(Currently {C:chips}+#1#{}{C:inactive} Chips){}",
-                    "{C:inactive,s:0.8}(Evolves after playing 5 debuffed cards in scoring hand){}"
-
-                } 
+                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
+                    "{C:green}#4# in #5#{} chance to earn {C:money}$#2#{} instead",
+                    "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Sun Stone{C:inactive,s:0.8})",
+                }
             },
-            j_sonfive_mandibuzz = {
-                name = 'Mandibuzz',
+            j_sonfive_heliolisk = {
+                name = 'Heliolisk',
                 text = {
-                    "Gains {C:chips}+#2#{} Chips for each",
-                    "{C:attention}debuffed{} card in scoring hand",
-                    "{C:inactive}(Currently {C:chips}+#1#{}{C:inactive} Chips){}",
-                    "{br:4}text",
-                    "Earn {C:money}$#3#{} for every {C:attention}4{}",
-                    "{C:attention}debuffed{} cards in the deck",
-                    "{C:inactive}(Currently {C:money}$#4#{}{C:inactive}){}",                                
-                } 
+                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
+                    "{C:green}#4# in #5#{} chance to earn an additional {C:money}$#6#{}",
+                    "for every {C:money}$100{} you have"
+                }
+            },
+            j_sonfive_minior = {
+                name = 'Minior',
+                text = {
+                    "{X:red,C:white}X#3#{} Mult, {C:attention}Nature:{} {C:inactive}({}{V:1}#1#{}{C:inactive}){}",
+                    "{C:inactive}(Transforms after playing #2# hands){}"
+                }
+            },
+            j_sonfive_minior_mult = {
+                name = 'Minior (Red Core)',
+                text = {
+                    "{C:attention}Stone{} cards are also {V:1}#1#{} cards",
+                    "{C:inactive}(Transforms at end of round){}"
+                }
+            },
+            j_sonfive_minior_wild = {
+                name = 'Minior (Orange Core)',
+                text = {
+                    "{C:attention}Stone{} cards are also {V:1}#1#{} cards",
+                    "{C:inactive}(Transforms at end of round){}"
+                }
+            },
+            j_sonfive_minior_gold = {
+                name = 'Minior (Yellow Core)',
+                text = {
+                    "{C:attention}Stone{} cards are also {V:1}#1#{} cards",
+                    "{C:inactive}(Transforms at end of round){}"
+                }
+            },
+            j_sonfive_minior_lucky = {
+                name = 'Minior (Green Core)',
+                text = {
+                    "{C:attention}Stone{} cards are also {V:1}#1#{} cards",
+                    "{C:inactive}(Transforms at end of round){}"
+                }
+            },
+            j_sonfive_minior_glass = {
+                name = 'Minior (Blue Core)',
+                text = {
+                    "{C:attention}Stone{} cards are also {V:1}#1#{} cards",
+                    "{C:inactive}(Transforms at end of round){}"
+                }
+            },
+            j_sonfive_minior_bonus = {
+                name = 'Minior (Indigo Core)',
+                text = {
+                    "{C:attention}Stone{} cards are also {V:1}#1#{}",
+                    "{C:inactive}(Reverts to Meteor form at end of round){} cards",
+                }
+            },
+            j_sonfive_minior_steel = {
+                name = 'Minior (Violet Core)',
+                text = {
+                    "{C:attention}Stone{} cards are also {V:1}#1#{} cards",
+                    "{C:inactive}(Transforms at end of round){}"
+                }
             },
 
             j_sonfive_meltan = {
