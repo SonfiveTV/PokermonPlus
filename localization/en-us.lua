@@ -187,7 +187,7 @@ return {
             j_sonfive_minior = {
                 name = 'Minior',
                 text = {
-                    "{X:red,C:white}X#3#{} Mult, {C:attention}Nature:{} {C:inactive}({}{V:1}#1#{}{C:inactive}){}",
+                    "{X:red,C:white}X#3#{} Mult, {C:attention}Core:{} {C:inactive}({}{V:1}#1#{}{C:inactive}){}",
                     "{C:inactive}(Transforms after playing #2# hands){}"
                 }
             },
