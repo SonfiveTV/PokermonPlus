@@ -1,6 +1,11 @@
 local salt_cured = {
     object_type = "Challenge",
     key = "salt_cured",
+    rules = {
+        custom = {
+            { id = 'no' },
+        },
+    },
     jokers = {
         {id = "j_sonfive_nacli", eternal = true},
         {id = "j_poke_corsola", eternal = true, edition = "poke_shiny"},

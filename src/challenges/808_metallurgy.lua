@@ -1,6 +1,11 @@
 local metallurgy = {
     object_type = "Challenge",
     key = "metallurgy",
+    rules = {
+        custom = {
+            { id = 'no' },
+        },
+    },
     jokers = {
         {id = "j_sonfive_meltan"},
     },
