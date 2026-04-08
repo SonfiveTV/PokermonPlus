@@ -23,7 +23,7 @@ local minior = {
   gen = 7,
   blueprint_compat = false,
   set_sprites = function(self, card, front)
-    if card.ability and card.ability.extra and card.ability.extra.hands_played >= 2 then
+    if card.ability and card.ability.extra and card.ability.extra.hands_played and card.ability.extra.hands_played >= 2 then
       local enhancements = {
           {name = "mult", pos = { x = 9, y = 3 }},
           {name = "wild", pos = { x = 10, y = 3 }},
