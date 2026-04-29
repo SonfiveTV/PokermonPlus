@@ -180,8 +180,8 @@ return {
                 name = 'Heliolisk',
                 text = {
                     "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
-                    "{C:green}#4# in #5#{} chance to earn an additional {C:money}$#6#{}",
-                    "for every {C:money}$100{} you have"
+                    "{C:green}#4# in #5#{} chance to increase payout by {C:money}$#6#{}",
+                    "{C:inactive}(Resets at end of round){}",
                 }
             },
             j_sonfive_minior = {
@@ -230,7 +230,7 @@ return {
                 name = 'Minior (Indigo Core)',
                 text = {
                     "{C:attention}Stone{} cards are also {V:1}#1#{}",
-                    "{C:inactive}(Reverts to Meteor form at end of round){} cards",
+                    "{C:inactive}(Transforms at end of round){}"
                 }
             },
             j_sonfive_minior_steel = {

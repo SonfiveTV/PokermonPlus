@@ -65,7 +65,8 @@ local heliolisk = {
     suit = "Hearts",
     numerator = 1,
     denominator = 4,
-    percentage = 1
+    money_mod1 = 1,
+    money_mod2 = 2
   }},
   loc_vars = function(self, info_queue, card)
     type_tooltip(self, info_queue, card)
@@ -77,7 +78,7 @@ local heliolisk = {
       localize(a.suit, 'suits_singular'),
       num,
       dem,
-      a.percentage
+      a.money_mod1
     }
 
     return {vars = vars}
@@ -99,9 +100,7 @@ local heliolisk = {
       local total_earned = a.money_mod
 
       if SMODS.pseudorandom_probability(card, "heliolisk", a.numerator, a.denominator, "heliolisk") then
-        local current = G.GAME.dollars + (G.GAME.dollar_buffer or 0)
-        local bonus = math.floor(current * (a.percentage / 100))
-        total_earned = total_earned + bonus
+        a.money_mod = a.money_mod + a.money_mod1
       end
 
       G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + total_earned
@@ -120,6 +119,9 @@ local heliolisk = {
           card = card
         }
       end
+    end
+    if context.end_of_round then
+      a.money_mod = a.money_mod2
     end
   end
 }
