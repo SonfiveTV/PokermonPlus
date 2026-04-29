@@ -393,6 +393,21 @@ return {
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
                 } 
             },
+
+            j_sonfive_canari_plush = {
+                name = 'Canari Plush',
+                text = {
+                    "Gain the following effects by",
+                    "destroying cards with seals:",
+                    "{C:white}space{}",
+                    "{C:red}+#1#{} discards {C:inactive}(#2#){}",
+                    "{C:blue}+#3#{} hands {C:inactive}(#4#){}",
+                    "{C:money}+$#5#{} interest cap {C:inactive}(#6#){}",
+                    "{C:purple}+#7# Foresight{} {C:inactive}(#8#){}",
+                    "{C:pink}+#9#{} Energy limit {C:inactive}(#10#){}",
+                    "{C:item}+#11#{} consumable limit {C:inactive}(#12#){}",
+                } 
+            },
             j_sonfive_questbook = {
                 name = "Quest Book",
                 text = {

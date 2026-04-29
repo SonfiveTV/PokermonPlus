@@ -297,3 +297,20 @@ is_type = function(card, target_type)
   return is_type_ref(card, target_type)
 end
 
+canari_level = function(amount)
+  if 3 <= amount and amount < 5 then return 1
+    elseif 5 <= amount and amount < 8 then return 2
+    elseif amount >= 8 then return 3
+    else return 0
+  end
+end
+
+canari_goal = function(level)
+  if level == 0 then return 3
+    elseif level == 1 then return 5
+    elseif level == 2 then return 8
+    elseif level == 3 then return 8
+    else return 3
+  end
+end
+
