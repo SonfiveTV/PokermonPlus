@@ -405,7 +405,7 @@ return {
                     "{C:money}+$#5#{} interest cap {C:inactive}(#6#){}",
                     "{C:purple}+#7# Foresight{} {C:inactive}(#8#){}",
                     "{C:pink}+#9#{} Energy limit {C:inactive}(#10#){}",
-                    "{C:item}+#11#{} consumable limit {C:inactive}(#12#){}",
+                    "{C:item}+#11#{} consumable slots {C:inactive}(#12#){}",
                 } 
             },
             j_sonfive_questbook = {
