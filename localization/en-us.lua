@@ -66,6 +66,16 @@ return {
                         "defeating each {C:attention}Boss Blind"
                 }
             },
+            
+            b_sonfive_pearlescentdeck = {
+                name = "Pearlescent Deck",
+                text = {
+                        "{C:attention}+#1#{} Joker slot",
+                        "{C:pink}-1{} Energy Limit",
+                        "{C:pink}-1{} Energy",
+                        "{C:inactive,s:0.8}(Base values are {C:attention,s:0.8}de-energized{}{C:inactive,s:0.8}){}",
+                }
+            },
 
 
             b_sonfive_pyritedeck = {

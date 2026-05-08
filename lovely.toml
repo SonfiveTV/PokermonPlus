@@ -13,3 +13,18 @@ pattern = '''local energizable_vanilla = assert(SMODS.load_file("functions/energ
 position = 'at'
 match_indent = true
 payload = '''energizable_vanilla = assert(SMODS.load_file("functions/energizable_vanilla.lua"))()'''
+
+
+# Pearlescent Deck functionality
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "if card.ability.consumeable and not skip_materialize then card:start_materialize() end"
+position = "after"
+payload = '''
+if _type == 'Joker' and G.GAME.modifiers.pearlescent then 
+    increment_energy(card, get_type(card), -1, true)
+    card.ability.extra.e_limit_up = card.ability.extra.e_limit_up and (card.ability.extra.e_limit_up - 1) or -1
+end
+'''
+match_indent = true

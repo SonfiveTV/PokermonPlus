@@ -92,6 +92,27 @@ local voiddeck = {
   end
 } 
 
+local pearlescentdeck = {
+	name = "pearlescentdeck",
+	key = "pearlescentdeck",  
+    atlas = "backs",
+    pos = { x = 6, y = 0 },
+	config = {joker_slot = 1},
+  loc_vars = function(self)
+    return {
+      vars = {
+        self.config.joker_slot
+      }
+    }
+  end,
+  calculate = function(self, back, context)
+    G.GAME.modifiers.pearlescent = true
+  end,
+  apply = function(self)
+    G.GAME.modifiers.pearlescent = true
+  end
+} 
+
 local pyritedeck = {
   name = "pyritedeck",
   key = "pyritedeck",
@@ -137,7 +158,7 @@ local pyritedeck = {
   end,
 }
 
-local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck}
+local dList = {virtuousdeck, propheticdeck, shinydeck, roguedeck, voiddeck, pearlescentdeck}
 return {name = "Back",
         list = dList}
 

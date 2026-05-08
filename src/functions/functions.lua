@@ -220,7 +220,10 @@ end
 local type_tooltip_ref = type_tooltip
 type_tooltip = function(self, info_queue, center)
   if (center.ability and center.ability.extra and type(center.ability.extra) == "table" and
-      center.ability.sonfive_weakened and (get_total_energy(center) == 0)) then
+      center.ability.sonfive_weakened and (get_total_energy(center) == 0)) or 
+      (center.ability and center.ability.extra and type(center.ability.extra) == "table" and
+      G.GAME.modifiers.pearlescent and (get_total_energy(center) == 0))
+      then
     info_queue[#info_queue+1] = {set = 'Other', key = "energy",
         vars = {get_total_energy(center), energy_max + (G.GAME.energy_plus or 0) + (center.ability.extra.e_limit_up or 0)}}
   end
