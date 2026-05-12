@@ -23,7 +23,7 @@ end
 -- Define all tiles (key inferred from first element in list)
 local all_tiles = {
   { list = { "heatran" } },
-  { list = { "darkrai" } },
+  { list = { "darkrai", "mega_darkrai" } },
   { list = { "helioptile", "heliolisk" } },
   { list = { "minior" } },
   { list = { "meltan", "melmetal" } },
@@ -33,6 +33,7 @@ local all_tiles = {
   { list = { "nacli", "naclstack", "garganacl" } },
   { list = { "shroodle", "grafaiai" } },
   { list = { "cetoddle", "cetitan" } },
+  { list = { "canari_plush" } },
 }
 
 -- Build one tile entry

@@ -890,6 +890,14 @@ return {
         c_sonfive_status_test = "Status Condition Test",
         },
         dictionary = {
+            SONFIVE_pokemon_quest = "Pokémon Quests",
+            SONFIVE_quest = "Quest",
+            SONFIVE_quests = "Quests",
+            SONFIVE_qm = "???",
+            SONFIVE_quest_mp_disabled = "Disabled during a Multiplayer game",
+            SONFIVE_prerequisites = "Prerequisites",
+            SONFIVE_reward = "Reward",
+            SONFIVE_designed_by = "Designed by",
             -- Quest Names
             quest_heatran = "Into The Volcano",
             quest_darkrai = "The Nightmare Begins",

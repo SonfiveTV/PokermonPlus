@@ -67,6 +67,19 @@ if next(SMODS.find_mod("PokermonMaelmc")) then
         set = "Blind",
         designer = designer,
     })
+else
+    sonfive_add_quest({
+        name = "quest_meltan",
+        atlas = "sonfive_questbook",
+        pos = {x = 3, y = 0},
+        display_text = display_text,
+        dex = 808,
+        reward_text = reward_text,
+        reward_atlas = "sonfive_boss_blinds",
+        reward_pos = {x = 0, y = 2},
+        set = "Blind",
+        designer = designer,
+    })
 end
 
 local list = {quest_meltan, quest_meltan_active, quest_meltan_complete}

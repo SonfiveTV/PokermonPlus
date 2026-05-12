@@ -10,7 +10,7 @@ local function load_template(item)
     poke_load_sprites(item)
   end
 
-  item.atlas = (custom_atlas and "sonfive_" or "poke_") .. item.atlas
+  item.atlas = (custom_atlas and "" or "poke_") .. item.atlas
   item.set = 'Joker'
   item.key = 'j_sonfive_' .. item.name
   item.ability = item.config

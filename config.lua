@@ -11,5 +11,6 @@ return {
     nacli = true,
     shroodle = true,
     cetoddle = true,
+    canari_plush = true,
 	timerball = true,
 }
