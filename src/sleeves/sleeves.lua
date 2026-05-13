@@ -148,7 +148,7 @@ local voidsleeve = {
 
 }
 
-local slist = {virtuoussleeve, propheticsleeve, shinysleeve, roguesleeve, voidsleeve}
+local slist = {virtuoussleeve, shinysleeve, roguesleeve, voidsleeve}
 return {name = "Back",
         list = slist
         

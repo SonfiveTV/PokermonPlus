@@ -158,7 +158,7 @@ local pyritedeck = {
   end,
 }
 
-local dList = {virtuousdeck, shinydeck, voiddeck, pearlescentdeck}
+local dList = {virtuousdeck, shinydeck, voiddeck, roguedeck, pearlescentdeck}
 return {name = "Back",
         list = dList}
 
