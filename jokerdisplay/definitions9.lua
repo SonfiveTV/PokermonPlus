@@ -154,6 +154,147 @@ jd_def["j_sonfive_garganacl"] = {
 
 }
 
+jd_def["j_sonfive_shroodle"] = {
+    text = {
+        {
+            border_nodes = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "type1"
+                }
+            }
+        },
+        {
+            border_nodes = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "type2"
+                }
+            }
+        },
+        {
+            border_nodes = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "type3"
+                }
+            }
+        }
+    },
+
+    calc_function = function(card)
+        card.joker_display_values.type1 =
+            card.ability.extra.targets[1] and
+            card.ability.extra.targets[1].type or "?"
+
+        card.joker_display_values.type2 =
+            card.ability.extra.targets[2] and
+            card.ability.extra.targets[2].type or "?"
+
+        card.joker_display_values.type3 =
+            card.ability.extra.targets[3] and
+            card.ability.extra.targets[3].type or "?"
+    end,
+
+    style_function = function(card, text, reminder_text, extra)
+        local targets = card.ability.extra.targets or {}
+
+        local colours = {
+            G.ARGS.LOC_COLOURS[string.lower(targets[1] and targets[1].type or "")] or G.C.UI.TEXT_INACTIVE,
+            G.ARGS.LOC_COLOURS[string.lower(targets[2] and targets[2].type or "")] or G.C.UI.TEXT_INACTIVE,
+            G.ARGS.LOC_COLOURS[string.lower(targets[3] and targets[3].type or "")] or G.C.UI.TEXT_INACTIVE
+        }
+
+        for i = 1, 3 do
+            if text
+            and text.children[i]
+            and text.children[i].config
+            then
+                text.children[i].config.colour = colours[i]
+                -- if text.children[i].children[1] == "Lightning" then
+                --     text.children[i].children[1].config.colour = G.C.BLACK
+                -- end
+            end
+        end
+
+        return false
+    end
+}
+
+jd_def["j_sonfive_grafaiai"] = {
+    text = {
+        {
+            border_nodes = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "type1"
+                }
+            }
+        },
+        {
+            border_nodes = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "type2"
+                }
+            }
+        },
+        {
+            border_nodes = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "type3"
+                }
+            }
+        }
+    },
+    reminder_text = {
+    { ref_table = "card.joker_display_values", ref_value = "tag" }
+  },
+
+    calc_function = function(card)
+        card.joker_display_values.type1 =
+            card.ability.extra.targets[1] and
+            card.ability.extra.targets[1].type or "?"
+
+        card.joker_display_values.type2 =
+            card.ability.extra.targets[2] and
+            card.ability.extra.targets[2].type or "?"
+
+        card.joker_display_values.type3 =
+            card.ability.extra.targets[3] and
+            card.ability.extra.targets[3].type or "?"
+
+        card.joker_display_values.tag = G.GAME.last_tag and localize{type = 'name_text', key = G.GAME.last_tag, set = 'Tag'} or localize('k_none')
+    end,
+
+    style_function = function(card, text, reminder_text, extra)
+        local targets = card.ability.extra.targets or {}
+
+        local colours = {
+            G.ARGS.LOC_COLOURS[string.lower(targets[1] and targets[1].type or "")] or G.C.UI.TEXT_INACTIVE,
+            G.ARGS.LOC_COLOURS[string.lower(targets[2] and targets[2].type or "")] or G.C.UI.TEXT_INACTIVE,
+            G.ARGS.LOC_COLOURS[string.lower(targets[3] and targets[3].type or "")] or G.C.UI.TEXT_INACTIVE
+        }
+
+        for i = 1, 3 do
+            if text
+            and text.children[i]
+            and text.children[i].config
+            then
+                text.children[i].config.colour = colours[i]
+                -- if text.children[i].children[1] == "Lightning" then
+                --     text.children[i].children[1].config.colour = G.C.BLACK
+                -- end
+            end
+        end
+
+        return false
+    end
+}
+
+
+
 jd_def["j_sonfive_cetoddle"] = {
     text = {
         {
