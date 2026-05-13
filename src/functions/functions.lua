@@ -276,23 +276,63 @@ local is_type_ref = is_type
 is_type = function(card, target_type)
   if not card then return false end
 
+  local card_type = get_type(card)
+
   if next(SMODS.find_card('j_sonfive_grafaiai')) then
+    local groups = {}
+
+    -- collect all Grafaiai target groups
     for _, graf in ipairs(G.jokers.cards) do
       if graf.ability and graf.ability.name == 'grafaiai' then
         local targets = graf.ability.extra.targets or {}
 
-        -- build a lookup set
-        local set = {}
+        local group = {}
+
         for _, t in ipairs(targets) do
-          set[t.type] = true
+          group[t.type] = true
         end
 
-        -- both must be in the same target set, but not equal
-        if set[target_type] and set[get_type(card)]
-          and target_type ~= get_type(card)
-        then
-          return true
+        table.insert(groups, group)
+      end
+    end
+
+    -- merge overlapping groups
+    local changed = true
+    while changed do
+      changed = false
+
+      for i = #groups, 1, -1 do
+        for j = i - 1, 1, -1 do
+          local overlap = false
+
+          for k in pairs(groups[i]) do
+            if groups[j][k] then
+              overlap = true
+              break
+            end
+          end
+
+          if overlap then
+            -- merge i into j
+            for k in pairs(groups[i]) do
+              groups[j][k] = true
+            end
+
+            table.remove(groups, i)
+            changed = true
+            break
+          end
         end
+      end
+    end
+
+    -- check merged groups
+    for _, group in ipairs(groups) do
+      if group[target_type]
+      and group[card_type]
+      and target_type ~= card_type
+      then
+        return true
       end
     end
   end
