@@ -1,40 +1,31 @@
 local jd_def = JokerDisplay.Definitions
 
-jd_def["j_sonfive_nincada"] = {
-    text = {
-        { text = "+" },
-        { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult", colour = G.C.MULT },
-        { text = " or " },
-        { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult", colour = G.C.CHIPS },
-    },
-}
-
-jd_def["j_sonfive_ninjask"] = {
-    text = {
-        { text = "+" },
-        { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult", colour = G.C.MULT },
-        { text = " & " },
-        { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult", colour = G.C.CHIPS },
-    },
-}
-
-jd_def["j_sonfive_shedinja"] = {
-    reminder_text = {
-            {text = "["},
-            { ref_table = "card.joker_display_values", ref_value = "nature1",},
-            { text = ", " },
-            { ref_table = "card.joker_display_values", ref_value = "nature2",},
-            { text = ", "},
-            { ref_table = "card.joker_display_values", ref_value = "nature3",},
-            {text = "]"},
-    },
-    calc_function = function(card)
-
-        card.joker_display_values.nature1 = localize(card.ability.extra.targets[1].value, 'ranks')
-        card.joker_display_values.nature2 = localize(card.ability.extra.targets[2].value, 'ranks')
-        card.joker_display_values.nature3 = localize(card.ability.extra.targets[3].value, 'ranks')
-    end
-}
+-- jd_def["j_sonfive_mega_darkrai"] = {
+--     text = {
+--         {
+--             border_nodes = {
+--                 { text = "X" },
+--                 { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+--             }
+--         }
+--     },
+--     text_config = { colour = G.C.WHITE },
+--     calc_function = function(card)
+--         local xmult = 1
+--         local spoons = 0
+--         local consumables = 0
+--         if G.consumeables then
+--             for _, ptype in pairs(POKE_TYPES) do
+--                 if context.other_consumeable.ability.name == 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy' then
+--                     Xmult = (#find_pokemon_type(ptype) * card.ability.extra.Xmult_multi)
+--                     break 
+--                 end
+--             end
+--         end
+--         xmult = math.max((card.ability.extra.Xmult_multi^consumables), 1) * math.max((card.ability.extra.Xmult_multi2^spoons), 1)
+--         card.joker_display_values.x_mult = xmult
+--     end
+-- }
 
 jd_def["j_sonfive_helioptile"] = {
   text = {
@@ -211,9 +202,9 @@ jd_def["j_sonfive_shroodle"] = {
             and text.children[i].config
             then
                 text.children[i].config.colour = colours[i]
-                -- if text.children[i].children[1] == "Lightning" then
-                --     text.children[i].children[1].config.colour = G.C.BLACK
-                -- end
+                if targets[i].type == "Lightning" then
+                    text.children[i].children[1].config.colour = G.C.BLACK
+                end
             end
         end
 
@@ -283,9 +274,9 @@ jd_def["j_sonfive_grafaiai"] = {
             and text.children[i].config
             then
                 text.children[i].config.colour = colours[i]
-                -- if text.children[i].children[1] == "Lightning" then
-                --     text.children[i].children[1].config.colour = G.C.BLACK
-                -- end
+                if targets[i].type == "Lightning" then
+                    text.children[i].children[1].config.colour = G.C.BLACK
+                end
             end
         end
 
