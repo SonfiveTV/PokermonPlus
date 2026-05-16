@@ -3,6 +3,8 @@ local darkrai = {
   config = {extra = {}},
   loc_vars = function(self, info_queue, card)
       type_tooltip(self, info_queue, card)
+      info_queue[#info_queue+1] = { set = 'Spectral', key = 'c_poke_nightmare'}
+
   end,
   designer = "Sonfive",
   rarity = 4,
@@ -11,16 +13,24 @@ local darkrai = {
   ptype = "Dark",
   gen = 4,
   blueprint_compat = false,
+  add_to_deck = function(self, card, from_debuff)
+    if not from_debuff then
+      local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, 'c_poke_nightmare')
+      _card:add_to_deck()
+      G.consumeables:emplace(_card)
+      card_eval_status_text(_card, 'extra', nil, nil, nil, {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
+    end
+  end,
   calculate = function(self, card, context)
       -- Spawn Spectral card if conditions are met
-      if not context.repetition and not context.individual and context.end_of_round
-         and G.GAME.last_blind and G.GAME.last_blind.boss then
-          if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-              local _card = SMODS.add_card({set = 'Spectral', area = G.consumeables, key = 'c_poke_nightmare'})
-              card_eval_status_text(_card, 'extra', nil, nil, nil,
-                  {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
-          end
-      end
+    --   if not context.repetition and not context.individual and context.end_of_round
+    --      and G.GAME.last_blind and G.GAME.last_blind.boss then
+    --       if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+    --           local _card = SMODS.add_card({set = 'Spectral', area = G.consumeables, key = 'c_poke_nightmare'})
+    --           card_eval_status_text(_card, 'extra', nil, nil, nil,
+    --               {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
+    --       end
+    --   end
 
       if not context.blueprint then
           local darkrai_count = #SMODS.find_card("j_sonfive_darkrai")

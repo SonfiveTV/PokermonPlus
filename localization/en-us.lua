@@ -162,9 +162,7 @@ return {
             j_sonfive_darkrai = {
                 name = 'Darkrai',
                 text = {
-                    "Create a {C:spectral,T:c_poke_nightmare}Nightmare{} Card after",
-                    "defeating each {C:attention}Boss Blind",
-                    "{br:4}text",
+                    "{C:attention}Holding {C:spectral}Nightmare{}",
                     "{C:attention}Held{} {C:pink}Energy{} cards are {C:attention}applied{}",
                     "to all Jokers with the same {C:pink}Type{}", 
                     "{C:inactive}(Doesn't increment Energy count){}"                                
