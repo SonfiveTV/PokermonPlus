@@ -102,7 +102,7 @@ function SMODS.current_mod.extra_tabs()
     -- Pokemon Config tab
     -- ======================
     {
-      label = 'Pokemon Config',
+      label = 'Config',
       tab_definition_function = function()
         local grid = UIBox {
           definition = create_tile_grid { page_num = 1 },

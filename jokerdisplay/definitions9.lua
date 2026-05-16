@@ -1,31 +1,30 @@
 local jd_def = JokerDisplay.Definitions
 
--- jd_def["j_sonfive_mega_darkrai"] = {
---     text = {
---         {
---             border_nodes = {
---                 { text = "X" },
---                 { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
---             }
---         }
---     },
---     text_config = { colour = G.C.WHITE },
---     calc_function = function(card)
---         local xmult = 1
---         local spoons = 0
---         local consumables = 0
---         if G.consumeables then
---             for _, ptype in pairs(POKE_TYPES) do
---                 if context.other_consumeable.ability.name == 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy' then
---                     Xmult = (#find_pokemon_type(ptype) * card.ability.extra.Xmult_multi)
---                     break 
---                 end
---             end
---         end
---         xmult = math.max((card.ability.extra.Xmult_multi^consumables), 1) * math.max((card.ability.extra.Xmult_multi2^spoons), 1)
---         card.joker_display_values.x_mult = xmult
---     end
--- }
+jd_def["j_sonfive_mega_darkrai"] = {
+    text = {
+        {
+            border_nodes = {
+                { text = "X" },
+                { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+            }
+        }
+    },
+    text_config = { colour = G.C.WHITE },
+    calc_function = function(card)
+        local Xmult = card.ability.extra.Xmult_multi or 1
+
+        for _, ptype in pairs(POKE_TYPES) do
+            local energy_key = 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy'
+            local energy_type_count = #SMODS.find_card(energy_key)
+            local joker_type_count = #find_pokemon_type(ptype)
+            
+            if energy_type_count > 0 and joker_type_count > 0 then
+                Xmult = Xmult * energy_type_count * joker_type_count
+            end
+        end
+        card.joker_display_values.x_mult = Xmult
+    end
+}
 
 jd_def["j_sonfive_helioptile"] = {
   text = {
@@ -91,7 +90,7 @@ jd_def["j_sonfive_duraludon"] = {
         },
     },
     calc_function = function(card)
-        card.joker_display_values.x_mult = ((card.ability.extra.current_hand == "odd") and card.ability.extra.Xmult) or 1
+        card.joker_display_values.x_mult = ((card.ability.extra.hands_played % 2 == 0) and card.ability.extra.Xmult) or 1
     end
     
 }
@@ -106,7 +105,7 @@ jd_def["j_sonfive_archaludon"] = {
         },
     },
     calc_function = function(card)
-        card.joker_display_values.x_mult = ((card.ability.extra.current_hand == "even") and card.ability.extra.Xmult) or 1
+        card.joker_display_values.x_mult = ((card.ability.extra.hands_played % 2 == 1) and card.ability.extra.Xmult) or 1
     end
     
 }
