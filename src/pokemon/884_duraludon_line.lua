@@ -41,6 +41,7 @@ local duraludon = {
         
       end
     end
+    return type_evo(self, card, context, "j_sonfive_archaludon", "metal")
   end,
 }
 
