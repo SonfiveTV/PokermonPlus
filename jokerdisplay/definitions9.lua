@@ -90,7 +90,7 @@ jd_def["j_sonfive_duraludon"] = {
         },
     },
     calc_function = function(card)
-        card.joker_display_values.x_mult = ((card.ability.extra.hands_played % 2 == 0) and card.ability.extra.Xmult) or 1
+        card.joker_display_values.x_mult = ((card.ability.extra.hands_played % 2 == 1) and card.ability.extra.Xmult) or 1
     end
     
 }

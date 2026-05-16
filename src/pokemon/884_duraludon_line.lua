@@ -59,8 +59,8 @@ local archaludon = {
       vars = {
         card.ability.extra.Xmult_mod,
         card.ability.extra.Xmult,
-        (card.ability.extra.hands_played % 2 == 1) and "1 remaining" or "Active!",
         (card.ability.extra.hands_played % 2 == 0) and "1 remaining" or "Active!",
+        (card.ability.extra.hands_played % 2 == 1) and "1 remaining" or "Active!",
 
       }
     }
@@ -77,14 +77,14 @@ local archaludon = {
     local odd, even = (a.hands_played % 2 == 1), (a.hands_played % 2 == 0)
     local count = 1 + #find_pokemon_type("Lightning")
     if context.joker_main and not context.repetition then
-      if even then 
+      if odd then 
         a.hands_played = a.hands_played + 1
         return {
           message = localize{type = 'variable', key = 'a_xmult', vars = {a.Xmult}}, 
           colour = G.C.XMULT,
           Xmult_mod = a.Xmult
         }
-      elseif odd then
+      elseif even then
         a.hands_played = a.hands_played + 1
         a.Xmult = a.Xmult + (count * a.Xmult_mod)
         return {
