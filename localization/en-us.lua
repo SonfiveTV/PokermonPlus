@@ -296,8 +296,8 @@ return {
                     "{C:inactive}#3#",
                     "{br:3}brrrr",
                     "Gain {X:red,C:white}X#1#{} Mult plus an additional",
-                    "{X:red,C:white}X#1#{} Mult for each {X:lightning,C:black}Lightning{} Joker you",
-                    "have for every {C:attention}2{} hands played",
+                    "{X:red,C:white}X#1#{} Mult for each {X:lightning,C:black}Lightning{} Joker",
+                    "you have for every {C:attention}2{} hands played",
                     "{C:inactive}#4#",
                     "{C:inactive}(Resets at end of round){}",
                 }
