@@ -47,6 +47,13 @@ local minior = {
       }, pseudoseed('minior'))
     end
   end,
+  calc_dollar_bonus = function(self, card)
+    if card.ability.extra.core then
+      card.ability.extra.core = false
+      card.children.floating_sprite:set_sprite_pos({x = 7, y = 3})
+    end
+    card.ability.extra.hands_played = 0
+  end,
   calculate = function(self, card, context)
     local abbr = card.ability.extra
     if context.joker_main and abbr.hands_played < 2 then
@@ -82,11 +89,6 @@ local minior = {
         local key = "m_"..abbr.enhancement
           return {[key] = true}
       end
-    end
-    if context.end_of_round and abbr.core then
-      abbr.core = false
-      card.children.floating_sprite:set_sprite_pos({x = 7, y = 3})
-      abbr.hands_played = 0
     end
   end,
 }
