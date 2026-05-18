@@ -142,7 +142,9 @@ local gmax_duraludon = {
 
 local list = {}
 if next(SMODS.find_mod("Agarmons")) then
-  list = {duraludon, archaludon, gmax_duraludon}
+  list = {duraludon, archaludon, 
+--gmax_duraludon
+}
 else
   list = {duraludon, archaludon}
 end
