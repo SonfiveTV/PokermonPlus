@@ -96,15 +96,8 @@ function G.FUNCS.sonfive_update_config_page(e)
   grid_wrap.UIBox:recalculate()
 end
 
-function SMODS.current_mod.extra_tabs()
-  return {
-    -- ======================
-    -- Pokemon Config tab
-    -- ======================
-    {
-      label = 'Config',
-      tab_definition_function = function()
-        local grid = UIBox {
+function SMODS.current_mod.config_tab()
+          local grid = UIBox {
           definition = create_tile_grid { page_num = 1 },
           config = { type = "cm" },
         }
@@ -128,13 +121,11 @@ function SMODS.current_mod.extra_tabs()
               }
             }
           }
-        }
-      end
-    },
+        }  
+end
 
-    -- ======================
-    -- Extra tab
-    -- ======================
+function SMODS.current_mod.extra_tabs()
+  return {
     {
       label = 'Extra',
       tab_definition_function = function()
@@ -159,14 +150,3 @@ function SMODS.current_mod.extra_tabs()
     },
   }
 end
-
-
-
-
---     create_toggle({
---         label = "Allow Custom Stakes?",
---         ref_table = sonfive_config,
---         ref_value = "customStakes",
---     }),
---     
---   }
