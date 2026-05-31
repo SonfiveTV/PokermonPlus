@@ -97,7 +97,7 @@ local function load_quest_folder(folder)
           if #family > 1 then
             pokermon.add_family(family)
           end
-          table.insert(sonfive_quest_keys, curr_quest.list[1].key)
+          table.insert(SONFIVE.quest_keys, curr_quest.list[1].key)
         end
       end
     end

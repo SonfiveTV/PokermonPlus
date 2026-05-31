@@ -55,7 +55,7 @@ function G.FUNCS.sonfive_quest()
         definition = create_UIBox_generic_options {
             back_func = 'exit_overlay_menu',
             contents = poke_create_UIBox_your_collection {
-                keys = sonfive_quest_keys,
+                keys = SONFIVE.quest_keys,
                 cols = 4,
                 dynamic_sizing = true
             },

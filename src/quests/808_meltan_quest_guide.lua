@@ -68,7 +68,7 @@ if next(SMODS.find_mod("PokermonMaelmc")) then
         designer = designer,
     })
 else
-    sonfive_add_quest({
+    SONFIVE.add_quest({
         name = "quest_meltan",
         atlas = "sonfive_questbook",
         pos = {x = 3, y = 0},

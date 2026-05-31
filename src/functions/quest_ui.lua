@@ -38,9 +38,9 @@ local function designer_nodes_func()
 end
 
 local function update_current_quest(id)
-  if not SONFIVE_QUESTS[id] then return end
+  if not SONFIVE.QUESTS[id] then return end
   displayed_quest.id = id
-  local curr_quest = SONFIVE_QUESTS[id]
+  local curr_quest = SONFIVE.QUESTS[id]
   displayed_quest.name = localize(curr_quest.name)
 
   local prerequisites = type(curr_quest.display_text) == "function" and curr_quest.display_text() or curr_quest.display_text
@@ -133,8 +133,8 @@ local function populate_quest(options)
   local x = cardarea.T.x + cardarea.T.w / 2
   local y = cardarea.T.y
 
-  local pos = type(SONFIVE_QUESTS[1+offset].pos) == "function" and SONFIVE_QUESTS[1+offset].pos() or SONFIVE_QUESTS[1+offset].pos
-  local key = {atlas = SONFIVE_QUESTS[1+offset].atlas, pos = pos}
+  local pos = type(SONFIVE.QUESTS[1+offset].pos) == "function" and SONFIVE.QUESTS[1+offset].pos() or SONFIVE.QUESTS[1+offset].pos
+  local key = {atlas = SONFIVE.QUESTS[1+offset].atlas, pos = pos}
   local card = create_card_func(key, x, y)
 
   cardarea:emplace(card)
@@ -151,19 +151,19 @@ local function populate_reward(options)
 
   local w = nil
   local h = nil
-  if SONFIVE_QUESTS[1+offset].set == 'Tag' then
+  if SONFIVE.QUESTS[1+offset].set == 'Tag' then
     w = 0.8
     h = 0.8
-  elseif SONFIVE_QUESTS[1+offset].set == 'Blind' then
+  elseif SONFIVE.QUESTS[1+offset].set == 'Blind' then
     w = 1.3
     h = 1.3
-  elseif SONFIVE_QUESTS[1+offset].set == 'Booster' then
+  elseif SONFIVE.QUESTS[1+offset].set == 'Booster' then
     w = G.CARD_W*1.27
     h = G.CARD_H*1.27
   end
 
-  local pos = type(SONFIVE_QUESTS[1+offset].reward_pos) == "function" and SONFIVE_QUESTS[1+offset].reward_pos() or SONFIVE_QUESTS[1+offset].reward_pos
-  local key = {atlas = SONFIVE_QUESTS[1+offset].reward_atlas, pos = pos}
+  local pos = type(SONFIVE.QUESTS[1+offset].reward_pos) == "function" and SONFIVE.QUESTS[1+offset].reward_pos() or SONFIVE.QUESTS[1+offset].reward_pos
+  local key = {atlas = SONFIVE.QUESTS[1+offset].reward_atlas, pos = pos}
   local card = create_card_func(key, x, y, w, h)
 
   cardarea:emplace(card)
@@ -180,7 +180,7 @@ function G.FUNCS.SONFIVE_refresh_quest(args)
   end
 
   populate_quest({ page = page, create_card_func = create_card_func })
-  if SONFIVE_QUESTS[page].reward_atlas then
+  if SONFIVE.QUESTS[page].reward_atlas then
     populate_reward({ page = page, create_card_func = create_card_func})
   end
 
@@ -222,7 +222,7 @@ function G.FUNCS.SONFIVE_quest_menu(args)
     sendDebugMessage("[PokermonSONFIVE] The Quests button is disabled during a Multiplayer game")
     return -- temporary solution to prevent crashes
   else
-    for _, v in pairs(SONFIVE_QUESTS) do
+    for _, v in pairs(SONFIVE.QUESTS) do
       table.insert(keys,{
         atlas = v.atlas,
         pos = type(v.pos) == "function" and v.pos() or v.pos
@@ -236,7 +236,7 @@ function G.FUNCS.SONFIVE_quest_menu(args)
   local _ = create_cardareas(false,3) -- this one is always empty, just to have something to give to the UIBox
   update_current_quest(1)
   populate_quest({create_card_func = PokeDisplayCard})
-  if SONFIVE_QUESTS[1].reward_atlas then
+  if SONFIVE.QUESTS[1].reward_atlas then
     populate_reward({create_card_func = PokeDisplayCard })
   end
 

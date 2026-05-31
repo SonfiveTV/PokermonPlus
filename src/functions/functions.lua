@@ -97,7 +97,7 @@ end
 --     end
 -- end
 
-sonfive_quest_keys = {}
+SONFIVE.quest_keys = {}
 SMODS.current_mod.calculate = function(self, context)
   -- For Grafaiai
   if context.tag_triggered then
@@ -119,13 +119,25 @@ SMODS.current_mod.calculate = function(self, context)
     end
 
     if active and active == q.pokemon then
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_active"
+      SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_active"
     elseif complete and complete[q.pokemon] then
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_complete"
+      SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_complete"
     else
-      sonfive_quest_keys[i] = "j_sonfive_quest_"..q.pokemon
+      SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon
     end
   end
+
+  if context.check_enhancement then
+    local forged_enhancements = {}
+    for _, enhancement in ipairs(G.P_CENTER_POOLS.Enhanced) do
+      local heatran_quantum = "forged_"..enhancement.key
+      if context.other_card.ability and context.other_card.ability[heatran_quantum] then
+        forged_enhancements[enhancement.key] = true
+      end
+    end
+    return forged_enhancements
+  end
+
 end
 
 -- Void Deck Negative Energy check
@@ -193,6 +205,26 @@ unique_hand_tooltip = function(self, info_queue, center)
     if #played_list > 0 then
       local key = "ston_hands" .. #played_list  -- dynamic key
       info_queue[#info_queue + 1] = {set = 'Other', key = key, vars = played_list}
+    end
+  end
+end
+
+forged_tooltip = function(self, info_queue, center)
+  if center.ability and center.ability.sonfive_heatran then
+    print("heatran tooltip")
+    local enhancements = {}
+    for _, enhancement in ipairs(G.P_CENTER_POOLS.Enhanced) do
+      local heatran_quantum = "forged_"..enhancement.key
+      if center.ability[heatran_quantum] then
+        print("found forged enhancement: "..enhancement.key)
+        table.insert(enhancements, localize("poke_"..enhancement.key))
+      end
+    end
+
+    -- Only show tooltip if there is at least one forged enhancement
+    if #enhancements > 0 then
+      local key = "heatran_enhancements" .. #enhancements  -- dynamic key
+      info_queue[#info_queue + 1] = {set = 'Other', key = key, vars = enhancements}
     end
   end
 end
@@ -268,24 +300,8 @@ is_type = function(card, target_type)
   return is_type_ref(card, target_type)
 end
 
-canari_level = function(amount)
-  if 3 <= amount and amount < 5 then return 1
-    elseif 5 <= amount and amount < 8 then return 2
-    elseif amount >= 8 then return 3
-    else return 0
-  end
-end
 
-canari_goal = function(level)
-  if level == 0 then return 3
-    elseif level == 1 then return 5
-    elseif level == 2 then return 8
-    elseif level == 3 then return 8
-    else return 3
-  end
-end
-
-SONFIVE_QUESTS = {}
+SONFIVE.QUESTS = {}
 
 --- Add a quest to the quest menu
 ---@param args {name:string, atlas:string, pos:function|table, display_text:function|table, dex:integer|nil, reward_text:function|table, reward_atlas:string|nil, reward_pos:function|table|nil, set:string|nil, designer:string|table|function}
@@ -299,7 +315,7 @@ SONFIVE_QUESTS = {}
 ---`reward_pos = {x = 0, y = 0}` - Table of {x,y} or function that returns said table\
 ---`set = "Blind"` - The reward's set (only matters for Tag, Blind & Booster)\
 ---`designer = {name = "Maelmc", colour = G.C.MAELMC.ORANGE, back_colour = nil}` - A string of the designer's name, a table of {name,colour,back_colour} or a function returning either of these
-function sonfive_add_quest(args)
+function SONFIVE.add_quest(args)
   local new_quest = {
     name = args.name,
     atlas = args.atlas,
@@ -314,12 +330,26 @@ function sonfive_add_quest(args)
   }
 
   local insert_at = 1
-  for _, v in ipairs(SONFIVE_QUESTS) do
+  for _, v in ipairs(SONFIVE.QUESTS) do
     if v.dex > args.dex then
       break
     end
     insert_at = insert_at + 1
   end
-  table.insert(SONFIVE_QUESTS, insert_at, new_quest)
+  table.insert(SONFIVE.QUESTS, insert_at, new_quest)
 end
 
+SONFIVE.add_shop_card = function(key, cost)
+  local card = SMODS.create_card { area = G.shop_jokers, key = key }
+  -- Steak's code to fix 1 slot shop bugs
+  if G.GAME.shop.joker_max == 1 then
+    G.shop_jokers.config.card_limit = G.GAME.shop.joker_max + 1
+    G.shop_jokers.T.w = math.min((G.GAME.shop.joker_max + 1)*1.02*G.CARD_W,4.08*G.CARD_W)
+    G.shop:recalculate()
+  end
+
+  G.shop_jokers:emplace(card)
+  if cost then card.cost = cost end
+  create_shop_card_ui(card)
+  card:juice_up()
+end

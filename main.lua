@@ -1,3 +1,5 @@
+SONFIVE = {}
+
 sonfive_config = SMODS.current_mod.config
 mod_dir = ''..SMODS.current_mod.path
 if (SMODS.Mods["Pokermon"] or {}).can_load then
