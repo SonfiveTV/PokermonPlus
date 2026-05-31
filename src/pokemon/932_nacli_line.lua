@@ -29,7 +29,7 @@ local nacli = {
         if odds then
           abbr.Xmult = abbr.Xmult + abbr.Xmult_mod
           G.E_MANAGER:add_event(Event({
-          remove(self, rightmost, context)
+          SMODS.destroy_cards(rightmost, nil, nil, true)
           }))
           return{
             message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
@@ -83,7 +83,7 @@ local naclstack = {
         if odds then
           abbr.Xmult = abbr.Xmult + abbr.Xmult_mod
           G.E_MANAGER:add_event(Event({
-          remove(self, rightmost, context)
+          SMODS.destroy_cards(rightmost, nil, nil, true)
           }))
           return{
             message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
@@ -138,7 +138,7 @@ local garganacl = {
         if odds then
           abbr.Xmult = abbr.Xmult * abbr.Xmult_multi
           G.E_MANAGER:add_event(Event({
-          remove(self, rightmost, context)
+          SMODS.destroy_cards(rightmost, nil, nil, true)
           }))
           return{
             message = localize('sonfive_saltcure_ex'), colour = HEX('A8F2FF')
