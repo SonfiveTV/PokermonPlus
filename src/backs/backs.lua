@@ -70,22 +70,28 @@ local voiddeck = {
 	key = "voiddeck",  
     atlas = "backs",
     pos = { x = 5, y = 0 },
-	config = {},   -- spectral_rate = 2, consumables = {"c_poke_nightmare"}
+	config = {extra = {num = 1, dem = 15}},   -- spectral_rate = 2, consumables = {"c_poke_nightmare"}
   loc_vars = function(self, info_queue, center)
-    return {vars = {"c_poke_nightmare"}}
+    local num, dem = SMODS.get_probability_vars(self, self.config.extra.num, self.config.extra.dem, 'voiddeck')
+    return {vars = {"c_poke_nightmare", num, dem}}
   end,
   calculate = function(self, back, context)
     G.GAME.modifiers.void = true
-    if not context.repetition and not context.individual and context.end_of_round and G.GAME.last_blind and G.GAME.last_blind.boss then
-      if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-      local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, 'c_poke_nightmare')
-      -- local edition = {negative = true}
-      -- _card:set_edition(edition, true)
-      _card:add_to_deck()
-      G.consumeables:emplace(_card)
-      card_eval_status_text(_card, 'extra', nil, nil, nil, {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
+    if context.reroll_shop and not context.blueprint then
+      if SMODS.pseudorandom_probability(back, 'void_nightmare', self.config.extra.num, self.config.extra.dem, 'voiddeck') then
+        SONFIVE.add_shop_card("c_poke_nightmare")
+      end
     end
-  end
+    -- if not context.repetition and not context.individual and context.end_of_round and G.GAME.last_blind and G.GAME.last_blind.boss then
+    --   if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+    --     local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, 'c_poke_nightmare')
+    --     -- local edition = {negative = true}
+    --     -- _card:set_edition(edition, true)
+    --     _card:add_to_deck()
+    --     G.consumeables:emplace(_card)
+    --     card_eval_status_text(_card, 'extra', nil, nil, nil, {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
+    --   end
+    -- end
   end,
   apply = function(self)
     G.GAME.modifiers.void = true
