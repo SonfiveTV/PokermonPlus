@@ -141,9 +141,25 @@ SMODS.current_mod.calculate = function(self, context)
 end
 
 -- Void Deck Negative Energy check
+local cae_ref = can_apply_energy
+can_apply_energy = function(card, etype, ...)
+  local ret = cae_ref(card, etype, ...)
+  if not ret and G.GAME.neg_energy_trigger and get_total_energy(card) <= energy_max + (G.GAME.energy_plus or 0) + (type(card.ability.extra) == "table" and card.ability.extra.e_limit_up or 0) then ret = true end
+  return ret
+end
+
+local can_use_ref = energy_can_use
+energy_can_use = function(self, card)
+  if G.GAME.modifiers.void and card.edition and card.edition.negative then G.GAME.neg_energy_trigger = true
+  elseif G.GAME.neg_energy_trigger then G.GAME.neg_energy_trigger = nil end
+  local ret = can_use_ref(self, card)
+  return ret
+end
+
 local energy_use_ref = energy_use
 energy_use = function(self, card, area, copier, highlighted, exclude_spoon)
-  if G.GAME.modifiers.void and card.edition and card.edition.negative then G.GAME.neg_energy_trigger = true end
+  if G.GAME.modifiers.void and card.edition and card.edition.negative then G.GAME.neg_energy_trigger = true
+  elseif G.GAME.neg_energy_trigger then G.GAME.neg_energy_trigger = nil end
   energy_use_ref(self, card, area, copier, highlighted, exclude_spoon)
 end
 
@@ -155,6 +171,10 @@ increment_energy = function(card, etype, amount, silent)
   end
   increment_energy_ref(card, etype, amount, silent)
 end
+
+
+
+
 
 -- Making the energy counter tooltip show at 0 energy for weakened jokers
 local type_tooltip_ref = type_tooltip
