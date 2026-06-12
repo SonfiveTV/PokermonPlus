@@ -123,30 +123,3 @@ function SMODS.current_mod.config_tab()
           }
         }  
 end
-
-function SMODS.current_mod.extra_tabs()
-  return {
-    {
-      label = 'Extra',
-      tab_definition_function = function()
-        return {
-          n = G.UIT.ROOT,
-          config = {
-            r = 0.1,
-            minw = 7,
-            align = "cm",
-            colour = G.C.BLACK,
-            emboss = 0.05,
-          },
-          nodes = {
-            create_toggle({
-              label = localize("enable_timerball"),
-              ref_table = sonfive_config,
-              ref_value = "timerball",
-            }),
-          }
-        }
-      end
-    },
-  }
-end

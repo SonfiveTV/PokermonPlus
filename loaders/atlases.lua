@@ -48,7 +48,7 @@ SMODS.Atlas({
 })
 
 SMODS.Atlas({
-    key = "sonfive_mega",
+    key = "custom",
     path = "sonfive_mega.png",
     px = 71,
     py = 95

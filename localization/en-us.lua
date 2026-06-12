@@ -969,7 +969,9 @@ return {
             poke_deenergized_ex = "De-Energized!",
 
             -- Config Descriptions
-            enable_timerball = "Enable Timer Ball?",
+            sonfive_config_page1 = "Pokémon 1/2",
+            sonfive_config_page2 = "Pokémon 2/2",
+            sonfive_config_items = "Items",
         },
         v_text = {
         ch_c_sonfive_wonderguard = {"If {C:attention}Shedinja{} {S:1.1,C:red,E:2}self destructs{}, you {C:attention}lose{}"},
