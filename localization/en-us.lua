@@ -859,8 +859,8 @@ return {
                         "{C:dark_edition}Negative{} {C:pink}Energy{} cards",
                         "give {C:pink}+1 Energy Limit{}",
                         "{br:4}text",
-                        "Gain a {C:spectral,T:c_poke_nightmare}Nightmare{} Card after",
-                        "defeating each {C:attention}Boss Blind"
+                        "Rerolls have a {C:green}#2# in #3#{} chance",
+                        "to add a {C:spectral,T:c_poke_nightmare}Nightmare{} to shop",
                 }
             },
             sleeve_sonfive_voidsleeve_alt = {
