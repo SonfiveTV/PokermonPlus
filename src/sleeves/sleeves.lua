@@ -139,9 +139,10 @@ local voidsleeve = {
     prefix_config = {},
     atlas = "sleeves",
     pos = { x = 5, y = 0 },
-    config = {},
+    config = {extra = {num = 1, dem = 15}},   -- spectral_rate = 2, consumables = {"c_poke_nightmare"}
     loc_vars = function(self, info_queue, center)
-        return {vars = {"c_poke_nightmare"}}
+        local num, dem = SMODS.get_probability_vars(self, self.config.extra.num, self.config.extra.dem, 'voiddeck')
+        return {vars = {"c_poke_nightmare", num, dem}}
     end,
     calculate = SMODS.Back.obj_table["b_sonfive_voiddeck"].calculate
 
