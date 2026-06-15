@@ -91,7 +91,7 @@ local member_card = {
 
 }
 
-local list = {member_card}
+local list = {}
 
 return {name = "Member Card",
 list = list
