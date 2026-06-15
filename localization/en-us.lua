@@ -425,6 +425,16 @@ return {
                     "Double-click to view Quest progress"
                 }
             },
+            j_sonfive_member_card = {
+                name = "Member Card",
+                text = {
+                    
+                    "Sell this for a reward",
+                    "based on amount of unique",
+                    "{C:pink}Energy{} cards used",
+                    "{C:inactive}(Unique Energy cards used: {C:pink}#1#{}{C:inactive})",
+                }
+            },
             j_sonfive_quest_heatran = {
                 name = "Into The Volcano",
                 text = {
@@ -521,7 +531,7 @@ return {
 
         },
 
-        Item = {
+        poke_item = {
             c_sonfive_timerball = {
                 name = "Timer Ball",
                 text = {
@@ -652,6 +662,24 @@ return {
                         "#6#",
                         "#7#",
                         "#8#",
+                },
+            },
+            rewards_member_card = {
+                name = "Rewards",
+                text = {
+                        "{C:attention}3{} - {C:spectral}Obituary",
+                        "{C:attention}6{} - {C:pink}+1 Energy Limit",
+                        "{C:attention}12{} - {C:attention}Darkrai",
+                        "{C:inactive}(Rewards are not cumulative){}"
+                },
+            },
+            energy_member_card = {
+                name = "Energy Used",
+                text = {
+                        "{V:1,s:0.8}#1#, {V:2,s:0.8}#2#, {V:3,s:0.8}#3#,",
+                        "{V:4,s:0.8}#4#, {V:5,s:0.8}#5#, {V:6,s:0.8}#6#,",
+                        "{V:7,s:0.8}#7#, {V:8,s:0.8}#8#, {V:9,s:0.8}#9#,",
+                        "{V:10,s:0.8}#10#, {V:11,s:0.8}#11#, {V:12,s:0.8}#12#"
                 },
             },
             

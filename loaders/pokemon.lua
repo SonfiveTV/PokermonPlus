@@ -54,8 +54,8 @@ local function load_pokemon_folder(folder)
               if item.atlas and string.find(item.atlas, "sonfive") then
                 pokermon.Pokemon(item,"sonfive",true)
               else
-                  poke_load_atlas(item)
-                  poke_load_sprites(item)
+                  pokermon.sprites.load_sprites(item)
+                  pokermon.sprites.load_atlas(item)
                 pokermon.Pokemon(item,"sonfive",false)
               end
             end

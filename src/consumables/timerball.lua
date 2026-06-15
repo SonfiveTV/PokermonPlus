@@ -1,7 +1,7 @@
 local timerball = {
   name = "timerball",
   key = "timerball",
-  set = "Item",
+  set = "poke_item",
   config = {extra = {count = 1, round_on_add = 1, legendary = 15, rare = 7, uncommon = 3, common = 1}},
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue+1] = {set = 'Other', key = 'timer'}
