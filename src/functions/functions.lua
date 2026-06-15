@@ -39,7 +39,7 @@ end
 
 -- workaround for `get_family_keys` taking a card instead of a center
 local get_family_key_set = function(center)
-  local family = poke_get_family_list(center.name)
+  local family = pokermon.get_family_list(center.name)
   local keys = {}
   if #family > 1 then
     local prefix = center.poke_custom_prefix or 'poke' -- if it's in a family, we know it's one of these
@@ -192,7 +192,7 @@ end
 
 function sonfive_base_evo_name(card)
     -- Get the name of the base form if you can
-    local fam = poke_get_family_list(card.name)
+    local fam = pokermon.get_family_list(card.name)
     -- Default is your own name, you may have no family T.T
     local base_evo_name = card.name
     if #fam > 0 then

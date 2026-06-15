@@ -54,7 +54,7 @@ local canari_plush = {
   rarity = 3,
   cost = 8,
   stage = "Other",
-  atlas = "sonfive_custom",
+  atlas = "sonfive_other",
   pos = {x = 2, y = 0},
   blueprint_compat = false,
   calculate = function(self, card, context)

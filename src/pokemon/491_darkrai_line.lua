@@ -113,7 +113,7 @@ local mega_darkrai = {
   designer = "Sonfive",
   rarity = "poke_mega",
   cost = 20,
-  atlas = "sonfive_custom",
+  atlas = "sonfive_other",
   pos = {x = 0, y = 0},
   soul_pos = {x = 1, y = 0},
   stage = "Mega",
