@@ -13,15 +13,14 @@ jd_def["j_sonfive_mega_darkrai"] = {
     calc_function = function(card)
         local Xmult = card.ability.extra.Xmult_multi or 1
 
-        for _, ptype in pairs(POKE_TYPES) do
-            local energy_key = 'c_poke_'..string.lower(ptype)..(ptype == 'Dark' and 'ness' or '')..'_energy'
-            local energy_type_count = #SMODS.find_card(energy_key)
-            local joker_type_count = #find_pokemon_type(ptype)
-            
-            if energy_type_count > 0 and joker_type_count > 0 then
-                Xmult = Xmult * energy_type_count * joker_type_count
+        if G.consumeables then
+          for _, v in ipairs(G.consumeables.cards) do
+            if v.ability.set == 'poke_energy' and #pokermon.find_pokemon_type(v.config.center.etype) > 0 then
+              Xmult = Xmult * #pokermon.find_pokemon_type(v.config.center.etype)
             end
+          end
         end
+
         card.joker_display_values.x_mult = Xmult
     end
 }
