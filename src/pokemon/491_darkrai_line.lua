@@ -121,7 +121,7 @@ local mega_darkrai = {
       local Xmult = #pokermon.find_pokemon_type(context.other_consumeable.config.center.etype) * card.ability.extra.Xmult_multi
 
       if Xmult > 1 then
-        return { Xmult = Xmult, card = context.other_consumeable }
+        return { Xmult = Xmult, message_card = context.other_consumeable }
       end
     end
   end
