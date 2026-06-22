@@ -251,12 +251,12 @@ end
 
 
 
-local is_type_ref = is_type
+local is_type_ref = pokermon.is_type
 
-is_type = function(card, target_type)
+pokermon.is_type = function(card, target_type)
   if not card then return false end
 
-  local card_type = get_type(card)
+  local card_type = pokermon.get_type(card)
 
   if next(SMODS.find_card('j_sonfive_grafaiai')) then
     local groups = {}
