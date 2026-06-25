@@ -189,9 +189,9 @@ jd_def["j_sonfive_shroodle"] = {
         local targets = card.ability.extra.targets or {}
 
         local colours = {
-            G.ARGS.LOC_COLOURS[string.lower(targets[1] and targets[1].type or "")] or G.C.UI.TEXT_INACTIVE,
-            G.ARGS.LOC_COLOURS[string.lower(targets[2] and targets[2].type or "")] or G.C.UI.TEXT_INACTIVE,
-            G.ARGS.LOC_COLOURS[string.lower(targets[3] and targets[3].type or "")] or G.C.UI.TEXT_INACTIVE
+            pokermon.colours[string.lower(targets[1] and targets[1].type or "")] or G.C.UI.TEXT_INACTIVE,
+            pokermon.colours[string.lower(targets[2] and targets[2].type or "")] or G.C.UI.TEXT_INACTIVE,
+            pokermon.colours[string.lower(targets[3] and targets[3].type or "")] or G.C.UI.TEXT_INACTIVE
         }
 
         for i = 1, 3 do
@@ -261,9 +261,9 @@ jd_def["j_sonfive_grafaiai"] = {
         local targets = card.ability.extra.targets or {}
 
         local colours = {
-            G.ARGS.LOC_COLOURS[string.lower(targets[1] and targets[1].type or "")] or G.C.UI.TEXT_INACTIVE,
-            G.ARGS.LOC_COLOURS[string.lower(targets[2] and targets[2].type or "")] or G.C.UI.TEXT_INACTIVE,
-            G.ARGS.LOC_COLOURS[string.lower(targets[3] and targets[3].type or "")] or G.C.UI.TEXT_INACTIVE
+            pokermon.colours[string.lower(targets[1] and targets[1].type or "")] or G.C.UI.TEXT_INACTIVE,
+            pokermon.colours[string.lower(targets[2] and targets[2].type or "")] or G.C.UI.TEXT_INACTIVE,
+            pokermon.colours[string.lower(targets[3] and targets[3].type or "")] or G.C.UI.TEXT_INACTIVE
         }
 
         for i = 1, 3 do

@@ -8,7 +8,7 @@ local shroodle = {
     local colours = {}
     for i = 1, #abbr.targets do
       vars[i] = abbr.targets[i].type
-      colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].type)] or G.C.UI.TEXT_INACTIVE
+      colours[i] = pokermon.colours[string.lower(abbr.targets[i].type)] or G.C.UI.TEXT_INACTIVE
       colours[i + #abbr.targets] = (abbr.targets[i].type == 'Lightning' and G.C.BLACK or G.C.WHITE)
     end
     vars[(1+#abbr.targets)] = math.max(0, (self.config.evo_rqmt - card.ability.extra.count))
@@ -115,7 +115,7 @@ local grafaiai = {
     local colours = {}
     for i = 1, #abbr.targets do
       vars[i] = abbr.targets[i].type
-      colours[i] = G.ARGS.LOC_COLOURS[string.lower(abbr.targets[i].type)] or G.C.UI.TEXT_INACTIVE
+      colours[i] = pokermon.colours[string.lower(abbr.targets[i].type)] or G.C.UI.TEXT_INACTIVE
       colours[i + #abbr.targets] = (abbr.targets[i].type == 'Lightning' and G.C.BLACK or G.C.WHITE)
     end
     vars[(1+#abbr.targets)] = G.GAME.last_tag and localize{type = 'name_text', key = G.GAME.last_tag, set = 'Tag'} or localize('k_none')

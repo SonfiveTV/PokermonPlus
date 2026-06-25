@@ -13,7 +13,7 @@ return {
             b_sonfive_virtuousdeck = {
                 name = "Bộ Bài Đức Hạnh",
                 text={
-                    "Bắt đầu với một {C:item,T:c_sonfive_timerball}Timer Ball{},",
+                    "Bắt đầu với một {C:poke_item,T:c_sonfive_timerball}Timer Ball{},",
                     "{C:blue}-1{} tay bài",
                     "mỗi ván" 
                 }
@@ -155,7 +155,7 @@ return {
             sleeve_sonfive_virtuoussleeve = {
                 name = "Bọc Bài Đức Hạnh",
                 text = {
-                    "Bắt đầu với một {C:item,T:c_sonfive_timerball}Timer Ball{},",
+                    "Bắt đầu với một {C:poke_item,T:c_sonfive_timerball}Timer Ball{},",
                     "{C:blue}-1{} tay bài",
                     "mỗi ván" 
                 }

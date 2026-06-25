@@ -5,7 +5,7 @@ return {
             b_sonfive_virtuousdeck = {
                 name = "バーチュアスデッキ",
                 text = {
-                        "{C:item,T:c_sonfive_timerball}タイマーボール{} カードで始まる",
+                        "{C:poke_item,T:c_sonfive_timerball}タイマーボール{} カードで始まる",
                         "ハンド {C:blue}-1{}",
                 }
             },
@@ -33,8 +33,8 @@ return {
             b_sonfive_voiddeck = {
                 name = "ボイドデッキ",
                 text = {
-                        "{C:dark_edition}Negative{} {C:pink}Energy{} doesn't",
-                        "count towards {C:pink}Energy{} Limit,",
+                        "{C:dark_edition}Negative{} {C:poke_pink}Energy{} doesn't",
+                        "count towards {C:poke_pink}Energy{} Limit,",
                         "gain a {C:spectral,T:c_poke_nightmare}Nightmare{} card after",
                         "defeating each {C:attention}Boss Blind"
                 }
@@ -132,7 +132,7 @@ return {
                 text = {
                     "{C:attention}ブラインド{}が選択された時",
                     "{C:attention}ジョーカー{} カード1枚につき, {C:money}$#1#{} を与える",
-                    "{C:inactive}({}{X:water,C:white}水{}{C:inactive} と {}{X:metal,C:white}鉄{}{C:inactive} が 2倍 を与える){}",
+                    "{C:inactive}({}{X:poke_water,C:white}水{}{C:inactive} と {}{X:poke_metal,C:white}鉄{}{C:inactive} が 2倍 を与える){}",
                     "{br:4}text needs to be here to work",
                     "このジョーカーはデバフできない",
                     "{C:inactive,s:0.8}({C:money,s:0.8}$24{C:inactive,s:0.8} 与えた後に進化)",
@@ -143,7 +143,7 @@ return {
                 text = {
                     "{C:attention}ブラインド{}が選択された時 {C:green}#3#分の#5#{} 確率で",
                     "一番左の{C:attention}ジョーカー{}を破壊して 倍率 {X:red,C:white}X#1#{} を得る",
-                    "{C:inactive}({C:inactive} 一番左は{} {X:water,C:white}水{} {C:inactive}か{} {X:metal,C:white}鉄{} {C:inactive}なら、確率は {C:green}#4#分の#5#{}){}",
+                    "{C:inactive}({C:inactive} 一番左は{} {X:poke_water,C:white}水{} {C:inactive}か{} {X:poke_metal,C:white}鉄{} {C:inactive}なら、確率は {C:green}#4#分の#5#{}){}",
                     "{br:4}text needs to be here to work",
                     "このジョーカーはデバフできない",
                     "{C:inactive}(倍率 {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive} で進化){}"                  
@@ -155,7 +155,7 @@ return {
                     "{C:attention}ブラインド{}が選択された時 {C:green}#3#%{} 確率で",
                     "一番左の{C:attention}ジョーカー{}を破壊して",
                     "このジョーカーの {X:red,C:white}X{}倍率を {X:red,C:white}X#1#{} に倍する",
-                    "{C:inactive}({C:inactive} 一番左は{} {X:water,C:white}水{} {C:inactive}か{} {X:metal,C:white}鉄{} {C:inactive}なら、確率は {C:green}#4#%{}){}",
+                    "{C:inactive}({C:inactive} 一番左は{} {X:poke_water,C:white}水{} {C:inactive}か{} {X:poke_metal,C:white}鉄{} {C:inactive}なら、確率は {C:green}#4#%{}){}",
                     "{br:4}text needs to be here to work",
                     "このジョーカーはデバフできない",
                     "{C:inactive}(現在 倍率 {X:red,C:white}X#2#{C:inactive})",           
@@ -164,7 +164,7 @@ return {
             j_sonfive_meltan = {
                 name = 'メルタン',
                 text = {
-                    "{C:dark_edition}ネガティブ {C:item}メタルコート{}を{C:attention}持っている{}",
+                    "{C:dark_edition}ネガティブ {C:poke_item}メタルコート{}を{C:attention}持っている{}",
                     "手札にある",
 					"すべての {C:attention}スチール{} カードを",
 					"{C:attention}#3#{} 回再発動する",
@@ -176,7 +176,7 @@ return {
                 text = {
                     "手札にある",
 					"すべての {C:attention}スチール{} カードを",
-                    "{X:metal,C:white}鋼{} タイプカード",
+                    "{X:poke_metal,C:white}鋼{} タイプカード",
 					"1枚につき再発動する",
                     "{C:inactive,s:0.8}(ジョーカかエネルギー){}",
                     "{C:inactive}(現在 #1# 再発動)"
@@ -243,12 +243,12 @@ return {
             sonfive_ex = {
                 name = "EX",
                 text = {
-                        "Starts fully {C:pink}Energized{}",
+                        "Starts fully {C:poke_pink}Energized{}",
                         "{br:4}exexexexexe",
                         "When {C:attention}Blind{} is selected,",
-                        "{C:pink}-1{} Energy",
+                        "{C:poke_pink}-1{} Energy",
                         "{br:4}exexexexexe",
-                        "Debuffs if {C:pink}0{} Energy"
+                        "Debuffs if {C:poke_pink}0{} Energy"
                     },
             },
         },
@@ -256,7 +256,7 @@ return {
             sleeve_sonfive_virtuoussleeve = {
                 name = "バーチュアススリーブ",
                 text = {
-                        "{C:item,T:c_sonfive_timerball}タイマーボール{} カードで始まる",
+                        "{C:poke_item,T:c_sonfive_timerball}タイマーボール{} カードで始まる",
                         "ハンド {C:blue}-1{}",
                 }
             },
@@ -336,7 +336,7 @@ return {
             stake_sonfive_ex_stake = {
             name = "EX Stake",
             text = {"Shop can have {C:attention}EX{} Jokers",
-                    "{C:inactive,s:0.8}(Starts fully {C:pink,s:0.8}Energized{}{C:inactive,s:0.8}...){}",
+                    "{C:inactive,s:0.8}(Starts fully {C:poke_pink,s:0.8}Energized{}{C:inactive,s:0.8}...){}",
                     "{s:0.8}Applies all previous Stakes"
                 },
             },

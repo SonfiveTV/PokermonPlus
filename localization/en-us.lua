@@ -13,7 +13,7 @@ return {
             b_sonfive_virtuousdeck = {
                 name = "Virtuous Deck",
                 text = {
-                        "Start with a {C:item,T:c_sonfive_timerball}Timer Ball{},",
+                        "Start with a {C:poke_item,T:c_sonfive_timerball}Timer Ball{},",
                         "{C:blue}-1{} hand",
                         "every round" 
                 }
@@ -59,8 +59,8 @@ return {
             b_sonfive_voiddeck = {
                 name = "Void Deck",
                 text = {
-                        "{C:dark_edition}Negative{} {C:pink}Energy{} cards",
-                        "give {C:pink}+1 Energy Limit{}",
+                        "{C:dark_edition}Negative{} {C:poke_pink}Energy{} cards",
+                        "give {C:poke_pink}+1 Energy Limit{}",
                         "{br:4}text",
                         "Rerolls have a {C:green}#2# in #3#{} chance",
                         "to add a {C:spectral,T:c_poke_nightmare}Nightmare{} to shop",
@@ -71,8 +71,8 @@ return {
                 name = "Pearlescent Deck",
                 text = {
                         "{C:attention}+#1#{} Joker slot",
-                        "{C:pink}-1{} Energy Limit",
-                        "{C:pink}-1{} Energy",
+                        "{C:poke_pink}-1{} Energy Limit",
+                        "{C:poke_pink}-1{} Energy",
                         "{C:inactive,s:0.8}(Base values are {C:attention,s:0.8}de-energized{}{C:inactive,s:0.8}){}",
                 }
             },
@@ -132,7 +132,7 @@ return {
                     "{C:chips}+#1#{} Chips",
                     "{C:mult}+#2#{} Mult",   
                     "{br:4}text needs to be here to work",
-                    "Increases this Joker's {C:pink}Energy{} limit", 
+                    "Increases this Joker's {C:poke_pink}Energy{} limit", 
                     "when {C:attention}Boss Blind{} is defeated",
                 } 
             },
@@ -163,17 +163,17 @@ return {
                 name = 'Darkrai',
                 text = {
                     "{C:attention}Holding {C:spectral}Nightmare{}",
-                    "{C:attention}Held{} {C:pink}Energy{} cards are {C:attention}applied{}",
-                    "to all Jokers with the same {C:pink}Type{}", 
+                    "{C:attention}Held{} {C:poke_pink}Energy{} cards are {C:attention}applied{}",
+                    "to all Jokers with the same {C:poke_pink}Type{}", 
                     "{C:inactive}(Doesn't increment Energy count){}"                                
                 } 
             },
             j_sonfive_mega_darkrai = {
                 name = 'Mega Darkrai',
                 text = {
-                    "Every held {C:pink}Energy{} card gives",
+                    "Every held {C:poke_pink}Energy{} card gives",
                     "{X:red,C:white}X#1#{} Mult for each Joker you have",
-                    "of the corresponding {C:pink}Type{}", 
+                    "of the corresponding {C:poke_pink}Type{}", 
                 } 
             },
             j_sonfive_helioptile = {
@@ -252,7 +252,7 @@ return {
             j_sonfive_meltan = {
                 name = 'Meltan',
                 text = {
-                    "{C:attention}Holding {C:dark_edition}Negative {C:item}Metal Coat{}",
+                    "{C:attention}Holding {C:dark_edition}Negative {C:poke_item}Metal Coat{}",
                     "Retrigger each {C:attention}Steel{} card",
                     "held in hand {C:attention}#3#{} additional time",
                     "{C:inactive,s:0.8}(Evolves after scoring #1#/#2# Steel cards){}"
@@ -263,7 +263,7 @@ return {
                 text = {
                     "{C:attention}Steel{} cards held in hand",
                     "retrigger an additional time for",
-                    "every {C:attention}2{} {X:metal,C:white}Metal{} cards you have",
+                    "every {C:attention}2{} {X:poke_metal,C:white}Metal{} cards you have",
                     "{C:inactive,s:0.8}(includes Jokers and Energy cards){}",
                     "{C:inactive}(Currently #1# retriggers)"
                 } 
@@ -282,7 +282,7 @@ return {
                 text = {
                     "{X:red,C:white}X#1#{} Mult every {C:attention}2{} hands played",
                     "{C:inactive}#2#",
-                    "{C:inactive,s:0.8}(Evolves with a {C:metal,s:0.8}Metal{C:inactive,s:0.8} sticker)"
+                    "{C:inactive,s:0.8}(Evolves with a {C:poke_metal,s:0.8}Metal{C:inactive,s:0.8} sticker)"
                 }
             },
 
@@ -294,7 +294,7 @@ return {
                     "{C:inactive}#3#",
                     "{br:3}brrrr",
                     "Gain {X:red,C:white}X#1#{} Mult plus an additional",
-                    "{X:red,C:white}X#1#{} Mult for each {X:lightning,C:black}Lightning{} Joker",
+                    "{X:red,C:white}X#1#{} Mult for each {X:poke_lightning,C:black}Lightning{} Joker",
                     "you have for every {C:attention}2{} hands played",
                     "{C:inactive}#4#",
                     "{C:inactive}(Resets at end of round){}",
@@ -331,7 +331,7 @@ return {
                 text = {
                     "When {C:attention}Blind{} is selected, {C:green}#3# in #4#{} chance to",
                     "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
-                    "{C:inactive}(Guaranteed if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:inactive}(Guaranteed if target is {}{X:poke_water,C:white}Water{}{C:inactive} or {}{X:poke_metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
                     "This Joker can't be debuffed",
                     "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X2{}{C:inactive}){}"                 
@@ -342,7 +342,7 @@ return {
                 text = {
                     "When {C:attention}Blind{} is selected, {C:green}#3# in #4#{} chance to",
                     "destroy rightmost {C:attention}Joker{} and gain {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}#3# in #5#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:inactive}({C:green}#3# in #5#{}{C:inactive} if target is {}{X:poke_water,C:white}Water{}{C:inactive} or {}{X:poke_metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
                     "This Joker can't be debuffed",
                     "{C:inactive}(Evolves at {X:red,C:white}X#2#{}{C:inactive} / {}{X:red,C:white}X4{}{C:inactive}){}"
@@ -354,7 +354,7 @@ return {
                     "When {C:attention}Blind{} is selected, {C:green}#3# in #4#{} chance",
                     "to destroy rightmost {C:attention}Joker{} and",
                     "mulitply this Joker's {X:red,C:white}X{} Mult by {X:red,C:white}X#1#{}",
-                    "{C:inactive}({C:green}#3# in #5#{}{C:inactive} if target is {}{X:water,C:white}Water{}{C:inactive} or {}{X:metal,C:white}Metal{}{C:inactive}){}",
+                    "{C:inactive}({C:green}#3# in #5#{}{C:inactive} if target is {}{X:poke_water,C:white}Water{}{C:inactive} or {}{X:poke_metal,C:white}Metal{}{C:inactive}){}",
                     "{br:4}text needs to be here to work",
                     "This Joker can't be debuffed",
                     "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}"
@@ -415,8 +415,8 @@ return {
                     "{C:blue}+#3#{} hands {C:inactive}(#4#){}",
                     "{C:money}+$#5#{} interest cap {C:inactive}(#6#){}",
                     "{C:purple}+#7# Foresight{} {C:inactive}(#8#){}",
-                    "{C:pink}+#9#{} Energy limit {C:inactive}(#10#){}",
-                    "{C:item}+#11#{} consumable slots {C:inactive}(#12#){}",
+                    "{C:poke_pink}+#9#{} Energy limit {C:inactive}(#10#){}",
+                    "{C:poke_item}+#11#{} consumable slots {C:inactive}(#12#){}",
                 } 
             },
             j_sonfive_questbook = {
@@ -431,8 +431,8 @@ return {
                     
                     "Sell this for a reward",
                     "based on amount of unique",
-                    "{C:pink}Energy{} cards used",
-                    "{C:inactive}(Unique Energy cards used: {C:pink}#1#{}{C:inactive})",
+                    "{C:poke_pink}Energy{} cards used",
+                    "{C:inactive}(Unique Energy cards used: {C:poke_pink}#1#{}{C:inactive})",
                 }
             },
             j_sonfive_quest_heatran = {
@@ -668,7 +668,7 @@ return {
                 name = "Rewards",
                 text = {
                         "{C:attention}3{} - {C:spectral}Obituary",
-                        "{C:attention}6{} - {C:pink}+1 Energy Limit",
+                        "{C:attention}6{} - {C:poke_pink}+1 Energy Limit",
                         "{C:attention}12{} - {C:attention}Darkrai",
                         "{C:inactive}(Rewards are not cumulative){}"
                 },
@@ -781,7 +781,7 @@ return {
                         "{C:attention}Frozen Count{}: {C:attention}#1#{}",
                         "{C:attention}Debuffed{} while Frozen Count is greater than {C:attention}0{}",
                         "When Blind is selected decrease Frozen Count by {C:attention}1{}",
-                        "plus {C:attention}1{} for each adjacent {X:fire,C:white}Fire{} Joker",
+                        "plus {C:attention}1{} for each adjacent {X:poke_fire,C:white}Fire{} Joker",
                     },
             },
             sonfive_asleep = {
@@ -826,7 +826,7 @@ return {
             sleeve_sonfive_virtuoussleeve = {
                 name = "Virtuous Sleeve",
                 text = {
-                        "Start with a {C:item,T:c_sonfive_timerball}Timer Ball{},",
+                        "Start with a {C:poke_item,T:c_sonfive_timerball}Timer Ball{},",
                         "{C:blue}-1{} hand",
                         "every round" 
                 }
@@ -884,8 +884,8 @@ return {
             sleeve_sonfive_voidsleeve = {
                 name = "Void Sleeve",
                 text = {
-                        "{C:dark_edition}Negative{} {C:pink}Energy{} cards",
-                        "give {C:pink}+1 Energy Limit{}",
+                        "{C:dark_edition}Negative{} {C:poke_pink}Energy{} cards",
+                        "give {C:poke_pink}+1 Energy Limit{}",
                         "{br:4}text",
                         "Rerolls have a {C:green}#2# in #3#{} chance",
                         "to add a {C:spectral,T:c_poke_nightmare}Nightmare{} to shop",
