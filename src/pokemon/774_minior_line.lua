@@ -1,8 +1,8 @@
 local minior = {
   name = "minior",
-  config = {extra = {enhancement = "mult", revealed = false, core = false, hands_played = 0, Xmult = 1.25}},
+  config = {extra = {enhancement = "mult", revealed = false, core = false, hands_played = 0, Xmult = 1.25, form = "meteor"}},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     local vars = {}
     local colours = {}
     local key = card.ability.extra.core and self.key.."_"..card.ability.extra.enhancement or self.key
@@ -21,6 +21,7 @@ local minior = {
   stage = "Basic",
   ptype = "Earth",
   gen = 7,
+  family = {{key = "minior", form = "meteor"}, {key = "minior", form = "mult"}},
   blueprint_compat = false,
   set_sprites = function(self, card, front)
     if card.ability and card.ability.extra and card.ability.extra.hands_played and card.ability.extra.hands_played >= 2 then
@@ -42,14 +43,17 @@ local minior = {
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
-      card.ability.extra.enhancement = pseudorandom_element({
+      local enhancement = card.ability.extra.enhancement
+      enhancement = pseudorandom_element({
         "mult", "wild", "gold", "lucky", "glass", "bonus", "steel"
       }, pseudoseed('minior'))
+      card.ability.extra.form = "meteor"
+      
     end
   end,
   calc_dollar_bonus = function(self, card)
-    if card.ability.extra.core then
-      card.ability.extra.core = false
+    if card.ability.extra.form ~= "meteor" then
+      card.ability.extra.form = "meteor"
       card.children.floating_sprite:set_sprite_pos({x = 7, y = 3})
     end
     card.ability.extra.hands_played = 0
@@ -77,7 +81,7 @@ local minior = {
           {name = "bonus", pos = { x = 2, y = 4 }},
           {name = "steel", pos = { x = 8, y = 3 }}
         }
-      abbr.core = true
+      abbr.form = abbr.enhancement
       for _, enhancement in ipairs(enhancements) do
         if abbr.enhancement == enhancement.name then
           card.children.floating_sprite:set_sprite_pos(enhancement.pos)
@@ -91,6 +95,18 @@ local minior = {
       end
     end
   end,
+}
+
+local minior_template = {
+  rarity = "poke_safari",
+  cost = 8,
+  stage = "One",
+  ptype = "Fairy",
+  atlas = "AtlasJokersBasicGen08",
+  gen = 8,
+  aux_poke = true,
+  no_collection = true,
+  blueprint_compat = true,
 }
 
 local list = {minior}

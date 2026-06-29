@@ -8,7 +8,7 @@ local stonjourner = {
     played_hands = {} 
   }},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     unique_hand_tooltip(self, info_queue, card)
 
     local a = card.ability.extra

@@ -2,7 +2,7 @@ local shroodle = {
   name = "shroodle",
   config = {extra = {targets = {{type = "Grass"}, {type = "Fire"}, {type = "Water"}}, count = 0}, evo_rqmt = 3},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     local abbr = card.ability.extra
     local vars = {}
     local colours = {}
@@ -109,7 +109,7 @@ local grafaiai = {
   name = "grafaiai",
   config = {extra = {targets = {{type = "Grass"}, {type = "Fire"}, {type = "Water"}}}},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     local abbr = card.ability.extra
     local vars = {}
     local colours = {}

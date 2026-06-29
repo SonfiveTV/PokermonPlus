@@ -10,7 +10,7 @@ local lechonk = {
         }
     },
     loc_vars = function(self, info_queue, card)
-        type_tooltip(self, info_queue, card)
+        pokermon.type_tooltip(self, info_queue, card)
         if pokermon_config.detailed_tooltips then
           info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..card.ability.extra.volatile}
         end
@@ -61,7 +61,7 @@ local oinkologne = {
         }
     },
     loc_vars = function(self, info_queue, card)
-        type_tooltip(self, info_queue, card)
+        pokermon.type_tooltip(self, info_queue, card)
         if pokermon_config.detailed_tooltips then
           info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..card.ability.extra.volatile}
         end

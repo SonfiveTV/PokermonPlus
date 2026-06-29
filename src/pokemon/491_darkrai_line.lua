@@ -2,7 +2,7 @@ local darkrai = {
   name = "darkrai",
   config = { extra = {} },
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     info_queue[#info_queue + 1] = { set = 'Spectral', key = 'c_poke_nightmare' }
   end,
   designer = "Sonfive",
@@ -103,7 +103,7 @@ local mega_darkrai = {
   name = "mega_darkrai",
   config = { extra = { Xmult_multi = 1 } },
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     return { vars = { card.ability.extra.Xmult_multi } }
   end,
   designer = "Sonfive",

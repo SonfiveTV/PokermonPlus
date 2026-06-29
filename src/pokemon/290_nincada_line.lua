@@ -2,7 +2,7 @@ local nincada = {
   name = "nincada",
   config = {extra = {chips = 15, mult = 1, rounds = 4}},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
 		return {vars = {card.ability.extra.chips, card.ability.extra.mult, card.ability.extra.rounds}}
   end,
   designer = "Sonfive",
@@ -38,7 +38,7 @@ local ninjask = {
   name = "ninjask",
   config = {extra = {chips = 40, mult = 5}},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
 		return {vars = {card.ability.extra.chips, card.ability.extra.mult}}
   end,
   designer = "Sonfive",
@@ -70,7 +70,7 @@ local shedinja = {
   name = "shedinja",
   config = {extra = {money = 0, money_mod = 2, earned = 0, threshold = 292, targets = {{value = "Ace", id = "14"}, {value = "King", id = "13"}, {value = "Queen", id = "12"}}}},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
     local abbr = card.ability.extra
     local card_vars = {abbr.money_mod, abbr.earned, abbr.threshold}
     add_target_cards_to_vars(card_vars, abbr.targets)

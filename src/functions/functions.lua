@@ -177,8 +177,8 @@ end
 
 
 -- Making the energy counter tooltip show at 0 energy for weakened jokers
-local type_tooltip_ref = type_tooltip
-type_tooltip = function(self, info_queue, center)
+local type_tooltip_ref = pokermon.type_tooltip
+pokermon.type_tooltip = function(self, info_queue, center)
   if (center.ability and center.ability.extra and type(center.ability.extra) == "table" and
       center.ability.sonfive_weakened and (get_total_energy(center) == 0)) or 
       (center.ability and center.ability.extra and type(center.ability.extra) == "table" and

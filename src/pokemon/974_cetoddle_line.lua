@@ -2,7 +2,7 @@ local cetoddle = {
     name = "cetoddle",
     config = {extra = {Xmult_mod = 0.25, Xmult = 1}},
     loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult}}
     end,
     designer = "Sonfive",
@@ -68,7 +68,7 @@ local cetitan = {
     name = "cetitan",
     config = {extra = {Xmult_mod = 0.5, Xmult = 1}, evo_rqmt = 3},
     loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult}}
     end,
     designer = "Sonfive",

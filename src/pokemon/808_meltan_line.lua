@@ -2,7 +2,7 @@ local meltan = {
   name = "meltan", 
   config = {extra = {retriggers = 1, count = 0, evo_rqmt = 100}},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card) 
+    pokermon.type_tooltip(self, info_queue, card) 
 		return {vars = {card.ability.extra.count, card.ability.extra.evo_rqmt, card.ability.extra.retriggers}} -- Here you can reference values in the Joker description
   end,
   designer = "Sonfive",
@@ -45,7 +45,7 @@ local melmetal = {
   name = "melmetal",
   config = {extra = {}},
   loc_vars = function(self, info_queue, card)
-    type_tooltip(self, info_queue, card)
+    pokermon.type_tooltip(self, info_queue, card)
 		return {vars = {1 + math.floor(#SMODS.find_card('c_poke_metal_energy') + #find_pokemon_type("Metal")/2)}}
   end,
   designer = "Sonfive",
