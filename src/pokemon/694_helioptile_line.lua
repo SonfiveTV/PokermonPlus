@@ -7,7 +7,6 @@ local helioptile = {
     denominator = 4
   }},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
     local a = card.ability.extra
     local num, dem = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'helioptile')
     local vars = {
@@ -17,7 +16,6 @@ local helioptile = {
       num,
       dem
     }
-
     return {vars = vars}
   end,
   designer = "Sonfive",
@@ -69,7 +67,7 @@ local heliolisk = {
     money_mod2 = 2
   }},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
+
     local a = card.ability.extra
     local num, dem = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'helioptile')
     local vars = {

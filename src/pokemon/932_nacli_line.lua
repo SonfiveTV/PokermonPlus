@@ -2,7 +2,6 @@ local nacli = {
   name = "nacli",
   config = {extra = {Xmult_mod = 0.2, Xmult = 1, numerator = 1, denominator = 2}, evo_rqmt = 2},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
     local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator}}
   end,
@@ -56,7 +55,6 @@ local naclstack = {
   name = "naclstack",
   config = {extra = {Xmult = 2, Xmult_mod = 0.5, numerator = 1, denominator = 4}, evo_rqmt = 4},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
     local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
 		return {vars = {card.ability.extra.Xmult_mod, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
   end,
@@ -110,7 +108,6 @@ local garganacl = {
   name = "garganacl",
   config = {extra = {Xmult_multi = 1.1, Xmult = 4, numerator = 1, denominator = 8}},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
 		local numerator, denominator = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'nacli')
 		return {vars = {card.ability.extra.Xmult_multi, card.ability.extra.Xmult, numerator, denominator, (denominator/2)}}
   end,

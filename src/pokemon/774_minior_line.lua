@@ -2,7 +2,6 @@ local minior = {
   name = "minior",
   config = {extra = {enhancement = "mult", revealed = false, core = false, hands_played = 0, Xmult = 1.25, form = "meteor"}},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
     local vars = {}
     local colours = {}
     local key = card.ability.extra.core and self.key.."_"..card.ability.extra.enhancement or self.key
@@ -97,17 +96,6 @@ local minior = {
   end,
 }
 
-local minior_template = {
-  rarity = "poke_safari",
-  cost = 8,
-  stage = "One",
-  ptype = "Fairy",
-  atlas = "AtlasJokersBasicGen08",
-  gen = 8,
-  aux_poke = true,
-  no_collection = true,
-  blueprint_compat = true,
-}
 
 local list = {minior}
 

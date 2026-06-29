@@ -7,7 +7,6 @@ local member_card = {
     energy_used = {}
   }},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
     local info = card.ability.extra
     local energy_vars = {}
     local energy_colours = {}

@@ -32,7 +32,6 @@ local canari_plush = {
     silver_current = 0,
   }},
   loc_vars = function(self, info_queue, card)
-        pokermon.type_tooltip(self, info_queue, card)
         local a = card.ability.extra
         local vars = {}
         vars[1] = a.red_current

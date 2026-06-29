@@ -2,7 +2,6 @@ local meltan = {
   name = "meltan", 
   config = {extra = {retriggers = 1, count = 0, evo_rqmt = 100}},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card) 
 		return {vars = {card.ability.extra.count, card.ability.extra.evo_rqmt, card.ability.extra.retriggers}} -- Here you can reference values in the Joker description
   end,
   designer = "Sonfive",
@@ -12,7 +11,7 @@ local meltan = {
   ptype = "Metal", -- Pokemon's type
   gen = 7,
   blueprint_compat = true, -- This decides whether Blueprint shows as compatible or not
-  
+
   calculate = function(self, card, context)
     local abbr = card.ability.extra
     if context.individual and not context.end_of_round and context.cardarea == G.hand then
@@ -45,7 +44,6 @@ local melmetal = {
   name = "melmetal",
   config = {extra = {}},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
 		return {vars = {1 + math.floor(#SMODS.find_card('c_poke_metal_energy') + #find_pokemon_type("Metal")/2)}}
   end,
   designer = "Sonfive",

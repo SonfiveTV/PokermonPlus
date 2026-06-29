@@ -5,7 +5,6 @@ local duraludon = {
     hands_played = 0,
   }},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
     return {
       vars = {
         card.ability.extra.Xmult,
@@ -54,7 +53,6 @@ local archaludon = {
     hands_played = 0,
   }},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
     return {
       vars = {
         card.ability.extra.Xmult_mod,
@@ -111,12 +109,11 @@ local gmax_duraludon = {
     current_hand = "odd" 
   }},
   loc_vars = function(self, info_queue, card)
-    pokermon.type_tooltip(self, info_queue, card)
 
     local a = card.ability.extra
 
     local vars = {
-      a.Xmult,    
+      a.Xmult
     }
 
     return {vars = vars}
