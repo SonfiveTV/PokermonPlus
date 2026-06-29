@@ -4,7 +4,7 @@ local minior = {
   loc_vars = function(self, info_queue, card)
     local vars = {}
     local colours = {}
-    local key = card.ability.extra.core and self.key.."_"..card.ability.extra.enhancement or self.key
+    local key = (card.ability.extra.form ~= "meteor") and self.key.."_"..card.ability.extra.enhancement or self.key
     local enhancement = card.ability.extra.enhancement:sub(1,1):upper() .. card.ability.extra.enhancement:sub(2)
     vars[1] = (card.ability.extra.revealed and enhancement or "???")
     vars[2] = math.max( 2 - (card.ability.extra.hands_played), 0)
