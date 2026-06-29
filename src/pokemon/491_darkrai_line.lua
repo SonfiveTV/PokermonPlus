@@ -14,86 +14,43 @@ local darkrai = {
   blueprint_compat = false,
   add_to_deck = function(self, card, from_debuff)
     if not from_debuff then
-      local _card = create_card('Spectral', G.consumeables, nil, nil, nil, nil, 'c_poke_nightmare')
-      _card:add_to_deck()
-      G.consumeables:emplace(_card)
-      card_eval_status_text(_card, 'extra', nil, nil, nil,
-        { message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral })
+      local _card = SMODS.add_card({key = 'c_poke_nightmare', area = G.consumeables})
+      SMODS.calculate_effect({ message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral }, _card)
     end
   end,
   calculate = function(self, card, context)
-    -- Spawn Spectral card if conditions are met
-    --   if not context.repetition and not context.individual and context.end_of_round
-    --      and G.GAME.last_blind and G.GAME.last_blind.boss then
-    --       if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-    --           local _card = SMODS.add_card({set = 'Spectral', area = G.consumeables, key = 'c_poke_nightmare'})
-    --           card_eval_status_text(_card, 'extra', nil, nil, nil,
-    --               {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
-    --       end
-    --   end
+    if not context.blueprint and G.consumeables then
+      local darkrai_count = #SMODS.find_card("j_sonfive_darkrai") -- need this to support multiples
 
-    if not context.blueprint then
-      local darkrai_count = #SMODS.find_card("j_sonfive_darkrai")
+      for _, joker in ipairs(G.jokers.cards) do
+        if not joker.ability.extra then joker.ability.extra = {} end
+        local prev_count = joker.ability.extra.darkrai_ecount or 0
+        local curr_count = 0
 
-      -- Initialize Darkrai's snapshot
-      if not card.ability.extra.darkrai_applied_energy then
-        card.ability.extra.darkrai_applied_energy = {}
-      end
-
-      -- Step 1: Calculate desired energy per type
-      for _, ptype in pairs(POKE_TYPES) do
-        local energy_key = 'c_poke_' .. string.lower(ptype) .. (ptype == 'Dark' and 'ness' or '') .. '_energy'
-        local energy_type_count = #SMODS.find_card(energy_key) * darkrai_count
-        card.ability.extra.darkrai_applied_energy[ptype] = energy_type_count
-
-        -- Step 2: Apply to jokers
-        for _, joker in ipairs(G.jokers.cards) do
-          local extra = joker.ability and joker.ability.extra
-          if type(extra) == "table" then
-            joker.ability.extra = joker.ability.extra or {}
-            if not joker.ability.extra.darkrai_applied then
-              joker.ability.extra.darkrai_applied = {}
-            end
-            local to_apply = card.ability.extra.darkrai_applied_energy[ptype]
-            local last_applied = joker.ability.extra.darkrai_applied[ptype] or 0
-
-            if is_type(joker, ptype) then
-              -- Joker matches this type → sync energies
-              if to_apply ~= last_applied then
-                local diff = to_apply - last_applied
-                energize(joker, ptype, nil, true, diff)
-                joker.ability.extra.darkrai_applied[ptype] = to_apply
-              end
-            else
-              -- Joker no longer this type → remove old Darkrai-applied energy
-              if last_applied > 0 then
-                energize(joker, ptype, false, true, -last_applied)
-                joker.ability.extra.darkrai_applied[ptype] = 0
-              end
-            end
+        -- Get the number of energy that have the joker's type
+        for _, energy in pairs(pokermon.filter(G.consumeables.cards, function(energy) return energy.ability.set == 'poke_energy' end)) do
+          if pokermon.is_type(joker, energy.config.center.etype) then
+            curr_count = curr_count + darkrai_count
           end
+        end
+
+        -- Energize joker based on change of amount
+        if curr_count ~= prev_count and pokermon.energy.is_energizable(joker) then
+          local delta = curr_count - prev_count
+          pokermon.energy.energize(joker, pokermon.get_type(joker), nil, true, delta)
+          joker.ability.extra.darkrai_ecount = curr_count
         end
       end
     end
   end,
 
   remove_from_deck = function(self, card, from_debuff)
-    for _, card in ipairs(G.jokers.cards) do
-      local extra = card.ability and card.ability.extra
-      if type(extra) == "table" then
-        card.ability.extra = card.ability.extra or {}
-        local applied = card.ability.extra.darkrai_applied or {}
-
-        for _, ptype in pairs(POKE_TYPES) do
-          local last_applied = applied[ptype] or 0
-          if last_applied > 0 then
-            energize(card, ptype, false, true, -last_applied)
-            applied[ptype] = 0
-          end
-        end
+    for _, joker in ipairs(G.jokers.cards) do
+      local extra = joker.ability and joker.ability.extra
+      if extra and extra.darkrai_ecount then
+        pokermon.energy.energize(joker, pokermon.get_type(joker), false, true, -extra.darkrai_ecount)
       end
-      -- Clear Darkrai's own stored snapshot
-      card.ability.extra.darkrai_applied_energy = {}
+      extra.darkrai_ecount = 0
     end
   end,
   megas = { "mega_darkrai" }
