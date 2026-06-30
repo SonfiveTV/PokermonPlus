@@ -42,12 +42,10 @@ local minior = {
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then
-      local enhancement = card.ability.extra.enhancement
-      enhancement = pseudorandom_element({
+      card.ability.extra.enhancement = pseudorandom_element({
         "mult", "wild", "gold", "lucky", "glass", "bonus", "steel"
       }, pseudoseed('minior'))
       card.ability.extra.form = "meteor"
-      
     end
   end,
   calc_dollar_bonus = function(self, card)
