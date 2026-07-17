@@ -22,9 +22,37 @@ target = "functions/common_events.lua"
 pattern = "if card.ability.consumeable and not skip_materialize then card:start_materialize() end"
 position = "after"
 payload = '''
-if _type == 'Joker' and G.GAME.modifiers.pearlescent then 
+if _type == 'Joker' and G.GAME.modifiers.sonfive_pearlescent then 
     increment_energy(card, get_type(card), -1, true)
     card.ability.extra.e_limit_up = card.ability.extra.e_limit_up and (card.ability.extra.e_limit_up - 1) or -1
 end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+    if G.GAME.current_round.discards_left > 0 and G.GAME.modifiers.money_per_discard then
+        add_round_eval_row({dollars = G.GAME.current_round.discards_left*(G.GAME.modifiers.money_per_discard), disp = G.GAME.current_round.discards_left, bonus = true, name='discards', pitch = pitch})
+        pitch = pitch + 0.06
+        dollars = dollars +  G.GAME.current_round.discards_left*(G.GAME.modifiers.money_per_discard)
+    end
+'''
+position = "after"
+payload = '''
+    if G.GAME.modifiers.sonfive_pearlescent then
+      local tally = 0
+      for _, joker in ipairs(G.jokers.cards) do
+          if pokermon.energy.get_total_energy(joker) < 0 then tally = tally + 1 end
+      end
+      if tally > 0 then
+        add_round_eval_row({dollars = tally, disp = tally, bonus = true,  name='custom',
+                            text = G.GAME.modifiers.sonfive_pearlescent_text, number = tally, 
+                            number_colour = pokermon.colours.pink or G.C.FILTER, pitch = pitch})
+        pitch = pitch + 0.06
+        dollars = dollars + tally
+      end
+    end
 '''
 match_indent = true

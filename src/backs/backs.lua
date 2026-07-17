@@ -103,20 +103,22 @@ local pearlescentdeck = {
 	key = "pearlescentdeck",  
     atlas = "backs",
     pos = { x = 6, y = 0 },
-	config = {joker_slot = 1},
+	config = {},
   loc_vars = function(self)
     return {
       vars = {
-        self.config.joker_slot
       }
     }
   end,
-  calculate = function(self, back, context)
-    G.GAME.modifiers.pearlescent = true
-  end,
   apply = function(self)
-    G.GAME.modifiers.pearlescent = true
-  end
+    G.E_MANAGER:add_event(Event({
+      func = function()
+        G.GAME.modifiers.sonfive_pearlescent = true
+        G.GAME.modifiers.sonfive_pearlescent_text = " De-Energized Jokers"
+        return true
+      end
+    }))
+  end,
 } 
 
 local pyritedeck = {
