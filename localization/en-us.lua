@@ -581,89 +581,19 @@ return {
 
         Other = {
 
-            ston_hands1 = {
+            ston_hands = {
                 name = "Played Hands",
                 text = {
-                        "#1#",
+                        "Senku",
+                },
+            },
+            member_energy_used = {
+                name = "Energy Used",
+                text = {
+                        "eneru",
                 },
             },
 
-            ston_hands2 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                },
-            },
-
-            ston_hands3 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                },
-            },
-
-            ston_hands4 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                },
-            },
-
-            ston_hands5 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                },
-            },
-
-            ston_hands6 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                        "#6#",
-                },
-            },
-
-            ston_hands7 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                        "#6#",
-                        "#7#",
-                },
-            },
-
-            ston_hands8 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                        "#6#",
-                        "#7#",
-                        "#8#",
-                },
-            },
             rewards_member_card = {
                 name = "Rewards",
                 text = {

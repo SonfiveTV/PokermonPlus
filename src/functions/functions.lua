@@ -202,7 +202,7 @@ function sonfive_base_evo_name(card)
     return base_evo_name
 end
 
-unique_hand_tooltip = function(self, info_queue, center)
+SONFIVE.stonjourner_tooltip = function(self, info_queue, center)
   if center.ability and center.ability.extra and type(center.ability.extra) == "table" and center.ability.extra.played_hands then
     local a = center.ability.extra
 
@@ -220,13 +220,56 @@ unique_hand_tooltip = function(self, info_queue, center)
         table.insert(played_list, hand)
       end
     end
-
-    -- Only show tooltip if there is at least one played hand
-    if #played_list > 0 then
-      local key = "ston_hands" .. #played_list  -- dynamic key
-      info_queue[#info_queue + 1] = {set = 'Other', key = key, vars = played_list}
+    local text = SONFIVE.map_list(played_list, function(l) return l end)
+    local text_parsed = SONFIVE.map_list(text, loc_parse_string)
+    G.localization.descriptions.Other['ston_hands'] = {
+      name = "Played Hands",
+      text = text,
+      text_parsed = text_parsed
+    }
+    if #played_list == 0 then
+      return 
     end
-  end
+    return {
+      set = 'Other',
+      key = 'ston_hands'
+    }
+    end
+end
+
+SONFIVE.member_card_tooltip = function(self, info_queue, center)
+  if center.ability and center.ability.extra and type(center.ability.extra) == "table" and center.ability.extra.energy_used then
+    local a = center.ability.extra
+
+    local used_energies = {}
+    for energy, used in pairs(a.energy_used) do
+      if used then
+        if energy == "rainbow" then
+          table.insert(used_energies, "Rainbow")
+        else
+          table.insert(used_energies, energy)
+        end
+      end
+    end
+    local text = SONFIVE.map_list(used_energies, function(l) return 
+    "{X:"..(l == "Rainbow" and "dark_edition" or "poke_"..string.lower(l))..",C:"..(l == 'Lightning' and "black" or "white").."}"..l.."{}"
+
+
+    end)
+    local text_parsed = SONFIVE.map_list(text, loc_parse_string)
+    G.localization.descriptions.Other['member_energy_used'] = {
+      name = "Energy Used",
+      text = text,
+      text_parsed = text_parsed
+    }
+    if #used_energies == 0 then
+      return 
+    end
+    return {
+      set = 'Other',
+      key = 'member_energy_used'
+    }
+    end
 end
 
 forged_tooltip = function(self, info_queue, center)
@@ -372,4 +415,12 @@ SONFIVE.add_shop_card = function(key, cost)
   if cost then card.cost = cost end
   create_shop_card_ui(card)
   card:juice_up()
+end
+
+function SONFIVE.map_list(list, func)
+  local new_list = {}
+  for _, v in pairs(list) do
+    new_list[#new_list + 1] = func(v)
+  end
+  return new_list
 end
