@@ -38,5 +38,5 @@ local heatran_boss={
 }
 
 return {name = "Heatran Boss Blind",
-        list = {heatran_boss}
+        list = {}
 }

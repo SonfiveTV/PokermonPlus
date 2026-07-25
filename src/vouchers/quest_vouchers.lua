@@ -138,5 +138,5 @@ local meltan = {
 
 
 return {name = "Quest Vouchers",
-        list = {heatran, darkrai, meltan}
+        list = {}
 }

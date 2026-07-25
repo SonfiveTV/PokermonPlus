@@ -240,7 +240,7 @@ else
     })
 end
 
-local list = {quest_heatran, quest_heatran_active, quest_heatran_complete}
+local list = {}
 
 return {name = "Heatran Quest", 
 list = list

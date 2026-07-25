@@ -104,39 +104,28 @@ SMODS.current_mod.calculate = function(self, context)
     G.GAME.last_tag = context.tag_triggered.key
   end
 
-  -- For Quests
-  local active = G.GAME.active_quest
-  local complete = G.GAME.quest_complete
-  local quests = {
-    {pokemon = "heatran", func = sonfive_heatran_quest}, 
-    {pokemon = "darkrai", func = sonfive_darkrai_quest},
-    {pokemon = "meltan", func = sonfive_meltan_quest}
-  }
+  -- -- For Quests
+  -- local active = G.GAME.active_quest
+  -- local complete = G.GAME.quest_complete
+  -- local quests = {
+  --   {pokemon = "heatran", func = sonfive_heatran_quest}, 
+  --   {pokemon = "darkrai", func = sonfive_darkrai_quest},
+  --   {pokemon = "meltan", func = sonfive_meltan_quest}
+  -- }
 
-  for i, q in ipairs(quests) do
-    if not ((complete and complete[q.pokemon]) or (active == q.pokemon)) then
-      q.func(self, context)
-    end
+  -- for i, q in ipairs(quests) do
+  --   if not ((complete and complete[q.pokemon]) or (active == q.pokemon)) then
+  --     q.func(self, context)
+  --   end
 
-    if active and active == q.pokemon then
-      SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_active"
-    elseif complete and complete[q.pokemon] then
-      SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_complete"
-    else
-      SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon
-    end
-  end
-
-  if context.check_enhancement then
-    local forged_enhancements = {}
-    for _, enhancement in ipairs(G.P_CENTER_POOLS.Enhanced) do
-      local heatran_quantum = "forged_"..enhancement.key
-      if context.other_card.ability and context.other_card.ability[heatran_quantum] then
-        forged_enhancements[enhancement.key] = true
-      end
-    end
-    return forged_enhancements
-  end
+  --   if active and active == q.pokemon then
+  --     SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_active"
+  --   elseif complete and complete[q.pokemon] then
+  --     SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon.."_complete"
+  --   else
+  --     SONFIVE.quest_keys[i] = "j_sonfive_quest_"..q.pokemon
+  --   end
+  -- end
 
 end
 

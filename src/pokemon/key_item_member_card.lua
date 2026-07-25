@@ -8,29 +8,14 @@ local member_card = {
   }},
   loc_vars = function(self, info_queue, card)
     local info = card.ability.extra
-    local energy_vars = {}
-    local energy_colours = {}
-    for i, energy in ipairs(POKE_TYPES) do
-      local done = info.energy_used[energy]
-      energy_vars[i] = energy .. (energy == "Dark" and "ness" or "")
-      if done then
-        energy_colours[i] = G.C.GREEN
-      else
-        energy_colours[i] = G.C.UI.TEXT_INACTIVE
-      end
-    end
-    energy_vars.colours = energy_colours
     info_queue[#info_queue+1] = {set = 'Other', key = 'rewards_member_card', vars = {info.quest1, info.quest2, info.quest3}}
-    info_queue[#info_queue+1] = {set = 'Other', key = 'energy_member_card', vars = energy_vars}
-
+    info_queue[#info_queue + 1] = SONFIVE.member_card_tooltip(self, info_queue, card)
+    
     local count = 0
     for _ in pairs(info.energy_used) do
       count = count + 1
     end
-
-
     return {vars = {count}}
-    
   end,
   designer = "Sonfive",
   rarity = 3,
@@ -90,7 +75,7 @@ local member_card = {
 
 }
 
-local list = {}
+local list = {member_card}
 
 return {name = "Member Card",
 list = list
