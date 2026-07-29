@@ -95,7 +95,7 @@ else
     })
 end
 
-local list = {quest_darkrai}
+local list = {}
 
 return {name = "Darkrai Quest", 
 list = list

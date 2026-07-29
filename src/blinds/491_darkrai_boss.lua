@@ -73,5 +73,5 @@ local darkrai_boss={
 }
 
 return {name = "Darkrai Boss Blind",
-        list = {darkrai_boss}
+        list = {}
 }

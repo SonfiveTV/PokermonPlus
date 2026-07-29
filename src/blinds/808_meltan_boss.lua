@@ -40,5 +40,5 @@ local meltan_boss={
 }
 
 return {name = "Meltan Boss Blind",
-        list = {meltan_boss}
+        list = {}
 }

@@ -44,7 +44,7 @@ local melmetal = {
   name = "melmetal",
   config = {extra = {}},
   loc_vars = function(self, info_queue, card)
-		return {vars = {1 + math.floor(#SMODS.find_card('c_poke_metal_energy') + #find_pokemon_type("Metal")/2)}}
+		return {vars = {1 + math.floor(#SMODS.find_card('c_poke_metal_energy') + #pokermon.find_pokemon_type("Metal")/2)}}
   end,
   designer = "Sonfive",
   rarity = 4,
@@ -60,7 +60,7 @@ local melmetal = {
   
   calculate = function(self, card, context)
     if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and SMODS.has_enhancement(context.other_card, 'm_steel') then
-      local retriggers = 1 + math.floor(#SMODS.find_card('c_poke_metal_energy') + #find_pokemon_type("Metal")/2)
+      local retriggers = 1 + math.floor(#SMODS.find_card('c_poke_metal_energy') + #pokermon.find_pokemon_type("Metal")/2)
       if retriggers > 0 then
         return {
           message = localize('k_again_ex'),

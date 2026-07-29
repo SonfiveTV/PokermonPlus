@@ -8,7 +8,7 @@ local stonjourner = {
     played_hands = {} 
   }},
   loc_vars = function(self, info_queue, card)
-    unique_hand_tooltip(self, info_queue, card)
+    info_queue[#info_queue + 1] = SONFIVE.stonjourner_tooltip(self, info_queue, card)
 
     local a = card.ability.extra
 

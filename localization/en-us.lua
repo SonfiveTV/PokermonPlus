@@ -70,10 +70,10 @@ return {
             b_sonfive_pearlescentdeck = {
                 name = "Pearlescent Deck",
                 text = {
-                        "{C:attention}+#1#{} Joker slot",
-                        "{C:poke_pink}-1{} Energy Limit",
                         "{C:poke_pink}-1{} Energy",
-                        "{C:inactive,s:0.8}(Base values are {C:attention,s:0.8}de-energized{}{C:inactive,s:0.8}){}",
+                        "{C:poke_pink}-1{} Energy Limit",
+                        "At end of each Round:",
+                        "{C:money}$1{} per {C:poke_pink}de-energized{} {C:attention}Joker",
                 }
             },
 
@@ -435,6 +435,16 @@ return {
                     "{C:inactive}(Unique Energy cards used: {C:poke_pink}#1#{}{C:inactive})",
                 }
             },
+            j_sonfive_mystery_box = {
+                name = "Mystery Box",
+                text = {
+                    
+                    "Sell this for a reward",
+                    "based on amount of",
+                    "{X:poke_metal,C:white}Metal{} Jokers {C:attention}sold{}",
+                    "{C:inactive}(Metal Jokers sold: {C:attention}#1#{}{C:inactive})",
+                }
+            },
             j_sonfive_quest_heatran = {
                 name = "Into The Volcano",
                 text = {
@@ -581,89 +591,19 @@ return {
 
         Other = {
 
-            ston_hands1 = {
+            ston_hands = {
                 name = "Played Hands",
                 text = {
-                        "#1#",
+                        "Senku",
+                },
+            },
+            member_energy_used = {
+                name = "Energy Used",
+                text = {
+                        "eneru",
                 },
             },
 
-            ston_hands2 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                },
-            },
-
-            ston_hands3 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                },
-            },
-
-            ston_hands4 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                },
-            },
-
-            ston_hands5 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                },
-            },
-
-            ston_hands6 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                        "#6#",
-                },
-            },
-
-            ston_hands7 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                        "#6#",
-                        "#7#",
-                },
-            },
-
-            ston_hands8 = {
-                name = "Played Hands",
-                text = {
-                        "#1#",
-                        "#2#",
-                        "#3#",
-                        "#4#",
-                        "#5#",
-                        "#6#",
-                        "#7#",
-                        "#8#",
-                },
-            },
             rewards_member_card = {
                 name = "Rewards",
                 text = {
@@ -673,13 +613,13 @@ return {
                         "{C:inactive}(Rewards are not cumulative){}"
                 },
             },
-            energy_member_card = {
-                name = "Energy Used",
+            rewards_mystery_box = {
+                name = "Rewards",
                 text = {
-                        "{V:1,s:0.8}#1#, {V:2,s:0.8}#2#, {V:3,s:0.8}#3#,",
-                        "{V:4,s:0.8}#4#, {V:5,s:0.8}#5#, {V:6,s:0.8}#6#,",
-                        "{V:7,s:0.8}#7#, {V:8,s:0.8}#8#, {V:9,s:0.8}#9#,",
-                        "{V:10,s:0.8}#10#, {V:11,s:0.8}#11#, {V:12,s:0.8}#12#"
+                        "{C:attention}5{} - {C:attention}Basic{} {X:poke_metal,C:white}Metal{} Joker",
+                        "{C:attention}10{} - {C:dark_edition}Negative{} {C:attention}Basic{} {X:poke_metal,C:white}Metal{} Joker",
+                        "{C:attention}20{} - {C:attention}Meltan",
+                        "{C:inactive}(Rewards are not cumulative){}"
                 },
             },
             

@@ -82,7 +82,7 @@ else
     })
 end
 
-local list = {quest_meltan, quest_meltan_active, quest_meltan_complete}
+local list = {}
 
 return {name = "Meltan Quest", 
 list = list
