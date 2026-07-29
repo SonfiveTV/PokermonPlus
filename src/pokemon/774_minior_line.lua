@@ -21,7 +21,6 @@ local minior = {
   gen = 7,
   set_sprites = function(self, card, front)
     if not (card and card.ability and card.ability.extra) then return end
-    if not (G.GAME.current_round.hands_played >= 2) then return end
     local abbr = card.ability and card.ability.extra
     local float = card.children and card.children.floating_sprite
     local enhancements = {
