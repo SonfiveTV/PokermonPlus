@@ -41,15 +41,6 @@ local minior = {
   set_ability = function(self, card, initial, delay_sprites)
     if initial then self:set_nature(card) end
   end,
-  calc_dollar_bonus = function(self, card)
-    if not card.ability.extra.shields then
-      card.ability.extra.shields = true
-      if card.children.floating_sprite then
-        card.children.floating_sprite:set_sprite_pos({x = 7, y = 3})
-      end
-      SMODS.calculate_effect({message = ''}, card)
-    end
-  end,
   calculate = function(self, card, context)
     local abbr = card.ability.extra
     local hands_played = G.GAME.current_round.hands_played
