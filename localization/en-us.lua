@@ -237,7 +237,7 @@ return {
             j_sonfive_minior_bonus = {
                 name = 'Minior (Indigo Core)',
                 text = {
-                    "{C:attention}Stone{} cards are also {V:1}#1#{}",
+                    "{C:attention}Stone{} cards are also {V:1}#1#{} cards",
                     "{C:inactive}(Transforms at end of round){}"
                 }
             },
@@ -932,6 +932,7 @@ return {
             quest_completed = "You have already completed this Quest!",
 
             -- Joker Messages
+            sonfive_shieldsdown_ex = "Shields Down!",
             sonfive_saltcure_ex = "Salt Cure!",
             sonfive_speedboost = "Speed Boost!",
             poke_deenergized_ex = "De-Energized!",
