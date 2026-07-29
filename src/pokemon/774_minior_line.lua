@@ -20,9 +20,9 @@ local minior = {
   ptype = "Earth",
   gen = 7,
   set_sprites = function(self, card, front)
-    if not (card and card.ability and card.ability.extra) then return end
-    local abbr = card.ability and card.ability.extra
-    local float = card.children and card.children.floating_sprite
+    local abbr = card and card.ability and card.ability.extra
+    local float = card and card.children and card.children.floating_sprite
+    if not abbr or not pokermon.can_set_sprite(card) then return end
     local enhancements = {
       ["mult"] = { x = 9, y = 3 },
       ["wild"] = { x = 10, y = 3 },
