@@ -38,7 +38,7 @@ local minior = {
     SMODS.calculate_effect({message = abbr.shields and '' or localize('sonfive_shieldsdown_ex')}, card)
   end,
   set_ability = function(self, card, initial, delay_sprites)
-    if initial then self:set_nature(card) end
+    if initial then self:set_core(card) end
   end,
   calculate = function(self, card, context)
     local abbr = card.ability.extra
@@ -66,7 +66,7 @@ local minior = {
       self:set_sprites(card)
     end
   end,
-  set_nature = function(self, card)
+  set_core = function(self, card)
     card.ability.extra.form = pokermon.get_target_card_enhancements("minior", 1)
     card.ability.extra.form = card.ability.extra.form[1]:sub(3, -1) -- taking out 'm_' from the key
   end,
