@@ -15,6 +15,7 @@ SMODS.current_mod.set_debuff = function(card)
 end
 
 -- copy of `is_energizable` but for centers instead
+local energizable_vanilla = assert(SMODS.load_file("functions/energizable_vanilla.lua", "Pokermon"))()
 local is_center_energizable = function(center)
   if energizable_vanilla[center.name] then
     return true
@@ -130,30 +131,30 @@ SMODS.current_mod.calculate = function(self, context)
 end
 
 -- Void Deck Negative Energy check
-local cae_ref = can_apply_energy
-can_apply_energy = function(card, etype, ...)
+local cae_ref = pokermon.energy.can_apply_energy
+pokermon.energy.can_apply_energy = function(card, etype, ...)
   local ret = cae_ref(card, etype, ...)
   if not ret and G.GAME.neg_energy_trigger and get_total_energy(card) <= energy_max + (G.GAME.energy_plus or 0) + (type(card.ability.extra) == "table" and card.ability.extra.e_limit_up or 0) then ret = true end
   return ret
 end
 
-local can_use_ref = energy_can_use
-energy_can_use = function(self, card)
+local can_use_ref = pokermon.energy.can_use
+pokermon.energy.can_use = function(self, card)
   if G.GAME.modifiers.void and card.edition and card.edition.negative then G.GAME.neg_energy_trigger = true
   elseif G.GAME.neg_energy_trigger then G.GAME.neg_energy_trigger = nil end
   local ret = can_use_ref(self, card)
   return ret
 end
 
-local energy_use_ref = energy_use
-energy_use = function(self, card, area, copier, highlighted, exclude_spoon)
+local energy_use_ref = pokermon.energy.use
+pokermon.energy.use = function(self, card, area, copier, highlighted, exclude_spoon)
   if G.GAME.modifiers.void and card.edition and card.edition.negative then G.GAME.neg_energy_trigger = true
   elseif G.GAME.neg_energy_trigger then G.GAME.neg_energy_trigger = nil end
   energy_use_ref(self, card, area, copier, highlighted, exclude_spoon)
 end
 
-local increment_energy_ref = increment_energy
-increment_energy = function(card, etype, amount, silent)
+local increment_energy_ref = pokermon.energy.modify
+pokermon.energy.modify = function(card, etype, amount, silent)
   if G.GAME.modifiers.void and G.GAME.neg_energy_trigger then
     card.ability.extra.e_limit_up = (card.ability.extra.e_limit_up or 0) + 1
     G.GAME.neg_energy_trigger = nil

@@ -272,7 +272,7 @@ jd_def["j_sonfive_grafaiai"] = {
             and text.children[i].config
             then
                 text.children[i].config.colour = colours[i]
-                if targets[i].type == "Lightning" then
+                if targets[i].type == "Lightning" and text.children[i].children[1] then
                     text.children[i].children[1].config.colour = G.C.BLACK
                 end
             end
