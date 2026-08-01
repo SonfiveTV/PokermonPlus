@@ -12,5 +12,6 @@ return {
     shroodle = true,
     cetoddle = true,
     canari_plush = true,
+    key_items = true,
 	timerball = true,
 }

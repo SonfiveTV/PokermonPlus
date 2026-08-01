@@ -20,12 +20,13 @@ return {
         { list = { "j_sonfive_shroodle", "j_sonfive_grafaiai" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_shroodle" } end, config_key = "shroodle" },
         { list = { "j_sonfive_cetoddle", "j_sonfive_cetitan" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_cetoddle" } end, config_key = "cetoddle" },
         { list = { "j_sonfive_canari_plush" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_canari_plush" } end, config_key = "canari_plush" },
+        { list = { "j_sonfive_member_card", "j_sonfive_mystery_box" }, label = function() return localize { type = "name_text", set = "Other", key = "sonfive_key_item" } end, config_key = "key_items" },
       }
     },
     {
       title = function() return localize("sonfive_config_items") end,
       tiles = {
-        { list = { "c_sonfive_timerball" }, label = function() return localize { type = "name_text", set = "Item", key = "c_sonfive_timerball" } end, config_key = "timerball" },
+        { list = { "c_sonfive_timerball" }, label = function() return localize { type = "name_text", set = "poke_item", key = "c_sonfive_timerball" } end, config_key = "timerball" },
       }
     }
   }

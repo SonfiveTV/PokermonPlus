@@ -759,6 +759,15 @@ return {
                         "{C:attention}Stake{} difficulty"
                     },
             },
+
+                sonfive_key_item = {
+                name = "Key Items",
+                text = {
+                        "Used this Joker",
+                        "to win on {C:attention}Saffron",
+                        "{C:attention}Stake{} difficulty"
+                    },
+            },
         },
 
         Sleeve = {
@@ -954,7 +963,8 @@ return {
             sonfive_paralyzed = "Paralyzed",
             sonfive_frozen = "Frozen",
             sonfive_asleep = "Asleep",
-            sonfive_poisoned = "Poisoned"
+            sonfive_poisoned = "Poisoned",
+            sonfive_key_item = "Key Items",
         },
     }       
 }
