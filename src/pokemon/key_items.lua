@@ -54,7 +54,7 @@ local member_card = {
       if count >= info.quest3 then
         SMODS.add_card{set = "Joker", key = "j_sonfive_darkrai"}
       elseif count >= info.quest2 then
-        G.GAME.energy_plus = (G.GAME.energy_plus or 0) + 1
+        G.GAME.poke_energy_plus = (G.GAME.poke_energy_plus or 0) + 1
       elseif count >= info.quest1 then
         if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
           G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
