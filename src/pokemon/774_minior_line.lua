@@ -1,12 +1,12 @@
 local minior = {
   name = "minior",
-  config = {extra = {shields = true, revealed = false, Xmult = 1.25, form = "mult"}},
+  config = {extra = {shields = true, revealed = false, Xmult = 1.25, form = "mult", hand_played = 0}},
   loc_vars = function(self, info_queue, card)
     local abbr = card.ability.extra or self.config.extra
     local key = not abbr.shields and self.key .. "_" .. abbr.form or self.key
     local vars = {
       abbr.revealed and abbr.form:gsub('^%l', string.upper) or "???",
-      math.max(2 - G.GAME.current_round.hands_played, 0),
+      math.max(2 - abbr.hand_played, 0),
       abbr.Xmult
     }
     vars.colours = { abbr.revealed and G.C.FILTER or G.C.UI.TEXT_INACTIVE }
@@ -42,10 +42,16 @@ local minior = {
   end,
   calculate = function(self, card, context)
     local abbr = card.ability.extra
-    local hands_played = G.GAME.current_round.hands_played
+    local hands_played = abbr.hand_played
 
     if context.joker_main and hands_played < 2 then
       return { xmult = abbr.Xmult }
+    end
+
+    if context.after and not context.blueprint then
+      if abbr.shields then
+        abbr.hand_played = hands_played + 1
+      end
     end
 
     if G.GAME.blind.in_blind and hands_played >= 2 and abbr.shields then
@@ -63,6 +69,7 @@ local minior = {
 
     if context.round_eval and not abbr.shields then
       abbr.shields = true
+      abbr.hand_played = 0
       self:set_sprites(card)
     end
   end,
