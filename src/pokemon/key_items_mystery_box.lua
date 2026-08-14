@@ -21,9 +21,10 @@ local mystery_box = {
   atlas = "sonfive_other",
   pos = {x = 2, y = 1},
   blueprint_compat = false,
-  -- in_pool = function(self)
-  --   return not (next(SMODS.find_card("j_sonfive_meltan")) or next(SMODS.find_card("j_sonfive_melmetal") or next(SMODS.find_card("j_sonfive_gmax_melmetal"))))
-  -- end,
+  in_pool = function(self)
+    return sonfive_config.meltan
+    -- return not (next(SMODS.find_card("j_sonfive_meltan")) or next(SMODS.find_card("j_sonfive_melmetal") or next(SMODS.find_card("j_sonfive_gmax_melmetal"))))
+  end,
   calculate = function(self, card, context)
     local info = card.ability.extra
     local count = 0
