@@ -13,10 +13,9 @@ local lechonk = {
         if pokermon_config.detailed_tooltips then
           info_queue[#info_queue+1] = {set = 'Other', key = 'poke_volatile_'..card.ability.extra.volatile}
         end
-        local earned = (SMODS.Mods["Talisman"] or {}).can_load and to_number(G.GAME.dollars) or G.GAME.dollars
         return {
             vars = {
-              (card.ability.extra.money_mod * math.floor(earned)),
+              card.ability.extra.money_mod,
               card.ability.extra.reset,
               card.ability.evo_rqmt - card.ability.extra.triggers,
             }

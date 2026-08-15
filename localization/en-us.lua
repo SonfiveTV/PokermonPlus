@@ -307,8 +307,8 @@ return {
                 text = {
                     "{C:attention}Volatile Right{}",
                     "{br:3}text",
-                    "When {C:attention}Blind{} is selected",
-                    "increase {C:attention}sell value{} by {C:money}$#1#{}",
+                    "When {C:attention}Blind{} is selected gain {C:money}$#1#{} of",
+                    "{C:attention}sell value{} for every {C:money}$1{} you have",
                     "{C:red}Reduce{} money to {C:money}$#2#{}",
                     "{C:inactive}(Evolves after triggering {C:attention}#3#{} {C:inactive}times){}"
                 }
