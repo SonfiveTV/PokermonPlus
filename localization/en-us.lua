@@ -179,7 +179,7 @@ return {
             j_sonfive_helioptile = {
                 name = 'Helioptile',
                 text = {
-                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
+                    "Played {C:attention}Wild{} cards earn {C:money}$#1#{} when scored",
                     "{C:green}#4# in #5#{} chance to earn {C:money}$#2#{} instead",
                     "{C:inactive,s:0.8}(Evolves with a {C:attention,s:0.8}Sun Stone{C:inactive,s:0.8})",
                 }
@@ -187,8 +187,9 @@ return {
             j_sonfive_heliolisk = {
                 name = 'Heliolisk',
                 text = {
-                    "Played {C:hearts}#3#{} cards earn {C:money}$#1#{} when scored",
-                    "{C:green}#4# in #5#{} chance to increase payout by {C:money}$#6#{}",
+                    "Played {C:attention}Wild{} cards earn {C:money}$#1#{} when scored",
+                    "{C:green}#4# in #5#{} chance to increase by {C:money}$#6#{}",
+                    "{C:inactive}(Max of this Joker's sell value: {C:money}$#3#{C:inactive}){}",
                     "{C:inactive}(Resets at end of round){}",
                 }
             },
@@ -307,8 +308,7 @@ return {
                     "{C:attention}Volatile Right{}",
                     "{br:3}text",
                     "When {C:attention}Blind{} is selected",
-                    "increase {C:attention}sell value{} by {C:attention}#1#%{} of",
-                    "the amount of money you have",
+                    "increase {C:attention}sell value{} by {C:money}$#1#{}",
                     "{C:red}Reduce{} money to {C:money}$#2#{}",
                     "{C:inactive}(Evolves after triggering {C:attention}#3#{} {C:inactive}times){}"
                 }
@@ -317,12 +317,11 @@ return {
             j_sonfive_oinkologne = {
                 name = "Oinkologne",
                 text = {
-                    "{C:attention}Volatile Right{}",
-                    "{br:3}text",
-                    "When {C:attention}Blind{} is selected",
-                    "increase {C:attention}sell value{} by {C:attention}#1#%{} of",
-                    "the amount of money you have",
-                    "{C:red}Reduce{} money to {C:money}$#2#{}"
+
+                    "When {C:attention}Boss Blind{} is selected",
+                    "create an {C:attention}Investment Tag{} for",
+                    "every {C:money}$25{} of this Joker's {C:money}sell value{}",
+                    "{C:inactive}(Currently: {C:attention}#1#{}{C:inactive}){}"
                 }
             },
 

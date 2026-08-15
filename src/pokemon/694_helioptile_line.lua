@@ -2,7 +2,6 @@ local helioptile = {
   name = "helioptile",
   config = {extra = {
     money_mod = 1,
-    suit = "Hearts",
     numerator = 1,
     denominator = 4
   }},
@@ -10,9 +9,9 @@ local helioptile = {
     local a = card.ability.extra
     local num, dem = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'helioptile')
     local vars = {
-      a.money_mod,
-      a.money_mod * 2,
-      localize(a.suit, 'suits_singular'),
+      math.min(a.money_mod, card.sell_cost),
+      math.min(a.money_mod * 2, card.sell_cost),
+      card.sell_cost,
       num,
       dem
     }
@@ -20,7 +19,7 @@ local helioptile = {
   end,
   designer = "Sonfive",
   rarity = 1,
-  cost = 4,
+  cost = 5,
   item_req = "sunstone",
   stage = "Basic",
   ptype = "Lightning",
@@ -29,7 +28,7 @@ local helioptile = {
   calculate = function(self, card, context)
     local a = card.ability.extra
     local bonus = 0
-    if context.individual and context.cardarea == G.play and context.other_card:is_suit(a.suit) then
+    if context.individual and context.cardarea == G.play and SMODS.has_enhancement(context.other_card, 'm_wild') then
       if not context.end_of_round and not context.before and not context.after and not context.other_card.debuff then
         if SMODS.pseudorandom_probability(card, 'helioptile', a.numerator, a.denominator, 'helioptile') then
           bonus =  a.money_mod * 2
@@ -60,7 +59,6 @@ local heliolisk = {
   name = "heliolisk",
   config = {extra = {
     money_mod = 2,
-    suit = "Hearts",
     numerator = 1,
     denominator = 4,
     money_mod1 = 1,
@@ -71,9 +69,9 @@ local heliolisk = {
     local a = card.ability.extra
     local num, dem = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'helioptile')
     local vars = {
-      a.money_mod,
-      a.money_mod * 2,
-      localize(a.suit, 'suits_singular'),
+      math.min(a.money_mod, card.sell_cost),
+      math.min(a.money_mod * 2, card.sell_cost),
+      card.sell_cost,
       num,
       dem,
       a.money_mod1
@@ -83,7 +81,7 @@ local heliolisk = {
   end,
   designer = "Sonfive",
   rarity = "poke_safari",
-  cost = 7,
+  cost = 8,
   stage = "One",
   ptype = "Lightning",
   gen = 6,
@@ -91,7 +89,7 @@ local heliolisk = {
   calculate = function(self, card, context)
     local a = card.ability.extra
     if context.individual and context.cardarea == G.play
-    and context.other_card:is_suit(a.suit)
+    and SMODS.has_enhancement(context.other_card, 'm_wild')
     and not context.end_of_round and not context.before and not context.after
     and not context.other_card.debuff then
 
@@ -102,7 +100,7 @@ local heliolisk = {
       end
 
       G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + total_earned
-      local earned = ease_poke_dollars(card, "heliolisk", total_earned, true)
+      local earned = ease_poke_dollars(card, "heliolisk", math.min(total_earned, card.sell_cost), true)
 
       G.E_MANAGER:add_event(Event({
         func = function()
