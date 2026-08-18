@@ -25,6 +25,7 @@ local member_card = {
   atlas = "sonfive_other",
   pos = {x = 1, y = 1},
   blueprint_compat = false,
+  eternal_compat = false,
   in_pool = function(self)
     return sonfive_config.darkrai
     -- return not (next(SMODS.find_card("j_sonfive_darkrai")) or next(SMODS.find_card("j_sonfive_mega_darkrai")))
