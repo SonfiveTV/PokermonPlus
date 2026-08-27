@@ -96,7 +96,7 @@ local canari_plush = {
             if v.seal == "Purple" then
                 a.purple = a.purple + 1
                 if canari_level(a.purple) > a.purple_current then
-                    G.GAME.scry_amount = (G.GAME.scry_amount or 0) + (canari_level(a.purple) - a.purple_current)
+                    G.GAME.poke_scry_amount = (G.GAME.poke_scry_amount or 0) + (canari_level(a.purple) - a.purple_current)
                     a.purple_current = canari_level(a.purple)
                     if not (canari_level(a.purple) == 3) then a.purple = 0 end
                 end
@@ -106,10 +106,10 @@ local canari_plush = {
             if v.seal == "poke_pink_seal" then
                 a.pink = a.pink + 1
                 if canari_level(a.pink) > a.pink_current then
-                    if not G.GAME.energy_plus then
-                        G.GAME.energy_plus = (canari_level(a.pink) - a.pink_current)
+                    if not G.GAME.poke_energy_plus then
+                        G.GAME.poke_energy_plus = (canari_level(a.pink) - a.pink_current)
                     else
-                        G.GAME.energy_plus = G.GAME.energy_plus + (canari_level(a.pink) - a.pink_current)
+                        G.GAME.poke_energy_plus = G.GAME.poke_energy_plus + (canari_level(a.pink) - a.pink_current)
                     end
                     a.pink_current = canari_level(a.pink)
                     if not (canari_level(a.pink) == 3) then a.pink = 0 end
@@ -140,12 +140,12 @@ local canari_plush = {
             return true end }))
     G.GAME.round_resets.discards = G.GAME.round_resets.discards - a.red_current
     G.GAME.interest_cap = G.GAME.interest_cap - (5 * a.gold_current)
-    G.GAME.scry_amount = (G.GAME.scry_amount or 0) - a.purple_current
+    G.GAME.poke_scry_amount = (G.GAME.poke_scry_amount or 0) - a.purple_current
     G.GAME.round_resets.hands = G.GAME.round_resets.hands - a.blue_current
-    if not G.GAME.energy_plus then
-        G.GAME.energy_plus = - a.pink_current
+    if not G.GAME.poke_energy_plus then
+        G.GAME.poke_energy_plus = - a.pink_current
     else
-        G.GAME.energy_plus = G.GAME.energy_plus - a.pink_current
+        G.GAME.poke_energy_plus = G.GAME.poke_energy_plus - a.pink_current
     end
   end,
 
