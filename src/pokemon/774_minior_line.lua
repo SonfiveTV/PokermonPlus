@@ -61,7 +61,7 @@ local minior = {
     end
 
     if context.check_enhancement and hands_played >= 2 then
-      if SMODS.has_enhancement(context.other_card, 'm_stone') then
+      if pokermon.has_enhancement(context.other_card, 'm_stone') then
         local key = "m_"..abbr.form
         return { [key] = true }
       end
