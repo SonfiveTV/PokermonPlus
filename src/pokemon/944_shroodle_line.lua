@@ -54,7 +54,7 @@ local shroodle = {
         end)
       }))
     end
-    return scaling_evo(self, card, context, "j_sonfive_grafaiai", card.ability.extra.count, self.config.evo_rqmt)
+    return pokermon.scaling_evo(self, card, context, "j_sonfive_grafaiai", card.ability.extra.count, self.config.evo_rqmt)
   end,
   set_ability = function(self, card, initial, delay_sprites)
     if initial then

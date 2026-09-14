@@ -52,7 +52,7 @@ local helioptile = {
         }
       end
     end
-    return item_evo(self, card, context, "j_sonfive_heliolisk")
+    return pokermon.item_evo(self, card, context, "j_sonfive_heliolisk")
   end
 }
 

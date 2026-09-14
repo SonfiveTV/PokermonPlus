@@ -47,7 +47,7 @@ local nacli = {
         }
       end
     end
-    return scaling_evo(self, card, context, "j_sonfive_naclstack", card.ability.extra.Xmult, self.config.evo_rqmt)
+    return pokermon.scaling_evo(self, card, context, "j_sonfive_naclstack", card.ability.extra.Xmult, self.config.evo_rqmt)
   end
 }
 
@@ -100,7 +100,7 @@ local naclstack = {
         }
       end
     end
-    return scaling_evo(self, card, context, "j_sonfive_garganacl", card.ability.extra.Xmult, self.config.evo_rqmt)
+    return pokermon.scaling_evo(self, card, context, "j_sonfive_garganacl", card.ability.extra.Xmult, self.config.evo_rqmt)
   end
 }
 

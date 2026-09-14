@@ -26,7 +26,7 @@ local meltan = {
           card = card
         }
     end
-    return scaling_evo(self, card, context, "j_sonfive_melmetal", card.ability.extra.count, card.ability.extra.evo_rqmt)
+    return pokermon.scaling_evo(self, card, context, "j_sonfive_melmetal", card.ability.extra.count, card.ability.extra.evo_rqmt)
   end,
   add_to_deck = function(self, card, from_debuff)
     if not from_debuff then

@@ -59,7 +59,7 @@ local cetoddle = {
         if context.joker_main then
             return { xmult = card.ability.extra.Xmult }
         end
-        return item_evo(self, card, context, "j_sonfive_cetitan")
+        return pokermon.item_evo(self, card, context, "j_sonfive_cetitan")
     end,
 }
 
