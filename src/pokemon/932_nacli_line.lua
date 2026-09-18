@@ -20,7 +20,7 @@ local nacli = {
       local rightmost = G.jokers.cards[#G.jokers.cards]
 
       if rightmost ~= card and not rightmost.ability.eternal then 
-        if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
+        if pokermon.is_type(rightmost, "Metal") or pokermon.is_type(rightmost, "Water") then
           odds = SMODS.pseudorandom_probability(card, 'nacli', abbr.numerator, (abbr.denominator / 2), 'nacli')
         else
           odds = SMODS.pseudorandom_probability(card, 'nacli', abbr.numerator, abbr.denominator, 'nacli')
@@ -73,7 +73,7 @@ local naclstack = {
       local rightmost = G.jokers.cards[#G.jokers.cards]
 
       if rightmost ~= card and not rightmost.ability.eternal then 
-        if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
+        if pokermon.is_type(rightmost, "Metal") or pokermon.is_type(rightmost, "Water") then
           odds = SMODS.pseudorandom_probability(card, 'naclstack', abbr.numerator, (abbr.denominator / 2), 'naclstack')
         else
           odds = SMODS.pseudorandom_probability(card, 'naclstack', abbr.numerator, abbr.denominator, 'naclstack')
@@ -127,7 +127,7 @@ local garganacl = {
       local rightmost = G.jokers.cards[#G.jokers.cards]
 
       if rightmost ~= card and not rightmost.ability.eternal then 
-        if is_type(rightmost, "Metal") or is_type(rightmost, "Water") then
+        if pokermon.is_type(rightmost, "Metal") or pokermon.is_type(rightmost, "Water") then
           odds = SMODS.pseudorandom_probability(card, 'garganacl', abbr.numerator, (abbr.denominator / 2), 'garganacl')
         else
           odds = SMODS.pseudorandom_probability(card, 'garganacl', abbr.numerator, abbr.denominator, 'garganacl')
