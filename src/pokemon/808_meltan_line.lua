@@ -15,11 +15,11 @@ local meltan = {
   calculate = function(self, card, context)
     local abbr = card.ability.extra
     if context.individual and not context.end_of_round and context.cardarea == G.hand then
-      if SMODS.has_enhancement(context.other_card, 'm_steel') then 
+      if pokermon.has_enhancement(context.other_card, 'm_steel') then 
         abbr.count = abbr.count + 1
       end
     end
-    if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and SMODS.has_enhancement(context.other_card, 'm_steel') then
+    if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and pokermon.has_enhancement(context.other_card, 'm_steel') then
         return {
           message = localize('k_again_ex'),
           repetitions = abbr.retriggers,
@@ -59,7 +59,7 @@ local melmetal = {
   end,
   
   calculate = function(self, card, context)
-    if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and SMODS.has_enhancement(context.other_card, 'm_steel') then
+    if context.repetition and context.cardarea == G.hand and (next(context.card_effects[1]) or #context.card_effects > 1) and pokermon.has_enhancement(context.other_card, 'm_steel') then
       local retriggers = 1 + math.floor(#SMODS.find_card('c_poke_metal_energy') + #pokermon.find_pokemon_type("Metal")/2)
       if retriggers > 0 then
         return {
