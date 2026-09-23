@@ -170,12 +170,12 @@ end
 local type_tooltip_ref = pokermon.type_tooltip
 pokermon.type_tooltip = function(self, info_queue, center)
   if (center.ability and center.ability.extra and type(center.ability.extra) == "table" and
-      center.ability.sonfive_weakened and (get_total_energy(center) == 0)) or 
+      center.ability.sonfive_weakened and (pokermon.energy.get_total_energy(center) == 0)) or 
       (center.ability and center.ability.extra and type(center.ability.extra) == "table" and
-      G.GAME.modifiers.pearlescent and (get_total_energy(center) == 0))
+      G.GAME.modifiers.pearlescent and (pokermon.energy.get_total_energy(center) == 0))
       then
     info_queue[#info_queue+1] = {set = 'Other', key = "energy",
-        vars = {get_total_energy(center), energy_max + (G.GAME.energy_plus or 0) + (center.ability.extra.e_limit_up or 0)}}
+        vars = {pokermon.energy.get_total_energy(center), energy_max + (G.GAME.energy_plus or 0) + (center.ability.extra.e_limit_up or 0)}}
   end
   type_tooltip_ref(self, info_queue, center)
 end
