@@ -16,7 +16,7 @@ return {
       title = function() return localize("sonfive_config_page2") end,
       tiles = {
         { list = { "j_sonfive_duraludon" , "j_sonfive_archaludon"}, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_duraludon" } end, config_key = "duraludon" },
-        { list = { "j_sonfive_lechonk", "j_sonfive_oinkologne" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_oinkologne" } end, config_key = "oinkologne" },
+        { list = { "j_sonfive_lechonk", "j_sonfive_oinkologne" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_lechonk" } end, config_key = "lechonk" },
         { list = { "j_sonfive_shroodle", "j_sonfive_grafaiai" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_shroodle" } end, config_key = "shroodle" },
         { list = { "j_sonfive_cetoddle", "j_sonfive_cetitan" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_cetoddle" } end, config_key = "cetoddle" },
         { list = { "j_sonfive_canari_plush" }, label = function() return localize { type = "name_text", set = "Joker", key = "j_sonfive_canari_plush" } end, config_key = "canari_plush" },
