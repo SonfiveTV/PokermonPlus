@@ -22,7 +22,7 @@ local is_center_energizable = function(center)
   end
   -- Regular case
   if type(center.config.extra) == "table" then
-    for name, _ in pairs(pokermon.energy_values) do
+    for name, _ in pairs(pokermon.energy.values) do
       if type(center.config.extra[name]) == "number" then
         return true
       end
@@ -31,8 +31,8 @@ local is_center_energizable = function(center)
     return true
   -- More generic check for energizable values that aren't in ability.extra
   else
-    for k, _ in pairs(pokermon.energy_values) do
-      if center.config[pokermon.energy_values[k]] and center.config[pokermon.energy_values[k]] > 0 then return true end
+    for k, _ in pairs(pokermon.energy.values) do
+      if center.config[pokermon.energy.values[k]] and center.config[pokermon.energy.values[k]] > 0 then return true end
     end
   end
   return false

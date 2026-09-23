@@ -946,8 +946,9 @@ return {
             poke_deenergized_ex = "De-Energized!",
 
             -- Config Descriptions
-            sonfive_config_page1 = "Pokémon 1/2",
-            sonfive_config_page2 = "Pokémon 2/2",
+            sonfive_config_page1 = "Pokémon 1/3",
+            sonfive_config_page2 = "Pokémon 2/3",
+            sonfive_config_page3 = "Pokémon 3/3",
             sonfive_config_items = "Items",
         },
         v_text = {
