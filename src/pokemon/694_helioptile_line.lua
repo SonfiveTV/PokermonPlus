@@ -29,7 +29,7 @@ local helioptile = {
   calculate = function(self, card, context)
     local a = card.ability.extra
     local bonus = 0
-    if context.individual and context.cardarea == G.play and pokermon.has_enhancement(context.other_card, 'm_wild') then
+    if context.individual and context.cardarea == G.play and SMODS.has_enhancement(context.other_card, 'm_wild') then
       if not context.end_of_round and not context.before and not context.after and not context.other_card.debuff then
         if SMODS.pseudorandom_probability(card, 'helioptile', a.numerator, a.denominator, 'helioptile') then
           bonus =  a.money_mod * 2
@@ -91,7 +91,7 @@ local heliolisk = {
   calculate = function(self, card, context)
     local a = card.ability.extra
     if context.individual and context.cardarea == G.play
-    and pokermon.has_enhancement(context.other_card, 'm_wild')
+    and SMODS.has_enhancement(context.other_card, 'm_wild')
     and not context.end_of_round and not context.before and not context.after
     and not context.other_card.debuff then
 
