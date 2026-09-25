@@ -305,12 +305,10 @@ return {
             j_sonfive_lechonk = {
                 name = "Lechonk",
                 text = {
-                    "{C:attention}Volatile Right{}",
-                    "{br:3}text",
-                    "When {C:attention}Blind{} is selected gain {C:money}$#1#{} of",
-                    "{C:attention}sell value{} for every {C:money}$1{} you have",
-                    "{C:red}Reduce{} money to {C:money}$#2#{}",
-                    "{C:inactive}(Evolves after triggering {C:attention}#3#{} {C:inactive}times){}"
+                    "Gains your {C:attention}interest{}",
+                    "as sell value at end of round",
+                    "{C:red}Earn no interest",
+                    "{C:inactive}(Evolves after triggering {C:attention}#1#{} {C:inactive}times){}"
                 }
             },
 
@@ -318,10 +316,9 @@ return {
                 name = "Oinkologne",
                 text = {
 
-                    "When {C:attention}Boss Blind{} is selected",
-                    "create an {C:attention}Investment Tag{} for",
-                    "every {C:money}$25{} of this Joker's {C:money}sell value{}",
-                    "{C:inactive}(Currently: {C:attention}#1#{}{C:inactive}){}"
+                    "Gains double your {C:attention}interest{}",
+                    "as sell value at end of round",
+                    "{C:red}Earn no interest",
                 }
             },
 

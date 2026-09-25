@@ -61,3 +61,16 @@ payload = '''
     end
 '''
 match_indent = true
+
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+    if G.GAME.dollars >= 5 and not G.GAME.modifiers.no_interest then
+'''
+position = "at"
+payload = '''
+    if G.GAME.dollars >= 5 and not (G.GAME.modifiers.no_interest or (next(SMODS.find_card('j_sonfive_lechonk')) or next(SMODS.find_card('j_sonfive_oinkologne')))) then
+'''
+match_indent = true
