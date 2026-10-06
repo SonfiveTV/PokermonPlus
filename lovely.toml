@@ -28,7 +28,7 @@ pattern = "if card.ability.consumeable and not skip_materialize then card:start_
 position = "after"
 payload = '''
 if _type == 'Joker' and G.GAME.modifiers.sonfive_pearlescent then 
-    increment_energy(card, get_type(card), -1, true)
+    pokermon.energy.modify(card, pokermon.get_type(card), -1, true)
     card.ability.extra.e_limit_up = card.ability.extra.e_limit_up and (card.ability.extra.e_limit_up - 1) or -1
 end
 '''
