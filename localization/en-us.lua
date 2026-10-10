@@ -189,8 +189,8 @@ return {
                 text = {
                     "Played {C:attention}Wild{} cards earn {C:money}$#1#{} when scored",
                     "{C:green}#4# in #5#{} chance to increase by {C:money}$#6#{}",
-                    "{C:inactive}(Max of this Joker's sell value: {C:money}$#3#{C:inactive}){}",
-                    "{C:inactive}(Resets at end of round){}",
+                    -- "{C:inactive}(Max of this Joker's sell value: {C:money}$#3#{C:inactive}){}",
+                    -- "{C:inactive}(Resets at end of round){}",
                 }
             },
             j_sonfive_minior = {

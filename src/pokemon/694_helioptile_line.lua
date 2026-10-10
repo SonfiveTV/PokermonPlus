@@ -102,7 +102,7 @@ local heliolisk = {
       end
 
       G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + total_earned
-      local earned = pokermon.ease_poke_dollars(card, "heliolisk", math.min(total_earned, card.sell_cost), true)
+      local earned = pokermon.ease_poke_dollars(card, "heliolisk", total_earned, true)
 
       G.E_MANAGER:add_event(Event({
         func = function()
