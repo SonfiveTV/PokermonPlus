@@ -1,6 +1,6 @@
 {
-    "name": "Pokermon",
-    "version_number": "1.2.0",
+    "name": "PokermonPlus",
+    "version_number": "1.2.1",
     "website_url": "https://github.com/SonfiveTV/PokermonPlus",
     "description": "An add-on mod for Pokermon.",
     "dependencies": [
