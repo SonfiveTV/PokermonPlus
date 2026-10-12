@@ -8,10 +8,10 @@ This is an add-on mod for InertSteak's Pokermon mod. This mod aims to implement 
 | Name         | Base Effect   |
 | ------------- | ------------- |
 | Virtuous Deck  | Start with Timer Ball  |
-| Prophetic Deck | +3 Foresight, -1 hands |
-| Shiny Deck | Increased Shiny odds |
-| Mega Deck | Start with a Mega Stone, <br/>+4 Ante win requirement |
-| Void Deck | Negative Energy cards give +1 Energy Limit, <br/> Creates a Nightmare Spectral after each Boss Blind |
+| Shiny Deck | -1 Boosters in shop, Shiny Tag after beating Small or Big Blind |
+| Void Deck | Negative Energy cards give +1 Energy Limit, <br/> Rerolls have a 1 in 15 chance to add a Nightmare to shop |
+| Rogue Deck | Start with a Mega Stone, <br/>+4 Ante win requirement |
+| Pearlescent Deck | -1 Energy <br/>-1 Energy Limit<br/>$1 per de-energized Joker at end of round |
 
 
 ## Stakes
@@ -36,7 +36,7 @@ Each Pokemon line can be toggled on/off in the mod config options
 
 | | | |
 |-----|------|-----|
-| Nincada | Ninjask | Shedinja |
+| Heatran | | |
 | Darkrai | | |
 | Helioptile | Heliolisk |  |
 | Meltan  | Melmetal |  |
@@ -45,6 +45,8 @@ Each Pokemon line can be toggled on/off in the mod config options
 | Lechonk | Oinkologne |  |
 | Nacli | Naclstack | Garganacl |
 | Cetoddle | Cetitan |  |
+| Canari Plush |  |  |
+| Member Card | Mystery Box |  |
 
 
 ## Credits

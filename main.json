@@ -7,9 +7,10 @@
 	"main_file": "main.lua",
 	"priority": 20,
 	"badge_colour": "87deff",
+	"icon_path": "icon.png",
 	"badge_text_colour": "ffffff",
-  "display_name": "Pokermon+",
-	"version": "1.1.1-261012a",
+  	"display_name": "Pokermon+",
+	"version": "1.2.0-261012a",
 	"dependencies": [
       		"Pokermon (>=3.8.1-0625a)"
 	],
