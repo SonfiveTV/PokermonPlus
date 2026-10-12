@@ -9,8 +9,8 @@ local helioptile = {
     local a = card.ability.extra
     local num, dem = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'helioptile')
     local vars = {
-      math.min(a.money_mod, card.sell_cost),
-      math.min(a.money_mod * 2, card.sell_cost),
+      a.money_mod,
+      a.money_mod * 2,
       card.sell_cost,
       num,
       dem
@@ -70,8 +70,8 @@ local heliolisk = {
     local a = card.ability.extra
     local num, dem = SMODS.get_probability_vars(card, card.ability.extra.numerator, card.ability.extra.denominator, 'helioptile')
     local vars = {
-      math.min(a.money_mod, card.sell_cost),
-      math.min(a.money_mod * 2, card.sell_cost),
+      a.money_mod,
+      a.money_mod * 2,
       card.sell_cost,
       num,
       dem,
