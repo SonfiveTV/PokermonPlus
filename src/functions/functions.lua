@@ -134,7 +134,7 @@ end
 local cae_ref = pokermon.energy.can_apply_energy
 pokermon.energy.can_apply_energy = function(card, etype, ...)
   local ret = cae_ref(card, etype, ...)
-  if not ret and G.GAME.neg_energy_trigger and pokermon.get_total_energy(card) <= pokermon.energy.max + (G.GAME.energy_plus or 0) + (type(card.ability.extra) == "table" and card.ability.extra.e_limit_up or 0) then ret = true end
+  if not ret and G.GAME.neg_energy_trigger and pokermon.energy.get_total_energy(card) <= pokermon.energy.max + (G.GAME.energy_plus or 0) + (type(card.ability.extra) == "table" and card.ability.extra.e_limit_up or 0) then ret = true end
   return ret
 end
 
