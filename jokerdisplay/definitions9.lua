@@ -309,17 +309,21 @@ jd_def["j_sonfive_cetitan"] = {
         local count = 0
         local glass_count = 0
         local double = false
-        for _, playing_card in ipairs(G.hand.cards) do
-            if playing_hand or not playing_card.highlighted then
-                if playing_card then
-                    count = count + 1
-                    if playing_card and playing_card.ability and playing_card.ability.effect and playing_card.ability.effect == "Glass Card" then
-                        glass_count = glass_count + 1
+        if #G.hand.cards > 0 then
+            for _, playing_card in ipairs(G.hand.cards) do
+                if playing_hand or not playing_card.highlighted then
+                    if playing_card then
+                        count = count + 1
+                        if playing_card and playing_card.ability and playing_card.ability.effect and playing_card.ability.effect == "Glass Card" then
+                            glass_count = glass_count + 1
+                        end
                     end
                 end
             end
+        else
+            glass_count = 0
         end
-        if glass_count == count then 
+        if #G.hand.cards > 0 and glass_count == count then 
             double = true
         else
             double = false

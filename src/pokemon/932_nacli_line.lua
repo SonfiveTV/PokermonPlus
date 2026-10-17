@@ -26,7 +26,11 @@ local nacli = {
           odds = SMODS.pseudorandom_probability(card, 'nacli', abbr.numerator, abbr.denominator, 'nacli')
         end
         if odds then
-          abbr.Xmult = abbr.Xmult + abbr.Xmult_mod
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = "Xmult",
+            scalar_value = "Xmult_mod"
+          })
           G.E_MANAGER:add_event(Event({
           SMODS.destroy_cards(rightmost, nil, nil, true)
           }))
@@ -79,7 +83,11 @@ local naclstack = {
           odds = SMODS.pseudorandom_probability(card, 'naclstack', abbr.numerator, abbr.denominator, 'naclstack')
         end
         if odds then
-          abbr.Xmult = abbr.Xmult + abbr.Xmult_mod
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = "Xmult",
+            scalar_value = "Xmult_mod"
+          })
           G.E_MANAGER:add_event(Event({
           SMODS.destroy_cards(rightmost, nil, nil, true)
           }))
@@ -133,7 +141,12 @@ local garganacl = {
           odds = SMODS.pseudorandom_probability(card, 'garganacl', abbr.numerator, abbr.denominator, 'garganacl')
         end
         if odds then
-          abbr.Xmult = abbr.Xmult * abbr.Xmult_multi
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = "Xmult",
+            scalar_value = "Xmult_multi",
+            operation = "X"
+          })
           G.E_MANAGER:add_event(Event({
           SMODS.destroy_cards(rightmost, nil, nil, true)
           }))

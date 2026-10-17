@@ -26,8 +26,13 @@ local cetoddle = {
                     func = function()
                         G.E_MANAGER:add_event(Event({
                             func = function()
-                                card.ability.extra.Xmult = card.ability.extra.Xmult +
-                                    card.ability.extra.Xmult_mod * glass_cards
+                                local broken = {count = glass_cards * card.ability.extra.Xmult_mod}
+                                SMODS.scale_card(card, {
+                                    ref_table = card.ability.extra,
+                                    ref_value = "Xmult",
+                                    scalar_table = broken,
+                                    scalar_value = "count",
+                                })
                                 return true
                             end
                         }))
@@ -89,8 +94,13 @@ local cetitan = {
                     func = function()
                         G.E_MANAGER:add_event(Event({
                             func = function()
-                                card.ability.extra.Xmult = card.ability.extra.Xmult +
-                                    card.ability.extra.Xmult_mod * glass_cards
+                                local broken = {count = glass_cards * card.ability.extra.Xmult_mod}
+                                SMODS.scale_card(card, {
+                                    ref_table = card.ability.extra,
+                                    ref_value = "Xmult",
+                                    scalar_table = broken,
+                                    scalar_value = "count",
+                                })
                                 return true
                             end
                         }))
