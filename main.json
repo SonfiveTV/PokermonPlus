@@ -10,7 +10,7 @@
 	"icon_path": "icon.png",
 	"badge_text_colour": "ffffff",
   	"display_name": "Pokermon+",
-	"version": "1.2.0-261017a",
+	"version": "1.2.0-261018a",
 	"dependencies": [
       		"Pokermon (>=3.8.1-0625a)"
 	],

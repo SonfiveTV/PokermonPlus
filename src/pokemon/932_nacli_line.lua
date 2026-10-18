@@ -51,7 +51,7 @@ local nacli = {
         }
       end
     end
-    return pokermon.scaling_evo(self, card, context, "j_sonfive_naclstack", card.ability.extra.Xmult, self.config.evo_rqmt)
+    return pokermon.scaling_evo(self, card, context, "j_sonfive_naclstack", card.ability.extra.Xmult, (self.config.evo_rqmt - 0.00001))
   end
 }
 
